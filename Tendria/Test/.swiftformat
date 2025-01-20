@@ -1,0 +1,17 @@
+--exclude Pods,**/.build,**/Package.swift,vendor/bundle,scripts,fastlane,**/L10n.swift,**/Assets.swift,**/*.generated.swift,**/Generated,xcode-productivity/**/*.swift,**/Carthage/**/*.swift
+
+--lineaftermarks true
+--typeblanklines remove
+--allman false
+--emptybraces no-space
+--enumnamespaces always
+--asynccapturing
+--patternlet hoist
+--throwcapturing
+--modifierorder
+--someAny false
+--self insert
+--redundanttype inferred
+--closurevoid remove
+--enable andOperator, anyObjectProtocol, assertionFailures, blankLinesAtEndOfScope
+--disable hoistAwait, acronyms, fileHeader, isEmpty, extensionAccessControl
