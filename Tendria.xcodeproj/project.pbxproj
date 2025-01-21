@@ -10,9 +10,33 @@
 		374A80FA2D3B8CE300D5F0A4 /* Tendria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tendria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		373DD7E92D3D545A0007E7FE /* Exceptions for "Tendria" folder in "Tendria" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"/Localized: extension/Localizable.strings",
+			);
+			target = 374A80F92D3B8CE300D5F0A4 /* Tendria */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		373DD7EA2D3D545A0007E7FE /* Exceptions for "Tendria" folder in "Compile Sources" phase from "Tendria" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 374A80F62D3B8CE300D5F0A4 /* Sources */;
+			membershipExceptions = (
+				"/Localized: extension/Localizable.strings",
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		374A80FC2D3B8CE300D5F0A4 /* Tendria */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				373DD7E92D3D545A0007E7FE /* Exceptions for "Tendria" folder in "Tendria" target */,
+				373DD7EA2D3D545A0007E7FE /* Exceptions for "Tendria" folder in "Compile Sources" phase from "Tendria" target */,
+			);
 			path = Tendria;
 			sourceTree = "<group>";
 		};
@@ -55,6 +79,7 @@
 				374A80F62D3B8CE300D5F0A4 /* Sources */,
 				374A80F72D3B8CE300D5F0A4 /* Frameworks */,
 				374A80F82D3B8CE300D5F0A4 /* Resources */,
+				373DD7D22D3D46200007E7FE /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -91,6 +116,8 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
+				fr,
 			);
 			mainGroup = 374A80F12D3B8CE300D5F0A4;
 			minimizedProjectReferenceProxies = 1;
@@ -113,6 +140,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		373DD7D22D3D46200007E7FE /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		374A80F62D3B8CE300D5F0A4 /* Sources */ = {

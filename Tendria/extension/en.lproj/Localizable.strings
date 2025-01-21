@@ -5,3 +5,16 @@
 //  Created by Yakup Kavak on 19.01.2025.
 //
 
+"welcome" = "Welcome";
+"sign_account" = "Sign in to your account";
+"username" = "Username";
+"password" = "Password";
+"forgot_password" = "Forgot your password?";
+"create" = "Create";
+"dont_account" = "Don't have an account?";
+"sign_in" = "Sign in";
+"create_account" = "Create Account";
+"email" = "E-mail";
+"already_account" = "Already have an account?";
+"reset_password" = "Reset password";
+"reset" = "Reset";

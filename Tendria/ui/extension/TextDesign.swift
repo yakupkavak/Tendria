@@ -36,7 +36,7 @@ struct tvGradient: View {
 struct tvColor: View {
     var text: LocalizedStringKey
     var color: Color
-    var weight: Font.Weight
+    var weight: Font.Weight? = .regular
     var font: Font
     
     var body: some View {

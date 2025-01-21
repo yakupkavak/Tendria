@@ -5,3 +5,16 @@
 //  Created by Yakup Kavak on 19.01.2025.
 //
 
+"welcome" = "Hoşgeldin";
+"sign_account" = "Hesabına giriş yap";
+"username" = "Kullanıcı Adı";
+"password" = "Şifre";
+"forgot_password" = "Şifreni mi unuttun?";
+"create" = "Oluştur";
+"dont_account" = "Hesabın yok mu?";
+"sign_in" = "Giriş yap";
+"create_account" = "Hesap Oluştur";
+"email" = "E-posta";
+"already_account" = "Zaten hesabın var mı?";
+"reset_password" = "Şifreni sıfırla";
+"reset" = "Sıfırla";
