@@ -1,8 +1,10 @@
 import SwiftUI
 
-struct ForgotPasswordUI: View {
+struct SignUpUI: View {
     
-    @EnvironmentObject private var router: RouterSign
+    @EnvironmentObject var router: RouterSign
+    @State private var username: String = ""
+    @State private var password: String = ""
     @State private var email: String = ""
     var body: some View {
         ZStack {
@@ -14,13 +16,14 @@ struct ForgotPasswordUI: View {
             }
             .edgesIgnoringSafeArea(.top)//ekranın çentiklerini vs göz artı edip en yukarı çık
             
-            VStack(spacing: Height.mediumHeight) {
-                Spacer().frame(height: Height.mediumHeight)
+            VStack(spacing: Height.xMediumHeight) {
+                Spacer().frame(height: Height.largeHeight)
                 
-                BigSizeBoldGrad(text: Strings.resetPassword)
-                
-                Spacer().frame(height: Height.smallHeight)
+                BigSizeBoldGrad(text: Strings.createAccount)
+
                 VStack(spacing: Height.mediumHeight) {
+                    tfIcon(iconSystemName: "person.fill", placeHolder: Strings.username, textInput: $username)
+                    tfIcon(iconSystemName: "lock.fill", placeHolder: Strings.password, textInput: $password)
                     tfIcon(iconSystemName: "envelope.fill", placeHolder: Strings.email, textInput: $email)
                 }
 
@@ -28,7 +31,7 @@ struct ForgotPasswordUI: View {
                 
                 HStack(spacing: Height.xSmallHeight){
                     Spacer()
-                    tvHeadline(text: Strings.reset, color: .blue500)
+                    tvHeadline(text: Strings.create, color: .blue500)
                     btnIcon(iconSystemName: "arrow.right", color: .white) {
                         print("giriş yap tıklandı")
                     }
@@ -48,5 +51,5 @@ struct ForgotPasswordUI: View {
 }
 
 #Preview {
-    ForgotPasswordUI()
+    SignUpUI()
 }
