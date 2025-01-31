@@ -14,6 +14,7 @@ final class RouterSign: ObservableObject {
         case signIn
         case signUp
         case forgotPassword
+        case feed
     }
     
     @Published var navPath = NavigationPath()

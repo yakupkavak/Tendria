@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 @main
 struct TendriaApp: App {
-    @ObservedObject var router = RouterSign()
+    init() {
+        FirebaseApp.configure()
+        let authManager = AuthManager()
+        _authManager = StateObject(wrappedValue: authManager)
+    }
+    
+    @StateObject var authManager : AuthManager
+    @StateObject var router = RouterSign()
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
@@ -21,12 +29,17 @@ struct TendriaApp: App {
                         case .signIn:
                             SignInUI()
                         case .signUp:
-                            SignUpUI()
+                            SignUpUI(authManager: authManager)
                         case .forgotPassword:
                             ForgotPasswordUI()
+                        case .feed:
+                            FeedUI()
                         }
+                    
                     }
             }.environmentObject(router)
+                .environmentObject(authManager)
         }
     }
 }
+

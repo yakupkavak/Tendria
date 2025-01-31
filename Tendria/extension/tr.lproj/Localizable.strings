@@ -18,3 +18,5 @@
 "already_account" = "Zaten hesabın var mı?";
 "reset_password" = "Şifreni sıfırla";
 "reset" = "Sıfırla";
+"full_name" = "İsim Soyisim";
+"unknown_error" = "Bilinmeyen hata";

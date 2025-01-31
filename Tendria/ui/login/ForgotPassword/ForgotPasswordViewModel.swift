@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+class ForgotPasswordViewModel: ObservableObject{
+    @Published var email = ""
+}

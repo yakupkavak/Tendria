@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct SignUpUI: View {
+struct ForgotPasswordUI: View {
     
-    @EnvironmentObject var router: RouterSign
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @State private var email: String = ""
+    @EnvironmentObject var authManager: AuthManager
+    @EnvironmentObject private var router: RouterSign
+    @ObservedObject var viewModel = ForgotPasswordViewModel()
+    
     var body: some View {
         ZStack {
             VStack() {
@@ -16,23 +16,22 @@ struct SignUpUI: View {
             }
             .edgesIgnoringSafeArea(.top)//ekranın çentiklerini vs göz artı edip en yukarı çık
             
-            VStack(spacing: Height.xMediumHeight) {
-                Spacer().frame(height: Height.largeHeight)
+            VStack(spacing: Height.mediumHeight) {
+                Spacer().frame(height: Height.mediumHeight)
                 
-                BigSizeBoldGrad(text: Strings.createAccount)
-
+                BigSizeBoldGrad(text: Strings.resetPassword)
+                
+                Spacer().frame(height: Height.smallHeight)
                 VStack(spacing: Height.mediumHeight) {
-                    tfIcon(iconSystemName: "person.fill", placeHolder: Strings.username, textInput: $username)
-                    tfIcon(iconSystemName: "lock.fill", placeHolder: Strings.password, textInput: $password)
-                    tfIcon(iconSystemName: "envelope.fill", placeHolder: Strings.email, textInput: $email)
+                    tfIcon(iconSystemName: "envelope.fill", placeHolder: Strings.email, textInput: $viewModel.email)
                 }
 
                 Spacer()
                 
                 HStack(spacing: Height.xSmallHeight){
                     Spacer()
-                    tvHeadline(text: Strings.create, color: .blue500)
-                    btnIcon(iconSystemName: "arrow.right", color: .white) {
+                    tvHeadline(text: Strings.reset, color: .blue500)
+                    btnSystemIcon(iconSystemName: "arrow.right", color: .white) {
                         print("giriş yap tıklandı")
                     }
                 }
@@ -51,5 +50,5 @@ struct SignUpUI: View {
 }
 
 #Preview {
-    SignUpUI()
+    ForgotPasswordUI()
 }

@@ -10,6 +10,7 @@ import SwiftUI
 typealias Height = Constants.Height
 typealias Radius = Constants.Radius
 typealias Strings = Constants.Strings
+typealias IconWidth = Constants.Icon
 
 struct Constants {
     struct Gradients {
@@ -22,14 +23,14 @@ struct Constants {
     }
     struct Width{
         static let xLargeWidth = CGFloat(50)
-        static let largeWidth = UIScreen.main.bounds.height * 0.1
-        static let mediumWidth = UIScreen.main.bounds.height * 0.05
-        static let xMediumWidth = UIScreen.main.bounds.height * 0.04
-        static let normalWidth = UIScreen.main.bounds.height * 0.035
-        static let smallWidth = UIScreen.main.bounds.height * 0.02
-        static let xSmallWidth = UIScreen.main.bounds.height * 0.015
-        static let xxSmallWidth = UIScreen.main.bounds.height * 0.01
-        static let smalIconWidth = UIScreen.main.bounds.height * 0.01
+        static let largeWidth = UIScreen.main.bounds.width * 0.1
+        static let mediumWidth = UIScreen.main.bounds.width * 0.05
+        static let xMediumWidth = UIScreen.main.bounds.width * 0.04
+        static let normalWidth = UIScreen.main.bounds.width * 0.035
+        static let smallWidth = UIScreen.main.bounds.width * 0.02
+        static let xSmallWidth = UIScreen.main.bounds.width * 0.015
+        static let xxSmallWidth = UIScreen.main.bounds.width * 0.01
+        static let smalIconWidth = UIScreen.main.bounds.width * 0.01
     }
     struct Height{
         static let xLargeHeight = CGFloat(50)
@@ -41,6 +42,9 @@ struct Constants {
         static let xSmallHeight = UIScreen.main.bounds.height * 0.015
         static let xxSmallHeight = UIScreen.main.bounds.height * 0.01
         static let smallIconHeight = UIScreen.main.bounds.height * 0.025
+    }
+    struct Icon{
+        static let mediumHeight = UIScreen.main.bounds.height * 0.04
     }
     struct Strings {
         static let welcome = LocalizedStringKey("welcome")
@@ -56,7 +60,8 @@ struct Constants {
         static let alreadyAccount = LocalizedStringKey("already_account")
         static let resetPassword = LocalizedStringKey("reset_password")
         static let reset = LocalizedStringKey("reset")
-
+        static let full_name = LocalizedStringKey("full_name")
+        static let unknown_error = LocalizedStringKey("unknown_error")
     }
 
     struct Padding {

@@ -18,3 +18,5 @@
 "already_account" = "Already have an account?";
 "reset_password" = "Reset password";
 "reset" = "Reset";
+"full_name" = "Full name";
+"unknown_error" = "Unknown Error";

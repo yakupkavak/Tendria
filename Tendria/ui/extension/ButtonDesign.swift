@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SVGKit
 
 struct btnText<Content: View>: View {
     var customView: Content
@@ -20,7 +21,7 @@ struct btnText<Content: View>: View {
         }
     }
 }
-struct btnIcon: View {
+struct btnSystemIcon: View {
     var iconSystemName: String
     var color: Color
     var action: () -> Void
@@ -31,5 +32,19 @@ struct btnIcon: View {
         } label: {
             Image(systemName: iconSystemName).foregroundColor(color)
         }.btnStyle()
+    }
+}
+struct btnSignIcon: View {
+    var iconName: String
+    var width: CGFloat? = IconWidth.mediumHeight
+    var action: () -> Void
+    
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            Image(iconName).resizable().scaledToFit()
+                .frame(width: Constants.Icon.mediumHeight,height:Constants.Icon.mediumHeight)
+        }
     }
 }
