@@ -12,33 +12,37 @@ import FirebaseCore
 struct TendriaApp: App {
     init() {
         FirebaseApp.configure()
-        let authManager = AuthManager()
-        _authManager = StateObject(wrappedValue: authManager)
     }
-    
-    @StateObject var authManager : AuthManager
+    @StateObject var authManager = AuthManager()
     @StateObject var router = RouterSign()
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $router.navPath) {
-                SignInUI()
-                    .navigationDestination(for: RouterSign.Destination.self) { destination in
-                        switch destination {
-                        case .signIn:
-                            SignInUI()
-                        case .signUp:
-                            SignUpUI(authManager: authManager)
-                        case .forgotPassword:
-                            ForgotPasswordUI()
-                        case .feed:
-                            FeedUI()
-                        }
-                    
+                Group{
+                    if authManager.checkUserSession() {
+                        BaseTabViewUI()
+                    } else {
+                        SignInUI(authManager: authManager)
                     }
-            }.environmentObject(router)
-                .environmentObject(authManager)
+                }.navigationDestination(for: RouterSign.Destination.self) { destination in
+                    switch destination {
+                    case .signIn:
+                        SignInUI(authManager: authManager)
+                    case .signUp:
+                        SignUpUI(authManager: authManager)
+                    case .forgotPassword:
+                        ForgotPasswordUI(authManager: authManager)
+                    case .feed:
+                        BaseTabViewUI()
+                    }
+                }
+            }
+            .environmentObject(router)
+            .environmentObject(authManager).onAppear {
+                UIApplication.shared.addTapGestureRecognizer()
+            }
         }
     }
 }

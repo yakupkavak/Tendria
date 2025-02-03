@@ -17,89 +17,106 @@ private var authStateHandle: AuthStateDidChangeListenerHandle!
 class AuthManager: ObservableObject {
     @Published var user: User?
     @Published var authState = AuthState.signedOut
+    private var auth: Auth
     
     init() {
+        self.auth = Auth.auth()
         configureAuthStateChanges()
         verifySignInWithAppleID()
     }
     
     func configureAuthStateChanges() {
-        authStateHandle = Auth.auth().addStateDidChangeListener { auth, user in
+        authStateHandle = auth.addStateDidChangeListener { auth, user in
             //listener açıldı her oturum değişince burası çalışacak.
             print("Auth changed: \(user != nil)")
             self.updateState(user: user)
         }
     }
     
+    func checkUserSession() -> Bool {
+        return auth.currentUser != nil
+    }
+    
     func removeAuthStateListener() {
-        Auth.auth().removeStateDidChangeListener(authStateHandle)
+        auth.removeStateDidChangeListener(authStateHandle)
     }
     
     func updateState(user: User?) {
         self.user = user
         let isAuthenticatedUser = user != nil
-        let isAnonymous = user?.isAnonymous ?? false
-
-        if isAuthenticatedUser {
-            self.authState = isAnonymous ? .authenticated : .signedIn
-        } else {
-            self.authState = .signedOut
-        }
+        self.authState = isAuthenticatedUser ? .signedIn : .signedOut
     }
     
-    func signOut() async throws {
-        if Auth.auth().currentUser != nil {
+    func autoSignOut() async {
             do {
-                try Auth.auth().signOut()
+                try await signOut() // ✅ Otomatik çıkış yap
+                print("✅ Uygulama açıldığında otomatik çıkış yapıldı")
+            } catch {
+                print("❌ Otomatik çıkış işlemi başarısız: \(error.localizedDescription)")
+            }
+        }
+    
+    func signOut() async throws {
+        if auth.currentUser != nil {
+            do {
+                try auth.signOut()
             }
             catch let error as NSError{
                 print("FirebaseAuthError: failed to sign out from Firebase, \(error)")
-                throw error
+                throw mapFirebaseError(error)
             }
         }
     }
     
     //credential alıp firebaseden giriş yapmaya çalışıyor.
     private func authenticateUser(credentials: AuthCredential) async throws -> AuthDataResult? {
-        guard let currentUser = Auth.auth().currentUser else {
+        guard let currentUser = auth.currentUser else {
             return try await authSignIn(credentials: credentials)
         }
         let providers = currentUser.providerData.map { $0.providerID }
         
         if providers.contains("google.com") && credentials.provider == "google.com" {
-            return try await Auth.auth().signIn(with: credentials)
+            return try await authSignIn(credentials: credentials)
         }
         else if providers.contains("apple.com") && credentials.provider == "apple.com"{
-            return try await Auth.auth().signIn(with: credentials)
+            return try await authSignIn(credentials: credentials)
         }
         else if providers.contains("password") && credentials.provider == "password" {
-            return try await Auth.auth().signIn(with: credentials)
+            return try await authSignIn(credentials: credentials)
         }
         return try await authLink(credentials: credentials)
     }
 
     private func authSignIn(credentials: AuthCredential) async throws -> AuthDataResult? {
         do {
-            let result = try await Auth.auth().signIn(with: credentials)
+            let result = try await auth.signIn(with: credentials)
             updateState(user: result.user) // bu kendi içimiz için.
             return result
         }
         catch {
             print("FirebaseAuthError: signIn(with:) failed. \(error)")
-            throw error
+            throw mapFirebaseError(error)
         }
     }
     
     func signUpWithEmail(email: String, password: String) async throws -> AuthDataResult? {
         do {
-            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+            _ = try await auth.createUser(withEmail: email, password: password)
             return try await signInWithEmail(email: email, password: password)
         } catch {
             print("FirebaseAuthError: signUpWithEmail(email:password:) failed. \(error)")
-            throw error
+            throw mapFirebaseError(error)
         }
     }
-    
+    func resetPassword(email: String) async throws{
+        do {
+            try await auth.sendPasswordReset(withEmail: email)
+        } catch {
+            print("❌ Şifre sıfırlama hatası: \(error.localizedDescription)")
+            throw mapFirebaseError(error)
+        }
+    }
+     
     func signInWithEmail(email: String, password: String) async throws -> AuthDataResult? {
         let credentials = EmailAuthProvider.credential(withEmail: email, password: password)
         
@@ -108,8 +125,40 @@ class AuthManager: ObservableObject {
             return result
         } catch {
             print("FirebaseAuthError: signInWithEmail(email:password:) failed. \(error)")
-            throw error
+            throw mapFirebaseError(error)
         }
+    }
+    
+    private func mapFirebaseError(_ error: Error) -> NSError {
+        let nsError = error as NSError
+        
+        guard let errorCode = AuthErrorCode(rawValue: nsError.code) else {
+            return NSError(domain: "Unkwon", code: 1)
+        }
+        
+        let localizedErrorMessage: String
+        print("🔥 Firebase Hata Kodu: \(nsError.code) - Açıklama: \(nsError.localizedDescription)")
+
+        switch errorCode {
+        case .emailAlreadyInUse:
+            localizedErrorMessage = NSLocalizedString("email_already_in_use", comment: "Bu e-posta adresi zaten kullanılıyor.")
+        case .invalidEmail:
+            localizedErrorMessage = NSLocalizedString("invalid_email", comment: "Geçersiz e-posta adresi.")
+        case .weakPassword:
+            localizedErrorMessage = NSLocalizedString("weak_password", comment: "Şifreniz çok zayıf. Daha güçlü bir şifre seçin.")
+        case .networkError:
+            localizedErrorMessage = NSLocalizedString("network_error", comment: "Bağlantı hatası. Lütfen internetinizi kontrol edin.")
+        case .userDisabled:
+            localizedErrorMessage = NSLocalizedString("user_disabled", comment: "Bu hesap devre dışı bırakılmıştır.")
+        case .wrongPassword:
+            localizedErrorMessage = NSLocalizedString("wrong_password", comment: "Yanlış şifre girdiniz.")
+        case .userNotFound:
+            localizedErrorMessage = NSLocalizedString("user_not_found", comment: "Bu e-posta adresine sahip bir hesap bulunamadı.")
+        default:
+            localizedErrorMessage = NSLocalizedString("unknown_error", comment: "Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin.")
+        }
+
+        return NSError(domain: nsError.domain, code: nsError.code, userInfo: [NSLocalizedDescriptionKey: localizedErrorMessage])
     }
 
     // 3.Kullanıcı oturum açmışsa mevcut bilgileri bağla
@@ -117,7 +166,7 @@ class AuthManager: ObservableObject {
     //TODO AYARLAR EKRANINDAN E MAIL ŞİFRE BAĞLANICAK
     private func authLink(credentials: AuthCredential) async throws -> AuthDataResult? {
         do {
-            guard let user = Auth.auth().currentUser else { return nil }
+            guard let user = auth.currentUser else { return nil }
             let result = try await user.link(with: credentials)
             //await updateDisplayName(for: result.user)
             updateState(user: result.user)
@@ -125,13 +174,13 @@ class AuthManager: ObservableObject {
         }
         catch {
             print("FirebaseAuthError: link(with:) failed, \(error)")
-            throw error
+            throw mapFirebaseError(error)
         }
     }
     
     private func updateDisplayName(for user: User) async {
         //apple ya da google sunucudan aldığımız display name ile firebasedekini işliyoruz.
-        if let currentDisplayName = Auth.auth().currentUser?.displayName, !currentDisplayName.isEmpty {
+        if let currentDisplayName = auth.currentUser?.displayName, !currentDisplayName.isEmpty {
         } else  {
             let displayName = user.providerData.first?.displayName
             let changeRequest = user.createProfileChangeRequest()
@@ -159,10 +208,10 @@ class AuthManager: ObservableObject {
         catch let error as NSError {
             if error.code == AuthErrorCode.credentialAlreadyInUse.rawValue {
                 print("Google hesabı zaten bir kullanıcıya bağlı, giriş yapılıyor...")
-                return try await Auth.auth().signIn(with: credentials)
+                return try await auth.signIn(with: credentials)
             } else {
                 print("FirebaseAuthError: googleAuth(user:) failed. \(error.localizedDescription)")
-                throw error
+                throw mapFirebaseError(error)
             }
         }
     }
@@ -196,13 +245,13 @@ class AuthManager: ObservableObject {
         }
         catch {
             print("FirebaseAuthError: appleAuth(appleIDCredential:nonce:) failed. \(error)")
-            throw error
+            throw mapFirebaseError(error)
         }
     }
     
     func verifySignInWithAppleID() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let providerData = Auth.auth().currentUser?.providerData
+        let providerData = auth.currentUser?.providerData
         if let appleProviderData = providerData?.first(where: { $0.providerID == "apple.com" }) {
             Task {
                 let credentialState = try await appleIDProvider.credentialState(forUserID: appleProviderData.uid)
@@ -237,7 +286,6 @@ class AuthManager: ObservableObject {
 }
 
 enum AuthState {
-    case authenticated // Anonymously authenticated in Firebase.
-    case signedIn // Authenticated in Firebase using one of service providers, and not anonymous.
+    case signedIn
     case signedOut // Not authenticated in Firebase.
 }

@@ -7,6 +7,35 @@
 
 import Foundation
 
-class ForgotPasswordViewModel: ObservableObject{
+class ForgotPasswordViewModel: BaseViewModel{
     @Published var email = ""
+    @Published var success = ""
+    @Published var loading : Bool = false
+    @Published var error = ""
+    @Published var showAllert: Bool = false
+    @Published var alertType: AlertType = .success
+
+    private var authManager: AuthManager
+    
+    init(authManager: AuthManager) {
+        self.authManager = authManager
+    }
+    
+    func forgotPassword(){
+        getDataCall {
+            try await self.authManager.resetPassword(email: self.email)
+        } onSuccess: { result in
+            self.showAllert = true
+            self.alertType = .success
+            self.success = getLocalizedString(StringKey.password_reset_success)
+            self.loading = false
+        } onLoading: {
+            self.loading = true
+        } onError: { error in
+            self.alertType = .error
+            self.loading = false
+            self.showAllert = true
+            self.error = error?.localizedDescription ?? String(describing: StringKey.unknown_error)
+        }
+    }
 }

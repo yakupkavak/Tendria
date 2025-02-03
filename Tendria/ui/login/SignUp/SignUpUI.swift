@@ -24,52 +24,39 @@ struct SignUpUI: View {
             VStack(spacing: Height.mediumHeight) {
                 Spacer().frame(height: Height.xLargeHeight)
                 
-                BigSizeBoldGrad(text: Strings.createAccount)
+                BigSizeBoldGrad(text: StringKey.create_account)
 
                 VStack(spacing: Height.mediumHeight) {
-                    tfIcon(iconSystemName: "envelope.fill", placeHolder: Strings.email, textInput: $viewModel.email)
-                    tfIcon(iconSystemName: "lock.fill", placeHolder: Strings.password, textInput: $viewModel.password)
-                    tfIcon(iconSystemName: "person.fill", placeHolder: Strings.full_name, textInput: $viewModel.fullName)
-                    tfIcon(iconSystemName: "person.fill", placeHolder: Strings.username, textInput: $viewModel.userName)
+                    tfIcon(iconSystemName: IconName.envelope, placeHolder: StringKey.email, textInput: $viewModel.email)
+                    tfIcon(iconSystemName: IconName.lock, placeHolder: StringKey.password, textInput: $viewModel.password)
+                    tfIcon(iconSystemName: IconName.person, placeHolder: StringKey.full_name, textInput: $viewModel.fullName)
+                    tfIcon(iconSystemName: "person.fill", placeHolder: StringKey.username, textInput: $viewModel.userName)
                 }
                 
                 HStack(spacing: Height.xSmallHeight){
                     Spacer()
-                    tvHeadline(text: Strings.create, color: .blue500)
-                    btnSystemIcon(iconSystemName: "arrow.right", color: .white) {
+                    tvHeadline(text: StringKey.create, color: .blue500)
+                    btnSystemIcon(iconSystemName: IconName.right_arrow, color: .white) {
                         viewModel.signUpEmail()
                     }
                 }
-                
-                Spacer()
-                
+                                
                 HStack {
-                    tvFootnote(text: Strings.alreadyAccount, color: .primary)
-                    btnText(customView: tvFootnote(text: Strings.signIn, color: Color.orange700)) {
+                    tvFootnote(text: StringKey.already_account, color: .primary)
+                    btnText(customView: tvFootnote(text: StringKey.signIn, color: Color.orange700)) {
                         router.navigateBack()
                     }
                 }
                 
                 HStack(spacing: Height.xSmallHeight){
-                    /*
-                    SignInWithAppleButton { request in
-                        AppleSignInManager.shared.requestAppleAuthorization(request)
-                    } onCompletion: { result in
-                        handleAppleID(result)
-                    }
-                     */
-                    btnSignIcon(iconName: "appleIcon") {
+                    btnSignIcon(iconName: IconName.appleIcon) {
                         Task{
-                            viewModel.signInWithApple() {
-                                router.navigate(to: .feed)
-                            }
+                            viewModel.signInWithApple()
                         }
                     }
-                    btnSignIcon(iconName: "googleIcon") {
+                    btnSignIcon(iconName: IconName.googleIcon) {
                         Task{
-                            viewModel.signInWithGoogle {
-                                router.navigate(to: .feed)
-                            }
+                            viewModel.signInWithGoogle()
                         }
                     }
                     
@@ -80,14 +67,19 @@ struct SignUpUI: View {
             .onChange(of: viewModel.success) {
                 if viewModel.success {
                     print("✅ Kayıt başarılı! Ana ekrana yönlendiriliyor...")
-                    router.navigate(to: .feed) // Başarılıysa yönlendirme yap
+                    router.navigate(to: .feed)
                 }
             }
             .onChange(of: viewModel.error) {
                 if !viewModel.error.isEmpty {
                     print("❌ Hata oluştu: \(viewModel.error)")
                 }
+            }.alert(StringKey.error, isPresented: $viewModel.showAllert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(viewModel.error)
             }
+
     }
     
 }

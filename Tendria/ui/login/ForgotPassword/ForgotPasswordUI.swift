@@ -4,7 +4,11 @@ struct ForgotPasswordUI: View {
     
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject private var router: RouterSign
-    @ObservedObject var viewModel = ForgotPasswordViewModel()
+    @StateObject var viewModel: ForgotPasswordViewModel
+    
+    init(authManager: AuthManager) {
+        _viewModel = StateObject(wrappedValue: ForgotPasswordViewModel(authManager: authManager))
+    }
     
     var body: some View {
         ZStack {
@@ -14,31 +18,31 @@ struct ForgotPasswordUI: View {
                     .shadow(radius: Radius.normalRadius)
                 Spacer()
             }
-            .edgesIgnoringSafeArea(.top)//ekranın çentiklerini vs göz artı edip en yukarı çık
+            .edgesIgnoringSafeArea(.top)
             
             VStack(spacing: Height.mediumHeight) {
                 Spacer().frame(height: Height.mediumHeight)
                 
-                BigSizeBoldGrad(text: Strings.resetPassword)
+                BigSizeBoldGrad(text: StringKey.reset_password)
                 
                 Spacer().frame(height: Height.smallHeight)
                 VStack(spacing: Height.mediumHeight) {
-                    tfIcon(iconSystemName: "envelope.fill", placeHolder: Strings.email, textInput: $viewModel.email)
+                    tfIcon(iconSystemName: IconName.envelope, placeHolder: StringKey.email, textInput: $viewModel.email)
                 }
 
                 Spacer()
                 
                 HStack(spacing: Height.xSmallHeight){
                     Spacer()
-                    tvHeadline(text: Strings.reset, color: .blue500)
-                    btnSystemIcon(iconSystemName: "arrow.right", color: .white) {
-                        print("giriş yap tıklandı")
+                    tvHeadline(text: StringKey.reset, color: .blue500)
+                    btnSystemIcon(iconSystemName: IconName.right_arrow, color: .white) {
+                        viewModel.forgotPassword()
                     }
                 }
                 Spacer()
                 HStack {
-                    tvFootnote(text: Strings.alreadyAccount, color: .primary)
-                    btnText(customView: tvFootnote(text: Strings.signIn, color: Color.orange700)) {
+                    tvFootnote(text: StringKey.already_account, color: .primary)
+                    btnText(customView: tvFootnote(text: StringKey.signIn, color: Color.orange700)) {
                         router.navigateBack()
                     }
                 }
@@ -46,9 +50,16 @@ struct ForgotPasswordUI: View {
             }
             .padding(.horizontal, Height.normalHeight)
         }.navigationBarBackButtonHidden()
+            .alert(viewModel.alertType == .success ? getLocalizedString(StringKey.success) : getLocalizedString(StringKey.error), isPresented: $viewModel.showAllert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(viewModel.alertType == .success ? viewModel.success : viewModel.error)
+            }
     }
 }
 
 #Preview {
-    ForgotPasswordUI()
+    let previewAuthManager = AuthManager()
+    ForgotPasswordUI(authManager: previewAuthManager)
+        .environmentObject(previewAuthManager)
 }

@@ -7,209 +7,103 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8C5BA603-F603-48F8-BE2E-A8A812CF70F0"
+            uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tendria/data/network/firebase/Auth/AuthManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "authSignIn(credentials:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "06427FA3-C332-4AD4-95B8-1E89F67526BD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tendria/data/network/firebase/Auth/AuthManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "authSignIn(credentials:)"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "authenticateUser(credentials:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "06427FA3-C332-4AD4-95B8-1E89F67526BD - 5dc9efde2b0a407b"
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 3d91cf1598981894"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for Tendria.AuthManager.authSignIn(credentials: FirebaseAuth.AuthCredential) async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;"
+                  symbolName = "(1) suspend resume partial function for Tendria.AuthManager.authenticateUser(credentials: FirebaseAuth.AuthCredential) async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;"
                   moduleName = "Tendria.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83">
+                  startingLineNumber = "87"
+                  endingLineNumber = "87">
                </Location>
                <Location
-                  uuid = "06427FA3-C332-4AD4-95B8-1E89F67526BD - 5b12d20096c75a24"
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 6f4471ebcd0d9baa"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for Tendria.AuthManager.authSignIn(credentials: FirebaseAuth.AuthCredential) async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;"
+                  symbolName = "(8) await resume partial function for Tendria.AuthManager.authenticateUser(credentials: FirebaseAuth.AuthCredential) async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;"
                   moduleName = "Tendria.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83">
+                  startingLineNumber = "87"
+                  endingLineNumber = "87">
                </Location>
                <Location
-                  uuid = "06427FA3-C332-4AD4-95B8-1E89F67526BD - 1532bd1815133c79"
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 5acb7a0ca155eaea"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Tendria.AuthManager.authSignIn(credentials: FirebaseAuth.AuthCredential) async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;"
+                  symbolName = "(9) suspend resume partial function for Tendria.AuthManager.authenticateUser(credentials: FirebaseAuth.AuthCredential) async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;"
                   moduleName = "Tendria.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83">
+                  startingLineNumber = "73"
+                  endingLineNumber = "73">
                </Location>
                <Location
-                  uuid = "06427FA3-C332-4AD4-95B8-1E89F67526BD - a9382205f0278e76"
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 5acb7a0ca155e89c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for Tendria.AuthManager.authSignIn(credentials: FirebaseAuth.AuthCredential) async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;"
+                  symbolName = "(9) suspend resume partial function for Tendria.AuthManager.authenticateUser(credentials: FirebaseAuth.AuthCredential) async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;"
                   moduleName = "Tendria.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83">
+                  startingLineNumber = "87"
+                  endingLineNumber = "87">
+               </Location>
+               <Location
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - c03e82bcfb1128d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(16) suspend resume partial function for Tendria.AuthManager.authenticateUser(credentials: FirebaseAuth.AuthCredential) async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73">
+               </Location>
+               <Location
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - c03e82bcfb110fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(16) suspend resume partial function for Tendria.AuthManager.authenticateUser(credentials: FirebaseAuth.AuthCredential) async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "99AD0248-2CDF-42F2-9DED-28053B4BA306"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tendria/ui/login/SignUp/SignUpViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "signUpEmail()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "99AD0248-2CDF-42F2-9DED-28053B4BA306 - 6d6384e708dfab18"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Tendria.SignUpViewModel.signUpEmail() -&gt; ()"
-                  moduleName = "Tendria.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/login/SignUp/SignUpViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-               <Location
-                  uuid = "99AD0248-2CDF-42F2-9DED-28053B4BA306 - 79281864874d3989"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt; in Tendria.SignUpViewModel.signUpEmail() -&gt; ()"
-                  moduleName = "Tendria.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/login/SignUp/SignUpViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-               <Location
-                  uuid = "99AD0248-2CDF-42F2-9DED-28053B4BA306 - 6a9d74bea9edc2d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #2 () async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt; in Tendria.SignUpViewModel.signUpEmail() -&gt; ()"
-                  moduleName = "Tendria.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/login/SignUp/SignUpViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-               <Location
-                  uuid = "99AD0248-2CDF-42F2-9DED-28053B4BA306 - 618c1ebce6c2190"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #2 () async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt; in Tendria.SignUpViewModel.signUpEmail() -&gt; ()"
-                  moduleName = "Tendria.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/login/SignUp/SignUpViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-               <Location
-                  uuid = "99AD0248-2CDF-42F2-9DED-28053B4BA306 - f71bdf80a6684431"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #2 () async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt; in Tendria.SignUpViewModel.signUpEmail() -&gt; ()"
-                  moduleName = "Tendria.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/login/SignUp/SignUpViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-               <Location
-                  uuid = "99AD0248-2CDF-42F2-9DED-28053B4BA306 - 9f52dbe51c128837"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for closure #2 () async throws -&gt; Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt; in Tendria.SignUpViewModel.signUpEmail() -&gt; ()"
-                  moduleName = "Tendria.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/login/SignUp/SignUpViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7A259CC5-DD64-4433-8B26-C0A44B7E91B8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tendria/ui/login/SignUp/SignUpViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "signUpEmail()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

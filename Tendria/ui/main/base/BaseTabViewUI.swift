@@ -9,7 +9,33 @@ import SwiftUI
 
 struct BaseTabViewUI: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        TabView {
+            FeedUI()
+                .tabItem {
+                    Label("Feed", systemImage: "house.fill")
+                }
+            HistoryUI()
+                .tabItem {
+                    Label("History", systemImage: "clock.fill")
+                }
+            
+            TaskUI()
+                .tabItem {
+                    Label("Task", systemImage: "checkmark.circle.fill")
+                }
+            
+            TreeUI()
+                .tabItem {
+                    Label("Tree", systemImage: "leaf.fill")
+                }
+            
+            UserUI()
+                .tabItem {
+                    Label("User", systemImage: "person.fill")
+                }
+        }
+        .accentColor(.blue) // Aktif sekme rengi
     }
 }
 

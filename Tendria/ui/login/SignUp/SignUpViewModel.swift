@@ -18,6 +18,7 @@ class SignUpViewModel: BaseViewModel {
     @Published var success : Bool = false
     @Published var loading : Bool = false
     @Published var error = ""
+    @Published var showAllert: Bool = false
     
     private var authManager: AuthManager
     
@@ -33,26 +34,47 @@ class SignUpViewModel: BaseViewModel {
                 print("")
             }
         }
-        
-        guard !email.isEmpty, !password.isEmpty else {
-            self.error = "E-posta ve şifre boş olamaz."
+        if email.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            self.error = getLocalizedString(StringKey.email_empty_error)
+            self.showAllert = true
             return
         }
+        
+        if userName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            self.error = getLocalizedString(StringKey.username_empty_error)
+            self.showAllert = true
+            return
+        }
+        
+        if password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            self.error = getLocalizedString(StringKey.password_empty_error)
+            self.showAllert = true
+            return
+        }
+        
+        if fullName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            self.error = getLocalizedString(StringKey.full_name_empty_error)
+            self.showAllert = true
+            return
+        }
+
         getDataCall(
             dataCall: { try await self.authManager.signUpWithEmail(email: self.email, password: self.password)},
             onSuccess: { result in
+                self.showAllert = false
                 self.success = true
                 self.loading = false
             },
             onLoading: {self.loading = true},
             onError: {error in
-                self.error = error?.localizedDescription ?? String(describing: Strings.unknown_error)
+                self.showAllert = true
+                self.error = error?.localizedDescription ?? String(describing: StringKey.unknown_error)
                 self.loading = false
             }
         )
     }
     
-    func signInWithGoogle(onSucces: @escaping () -> Void) {
+    func signInWithGoogle() {
         
         getDataCall {
             guard let user = try await GoogleSignInManager.shared.signInWithGoogle() else {
@@ -63,41 +85,42 @@ class SignUpViewModel: BaseViewModel {
             if let result = result {
                 self.loading = false
                 print("GoogleSignInSuccess: \(result.user.uid)")
-                onSucces()
+                self.success = true
             }
         } onLoading: {
             self.loading = true
         } onError: { error in
-            self.error = error?.localizedDescription ?? String(describing: Strings.unknown_error)
+            self.error = error?.localizedDescription ?? String(describing: StringKey.unknown_error)
             self.loading = false
         }
     }
-    func signInWithApple(onSucces: @escaping () -> Void){
+    
+    func signInWithApple(){
         getDataCall {
             return try await withCheckedThrowingContinuation { continuation in
                 AppleSignInDelegate.shared.completion = { result in
                         switch result {
-                        case .success(let authorization):
-                            continuation.resume(returning: result) // ✅ Burada sadece `ASAuthorization` dönüyoruz.
+                        case .success(_):
+                            continuation.resume(returning: result)
                         case .failure(let error):
-                            continuation.resume(throwing: error) // ✅ Burada sadece hata fırlatıyoruz.
+                            continuation.resume(throwing: error) // Burada sadece hata fırlatıyoruz.
                         }
                     }
                 AppleSignInManager.shared.startSignInAppleFlow()
             }
             
         } onSuccess: { result in
-            self.handleAppleID(result, onSucces: onSucces)
+            self.handleAppleID(result)
         } onLoading: {
             self.loading = true
         } onError: { error in
-            self.error = error?.localizedDescription ?? String(describing: Strings.unknown_error)
+            self.error = error?.localizedDescription ?? String(describing: StringKey.unknown_error)
             self.loading = false
         }
 
     }
     
-    private func handleAppleID(_ result: Result<ASAuthorization, Error>,onSucces: @escaping () -> Void) {
+    private func handleAppleID(_ result: Result<ASAuthorization, Error>) {
         if case let .success(auth) = result {
             guard let appleIDCredentials = auth.credential as? ASAuthorizationAppleIDCredential else {
                 print("AppleAuthorization failed: AppleID credential not available")
@@ -111,7 +134,7 @@ class SignUpViewModel: BaseViewModel {
                         nonce: AppleSignInManager.nonce
                     )
                     if result != nil {
-                        onSucces()
+                        self.success = true
                     }
                 } catch {
                     print("AppleAuthorization failed: \(error)")

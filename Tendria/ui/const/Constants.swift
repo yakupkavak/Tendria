@@ -9,8 +9,9 @@ import Foundation
 import SwiftUI
 typealias Height = Constants.Height
 typealias Radius = Constants.Radius
-typealias Strings = Constants.Strings
+typealias StringKey = Constants.StringKeys
 typealias IconWidth = Constants.Icon
+typealias IconName = Constants.Icons
 
 struct Constants {
     struct Gradients {
@@ -46,28 +47,46 @@ struct Constants {
     struct Icon{
         static let mediumHeight = UIScreen.main.bounds.height * 0.04
     }
-    struct Strings {
+    struct StringKeys {
         static let welcome = LocalizedStringKey("welcome")
         static let signAccount = LocalizedStringKey("sign_account")
         static let username = LocalizedStringKey("username")
         static let password = LocalizedStringKey("password")
         static let forgotPassword = LocalizedStringKey("forgot_password")
         static let create = LocalizedStringKey("create")
-        static let dontAccount = LocalizedStringKey("dont_account")
+        static let dont_account = LocalizedStringKey("dont_account")
         static let signIn = LocalizedStringKey("sign_in")
-        static let createAccount = LocalizedStringKey("create_account")
+        static let create_account = LocalizedStringKey("create_account")
         static let email = LocalizedStringKey("email")
-        static let alreadyAccount = LocalizedStringKey("already_account")
-        static let resetPassword = LocalizedStringKey("reset_password")
+        static let already_account = LocalizedStringKey("already_account")
+        static let reset_password = LocalizedStringKey("reset_password")
         static let reset = LocalizedStringKey("reset")
         static let full_name = LocalizedStringKey("full_name")
         static let unknown_error = LocalizedStringKey("unknown_error")
+        static let error = LocalizedStringKey("error")
+        static let success = LocalizedStringKey("success")
+        static let email_empty_error = LocalizedStringKey("email_empty_error")
+        static let username_empty_error = LocalizedStringKey("username_empty_error")
+        static let password_empty_error = LocalizedStringKey("password_empty_error")
+        static let full_name_empty_error = LocalizedStringKey("full_name_empty_error")
+        static let password_reset_success = LocalizedStringKey("password_reset_success")
+        static let user_not_found = LocalizedStringKey("user_not_found")
     }
+    
 
     struct Padding {
         static let largePadding = UIScreen.main.bounds.height * 0.05
         static let mediumPadding = UIScreen.main.bounds.height * 0.02
         static let smallPadding = UIScreen.main.bounds.height * 0.01
+    }
+    
+    struct Icons {
+        static let googleIcon = "googleIcon"
+        static let appleIcon = "appleIcon"
+        static let envelope = "envelope.fill"
+        static let lock = "lock.fill"
+        static let person = "person.fill"
+        static let right_arrow = "arrow.right"
     }
     
 }

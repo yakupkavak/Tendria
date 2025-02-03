@@ -12,8 +12,11 @@ struct SignInUI: View {
     
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var router: RouterSign
-    @State private var username: String = ""
-    @State private var password: String = ""
+    @StateObject var viewModel: SignInViewModel
+    
+    init(authManager: AuthManager) {
+        _viewModel = StateObject(wrappedValue: SignInViewModel(authManager: authManager))
+    }
     
     var body: some View {
         ZStack {
@@ -28,18 +31,18 @@ struct SignInUI: View {
             VStack(spacing: Height.normalHeight) {
                 Spacer().frame(height: Height.largeHeight)
                 
-                BigSizeBoldGrad(text: Strings.welcome)
+                BigSizeBoldGrad(text: StringKey.welcome)
                 
-                tvSubHeadline(text: Strings.signAccount, color: Color.blue500)
+                tvSubHeadline(text: StringKey.signAccount, color: Color.blue500)
                 
                 VStack(spacing: Height.mediumHeight) {
-                    tfIcon(iconSystemName: "person.fill", placeHolder: Strings.username, textInput: $username)
-                    tfIcon(iconSystemName: "lock.fill", placeHolder: Strings.password, textInput: $password)
+                    tfIcon(iconSystemName: IconName.envelope, placeHolder: StringKey.email, textInput: $viewModel.email)
+                    tfIcon(iconSystemName: IconName.lock, placeHolder: StringKey.password, textInput: $viewModel.password)
                 }
                 
                 HStack {
                     Spacer()
-                    btnText(customView: tvFootnote(text: Strings.forgotPassword, color: Color.red500)) {
+                    btnText(customView: tvFootnote(text: StringKey.forgotPassword, color: Color.red500)) {
                         router.navigate(to: .forgotPassword)
                     }
                 }
@@ -48,9 +51,9 @@ struct SignInUI: View {
                 
                 HStack(spacing: Height.xSmallHeight){
                     Spacer()
-                    tvHeadline(text: Strings.signIn, color: .blue500)
-                    btnSystemIcon(iconSystemName: "arrow.right", color: .white) {
-                        print("giriş yap tıklandı")
+                    tvHeadline(text: StringKey.signIn, color: .blue500)
+                    btnSystemIcon(iconSystemName: IconName.right_arrow, color: .white) {
+                        viewModel.signInEmail()
                     }
                 }
             
@@ -58,48 +61,48 @@ struct SignInUI: View {
                 Spacer()
                 
                 HStack {
-                    tvFootnote(text: Strings.dontAccount, color: .primary)
-                    btnText(customView: tvFootnote(text: Strings.create, color: Color.orange700)) {
+                    tvFootnote(text: StringKey.dont_account, color: .primary)
+                    btnText(customView: tvFootnote(text: StringKey.create, color: Color.orange700)) {
                         router.navigate(to: .signUp)
                         
                     }
                 }
                 HStack(spacing: Height.xSmallHeight){
-                    
-                    SignInWithAppleButton { request in
-                        AppleSignInManager.shared.requestAppleAuthorization(request)
-                    } onCompletion: { result in
-                        //handleAppleID(result)
-                    }
-                    btnSignIcon(iconName: "googleIcon") {
+                    btnSignIcon(iconName: IconName.appleIcon) {
                         Task{
-                            await signInWithGoogle()
+                            viewModel.signInWithApple()
                         }
                     }
-                    
+                    btnSignIcon(iconName: IconName.googleIcon) {
+                        Task{
+                            viewModel.signInWithGoogle()
+                        }
+                    }
                 }
-                
                 Spacer()
             }
             .padding(.horizontal, Height.normalHeight)
         }.navigationBarBackButtonHidden()
-    }
-    func signInWithGoogle() async {
-        do {
-            guard let user = try await GoogleSignInManager.shared.signInWithGoogle() else { return }
-
-            let result = try await authManager.googleAuth(user)
-            if let result = result {
-                print("GoogleSignInSuccess: \(result.user.uid)")
-                router.navigate(to: .feed)
+            .onChange(of: viewModel.success) {
+                if viewModel.success {
+                    print("✅ Giriş başarılı! Ana ekrana yönlendiriliyor...")
+                    router.navigate(to: .feed)
+                }
             }
-        }
-        catch {
-            print("GoogleSignInError: failed to sign in with Google, \(error))")
-        }
+            .onChange(of: viewModel.error) {
+                if !viewModel.error.isEmpty {
+                    print("❌ Hata oluştu: \(viewModel.error)")
+                }
+            }.alert(StringKey.error, isPresented: $viewModel.showAllert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(viewModel.error)
+            }
     }
 }
 
 #Preview {
-    SignInUI()
+    let previewAuthManager = AuthManager() // Geçici bir AuthManager oluştur
+    return SignInUI(authManager: previewAuthManager)
+        .environmentObject(previewAuthManager) // Preview için environmentObject ver
 }
