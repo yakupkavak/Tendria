@@ -21,6 +21,12 @@ class AuthManager: ObservableObject {
     
     init() {
         self.auth = Auth.auth()
+        
+        do{ try auth.signOut()
+        } catch {
+            return
+        }
+        
         configureAuthStateChanges()
         verifySignInWithAppleID()
     }

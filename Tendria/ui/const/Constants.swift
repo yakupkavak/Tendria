@@ -34,7 +34,7 @@ struct Constants {
         static let smalIconWidth = UIScreen.main.bounds.width * 0.01
     }
     struct Height{
-        static let xLargeHeight = CGFloat(50)
+        static let xLargeHeight = UIScreen.main.bounds.height * 0.18
         static let largeHeight = UIScreen.main.bounds.height * 0.1
         static let mediumHeight = UIScreen.main.bounds.height * 0.05
         static let xMediumHeight = UIScreen.main.bounds.height * 0.04

@@ -32,8 +32,21 @@ struct tvGradient: View {
             )
     }
 }
+struct tvColorString: View {
+    var text: String
+    var color: Color
+    var weight: Font.Weight? = .regular
+    var font: Font
+    
+    var body: some View {
+        Text(text)
+            .font(font)
+            .fontWeight(weight)
+            .foregroundColor(color)
+    }
+}
 
-struct tvColor: View {
+struct tvColorKey: View {
     var text: LocalizedStringKey
     var color: Color
     var weight: Font.Weight? = .regular

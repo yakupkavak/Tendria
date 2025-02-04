@@ -14,13 +14,13 @@
             filePath = "Tendria/data/network/firebase/Auth/AuthManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "authenticateUser(credentials:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 3d91cf1598981894"
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 3d91cf159898175e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -30,11 +30,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87">
+                  startingLineNumber = "93"
+                  endingLineNumber = "93">
                </Location>
                <Location
-                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 6f4471ebcd0d9baa"
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 6f4471ebcd0d9460"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -44,11 +44,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87">
+                  startingLineNumber = "93"
+                  endingLineNumber = "93">
                </Location>
                <Location
-                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 5acb7a0ca155eaea"
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 5acb7a0ca155e9a4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -58,11 +58,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73">
+                  startingLineNumber = "79"
+                  endingLineNumber = "79">
                </Location>
                <Location
-                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 5acb7a0ca155e89c"
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - 5acb7a0ca155e756"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -72,11 +72,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87">
+                  startingLineNumber = "93"
+                  endingLineNumber = "93">
                </Location>
                <Location
-                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - c03e82bcfb1128d"
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - c03e82bcfb111c3"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -86,11 +86,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73">
+                  startingLineNumber = "79"
+                  endingLineNumber = "79">
                </Location>
                <Location
-                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - c03e82bcfb110fb"
+                  uuid = "49B42D8E-E540-422B-9D04-E1718AF62DD5 - c03e82bcfb11f31"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -100,8 +100,8 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/data/network/firebase/Auth/AuthManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87">
+                  startingLineNumber = "93"
+                  endingLineNumber = "93">
                </Location>
             </Locations>
          </BreakpointContent>
