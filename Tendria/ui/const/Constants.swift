@@ -45,7 +45,9 @@ struct Constants {
         static let smallIconHeight = UIScreen.main.bounds.height * 0.025
     }
     struct Icon{
+        static let normalHeight = UIScreen.main.bounds.height * 0.08
         static let mediumHeight = UIScreen.main.bounds.height * 0.04
+        static let smallHeight = UIScreen.main.bounds.height * 0.01
     }
     struct StringKeys {
         static let welcome = LocalizedStringKey("welcome")

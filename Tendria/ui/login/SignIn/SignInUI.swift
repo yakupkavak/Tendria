@@ -86,7 +86,7 @@ struct SignInUI: View {
             .onChange(of: viewModel.success) {
                 if viewModel.success {
                     print("✅ Giriş başarılı! Ana ekrana yönlendiriliyor...")
-                    router.navigate(to: .feed)
+                    router.navigate(to: .mainScreen)
                 }
             }
             .onChange(of: viewModel.error) {

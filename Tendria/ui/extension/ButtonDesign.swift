@@ -44,7 +44,36 @@ struct btnSignIcon: View {
             action()
         } label: {
             Image(iconName).resizable().scaledToFit()
-                .frame(width: Constants.Icon.mediumHeight,height:Constants.Icon.mediumHeight)
+                .frame(width: width,height: width)
         }
     }
 }
+struct btnAddIcon: View {
+    var iconName: String
+    var backgroundColor: Color? = Color.orange500
+    var foregroundColor: Color? = Color.white
+    var shadow: CGFloat? = IconWidth.smallHeight
+    var width: CGFloat? = IconWidth.normalHeight
+    var paddingWidth: CGFloat? = IconWidth.smallHeight
+
+    var action: () -> Void
+
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: iconName)
+                .resizable()
+                .scaledToFit()
+                .font(.system(size: 16, weight: .heavy))
+                .scaleEffect(0.7)
+                .padding(paddingWidth!)
+                .gradientBackground() //padding önce olmalı background algılamaz.
+                .frame(width: width,height: width)
+                .foregroundColor(foregroundColor)
+                .clipShape(Circle())
+                .shadow(radius: shadow!)
+        }
+    }
+}
+

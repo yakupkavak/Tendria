@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct BaseTabViewUI: View {
+    
+    @StateObject var routerTask = RouterTask()
+    
     var body: some View {
         
         TabView {
@@ -20,10 +23,10 @@ struct BaseTabViewUI: View {
                     Label("History", systemImage: "clock.fill")
                 }
             
-            TaskUI()
+            TaskListContainerUI()
                 .tabItem {
                     Label("Task", systemImage: "checkmark.circle.fill")
-                }
+                }.environmentObject(routerTask)
             
             TreeUI()
                 .tabItem {
@@ -34,7 +37,7 @@ struct BaseTabViewUI: View {
                 .tabItem {
                     Label("User", systemImage: "person.fill")
                 }
-        }
+        }.background(.ultraThinMaterial)
         .accentColor(.blue) // Aktif sekme rengi
     }
 }

@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct TaskRowUI: View {
-    var text: String
+    var url: String
+    var subText: String
     var body: some View {
         VStack(alignment: .leading,spacing: .zero){
-            RowImage()
-            tvRowSubline(text: "Pikachu")
+            RowImage(imageUrl: url)
+            tvRowSubline(text: subText)
         }.background(Color.white).clipShape(.buttonBorder).shadow(radius: 2)
     }
 }
 
 #Preview {
-    var text = "Şarap"
-    TaskRowUI(text: text)
+    TaskRowUI(url: "https://dragonball.guru/wp-content/uploads/2021/03/goku-profile-e1616173641804-400x400.png", subText: "goku")
 }

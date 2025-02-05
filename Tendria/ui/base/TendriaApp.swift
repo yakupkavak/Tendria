@@ -34,8 +34,9 @@ struct TendriaApp: App {
                         SignUpUI(authManager: authManager)
                     case .forgotPassword:
                         ForgotPasswordUI(authManager: authManager)
-                    case .feed:
+                    case .mainScreen:
                         BaseTabViewUI()
+                    
                     }
                 }
             }
