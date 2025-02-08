@@ -14,7 +14,7 @@ struct TaskRowUI: View {
         VStack(alignment: .leading,spacing: .zero){
             RowImage(imageUrl: url)
             tvRowSubline(text: subText)
-        }.background(Color.white).clipShape(.buttonBorder).shadow(radius: 2)
+        }.background(Color.white).clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: Radius.shadowSmallRadius)
     }
 }
 

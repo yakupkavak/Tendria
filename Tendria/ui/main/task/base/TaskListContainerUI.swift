@@ -25,7 +25,7 @@ struct TaskListContainerUI: View {
                     case .taskDetail:
                         TaskDetailUI().environmentObject(routerTask)
                     case .addTaskDetail:
-                        AddTaskUI().environmentObject(routerTask)
+                        AddTaskUI()
                     }
                 }.environmentObject(routerTask)
         }

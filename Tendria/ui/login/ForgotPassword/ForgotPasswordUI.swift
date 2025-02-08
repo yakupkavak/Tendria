@@ -15,7 +15,7 @@ struct ForgotPasswordUI: View {
             VStack() {
                 CustomWaveView(gradient: Gradient(colors: [Color.orange700, Color.red300]), startPoint: .topLeading, endPoint: .bottomTrailing)
                     .frame(height: Height.mediumHeight)
-                    .shadow(radius: Radius.normalRadius)
+                    .shadow(radius: Radius.shadowRadius)
                 Spacer()
             }
             .edgesIgnoringSafeArea(.top)

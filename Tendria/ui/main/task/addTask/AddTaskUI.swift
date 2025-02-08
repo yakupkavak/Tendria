@@ -12,7 +12,11 @@ struct AddTaskUI: View {
     @EnvironmentObject var routerTask: RouterTask
 
     var body: some View {
-        Text("add task")
+        VStack(alignment: .leading){
+            tvHeadline(text: StringKey.create, color: .orange700)
+            tvFootnote(text: StringKey.already_account, color: .black)
+            
+        }
     }
 }
 

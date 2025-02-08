@@ -23,7 +23,7 @@ struct SignInUI: View {
             VStack() {
                 CustomWaveView(gradient: Gradient(colors: [Color.orange700, Color.red300]), startPoint: .topLeading, endPoint: .bottomTrailing)
                     .frame(height: Height.mediumHeight)
-                    .shadow(radius: Radius.normalRadius)
+                    .shadow(radius: Radius.shadowRadius)
                 Spacer()
             }
             .edgesIgnoringSafeArea(.top)//ekranın çentiklerini vs göz artı edip en yukarı çık
@@ -83,14 +83,14 @@ struct SignInUI: View {
             }
             .padding(.horizontal, Height.normalHeight)
         }.navigationBarBackButtonHidden()
-            .onChange(of: viewModel.success) {
-                if viewModel.success {
+            .onChange(of: viewModel.success) { success in
+                if success {
                     print("✅ Giriş başarılı! Ana ekrana yönlendiriliyor...")
                     router.navigate(to: .mainScreen)
                 }
             }
-            .onChange(of: viewModel.error) {
-                if !viewModel.error.isEmpty {
+            .onChange(of: viewModel.error) { error in
+                if !error.isEmpty {
                     print("❌ Hata oluştu: \(viewModel.error)")
                 }
             }.alert(StringKey.error, isPresented: $viewModel.showAllert) {

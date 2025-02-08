@@ -18,9 +18,12 @@ struct Constants {
         static let mediumOrangeRed: [Color] = [Color.orange700, Color.red300]
     }
     struct Radius{
-        static let largeRadius = CGFloat(UIScreen.main.bounds.height * 0.1)
-        static let mediumRadius = CGFloat(UIScreen.main.bounds.height * 0.05)
-        static let normalRadius = CGFloat(UIScreen.main.bounds.height * 0.01)
+        static let xLargeRadius = CGFloat(UIScreen.main.bounds.height * 0.1)
+        static let largeRadius = CGFloat(UIScreen.main.bounds.height * 0.05)
+        static let mediumRadius = CGFloat(UIScreen.main.bounds.height * 0.03)
+        static let shadowRadius = CGFloat(UIScreen.main.bounds.height * 0.005)
+        static let shadowSmallRadius = CGFloat(UIScreen.main.bounds.height * 0.0025)
+
     }
     struct Width{
         static let xLargeWidth = CGFloat(50)

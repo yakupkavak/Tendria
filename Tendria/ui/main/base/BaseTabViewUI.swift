@@ -37,7 +37,7 @@ struct BaseTabViewUI: View {
                 .tabItem {
                     Label("User", systemImage: "person.fill")
                 }
-        }.background(.ultraThinMaterial)
+        }
         .accentColor(.blue) // Aktif sekme rengi
     }
 }
