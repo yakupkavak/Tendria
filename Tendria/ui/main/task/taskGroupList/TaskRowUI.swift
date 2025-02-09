@@ -12,7 +12,7 @@ struct TaskRowUI: View {
     var subText: String
     var body: some View {
         VStack(alignment: .leading,spacing: .zero){
-            RowImage(imageUrl: url)
+            RowURLImage(imageUrl: url)
             tvRowSubline(text: subText)
         }.background(Color.white).clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: Radius.shadowSmallRadius)
     }

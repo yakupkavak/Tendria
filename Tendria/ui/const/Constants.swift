@@ -88,6 +88,7 @@ struct Constants {
     struct Icons {
         static let googleIcon = "googleIcon"
         static let appleIcon = "appleIcon"
+        static let imageUploadIcon = "uploadImage"
         static let envelope = "envelope.fill"
         static let lock = "lock.fill"
         static let person = "person.fill"

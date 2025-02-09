@@ -1,5 +1,5 @@
 //
-//  TaskListContainerUI.swift
+//  TaskListContainerUI.swift/Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/main/base/BaseTabViewUI.swift
 //  Tendria
 //
 //  Created by Yakup Kavak on 5.02.2025.
@@ -17,13 +17,13 @@ struct TaskListContainerUI: View {
                 .navigationDestination(for: RouterTask.Destination.self) { destination in
                     switch destination {
                     case .taskGroupList:
-                        TaskGroupListUI().environmentObject(routerTask)
+                        TaskGroupListUI()
                     case .addGroupTask:
-                        AddGroupUI().environmentObject(routerTask)
+                        AddGroupUI()
                     case .taskDetailList:
-                        TaskDetailListUI().environmentObject(routerTask)
+                        TaskDetailListUI()
                     case .taskDetail:
-                        TaskDetailUI().environmentObject(routerTask)
+                        TaskDetailUI()
                     case .addTaskDetail:
                         AddTaskUI()
                     }

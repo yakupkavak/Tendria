@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct RowImage: View {
+struct RowURLImage: View {
     
     var imageUrl: String
     
@@ -32,7 +32,20 @@ struct RowImage: View {
         }
     }
 }
+struct RowUIImage: View {
+    
+    var uiImage: UIImage
+        
+    var body: some View {
+        Image(uiImage: uiImage)
+            .resizable()
+            .scaledToFit()
+            .frame(height: Height.xLargeHeight)
+            .clipped()
+            .clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius))
+    }
+}
 
 #Preview {
-    RowImage(imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjzJjPa-3jdL6XAI0yqXBY8VzK_p5h0yQIkQ&s")
+    RowURLImage(imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjzJjPa-3jdL6XAI0yqXBY8VzK_p5h0yQIkQ&s")
 }

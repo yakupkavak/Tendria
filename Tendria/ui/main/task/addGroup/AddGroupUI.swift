@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
-import _PhotosUI_SwiftUI
+import PhotosUI
 
 struct AddGroupUI: View {
     
     @EnvironmentObject var routerTask: RouterTask
     @StateObject var viewModel = AddGroupViewModel()
+    @State private var displayedPhoto: UIImage? = nil
+    
     let maxPhotoSelect = 1
-
+    
     var body: some View {
         PhotosPicker(
             selection: $viewModel.selectedPhotos,
@@ -21,10 +23,15 @@ struct AddGroupUI: View {
             selectionBehavior: .ordered,
             matching: .images
         ) {
-            Label("Select up to ^[\(maxPhotoSelect) photo](inflect: true)", systemImage: "photo")
+            RowUIImage(uiImage: displayedPhoto ?? UIImage(named: IconName.imageUploadIcon) ?? UIImage())
         }.padding()
             .onChange(of: viewModel.selectedPhotos) { _ in
                 viewModel.convertDataToImage()
+            }
+            .onReceive(viewModel.$selectedPhoto) { selectedPhoto in
+                Task { @MainActor in
+                    displayedPhoto = selectedPhoto
+                }
             }
     }
 }

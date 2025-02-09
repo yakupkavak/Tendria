@@ -24,8 +24,8 @@ struct WaterShape: Shape {
 
     func path(in rect: CGRect) -> Path {
         Path { path in
-            var height = rect.height
-            var width = rect.width
+            _ = rect.height
+            _ = rect.width
             path.move(to: CGPoint(x: rect.width * startPointX, y: rect.height * startPointY))
 
             path.addQuadCurve(

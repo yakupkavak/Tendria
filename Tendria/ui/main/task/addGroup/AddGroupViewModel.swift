@@ -11,6 +11,7 @@ import _PhotosUI_SwiftUI
 class AddGroupViewModel: BaseViewModel {
     @Published var images = [UIImage]()
     @Published var selectedPhotos = [PhotosPickerItem]()
+    @Published var selectedPhoto: UIImage? = nil
     
     @MainActor
     func convertDataToImage() {
@@ -23,8 +24,7 @@ class AddGroupViewModel: BaseViewModel {
                 //imagenin referansından veriyi çekiyoruz.
                 if let imageData = try? await eachItem.loadTransferable(type: Data.self) {
                     if let image = UIImage(data: imageData){
-                        images.append(image)
-                        print("gelen data ->" , image)
+                        selectedPhoto = image
                     }
                 }
             }
