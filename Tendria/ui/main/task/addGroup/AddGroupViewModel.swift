@@ -7,6 +7,7 @@
 
 import Foundation
 import _PhotosUI_SwiftUI
+import FirebaseAuth
 
 class AddGroupViewModel: BaseViewModel {
     @Published var images = [UIImage]()
@@ -28,6 +29,23 @@ class AddGroupViewModel: BaseViewModel {
                         selectedPhoto = image
                     }
                 }
+            }
+        }
+    }
+    
+    func saveListImage() {
+        if let user = Auth.auth().currentUser {
+            print("User is signed in: \(user.uid)")
+        } else {
+            print("No user is signed in!")
+        }
+        guard let imageData = selectedPhoto?.jpegData(compressionQuality: 0.8) else { return }
+        
+        Task {
+            do {
+                try await FirestorageManager.shared.addList(imageData: imageData)
+            } catch {
+                print("Image upload failed: \(error.localizedDescription)")
             }
         }
     }
