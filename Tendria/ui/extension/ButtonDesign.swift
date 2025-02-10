@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import SVGKit
 
-struct btnText<Content: View>: View {
+struct btnOnlyText<Content: View>: View {
     var customView: Content
     var action: () -> Void
     
@@ -76,4 +76,25 @@ struct btnAddIcon: View {
         }
     }
 }
+struct btnText: View {
+    
+    var backgroundColor: Color? = Color.orange500
+    var foregroundColor: Color? = Color.btnForeground
+    var shadow: CGFloat? = IconWidth.smallHeight
+    var action: () -> Void
+    var text: LocalizedStringKey
+    
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            tvHeadline(text: text, color: .btnForeground).frame(maxWidth: .infinity).padding().gradientBackground().clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: shadow!)
+        }
+    }
+}
 
+#Preview{
+    btnText(action: {
+        print("yakup")
+    }, text: StringKey.add )
+}

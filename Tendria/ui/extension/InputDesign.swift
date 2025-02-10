@@ -29,3 +29,18 @@ struct tfIcon: View {
         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
     }
 }
+struct tfText: View {
+    
+    var placeHolder: LocalizedStringKey
+    @Binding var textInput: String
+    
+    var body: some View {
+        TextField(placeHolder, text: $textInput)
+            .autocapitalization(.none)
+            .textFieldStyle(PlainTextFieldStyle())
+        .padding()
+        .background(Color.white)
+        .cornerRadius(radius.xLargeRadius)
+        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+    }
+}

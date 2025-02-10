@@ -42,7 +42,7 @@ struct ForgotPasswordUI: View {
                 Spacer()
                 HStack {
                     tvFootnote(text: StringKey.already_account, color: .primary)
-                    btnText(customView: tvFootnote(text: StringKey.signIn, color: Color.orange700)) {
+                    btnOnlyText(customView: tvFootnote(text: StringKey.signIn, color: Color.orange700)) {
                         router.navigateBack()
                     }
                 }

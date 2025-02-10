@@ -34,3 +34,8 @@
 "password_reset_success" = "A password reset email has been sent to your email address.";
 "user_not_found" = "No account found with this email address.";
 "success" = "Success";
+"group_name" = "List Name";
+"task_name" = "Task Name";
+"add_list" = "Add list";
+"add_task" = "Add task";
+"add" = "Add";

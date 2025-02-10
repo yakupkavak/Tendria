@@ -13,26 +13,38 @@ struct AddGroupUI: View {
     @EnvironmentObject var routerTask: RouterTask
     @StateObject var viewModel = AddGroupViewModel()
     @State private var displayedPhoto: UIImage? = nil
-    
+
     let maxPhotoSelect = 1
-    
+
     var body: some View {
-        PhotosPicker(
-            selection: $viewModel.selectedPhotos,
-            maxSelectionCount: maxPhotoSelect,
-            selectionBehavior: .ordered,
-            matching: .images
-        ) {
-            RowUIImage(uiImage: displayedPhoto ?? UIImage(named: IconName.imageUploadIcon) ?? UIImage())
+        VStack{
+            Spacer()
+            tvHeadline(text: StringKey.add_group, color: Color.blue500)
+            Spacer()
+            tfText(placeHolder: StringKey.group_name, textInput: $viewModel.textInput)
+            
+            PhotosPicker(
+                selection: $viewModel.selectedPhotos,
+                maxSelectionCount: maxPhotoSelect,
+                selectionBehavior: .ordered,
+                matching: .images
+            ) {
+                RowUIImage(uiImage: displayedPhoto ?? UIImage(named: IconName.imageUploadIcon) ?? UIImage())
+            }.padding()
+            btnText(action: {
+                print("add")
+            }, text: StringKey.add)
+            Spacer()
+            Spacer()
         }.padding()
-            .onChange(of: viewModel.selectedPhotos) { _ in
-                viewModel.convertDataToImage()
+        .onChange(of: viewModel.selectedPhotos) { _ in
+            viewModel.convertDataToImage()
+        }
+        .onReceive(viewModel.$selectedPhoto) { selectedPhoto in
+            Task { @MainActor in
+                displayedPhoto = selectedPhoto
             }
-            .onReceive(viewModel.$selectedPhoto) { selectedPhoto in
-                Task { @MainActor in
-                    displayedPhoto = selectedPhoto
-                }
-            }
+        }
     }
 }
 

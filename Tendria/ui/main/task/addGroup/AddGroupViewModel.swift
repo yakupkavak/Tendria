@@ -12,6 +12,7 @@ class AddGroupViewModel: BaseViewModel {
     @Published var images = [UIImage]()
     @Published var selectedPhotos = [PhotosPickerItem]()
     @Published var selectedPhoto: UIImage? = nil
+    @Published var textInput = ""
     
     @MainActor
     func convertDataToImage() {

@@ -12,6 +12,7 @@ typealias Radius = Constants.Radius
 typealias StringKey = Constants.StringKeys
 typealias IconWidth = Constants.Icon
 typealias IconName = Constants.Icons
+typealias Width = Constants.Width
 
 struct Constants {
     struct Gradients {
@@ -26,7 +27,7 @@ struct Constants {
 
     }
     struct Width{
-        static let xLargeWidth = CGFloat(50)
+        static let buttonWidth = UIScreen.main.bounds.width * 0.6
         static let largeWidth = UIScreen.main.bounds.width * 0.1
         static let mediumWidth = UIScreen.main.bounds.width * 0.05
         static let xMediumWidth = UIScreen.main.bounds.width * 0.04
@@ -76,6 +77,11 @@ struct Constants {
         static let full_name_empty_error = LocalizedStringKey("full_name_empty_error")
         static let password_reset_success = LocalizedStringKey("password_reset_success")
         static let user_not_found = LocalizedStringKey("user_not_found")
+        static let group_name = LocalizedStringKey("group_name")
+        static let task_name = LocalizedStringKey("task_name")
+        static let add_group = LocalizedStringKey("add_list")
+        static let add_task = LocalizedStringKey("add_task")
+        static let add = LocalizedStringKey("add")
     }
     
 

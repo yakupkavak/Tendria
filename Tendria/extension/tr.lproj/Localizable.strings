@@ -34,3 +34,8 @@
 "password_reset_success" = "Şifre sıfırlama e-postası adresinize gönderildi.";
 "user_not_found" = "Bu e-posta adresine sahip bir hesap bulunamadı.";
 "success" = "Başarılı";
+"group_name" = "Liste adı";
+"task_name" = "Görev adı";
+"add_list" = "Liste ekle";
+"add_task" = "Görev ekle";
+"add" = "Ekle";

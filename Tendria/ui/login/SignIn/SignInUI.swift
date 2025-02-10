@@ -42,7 +42,7 @@ struct SignInUI: View {
                 
                 HStack {
                     Spacer()
-                    btnText(customView: tvFootnote(text: StringKey.forgotPassword, color: Color.red500)) {
+                    btnOnlyText(customView: tvFootnote(text: StringKey.forgotPassword, color: Color.red500)) {
                         router.navigate(to: .forgotPassword)
                     }
                 }
@@ -62,7 +62,7 @@ struct SignInUI: View {
                 
                 HStack {
                     tvFootnote(text: StringKey.dont_account, color: .primary)
-                    btnText(customView: tvFootnote(text: StringKey.create, color: Color.orange700)) {
+                    btnOnlyText(customView: tvFootnote(text: StringKey.create, color: Color.orange700)) {
                         router.navigate(to: .signUp)
                         
                     }
