@@ -22,7 +22,7 @@ struct SignUpUI: View {
             .edgesIgnoringSafeArea(.top)//ekranın çentiklerini vs göz artı edip en yukarı çık
             
             VStack(spacing: Height.mediumHeight) {
-                Spacer().frame(height: Height.xLargeHeight)
+                Spacer().frame(height: Height.xxLargeHeight)
                 
                 BigSizeBoldGrad(text: StringKey.create_account)
 

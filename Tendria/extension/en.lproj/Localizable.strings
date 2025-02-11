@@ -20,6 +20,7 @@
 "reset" = "Reset";
 "error" = "Error";
 "full_name" = "Full name";
+
 "email_already_in_use" = "This email is already in use.";
 "invalid_email" = "Invalid email address.";
 "weak_password" = "Your password is too weak. Please choose a stronger password.";
@@ -27,15 +28,26 @@
 "user_disabled" = "This account has been disabled.";
 "wrong_password" = "You entered the wrong password.";
 "unknown_error" = "An unknown error occurred. Please try again.";
+
 "email_empty_error" = "Please enter an email address.";
 "username_empty_error" = "Please enter a username.";
 "password_empty_error" = "Please enter a password.";
 "full_name_empty_error" = "Please enter your full name.";
+
 "password_reset_success" = "A password reset email has been sent to your email address.";
 "user_not_found" = "No account found with this email address.";
 "success" = "Success";
+
 "group_name" = "List Name";
 "task_name" = "Task Name";
 "add_list" = "Add list";
 "add_task" = "Add task";
 "add" = "Add";
+
+"personal_info" = "Personal Info";
+"make_relation" = "Make Relation";
+"exist_relation" = "Existing Relation";
+"change_password" = "Change Password";
+"notifications" = "Notifications";
+"settings" = "Settings";
+"log_out" = "Log Out";

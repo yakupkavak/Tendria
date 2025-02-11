@@ -19,7 +19,7 @@ struct RowURLImage: View {
                 image
                     .resizable()
                     .scaledToFill()
-                    .frame(height: Height.xLargeHeight)
+                    .frame(height: Height.xxLargeHeight)
                     .clipped()
             case .failure:
                 Text("Görsel yüklenemedi")
@@ -40,7 +40,7 @@ struct RowUIImage: View {
         Image(uiImage: uiImage)
             .resizable()
             .scaledToFit()
-            .frame(height: Height.xLargeHeight)
+            .frame(height: Height.xxLargeHeight)
             .clipped()
             .clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius))
     }

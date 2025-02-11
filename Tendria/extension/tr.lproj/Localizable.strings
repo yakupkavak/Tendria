@@ -19,6 +19,7 @@
 "reset_password" = "Şifreni sıfırla";
 "reset" = "Sıfırla";
 "error" = "Hata";
+
 "full_name" = "İsim Soyisim";
 "email_already_in_use" = "Bu e-posta adresi zaten kullanılıyor.";
 "invalid_email" = "Geçersiz e-posta adresi.";
@@ -27,15 +28,26 @@
 "user_disabled" = "Bu hesap devre dışı bırakılmıştır.";
 "wrong_password" = "Yanlış şifre girdiniz.";
 "unknown_error" = "Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin.";
+
 "email_empty_error" = "Lütfen bir e-posta adresi girin.";
 "username_empty_error" = "Lütfen bir kullanıcı adı girin.";
 "password_empty_error" = "Lütfen bir şifre girin.";
 "full_name_empty_error" = "Lütfen adınızı ve soyadınızı girin.";
+
 "password_reset_success" = "Şifre sıfırlama e-postası adresinize gönderildi.";
 "user_not_found" = "Bu e-posta adresine sahip bir hesap bulunamadı.";
 "success" = "Başarılı";
+
 "group_name" = "Liste adı";
 "task_name" = "Görev adı";
 "add_list" = "Liste ekle";
 "add_task" = "Görev ekle";
 "add" = "Ekle";
+
+"personal_info" = "Kişisel Bilgiler";
+"make_relation" = "İlişki Kur";
+"exist_relation" = "Mevcut İlişki";
+"change_password" = "Şifre Değiştir";
+"notifications" = "Bildirimler";
+"settings" = "Ayarlar";
+"log_out" = "Çıkış Yap";

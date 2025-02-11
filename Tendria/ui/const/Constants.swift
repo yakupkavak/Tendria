@@ -28,6 +28,7 @@ struct Constants {
         static let shadowSmallRadius = CGFloat(UIScreen.main.bounds.height * 0.0025)
 
     }
+    
     struct Width{
         static let buttonWidth = UIScreen.main.bounds.width * 0.6
         static let largeWidth = UIScreen.main.bounds.width * 0.1
@@ -39,8 +40,10 @@ struct Constants {
         static let xxSmallWidth = UIScreen.main.bounds.width * 0.01
         static let smalIconWidth = UIScreen.main.bounds.width * 0.01
     }
+    
     struct Height{
-        static let xLargeHeight = UIScreen.main.bounds.height * 0.18
+        static let xxLargeHeight = UIScreen.main.bounds.height * 0.18
+        static let xLargeHeight = UIScreen.main.bounds.height * 0.13
         static let largeHeight = UIScreen.main.bounds.height * 0.1
         static let mediumHeight = UIScreen.main.bounds.height * 0.05
         static let xMediumHeight = UIScreen.main.bounds.height * 0.04
@@ -50,11 +53,13 @@ struct Constants {
         static let xxSmallHeight = UIScreen.main.bounds.height * 0.01
         static let smallIconHeight = UIScreen.main.bounds.height * 0.025
     }
+    
     struct Icon{
         static let normalHeight = UIScreen.main.bounds.height * 0.08
         static let mediumHeight = UIScreen.main.bounds.height * 0.04
         static let smallHeight = UIScreen.main.bounds.height * 0.01
     }
+    
     struct StringKeys {
         static let welcome = LocalizedStringKey("welcome")
         static let signAccount = LocalizedStringKey("sign_account")
@@ -79,11 +84,23 @@ struct Constants {
         static let full_name_empty_error = LocalizedStringKey("full_name_empty_error")
         static let password_reset_success = LocalizedStringKey("password_reset_success")
         static let user_not_found = LocalizedStringKey("user_not_found")
+        
+        /* Task Screen*/
         static let group_name = LocalizedStringKey("group_name")
         static let task_name = LocalizedStringKey("task_name")
         static let add_group = LocalizedStringKey("add_list")
         static let add_task = LocalizedStringKey("add_task")
         static let add = LocalizedStringKey("add")
+        
+        /* User Information Screen*/
+        static let personal_info = LocalizedStringKey("personal_info")
+        static let make_relation = LocalizedStringKey("make_relation")
+        static let exist_relation = LocalizedStringKey("exist_relation")
+        static let change_password = LocalizedStringKey("change_password")
+        static let notifications = LocalizedStringKey("notifications")
+        static let settings = LocalizedStringKey("settings")
+        static let log_out = LocalizedStringKey("log_out")
+
     }
     
 
@@ -101,6 +118,7 @@ struct Constants {
         static let lock = "lock.fill"
         static let person = "person.fill"
         static let right_arrow = "arrow.right"
+        static let heart = "heart.fill"
     }
     
     struct FirestoreConst {

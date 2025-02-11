@@ -10,6 +10,7 @@ import SwiftUI
 struct BaseTabViewUI: View {
     
     @StateObject var routerTask = RouterTask()
+    @StateObject var routerUser = RouterUser()
     
     var body: some View {
         
@@ -33,10 +34,10 @@ struct BaseTabViewUI: View {
                     Label("Tree", systemImage: "leaf.fill")
                 }
             
-            UserUI()
+            UserListContainerUI()
                 .tabItem {
                     Label("User", systemImage: "person.fill")
-                }
+                }.environmentObject(routerUser)
         }
         .accentColor(.blue) // Aktif sekme rengi
     }
