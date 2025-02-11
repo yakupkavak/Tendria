@@ -14,7 +14,10 @@ class AddGroupViewModel: BaseViewModel {
     @Published var selectedPhotos = [PhotosPickerItem]()
     @Published var selectedPhoto: UIImage? = nil
     @Published var textInput = ""
-    
+    @Published var success = false
+    @Published var loading = false
+    @Published var error = ""
+
     @MainActor
     func convertDataToImage() {
         images.removeAll()
@@ -23,7 +26,6 @@ class AddGroupViewModel: BaseViewModel {
         
         for eachItem in selectedPhotos {
             Task{
-                //imagenin referansından veriyi çekiyoruz.
                 if let imageData = try? await eachItem.loadTransferable(type: Data.self) {
                     if let image = UIImage(data: imageData){
                         selectedPhoto = image
@@ -34,19 +36,30 @@ class AddGroupViewModel: BaseViewModel {
     }
     
     func saveListImage() {
-        if let user = Auth.auth().currentUser {
-            print("User is signed in: \(user.uid)")
-        } else {
-            print("No user is signed in!")
-        }
         guard let imageData = selectedPhoto?.jpegData(compressionQuality: 0.8) else { return }
         
-        Task {
-            do {
-                try await FirestorageManager.shared.addList(imageData: imageData)
-            } catch {
-                print("Image upload failed: \(error.localizedDescription)")
-            }
+        getDataCall {
+            try await FirestorageManager.shared.addListImage(imageData: imageData)
+        } onSuccess: { downloadUrl in
+            self.saveListDocument(downloadUrl: downloadUrl)
+        } onLoading: {
+            self.loading = true
+        } onError: { error in
+            self.error = error?.localizedDescription ?? ""
         }
     }
+    
+    func saveListDocument(downloadUrl: String) {
+        getDataCall {
+            try await FirestorageManager.shared.addListDocument(downloadUrl: downloadUrl,description: self.textInput)
+        } onSuccess: { success in
+            self.loading = false
+            self.success = true
+        } onLoading: {
+            self.loading = true
+        } onError: { error in
+            self.error = error?.localizedDescription ?? ""
+        }
+    }
+
 }

@@ -13,6 +13,8 @@ typealias StringKey = Constants.StringKeys
 typealias IconWidth = Constants.Icon
 typealias IconName = Constants.Icons
 typealias Width = Constants.Width
+typealias FireStorage = Constants.FirestorageConst
+typealias FireDatabase = Constants.FirestoreConst
 
 struct Constants {
     struct Gradients {
@@ -101,4 +103,12 @@ struct Constants {
         static let right_arrow = "arrow.right"
     }
     
+    struct FirestoreConst {
+        static let LIST_PATH = "List"
+    }
+    struct FirestorageConst {
+        static let LIST_PATH = "list"
+        static let TASK_PATH = "task"
+
+    }
 }
