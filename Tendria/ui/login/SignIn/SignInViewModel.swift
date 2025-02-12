@@ -15,16 +15,10 @@ class SignInViewModel: BaseViewModel{
     @Published var error = ""
     @Published var showAllert: Bool = false
     
-    private var authManager: AuthManager
-    
-    init(authManager: AuthManager) {
-        self.authManager = authManager
-    }
-    
     func signInEmail() {
         Task {
             do{
-                try await authManager.signOut()
+                try await AuthManager.shared.signOut()
             }catch{
                 print("")
             }
@@ -42,7 +36,7 @@ class SignInViewModel: BaseViewModel{
         }
 
         getDataCall(
-            dataCall: { try await self.authManager.signInWithEmail(email: self.email, password: self.password)},
+            dataCall: { try await AuthManager.shared.signInWithEmail(email: self.email, password: self.password)},
             onSuccess: { result in
                 self.showAllert = false
                 self.success = true
@@ -63,7 +57,7 @@ class SignInViewModel: BaseViewModel{
             guard let user = try await GoogleSignInManager.shared.signInWithGoogle() else {
                 throw NSError(domain: "GoogleSignIn", code: -1, userInfo: [NSLocalizedDescriptionKey: "Google giriş başarısız"])
             }
-            return try await self.authManager.googleAuth(user)
+            return try await AuthManager.shared.googleAuth(user)
         } onSuccess: { result in
             if let result = result {
                 self.loading = false
@@ -113,7 +107,7 @@ class SignInViewModel: BaseViewModel{
 
             Task {
                 do {
-                    let result = try await authManager.appleAuth(
+                    let result = try await AuthManager.shared.appleAuth(
                         appleIDCredentials,
                         nonce: AppleSignInManager.nonce
                     )

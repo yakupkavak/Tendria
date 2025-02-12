@@ -15,15 +15,9 @@ class ForgotPasswordViewModel: BaseViewModel{
     @Published var showAllert: Bool = false
     @Published var alertType: AlertType = .success
 
-    private var authManager: AuthManager
-    
-    init(authManager: AuthManager) {
-        self.authManager = authManager
-    }
-    
     func forgotPassword(){
         getDataCall {
-            try await self.authManager.resetPassword(email: self.email)
+            try await AuthManager.shared.resetPassword(email: self.email)
         } onSuccess: { result in
             self.showAllert = true
             self.alertType = .success

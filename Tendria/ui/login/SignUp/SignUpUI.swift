@@ -3,13 +3,8 @@ import AuthenticationServices
 
 struct SignUpUI: View {
     
-    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var router: RouterSign
-    @StateObject var viewModel: SignUpViewModel
-    
-    init(authManager: AuthManager) {
-        _viewModel = StateObject(wrappedValue: SignUpViewModel(authManager: authManager))
-    }
+    @StateObject var viewModel = SignUpViewModel()
     
     var body: some View {
         ZStack {
@@ -85,7 +80,5 @@ struct SignUpUI: View {
 }
 
 #Preview {
-    let previewAuthManager = AuthManager() // Geçici bir AuthManager oluştur
-    return SignUpUI(authManager: previewAuthManager)
-        .environmentObject(previewAuthManager) // Preview için environmentObject ver
+    SignUpUI()
 }

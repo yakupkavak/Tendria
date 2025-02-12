@@ -11,18 +11,20 @@ import FirebaseAuth
 import FirebaseCore
 import GoogleSignIn
 
-private var authStateHandle: AuthStateDidChangeListenerHandle!
 
-@MainActor
 class AuthManager: ObservableObject {
-    @Published var user: User?
-    @Published var authState = AuthState.signedOut
-    private var auth: Auth
     
-    init() {
+    private var user: User?
+    private var authState = AuthState.signedOut
+    private var auth: Auth
+    private var authStateHandle: AuthStateDidChangeListenerHandle!
+    @Published var isSigned = false
+    
+    static let shared = AuthManager()
+    
+    private init() {
         self.auth = Auth.auth()
-        
-        do{ try auth.signOut()
+        do { try auth.signOut()
         } catch {
             return
         }
@@ -30,10 +32,21 @@ class AuthManager: ObservableObject {
         configureAuthStateChanges()
         verifySignInWithAppleID()
     }
+
+    func getUserID() -> String?{
+        guard let userId = auth.currentUser?.uid else{
+            return nil
+        }
+        return userId
+    }
     
     func configureAuthStateChanges() {
         authStateHandle = auth.addStateDidChangeListener { auth, user in
-            //listener açıldı her oturum değişince burası çalışacak.
+            if (user != nil) {
+                self.isSigned = true
+            }else {
+                self.isSigned = false
+            }
             print("Auth changed: \(user != nil)")
             self.updateState(user: user)
         }

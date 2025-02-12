@@ -2,13 +2,8 @@ import SwiftUI
 
 struct ForgotPasswordUI: View {
     
-    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject private var router: RouterSign
-    @StateObject var viewModel: ForgotPasswordViewModel
-    
-    init(authManager: AuthManager) {
-        _viewModel = StateObject(wrappedValue: ForgotPasswordViewModel(authManager: authManager))
-    }
+    @StateObject var viewModel = ForgotPasswordViewModel()
     
     var body: some View {
         ZStack {
@@ -59,7 +54,5 @@ struct ForgotPasswordUI: View {
 }
 
 #Preview {
-    let previewAuthManager = AuthManager()
-    ForgotPasswordUI(authManager: previewAuthManager)
-        .environmentObject(previewAuthManager)
+    ForgotPasswordUI()
 }

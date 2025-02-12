@@ -10,38 +10,41 @@ import FirebaseCore
 
 @main
 struct TendriaApp: App {
+    
+    @StateObject var router = RouterSign()
+    @ObservedObject private var authManager: AuthManager
+    
     init() {
         FirebaseApp.configure()
+        self._authManager = ObservedObject(wrappedValue: AuthManager.shared)
     }
-    @StateObject var authManager = AuthManager()
-    @StateObject var router = RouterSign()
+
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $router.navPath) {
                 Group{
-                    if authManager.checkUserSession() {
+                    if authManager.isSigned {
                         BaseTabViewUI()
                     } else {
-                        SignInUI(authManager: authManager)
+                        SignInUI()
                     }
                 }.navigationDestination(for: RouterSign.Destination.self) { destination in
                     switch destination {
                     case .signIn:
-                        SignInUI(authManager: authManager)
+                        SignInUI()
                     case .signUp:
-                        SignUpUI(authManager: authManager)
+                        SignUpUI()
                     case .forgotPassword:
-                        ForgotPasswordUI(authManager: authManager)
+                        ForgotPasswordUI()
                     case .mainScreen:
                         BaseTabViewUI()
-                    
                     }
                 }
             }
             .environmentObject(router)
-            .environmentObject(authManager).onAppear {
+            .onAppear {
                 UIApplication.shared.addTapGestureRecognizer()
             }
         }
