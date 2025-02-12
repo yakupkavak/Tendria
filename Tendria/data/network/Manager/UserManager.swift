@@ -8,12 +8,11 @@
 import Foundation
 import SwiftUICore
 
-class UserManager {
+class UserManager: ObservableObject {
     
     @Published var userInstance: UserModel?
      
     static let shared = UserManager()
-    
     
     private init() {}
     

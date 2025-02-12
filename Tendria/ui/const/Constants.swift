@@ -15,6 +15,7 @@ typealias IconName = Constants.Icons
 typealias Width = Constants.Width
 typealias FireStorage = Constants.FirestorageConst
 typealias FireDatabase = Constants.FirestoreConst
+typealias Numbers = Constants.Numbers
 
 struct Constants {
     struct Gradients {
@@ -123,10 +124,14 @@ struct Constants {
     
     struct FirestoreConst {
         static let LIST_PATH = "List"
+        static let RELATION_CODE_PATH = "RelationCode"
     }
     struct FirestorageConst {
         static let LIST_PATH = "list"
         static let TASK_PATH = "task"
 
+    }
+    struct Numbers{
+        static let RANDOM_COUNT = 6
     }
 }

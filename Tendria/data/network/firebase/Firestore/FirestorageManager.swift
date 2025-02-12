@@ -51,11 +51,20 @@ class FirestorageManager {
                 taskIdList: nil,
                 description: description
             )
+        addDocument(documentRef: newListRef, value: newDocument)
+    }
+    
+    private func addDocument<T: Encodable>(documentRef: DocumentReference, value: T) {
         do {
-            try newListRef.setData(from: newDocument)
-            print("Document added successfully with ID: \(uniqueFileName)")
+            try documentRef.setData(from: value)
+            print("Document added successfully")
         } catch {
             print("Failed to add document: \(error.localizedDescription)")
         }
+    }
+    
+    func generateConnectionCode() async throws{
+        let randomCode = randomString(length: Numbers.RANDOM_COUNT)
+        print(randomCode)
     }
 }
