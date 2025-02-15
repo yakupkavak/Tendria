@@ -125,6 +125,10 @@ struct Constants {
     struct FirestoreConst {
         static let LIST_PATH = "List"
         static let RELATION_CODE_PATH = "RelationCode"
+        static let USER_PATH = "Users"
+        static let USER_ID_FIELD = "userId"
+        static let USER_RELATION_ID = "relationId"
+        static let USER_IMAGE_FIELD = "profileImage"
     }
     struct FirestorageConst {
         static let LIST_PATH = "list"

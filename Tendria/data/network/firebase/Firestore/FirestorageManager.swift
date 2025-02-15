@@ -43,7 +43,6 @@ class FirestorageManager {
     }
     
     func addListDocument(downloadUrl: String,description: String) async throws{
-        let uniqueFileName = UUID().uuidString
         let newListRef = database.collection(FireDatabase.LIST_PATH).document()
         let newDocument = ListDocumentModel(
                 imageUrl: downloadUrl,
@@ -66,5 +65,30 @@ class FirestorageManager {
     func generateConnectionCode() async throws{
         let randomCode = randomString(length: Numbers.RANDOM_COUNT)
         print(randomCode)
+        let newCodeRef = database.collection(FireDatabase.RELATION_CODE_PATH).document()
+        guard let currentUserId = AuthManager.shared.getUserID() else {
+            return
+        }
+        let newDocument = RelationCodeModel(firstUserId: currentUserId, secondUserId: nil, relationCode: randomCode)
+        addDocument(documentRef: newCodeRef, value: newDocument)
+    }
+    
+    func checkUserRelation() async throws -> Bool {
+        guard let userId = AuthManager.shared.getUserID() else {
+            return false
+        }
+        let documentReference = database.collection(FireDatabase.USER_PATH).document(userId)
+        
+        do {
+            let document = try await documentReference.getDocument()
+            if document.exists {
+                let relationId = document.data()?[FireDatabase.USER_RELATION_ID] as? String
+                return !(relationId?.isEmpty ?? true)
+            }else {
+                return false
+            }
+        } catch {
+            throw error
+        }
     }
 }

@@ -3,6 +3,7 @@ import SwiftUI
 struct UserListUI: View {
     
     @EnvironmentObject var routerUser: RouterUser
+    @StateObject var viewModel = UserListViewModel()
     
     var body: some View {
         ScrollView {
@@ -25,7 +26,15 @@ struct UserListUI: View {
                     ])
                     
                     MenuSection(items: [
-                        MenuItem(icon: IconName.heart, title: StringKey.make_relation,onClick:{ routerUser.navigate(to: .userInfo)}),
+                        MenuItem(icon: IconName.heart, title: StringKey.make_relation
+                                 ,onClick:{
+                                     print(viewModel.isRelationExist)
+                                     if(viewModel.isRelationExist) {
+                                         routerUser.navigate(to: .existRelation)
+                                     }else {
+                                         routerUser.navigate(to: .makeRelation)
+                                     }
+                                     }),
                     ])
                     
                     MenuSection(items: [
