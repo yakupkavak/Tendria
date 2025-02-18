@@ -3,7 +3,7 @@ import AuthenticationServices
 
 struct SignUpUI: View {
     
-    @EnvironmentObject var router: RouterUser
+    @EnvironmentObject var router: RouterUserSign
     @StateObject var viewModel = SignUpViewModel()
     
     var body: some View {

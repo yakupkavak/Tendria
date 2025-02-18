@@ -9,14 +9,14 @@ import SwiftUI
 
 struct TaskGroupListUI: View {
     
-    @EnvironmentObject var routerApp: RouterBase
+    @EnvironmentObject var routerTask: RouterTask
     
     var body: some View {
         ZStack { // List ve butonu üst üste koyuyoruz
             List {
                 ForEach(taskRowList) { task in
                     Button {
-                        routerApp.navigate(to: .taskDetailList)
+                        routerTask.navigate(to: .taskDetailList)
                     } label: {
                         TaskRowUI(url: task.imageUrl, subText: task.subText)
                     }
@@ -33,7 +33,7 @@ struct TaskGroupListUI: View {
                 HStack {
                     Spacer()
                     btnAddIcon(iconName: "plus") {
-                        routerApp.navigate(to: .addGroupTask)
+                        routerTask.navigate(to: .addGroupTask)
                     }.padding()
                 }
             }

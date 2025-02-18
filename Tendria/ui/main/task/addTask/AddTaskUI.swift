@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddTaskUI: View {
     
-    @EnvironmentObject var routerTask: RouterBase
+    @EnvironmentObject var routerTask: RouterTask
 
     var body: some View {
         VStack(alignment: .leading){

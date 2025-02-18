@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserInfoUI: View {
     
-    @EnvironmentObject var routerBase: RouterBase
+    @EnvironmentObject var routerBase: RouterUserInfo
 
     var body: some View {
         Text("User info")

@@ -10,7 +10,7 @@ import _AuthenticationServices_SwiftUI
 
 struct SignInUI: View {
     
-    @EnvironmentObject var router: RouterUser
+    @EnvironmentObject var router: RouterUserSign
     @StateObject private var viewModel = SignInViewModel()
     
     var body: some View {

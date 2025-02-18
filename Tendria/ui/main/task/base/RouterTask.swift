@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class RouterBase: ObservableObject {
+final class RouterTask: ObservableObject {
     
     public enum Destination: Codable, Hashable {
         //Group List
@@ -17,12 +17,6 @@ final class RouterBase: ObservableObject {
         case taskDetailList
         case taskDetail
         case addTaskDetail
-        //User List
-        case existRelation
-        case makeRelation
-        case resetPassword
-        case userInfo
-        case userList
     }
     
     @Published var navPath = NavigationPath()

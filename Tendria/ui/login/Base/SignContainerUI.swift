@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SignContainerUI: View {
     
-    @StateObject private var router = RouterUser()
+    @StateObject private var router = RouterUserSign()
     
     var body: some View {
         NavigationStack(path: $router.navPath){
             SignInUI().environmentObject(router)
-                .navigationDestination(for: RouterUser.Destination.self) { destination in
+                .navigationDestination(for: RouterUserSign.Destination.self) { destination in
                     switch destination {
                     case .signIn:
                         SignInUI().environmentObject(router)

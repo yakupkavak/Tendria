@@ -1,28 +1,26 @@
 //
-//  TaskNavigationManager.swift
+//  RouterSign.swift
 //  Tendria
 //
-//  Created by Yakup Kavak on 5.02.2025.
+//  Created by Yakup Kavak on 20.01.2025.
 //
 
 import Foundation
 import SwiftUI
 
-final class UserTask: ObservableObject {
+final class RouterUserSign: ObservableObject {
     
     public enum Destination: Codable, Hashable {
-        case existRelation
-        case makeRelation
-        case resetPassword
-        case userInfo
-        case userList
+        case signIn
+        case signUp
+        case forgotPassword
     }
     
     @Published var navPath = NavigationPath()
     
     func navigate(to destination: Destination) {
+        navPath = NavigationPath()
         navPath.append(destination)
-        print("user",navPath)
     }
     
     func navigateBack() {

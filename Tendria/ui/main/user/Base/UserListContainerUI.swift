@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserListContainerUI: View {
     
-    @EnvironmentObject var routerUser: RouterBase
+    @EnvironmentObject var routerUser: RouterUserInfo
     
     var body: some View {
         UserListUI()

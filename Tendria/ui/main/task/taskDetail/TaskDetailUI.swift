@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TaskDetailUI: View {
     
-    @EnvironmentObject var routerTask: RouterBase
+    @EnvironmentObject var routerTask: RouterTask
 
     var body: some View {
         Text("Detail Task")

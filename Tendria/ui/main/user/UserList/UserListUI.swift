@@ -2,7 +2,7 @@ import SwiftUI
 
 struct UserListUI: View {
     
-    @EnvironmentObject var router: RouterBase
+    @EnvironmentObject var router: RouterUserInfo
     @StateObject var viewModel = UserListViewModel()
     
     var body: some View {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MakeRelationUI: View {
     
-    @EnvironmentObject var routerUser: RouterBase
+    @EnvironmentObject var routerUser: RouterUserInfo
 
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)

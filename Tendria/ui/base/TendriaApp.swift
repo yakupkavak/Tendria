@@ -11,6 +11,9 @@ import FirebaseCore
 @main
 struct TendriaApp: App {
     
+    @StateObject private var routerTask = RouterTask()
+    @StateObject private var routerUser = RouterUserInfo()
+    
     private var userState = false
     @StateObject private var authManager = AuthManager.shared
     
@@ -23,7 +26,7 @@ struct TendriaApp: App {
     var body: some Scene {
         WindowGroup {
             if authManager.isSigned {
-                BaseTabViewUI().onAppear {
+                BaseTabViewUI().environmentObject(routerTask).environmentObject(routerUser).onAppear {
                     UIApplication.shared.addTapGestureRecognizer()
                 }
             } else {

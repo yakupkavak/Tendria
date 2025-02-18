@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TaskListContainerUI: View {
     
-    @EnvironmentObject var routerBase: RouterBase
+    @EnvironmentObject var routerTask: RouterTask
     
     var body: some View {
         TaskGroupListUI()

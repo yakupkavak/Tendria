@@ -9,8 +9,9 @@ import SwiftUI
 
 struct BaseTabViewUI: View {
     
-    @EnvironmentObject var routerApp: RouterBase
-    
+    @EnvironmentObject private var routerTask: RouterTask
+    @EnvironmentObject private var routerUser: RouterUserInfo
+
     var body: some View {
         
         TabView {
@@ -23,9 +24,22 @@ struct BaseTabViewUI: View {
                 .tabItem {
                     Label("History", systemImage: "clock.fill")
                 }
-            
-            TaskGroupListUI()
-                .tabItem {
+            NavigationStack(path: $routerTask.navPath) {
+                TaskGroupListUI().environmentObject(routerTask).navigationDestination(for: RouterTask.Destination.self) { destination in
+                    switch destination {
+                    case .taskGroupList:
+                        TaskGroupListUI()
+                    case .addGroupTask:
+                        AddGroupUI()
+                    case .taskDetailList:
+                        TaskDetailListUI()
+                    case .taskDetail:
+                        TaskDetailUI()
+                    case .addTaskDetail:
+                        AddTaskUI()
+                    }
+                }
+            }.tabItem {
                     Label("Task", systemImage: "checkmark.circle.fill")
                 }
             
@@ -33,8 +47,22 @@ struct BaseTabViewUI: View {
                 .tabItem {
                     Label("Tree", systemImage: "leaf.fill")
                 }
-            UserListUI()
-                .tabItem {
+            NavigationStack(path: $routerUser.navPath) {
+                UserListUI().environmentObject(routerUser).navigationDestination(for: RouterUserInfo.Destination.self) { destination in
+                    switch destination {
+                    case .existRelation:
+                        ExistRelationUI()
+                    case .makeRelation:
+                        MakeRelationUI()
+                    case .resetPassword:
+                        ResetPasswordUI()
+                    case .userInfo:
+                        UserInfoUI()
+                    case .userList:
+                        UserListUI()
+                    }
+                }
+            }.tabItem {
                     Label("User", systemImage: "person.fill")
                 }
         }
@@ -42,32 +70,6 @@ struct BaseTabViewUI: View {
         .accentColor(.blue) // Aktif sekme rengi
     }
 }
-/**
- .navigationDestination(for: RouterBase.Destination.self) { destination in
-     switch destination {
-     case .taskGroupList:
-         TaskGroupListUI()
-     case .addGroupTask:
-         AddGroupUI()
-     case .taskDetailList:
-         TaskDetailListUI()
-     case .taskDetail:
-         TaskDetailUI()
-     case .addTaskDetail:
-         AddTaskUI()
-     case .existRelation:
-         ExistRelationUI()
-     case .makeRelation:
-         MakeRelationUI()
-     case .resetPassword:
-         ResetPasswordUI()
-     case .userInfo:
-         UserInfoUI()
-     case .userList:
-         UserListUI()
-     }
- }
- */
 
 #Preview {
     BaseTabViewUI()
