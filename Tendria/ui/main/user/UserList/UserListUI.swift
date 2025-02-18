@@ -2,7 +2,7 @@ import SwiftUI
 
 struct UserListUI: View {
     
-    @EnvironmentObject var routerUser: RouterUser
+    @EnvironmentObject var router: RouterBase
     @StateObject var viewModel = UserListViewModel()
     
     var body: some View {
@@ -22,7 +22,7 @@ struct UserListUI: View {
                 // Menü Grupları
                 VStack(spacing: Height.xSmallHeight) {
                     MenuSection(items: [
-                        MenuItem(icon: IconName.person, title: StringKey.personal_info,onClick:{ routerUser.navigate(to: .userInfo)}),
+                        MenuItem(icon: IconName.person, title: StringKey.personal_info,onClick:{ router.navigate(to: .userInfo)}),
                     ])
                     
                     MenuSection(items: [
@@ -30,21 +30,21 @@ struct UserListUI: View {
                                  ,onClick:{
                                      print(viewModel.isRelationExist)
                                      if(viewModel.isRelationExist) {
-                                         routerUser.navigate(to: .existRelation)
+                                         router.navigate(to: .existRelation)
                                      }else {
-                                         routerUser.navigate(to: .makeRelation)
+                                         router.navigate(to: .makeRelation)
                                      }
                                      }),
                     ])
                     
                     MenuSection(items: [
-                        MenuItem(icon: "questionmark.circle.fill", title: StringKey.change_password,onClick:{ routerUser.navigate(to: .userInfo)}),
-                        MenuItem(icon: "star.fill", title: StringKey.notifications,onClick:{ routerUser.navigate(to: .userInfo)}),
-                        MenuItem(icon: "gearshape.fill", title: StringKey.settings,onClick:{ routerUser.navigate(to: .userInfo)})
+                        MenuItem(icon: "questionmark.circle.fill", title: StringKey.change_password,onClick:{ router.navigate(to: .userInfo)}),
+                        MenuItem(icon: "star.fill", title: StringKey.notifications,onClick:{ router.navigate(to: .userInfo)}),
+                        MenuItem(icon: "gearshape.fill", title: StringKey.settings,onClick:{ router.navigate(to: .userInfo)})
                     ])
                     
                     MenuSection(items: [
-                        MenuItem(icon: "arrow.left.square.fill", title: StringKey.log_out,onClick:{ routerUser.navigate(to: .userInfo)}),
+                        MenuItem(icon: "arrow.left.square.fill", title: StringKey.log_out,onClick:{ router.navigate(to: .userInfo)}),
                     ])
                 }
                 .padding()

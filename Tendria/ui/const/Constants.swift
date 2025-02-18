@@ -101,7 +101,6 @@ struct Constants {
         static let notifications = LocalizedStringKey("notifications")
         static let settings = LocalizedStringKey("settings")
         static let log_out = LocalizedStringKey("log_out")
-
     }
     
 

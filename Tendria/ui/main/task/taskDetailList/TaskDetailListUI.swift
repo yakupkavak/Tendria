@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TaskDetailListUI: View {
     
-    @EnvironmentObject var routerTask: RouterTask
+    @EnvironmentObject var routerTask: RouterBase
 
     var body: some View {
         ZStack { // List ve butonu üst üste koyuyoruz

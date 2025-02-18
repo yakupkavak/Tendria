@@ -9,8 +9,7 @@ import SwiftUI
 
 struct BaseTabViewUI: View {
     
-    @StateObject var routerTask = RouterTask()
-    @StateObject var routerUser = RouterUser()
+    @EnvironmentObject var routerApp: RouterBase
     
     var body: some View {
         
@@ -19,29 +18,56 @@ struct BaseTabViewUI: View {
                 .tabItem {
                     Label("Feed", systemImage: "house.fill")
                 }
+            
             HistoryUI()
                 .tabItem {
                     Label("History", systemImage: "clock.fill")
                 }
             
-            TaskListContainerUI()
+            TaskGroupListUI()
                 .tabItem {
                     Label("Task", systemImage: "checkmark.circle.fill")
-                }.environmentObject(routerTask)
+                }
             
             TreeUI()
                 .tabItem {
                     Label("Tree", systemImage: "leaf.fill")
                 }
-            
-            UserListContainerUI()
+            UserListUI()
                 .tabItem {
                     Label("User", systemImage: "person.fill")
-                }.environmentObject(routerUser)
+                }
         }
+        .navigationBarBackButtonHidden()
         .accentColor(.blue) // Aktif sekme rengi
     }
 }
+/**
+ .navigationDestination(for: RouterBase.Destination.self) { destination in
+     switch destination {
+     case .taskGroupList:
+         TaskGroupListUI()
+     case .addGroupTask:
+         AddGroupUI()
+     case .taskDetailList:
+         TaskDetailListUI()
+     case .taskDetail:
+         TaskDetailUI()
+     case .addTaskDetail:
+         AddTaskUI()
+     case .existRelation:
+         ExistRelationUI()
+     case .makeRelation:
+         MakeRelationUI()
+     case .resetPassword:
+         ResetPasswordUI()
+     case .userInfo:
+         UserInfoUI()
+     case .userList:
+         UserListUI()
+     }
+ }
+ */
 
 #Preview {
     BaseTabViewUI()

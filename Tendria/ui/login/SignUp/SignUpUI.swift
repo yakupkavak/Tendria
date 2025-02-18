@@ -3,7 +3,7 @@ import AuthenticationServices
 
 struct SignUpUI: View {
     
-    @EnvironmentObject var router: RouterSign
+    @EnvironmentObject var router: RouterUser
     @StateObject var viewModel = SignUpViewModel()
     
     var body: some View {
@@ -62,7 +62,6 @@ struct SignUpUI: View {
             .onChange(of: viewModel.success) { success in
                 if success {
                     print("✅ Kayıt başarılı! Ana ekrana yönlendiriliyor...")
-                    router.navigate(to: .mainScreen)
                 }
             }
             .onChange(of: viewModel.error) { error in
@@ -74,7 +73,6 @@ struct SignUpUI: View {
             } message: {
                 Text(viewModel.error)
             }
-
     }
     
 }

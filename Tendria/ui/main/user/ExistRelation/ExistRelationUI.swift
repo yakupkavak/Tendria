@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExistRelationUI: View {
     
-    @EnvironmentObject var routerUser: RouterUser
+    @EnvironmentObject var routerUser: RouterBase
 
     var body: some View {
         Text("ilişki var")

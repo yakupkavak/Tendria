@@ -10,7 +10,7 @@ import _AuthenticationServices_SwiftUI
 
 struct SignInUI: View {
     
-    @EnvironmentObject var router: RouterSign
+    @EnvironmentObject var router: RouterUser
     @StateObject private var viewModel = SignInViewModel()
     
     var body: some View {
@@ -81,7 +81,6 @@ struct SignInUI: View {
             .onChange(of: viewModel.success) { success in
                 if success {
                     print("✅ Giriş başarılı! Ana ekrana yönlendiriliyor...")
-                    router.navigate(to: .mainScreen)
                 }
             }
             .onChange(of: viewModel.error) { error in

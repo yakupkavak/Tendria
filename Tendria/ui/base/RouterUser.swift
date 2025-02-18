@@ -8,13 +8,12 @@
 import Foundation
 import SwiftUI
 
-final class RouterSign: ObservableObject {
+final class RouterUser: ObservableObject {
     
     public enum Destination: Codable, Hashable {
         case signIn
         case signUp
         case forgotPassword
-        case mainScreen
     }
     
     @Published var navPath = NavigationPath()

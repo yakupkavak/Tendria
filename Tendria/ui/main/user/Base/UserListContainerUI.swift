@@ -9,26 +9,10 @@ import SwiftUI
 
 struct UserListContainerUI: View {
     
-    @EnvironmentObject var routerUser: RouterUser
+    @EnvironmentObject var routerUser: RouterBase
     
     var body: some View {
-        NavigationStack(path: $routerUser.navPath) {
-            UserListUI()
-                .navigationDestination(for: RouterUser.Destination.self) { destination in
-                    switch destination {
-                    case .existRelation:
-                        ExistRelationUI()
-                    case .makeRelation:
-                        MakeRelationUI()
-                    case .resetPassword:
-                        ResetPasswordUI()
-                    case .userInfo:
-                        UserInfoUI()
-                    case .userList:
-                        UserListUI()
-                    }
-                }.environmentObject(routerUser)
-        }
+        UserListUI()
     }
 }
 

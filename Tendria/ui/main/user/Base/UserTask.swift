@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class RouterUser: ObservableObject {
+final class UserTask: ObservableObject {
     
     public enum Destination: Codable, Hashable {
         case existRelation
@@ -22,6 +22,7 @@ final class RouterUser: ObservableObject {
     
     func navigate(to destination: Destination) {
         navPath.append(destination)
+        print("user",navPath)
     }
     
     func navigateBack() {

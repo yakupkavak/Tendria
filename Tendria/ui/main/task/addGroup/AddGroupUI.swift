@@ -10,7 +10,7 @@ import PhotosUI
 
 struct AddGroupUI: View {
     
-    @EnvironmentObject var routerTask: RouterTask
+    @EnvironmentObject var routerTask: RouterBase
     @StateObject var viewModel = AddGroupViewModel()
     @State private var displayedPhoto: UIImage? = nil
 

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ForgotPasswordUI: View {
     
-    @EnvironmentObject private var router: RouterSign
+    @EnvironmentObject private var router: RouterUser
     @StateObject var viewModel = ForgotPasswordViewModel()
     
     var body: some View {
