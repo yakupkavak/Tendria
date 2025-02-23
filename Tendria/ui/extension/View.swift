@@ -24,3 +24,15 @@ extension UIApplication: @retroactive UIGestureRecognizerDelegate {
         return !otherGestureRecognizer.isKind(of: UILongPressGestureRecognizer.self)
     }
 }
+extension View{
+    func paddingHorizontal(value: CGFloat = 8) -> some View{
+        self.padding([.leading,.trailing], value)
+    }
+    func DoubleSpacer() -> some View{
+        Group{
+            Spacer()
+            Spacer()
+        }
+    }
+}
+

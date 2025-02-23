@@ -46,6 +46,27 @@ struct RowUIImage: View {
     }
 }
 
+struct ImageAsset: View {
+    
+    var uiImageSource: String
+    var imageHeight: CGFloat? = ImageWidth.largeWidth
+    private var image: UIImage
+    
+    init(uiImageSource: String) {
+        self.uiImageSource = uiImageSource
+        self.image = UIImage(named: uiImageSource) ?? UIImage()
+    }
+
+    var body: some View {
+        Image(uiImage: image)
+            .resizable()
+            .scaledToFit()
+            .frame(width: imageHeight)
+            .clipped()
+            
+    }
+}
+
 #Preview {
-    RowURLImage(imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjzJjPa-3jdL6XAI0yqXBY8VzK_p5h0yQIkQ&s")
+    ImageAsset(uiImageSource: ImageSet.MAKE_RELATION)
 }

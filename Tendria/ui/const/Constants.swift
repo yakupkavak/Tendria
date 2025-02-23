@@ -16,6 +16,10 @@ typealias Width = Constants.Width
 typealias FireStorage = Constants.FirestorageConst
 typealias FireDatabase = Constants.FirestoreConst
 typealias Numbers = Constants.Numbers
+typealias TextWith = Constants.TextWidth
+typealias ImageSet = Constants.Images
+typealias ImageWidth = Constants.ImageWidth
+typealias StringValues = Constants.StringValues
 
 struct Constants {
     struct Gradients {
@@ -29,9 +33,21 @@ struct Constants {
         static let shadowSmallRadius = CGFloat(UIScreen.main.bounds.height * 0.0025)
 
     }
+    struct TextWidth {
+        static let tfNormalWidth = UIScreen.main.bounds.width * 0.75
+
+        static let titleWidth = UIScreen.main.bounds.width * 0.5
+    }
+    
+    struct ImageWidth {
+        static let largeWidth = UIScreen.main.bounds.width * 0.65
+        static let halfWidth = UIScreen.main.bounds.width * 0.5
+        
+    }
     
     struct Width{
         static let buttonWidth = UIScreen.main.bounds.width * 0.6
+        static let buttonMediumWidth = UIScreen.main.bounds.width * 0.36
         static let largeWidth = UIScreen.main.bounds.width * 0.1
         static let mediumWidth = UIScreen.main.bounds.width * 0.05
         static let xMediumWidth = UIScreen.main.bounds.width * 0.04
@@ -59,6 +75,9 @@ struct Constants {
         static let normalHeight = UIScreen.main.bounds.height * 0.08
         static let mediumHeight = UIScreen.main.bounds.height * 0.04
         static let smallHeight = UIScreen.main.bounds.height * 0.01
+    }
+    struct StringValues{
+        static let RELATION_CODE_PLACEHOLDER = "XXXXXX"
     }
     
     struct StringKeys {
@@ -101,13 +120,28 @@ struct Constants {
         static let notifications = LocalizedStringKey("notifications")
         static let settings = LocalizedStringKey("settings")
         static let log_out = LocalizedStringKey("log_out")
+        
+        /* Create Relation*/
+        static let create_relation_title = LocalizedStringKey("create_relation_title")
+        static let generate_code = LocalizedStringKey("generate_code")
+        static let enter_code = LocalizedStringKey("enter_code")
+        static let choose_one = LocalizedStringKey("choose_one")
+
     }
     
 
     struct Padding {
+        static let horizontalNormalPadding = UIScreen.main.bounds.width * 0.1
+        static let horizontalSmallPadding = UIScreen.main.bounds.width * 0.03
+        static let horizontalXSmallPadding = UIScreen.main.bounds.width * 0.005
+
         static let largePadding = UIScreen.main.bounds.height * 0.05
         static let mediumPadding = UIScreen.main.bounds.height * 0.02
         static let smallPadding = UIScreen.main.bounds.height * 0.01
+    }
+    struct Images {
+        static let MAKE_RELATION = "MakeRelation"
+        static let PIKACHU = "pikachu"
     }
     
     struct Icons {
@@ -124,7 +158,7 @@ struct Constants {
     struct FirestoreConst {
         static let LIST_PATH = "List"
         static let RELATION_CODE_PATH = "RelationCode"
-        static let USER_PATH = "Users"
+        static let USERS_PATH = "Users"
         static let USER_ID_FIELD = "userId"
         static let USER_RELATION_ID = "relationId"
         static let USER_IMAGE_FIELD = "profileImage"

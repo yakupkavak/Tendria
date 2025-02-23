@@ -83,12 +83,14 @@ struct btnText: View {
     var shadow: CGFloat? = IconWidth.smallHeight
     var action: () -> Void
     var text: LocalizedStringKey
+    var edgeSet: Edge.Set = .all
+    var paddingValue: CGFloat = 16
     
     var body: some View {
         Button {
             action()
         } label: {
-            tvHeadline(text: text, color: .btnForeground).frame(maxWidth: .infinity).padding().gradientBackground().clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: shadow!)
+            tvHeadline(text: text, color: .btnForeground).frame(maxWidth: .infinity).padding(edgeSet,paddingValue).gradientBackground().clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: shadow!)
         }
     }
 }

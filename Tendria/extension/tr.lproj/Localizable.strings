@@ -51,3 +51,9 @@
 "notifications" = "Bildirimler";
 "settings" = "Ayarlar";
 "log_out" = "Çıkış Yap";
+
+"create_relation_title" = "Partnerinize Bağlanın";
+"choose_one" = "Bağlanmak için kodunuzu";
+"generate_code" = "Oluşturun";
+"enter_code" = "Girin";
+"duplicate_code_error" = "Bu kod zaten kullanılıyor. Lütfen yeni bir kod oluşturun.";

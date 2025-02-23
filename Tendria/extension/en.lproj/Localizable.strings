@@ -51,3 +51,10 @@
 "notifications" = "Notifications";
 "settings" = "Settings";
 "log_out" = "Log Out";
+
+"create_relation_title" = "Connect to your Partner";
+"choose_one" = "Enter your code to connect";
+"generate_code" = "Generate";
+"enter_code" = "Enter";
+"duplicate_code_error" = "This code is already in use. Please generate a new one.";
+

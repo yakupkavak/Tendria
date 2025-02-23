@@ -50,34 +50,53 @@ class FirestorageManager {
                 taskIdList: nil,
                 description: description
             )
-        addDocument(documentRef: newListRef, value: newDocument)
+        try addDocument(documentRef: newListRef, value: newDocument)
     }
     
-    private func addDocument<T: Encodable>(documentRef: DocumentReference, value: T) {
+    private func addDocument<T: Encodable>(documentRef: DocumentReference, value: T) throws {
         do {
             try documentRef.setData(from: value)
             print("Document added successfully")
         } catch {
             print("Failed to add document: \(error.localizedDescription)")
+            throw error
         }
     }
-    
-    func generateConnectionCode() async throws{
+
+    func generateConnectionCode() async throws -> String?{
         let randomCode = randomString(length: Numbers.RANDOM_COUNT)
-        print(randomCode)
-        let newCodeRef = database.collection(FireDatabase.RELATION_CODE_PATH).document()
+        let relationCodeRef = database.collection(FireDatabase.RELATION_CODE_PATH).document()
         guard let currentUserId = AuthManager.shared.getUserID() else {
-            return
+            return nil
         }
         let newDocument = RelationCodeModel(firstUserId: currentUserId, secondUserId: nil, relationCode: randomCode)
-        addDocument(documentRef: newCodeRef, value: newDocument)
+        try addDocument(documentRef: relationCodeRef, value: newDocument)
+        return randomCode
+    }
+    
+    func checkRelationCode(relationCode: String) async throws {
+        let relationCodeRef = database.collection(FireDatabase.RELATION_CODE_PATH)
+        do {
+            let querySnapshot = try await relationCodeRef.whereField("relationCode", isEqualTo: relationCode).getDocuments()
+            if querySnapshot.documents.count > 1 {
+                throw RelationError.duplicateCode
+            }
+            for document in querySnapshot.documents {
+                let data = try document.data(as: RelationCodeModel.self)
+            }
+        } catch {
+            throw error
+        }
+    }
+    func addRelationToUser(relationId: String) async throws {
+        
     }
     
     func checkUserRelation() async throws -> Bool {
         guard let userId = AuthManager.shared.getUserID() else {
             return false
         }
-        let documentReference = database.collection(FireDatabase.USER_PATH).document(userId)
+        let documentReference = database.collection(FireDatabase.USERS_PATH).document(userId)
         
         do {
             let document = try await documentReference.getDocument()
@@ -91,4 +110,5 @@ class FirestorageManager {
             throw error
         }
     }
+    
 }
