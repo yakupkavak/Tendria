@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseCore
+import FirebaseAppCheck
 
 @main
 struct TendriaApp: App {
@@ -18,6 +19,8 @@ struct TendriaApp: App {
     @StateObject private var authManager = AuthManager.shared
     
     init() {
+        //let providerFactory = AppCheckProviderFactoryClass()
+        AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
         FirebaseApp.configure()
     }
 

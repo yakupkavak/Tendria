@@ -10,6 +10,7 @@ import AuthenticationServices
 import FirebaseAuth
 import FirebaseCore
 import GoogleSignIn
+import FirebaseAppCheck
 
 
 class AuthManager: ObservableObject {
