@@ -33,11 +33,19 @@ class MakeRelationViewModel: BaseViewModel {
         }
     }
     
-    func enterCode(){
-        if(isEditable){
-            self.isEditable = true
-        }else {
-            
+    func checkCode(){
+        self.isEditable = true
+        self.showCopy = false
+        getDataCall {
+            try await FirestorageManager.shared.checkRelationCode(relationCode: self.inputText)
+        } onSuccess: { successData in
+            self.loading = false
+        } onLoading: {
+            self.loading = true
+        } onError: { error in
+            self.loading = false
+            self.error = error?.localizedDescription ?? ""
         }
     }
+    
 }

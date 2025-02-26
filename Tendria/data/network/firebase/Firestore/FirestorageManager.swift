@@ -95,7 +95,7 @@ class FirestorageManager {
         guard let firstUserId = relationCode.firstUserId else {
             throw RelationError.invalidUserId
         }
-        guard let secondUserId = relationCode.secondUserId else {
+        guard let secondUserId = AuthManager.shared.getUserID() else {
             throw RelationError.invalidUserId
         }
         do {

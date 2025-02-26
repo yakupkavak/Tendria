@@ -36,14 +36,14 @@ struct MakeRelationUI: View {
                 HStack{
                     //Generate Button
                     btnText(action: {
-                        print("yakup")
+                        viewModel.generateCode()
                     }, text: StringKey.generate_code).frame(width: Width.buttonMediumWidth)
                     
                     Spacer()
                     
                     //Check Button
                     btnText(action: {
-                        print("yakup")
+                        viewModel.checkCode()
                     }, text: StringKey.enter_code).frame(width: Width.buttonMediumWidth)
                     
                 }
