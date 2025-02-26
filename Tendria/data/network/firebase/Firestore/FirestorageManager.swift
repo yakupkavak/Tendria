@@ -8,11 +8,13 @@
 import Foundation
 import FirebaseStorage
 import FirebaseFirestore
+import FirebaseFunctions
 
 class FirestorageManager {
     
     static let shared = FirestorageManager()
     private let storage = Storage.storage()
+    private let functions = Functions.functions()
     private let database = Firestore.firestore()
     let storageRef: StorageReference
     let taskRef: StorageReference
@@ -74,6 +76,29 @@ class FirestorageManager {
         return randomCode
     }
     
+    func checkAndAddRelation(relationCode: String) async throws -> String {
+        let data = ["relationCode": relationCode]
+        do {
+            let result = try await functions.httpsCallable("checkAndAddRelation").call(data)
+            if let response = result.data as? [String: Any],
+               let relationshipId = response["relationshipId"] as? String {
+                return relationshipId
+            } else {
+                throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No relationship ID found."])
+            }
+        } catch let error as NSError {
+            if let firebaseError = error.userInfo[FunctionsErrorDetailsKey] as? [String: Any],
+               let message = firebaseError["message"] as? String {
+                print("Cloud Function Error: \(message)")
+                throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: message])
+            } else {
+                print("Error calling function: \(error.localizedDescription)")
+                throw error
+            }
+        }
+    }
+    
+    /*IT ADDED ON CLOUD FUNCTION
     func checkRelationCode(relationCode: String) async throws {
         let relationCodeRef = database.collection(FireDatabase.RELATION_CODE_PATH)
         do {
@@ -104,7 +129,7 @@ class FirestorageManager {
         }catch {
             throw error
         }
-    }
+    }*/
     
     func checkUserRelation() async throws -> Bool {
         guard let userId = AuthManager.shared.getUserID() else {
@@ -116,6 +141,7 @@ class FirestorageManager {
             let document = try await documentReference.getDocument()
             if document.exists {
                 let relationId = document.data()?[FireDatabase.USER_RELATION_ID] as? String
+                print(document)
                 return !(relationId?.isEmpty ?? true)
             }else {
                 return false

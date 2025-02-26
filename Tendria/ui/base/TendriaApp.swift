@@ -19,6 +19,8 @@ struct TendriaApp: App {
     @StateObject private var authManager = AuthManager.shared
     
     init() {
+        UserDefaults.standard.set(true, forKey: "FirebaseAppCheckDebugMode")
+
         //let providerFactory = AppCheckProviderFactoryClass()
         AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
         FirebaseApp.configure()

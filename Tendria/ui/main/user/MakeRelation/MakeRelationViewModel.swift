@@ -37,8 +37,9 @@ class MakeRelationViewModel: BaseViewModel {
         self.isEditable = true
         self.showCopy = false
         getDataCall {
-            try await FirestorageManager.shared.checkRelationCode(relationCode: self.inputText)
+            try await FirestorageManager.shared.checkAndAddRelation(relationCode: self.inputText)
         } onSuccess: { successData in
+            print("oluşan relation id ->", successData)
             self.loading = false
         } onLoading: {
             self.loading = true
