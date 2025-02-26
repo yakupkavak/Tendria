@@ -83,13 +83,27 @@ class FirestorageManager {
             }
             for document in querySnapshot.documents {
                 let data = try document.data(as: RelationCodeModel.self)
+                try await addRelationToUser(relationCode: data)
             }
         } catch {
             throw error
         }
     }
-    func addRelationToUser(relationId: String) async throws {
-        
+    
+    func addRelationToUser(relationCode: RelationCodeModel) async throws {
+        let relationshipRef = database.collection(FireDatabase.RELATIONSHIP_PATH).document()
+        guard let firstUserId = relationCode.firstUserId else {
+            throw RelationError.invalidUserId
+        }
+        guard let secondUserId = relationCode.secondUserId else {
+            throw RelationError.invalidUserId
+        }
+        do {
+            let newRelationDocument = RelationshipModel(firstUserId: firstUserId, secondUserId: secondUserId, createDate: Timestamp(date: Date()))
+            try addDocument(documentRef: relationshipRef, value: newRelationDocument)
+        }catch {
+            throw error
+        }
     }
     
     func checkUserRelation() async throws -> Bool {

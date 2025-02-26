@@ -9,7 +9,7 @@ import Foundation
 
 public struct RelationCodeModel: Codable {
 
-    let firstUserId: String
+    let firstUserId: String?
     let secondUserId: String?
     let relationCode: String
 

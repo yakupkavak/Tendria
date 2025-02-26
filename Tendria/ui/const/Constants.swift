@@ -20,6 +20,7 @@ typealias TextWith = Constants.TextWidth
 typealias ImageSet = Constants.Images
 typealias ImageWidth = Constants.ImageWidth
 typealias StringValues = Constants.StringValues
+typealias FunctionName = Constants.FunctionName
 
 struct Constants {
     struct Gradients {
@@ -158,6 +159,7 @@ struct Constants {
     struct FirestoreConst {
         static let LIST_PATH = "List"
         static let RELATION_CODE_PATH = "RelationCode"
+        static let RELATIONSHIP_PATH = "Relationship"
         static let USERS_PATH = "Users"
         static let USER_ID_FIELD = "userId"
         static let USER_RELATION_ID = "relationId"
@@ -170,5 +172,8 @@ struct Constants {
     }
     struct Numbers{
         static let RANDOM_COUNT = 6
+    }
+    struct FunctionName{
+        static let CHECK_RELATION = "checkRelationCode"
     }
 }

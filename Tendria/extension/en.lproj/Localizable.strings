@@ -57,4 +57,5 @@
 "generate_code" = "Generate";
 "enter_code" = "Enter";
 "duplicate_code_error" = "This code is already in use. Please generate a new one.";
+"invalid_user_id" = "User ID not found. Please check and try again.";
 
