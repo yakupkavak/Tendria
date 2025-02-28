@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3772B0092D71AC3A004B3D94 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 3772B0082D71AC3A004B3D94 /* FirebaseMessaging */; };
 		37D8E0372D42A8E100FF1B6E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E0362D42A8E100FF1B6E /* FirebaseAnalytics */; };
 		37D8E0392D42A8E100FF1B6E /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E0382D42A8E100FF1B6E /* FirebaseAppCheck */; };
 		37D8E03B2D42A8E100FF1B6E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E03A2D42A8E100FF1B6E /* FirebaseAuth */; };
@@ -68,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3772B0092D71AC3A004B3D94 /* FirebaseMessaging in Frameworks */,
 				37D8E0412D42A8E100FF1B6E /* FirebaseDatabase in Frameworks */,
 				37D8E0452D42A8E100FF1B6E /* FirebaseFirestoreCombine-Community in Frameworks */,
 				37D8E0392D42A8E100FF1B6E /* FirebaseAppCheck in Frameworks */,
@@ -145,6 +147,7 @@
 				37EE529B2D45476D000A8E60 /* Macaw */,
 				37EE529E2D454F34000A8E60 /* SVGKit */,
 				37EE52A02D454F34000A8E60 /* SVGKitSwift */,
+				3772B0082D71AC3A004B3D94 /* FirebaseMessaging */,
 			);
 			productName = Tendria;
 			productReference = 374A80FA2D3B8CE300D5F0A4 /* Tendria.app */;
@@ -476,6 +479,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3772B0082D71AC3A004B3D94 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37D8E0352D42A8E100FF1B6E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		37D8E0362D42A8E100FF1B6E /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 37D8E0352D42A8E100FF1B6E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

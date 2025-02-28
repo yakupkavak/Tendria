@@ -66,6 +66,8 @@ struct tfTextCopy: View {
             if showCopyButton {
                 Button(action: {
                     copyToClipboard()
+                    UIPasteboard.general.string = textInput
+                    ShareManager.shareCode(textInput)
                 }) {
                     Image(systemName: isCopied ? "checkmark.circle.fill" : "doc.on.doc") // Animasyon için ikon değişimi
                         .foregroundColor(isCopied ? .green : .gray)

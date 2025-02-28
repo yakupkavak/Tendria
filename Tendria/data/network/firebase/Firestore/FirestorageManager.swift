@@ -71,7 +71,7 @@ class FirestorageManager {
         guard let currentUserId = AuthManager.shared.getUserID() else {
             return nil
         }
-        let newDocument = RelationCodeModel(firstUserId: currentUserId, secondUserId: nil, relationCode: randomCode)
+        let newDocument = RelationCodeModel(firstUserId: currentUserId, secondUserId: nil, relationCode: randomCode, createDate: Timestamp(date: Date()))
         try addDocument(documentRef: relationCodeRef, value: newDocument)
         return randomCode
     }
