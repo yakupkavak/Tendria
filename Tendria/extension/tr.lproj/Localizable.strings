@@ -58,3 +58,9 @@
 "enter_code" = "Girin";
 "duplicate_code_error" = "Bu kod zaten kullanılıyor. Lütfen yeni bir kod oluşturun.";
 "invalid_user_id" = "Kullanıcı ID'si bulunamadı. Lütfen kontrol edip tekrar deneyin.";
+"cancel" = "Vazgeç";
+"notification" = "Bildirim";
+"notification_subtext" = "Güncellemeleri ve hatırlatmaları almak için lütfen bildirimleri etkinleştirin";
+"turn_on" = "Açın";
+"skip_for_now" = "Şimdilik atla";
+"ok" = "Tamam";

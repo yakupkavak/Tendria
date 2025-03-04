@@ -11,7 +11,7 @@ import SwiftUI
 struct BigSizeBoldGrad: View {
     var text: LocalizedStringKey
     var body: some View{
-        tvGradient(text: text, gradientColors: Constants.Gradients.mediumOrangeRed, font: .largeTitle, fontWeight: .bold)
+        tvGradient(text: text, gradientColors: GradientSet.mediumOrangeRed, font: .largeTitle, fontWeight: .bold)
     }
 }
 

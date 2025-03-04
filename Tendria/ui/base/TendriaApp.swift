@@ -14,8 +14,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         application.registerForRemoteNotifications() //for recieve notification
+        implementAppCheck()
         implementCloudMessage()
-        FirebaseApp.configure()
         return true
     }
     
@@ -23,16 +23,24 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         Messaging.messaging().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: { _, _ in }
-        )
     }
+    
     func implementAppCheck(){
         UserDefaults.standard.set(true, forKey: "FirebaseAppCheckDebugMode")
         //let providerFactory = AppCheckProviderFactoryClass()
         AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
         FirebaseApp.configure()
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        if let fcm = Messaging.messaging().fcmToken {
+            print("fcm", fcm)
+        }
     }
 }
 
@@ -40,13 +48,12 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 struct TendriaApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
+    
     @StateObject private var routerTask = RouterTask()
     @StateObject private var routerUser = RouterUserInfo()
+    @StateObject private var authManager = AuthManager.shared
     
     private var userState = false
-    @StateObject private var authManager = AuthManager.shared
-
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {

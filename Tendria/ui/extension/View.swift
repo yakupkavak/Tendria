@@ -34,5 +34,19 @@ extension View{
             Spacer()
         }
     }
+    
+    func customImageAlert(
+        isPresent: Binding<Bool>,
+        onSuccess: @escaping () -> Void,
+        onDenied: @escaping () -> Void
+    ) -> some View{
+        fullScreenCover(isPresented: isPresent) {
+            BaseImageAlertUI(isPresented: isPresent) {
+                onSuccess()
+            } onDenied: {
+                onDenied()
+            }
+        }.presentationBackground(.clear)
+    }
 }
 

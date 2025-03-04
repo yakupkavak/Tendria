@@ -21,6 +21,8 @@ typealias ImageSet = Constants.Images
 typealias ImageWidth = Constants.ImageWidth
 typealias StringValues = Constants.StringValues
 typealias FunctionName = Constants.FunctionName
+typealias Spacing = Constants.Spacing
+typealias GradientSet = Constants.Gradients
 
 struct Constants {
     struct Gradients {
@@ -63,6 +65,7 @@ struct Constants {
         static let xxLargeHeight = UIScreen.main.bounds.height * 0.18
         static let xLargeHeight = UIScreen.main.bounds.height * 0.13
         static let largeHeight = UIScreen.main.bounds.height * 0.1
+        static let mediumPlusHeight = UIScreen.main.bounds.height * 0.075
         static let mediumHeight = UIScreen.main.bounds.height * 0.05
         static let xMediumHeight = UIScreen.main.bounds.height * 0.04
         static let normalHeight = UIScreen.main.bounds.height * 0.035
@@ -127,11 +130,22 @@ struct Constants {
         static let generate_code = LocalizedStringKey("generate_code")
         static let enter_code = LocalizedStringKey("enter_code")
         static let choose_one = LocalizedStringKey("choose_one")
-
+        
+        /* Alert*/
+        static let notification = LocalizedStringKey("notification")
+        static let notification_subtext = LocalizedStringKey("notification_subtext")
+        static let turn_on = LocalizedStringKey("turn_on")
+        static let skip_for_now = LocalizedStringKey("skip_for_now")
+        static let cancel = LocalizedStringKey("cancel")
+        static let ok = LocalizedStringKey("ok")
     }
-    
+    struct Spacing {
+        static let normalSpacing = UIScreen.main.bounds.height * 0.02
+        static let small = UIScreen.main.bounds.width * 0.01
+    }
 
     struct Padding {
+        static let horizontalLargePadding = UIScreen.main.bounds.width * 0.2
         static let horizontalNormalPadding = UIScreen.main.bounds.width * 0.1
         static let horizontalSmallPadding = UIScreen.main.bounds.width * 0.03
         static let horizontalXSmallPadding = UIScreen.main.bounds.width * 0.005
@@ -143,6 +157,7 @@ struct Constants {
     struct Images {
         static let MAKE_RELATION = "MakeRelation"
         static let PIKACHU = "pikachu"
+        static let NOTIFICATION = "notification"
     }
     
     struct Icons {

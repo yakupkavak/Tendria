@@ -8,11 +8,13 @@
 import Foundation
 
 class MakeRelationViewModel: BaseViewModel {
+    @Published var showNotification = true
     @Published var inputText = ""
     @Published var showCopy = false
     @Published var isEditable = true
     @Published var loading = false
     @Published var error = ""
+    @Published var isNotification = true
 
     func generateCode(){
         getDataCall {

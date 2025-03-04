@@ -48,12 +48,13 @@ struct BaseTabViewUI: View {
                     Label("Tree", systemImage: "leaf.fill")
                 }
             NavigationStack(path: $routerUser.navPath) {
+                @StateObject var notificationManager = NotificationManager()
                 UserListUI().environmentObject(routerUser).navigationDestination(for: RouterUserInfo.Destination.self) { destination in
                     switch destination {
                     case .existRelation:
                         ExistRelationUI()
                     case .makeRelation:
-                        MakeRelationUI()
+                        MakeRelationUI(notificationManager: notificationManager)
                     case .resetPassword:
                         ResetPasswordUI()
                     case .userInfo:

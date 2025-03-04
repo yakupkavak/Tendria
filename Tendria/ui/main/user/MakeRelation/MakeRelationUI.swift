@@ -10,6 +10,7 @@ import SwiftUI
 struct MakeRelationUI: View {
     
     @EnvironmentObject var routerUser: RouterUserInfo
+    @ObservedObject var notificationManager: NotificationManager
     @ObservedObject private var viewModel = MakeRelationViewModel()
     
     var body: some View {
@@ -35,24 +36,31 @@ struct MakeRelationUI: View {
                 
                 HStack{
                     //Generate Button
-                    btnText(action: {
+                    btnTextGradient(action: {
                         viewModel.generateCode()
                     }, text: StringKey.generate_code).frame(width: Width.buttonMediumWidth)
                     
                     Spacer()
                     
                     //Check Button
-                    btnText(action: {
+                    btnTextGradient(action: {
                         viewModel.checkCode()
                     }, text: StringKey.enter_code).frame(width: Width.buttonMediumWidth)
                     
                 }
                 Spacer()
             }.paddingHorizontal(value: Padding.horizontalNormalPadding)
+                .customImageAlert(isPresent: $viewModel.isNotification) {
+                    Task{
+                        await notificationManager.request()
+                    }
+                } onDenied: {
+                    print("on denied")
+                }
         }
     }
 }
 
 #Preview {
-    MakeRelationUI()
+    MakeRelationUI(notificationManager: NotificationManager())
 }

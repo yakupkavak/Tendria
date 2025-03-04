@@ -31,7 +31,7 @@ struct AddGroupUI: View {
             ) {
                 RowUIImage(uiImage: displayedPhoto ?? UIImage(named: IconName.imageUploadIcon) ?? UIImage())
             }.padding()
-            btnText(action: {
+            btnTextGradient(action: {
                 viewModel.saveListImage()
             }, text: StringKey.add)
             Spacer()

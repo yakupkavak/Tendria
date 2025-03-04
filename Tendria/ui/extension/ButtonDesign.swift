@@ -76,9 +76,8 @@ struct btnAddIcon: View {
         }
     }
 }
-struct btnText: View {
+struct btnTextGradient: View {
     
-    var backgroundColor: Color? = Color.orange500
     var foregroundColor: Color? = Color.btnForeground
     var shadow: CGFloat? = IconWidth.smallHeight
     var action: () -> Void
@@ -90,13 +89,30 @@ struct btnText: View {
         Button {
             action()
         } label: {
-            tvHeadline(text: text, color: .btnForeground).frame(maxWidth: .infinity).padding(edgeSet,paddingValue).gradientBackground().clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: shadow!)
+            tvHeadline(text: text, color: foregroundColor!).frame(maxWidth: .infinity).padding(edgeSet,paddingValue).gradientBackground().clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: shadow!)
+        }
+    }
+}
+
+struct btnTextTransparent: View {
+    var action: () -> Void
+    var text: LocalizedStringKey
+    var textColor: Color? = Color.orange500
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            tvHeadline(text: text, color: Color.orange700).frame(maxWidth: .infinity).padding()
+                .overlay(alignment: Alignment.trailing) {
+                    RoundedRectangle(cornerRadius: Radius.mediumRadius).stroke(Color.orange,lineWidth: 2)
+                }
+            
         }
     }
 }
 
 #Preview{
-    btnText(action: {
+    btnTextTransparent(action: {
         print("yakup")
     }, text: StringKey.add )
 }
