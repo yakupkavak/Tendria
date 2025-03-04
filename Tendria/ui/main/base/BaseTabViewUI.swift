@@ -11,7 +11,7 @@ struct BaseTabViewUI: View {
     
     @EnvironmentObject private var routerTask: RouterTask
     @EnvironmentObject private var routerUser: RouterUserInfo
-    @StateObject var notificationManager = NotificationManager()
+    @EnvironmentObject private var notificationManager: NotificationManager
 
     var body: some View {
         
@@ -54,7 +54,7 @@ struct BaseTabViewUI: View {
                     case .existRelation:
                         ExistRelationUI()
                     case .makeRelation:
-                        MakeRelationUI(notificationManager: notificationManager)
+                        MakeRelationUI()
                     case .resetPassword:
                         ResetPasswordUI()
                     case .userInfo:
@@ -71,7 +71,9 @@ struct BaseTabViewUI: View {
         .accentColor(.blue) // Aktif sekme rengi
     }
 }
-
+/*
 #Preview {
     BaseTabViewUI()
 }
+
+*/

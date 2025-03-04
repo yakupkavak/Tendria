@@ -13,6 +13,7 @@ class NotificationManager: ObservableObject{
     @Published private(set) var hasPermission = false
     
     init() {
+        print("notification yaratıldı")
         Task{
             await getAuthStatus()
         }

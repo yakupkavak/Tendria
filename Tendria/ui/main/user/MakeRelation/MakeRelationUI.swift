@@ -10,7 +10,7 @@ import SwiftUI
 struct MakeRelationUI: View {
     
     @EnvironmentObject var routerUser: RouterUserInfo
-    @ObservedObject var notificationManager: NotificationManager
+    @EnvironmentObject var notificationManager: NotificationManager
     @StateObject private var viewModel = MakeRelationViewModel()
     
     var body: some View {
@@ -60,7 +60,8 @@ struct MakeRelationUI: View {
         }
     }
 }
-
-#Preview {
-    MakeRelationUI(notificationManager: NotificationManager())
-}
+/*
+ #Preview {
+     MakeRelationUI(notificationManager: NotificationManager())
+ }
+ */

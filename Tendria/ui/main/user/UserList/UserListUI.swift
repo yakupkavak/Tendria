@@ -4,7 +4,6 @@ struct UserListUI: View {
     
     @EnvironmentObject var router: RouterUserInfo
     @StateObject var viewModel = UserListViewModel()
-    @StateObject private var notificationManager = NotificationManager()
 
     var body: some View {
         ScrollView {

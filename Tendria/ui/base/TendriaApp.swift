@@ -52,14 +52,14 @@ struct TendriaApp: App {
     @StateObject private var routerTask = RouterTask()
     @StateObject private var routerUser = RouterUserInfo()
     @StateObject private var authManager = AuthManager.shared
-    
+    @StateObject private var notificationManager = NotificationManager()
     private var userState = false
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
             if authManager.isSigned {
-                BaseTabViewUI().environmentObject(routerTask).environmentObject(routerUser).onAppear {
+                BaseTabViewUI().environmentObject(routerTask).environmentObject(routerUser).environmentObject(notificationManager).onAppear {
                     UIApplication.shared.addTapGestureRecognizer()
                 }
             } else {
