@@ -64,3 +64,4 @@
 "turn_on" = "Turn on";
 "skip_for_now" = "Skip for now";
 "ok" = "OK";
+"NSUserNotificationUsageDescription" = "We need permission to send notifications.";

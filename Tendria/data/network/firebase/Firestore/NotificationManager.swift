@@ -7,25 +7,53 @@
 
 import Foundation
 import UserNotifications
+import UIKit
+import SwiftUI
 
 @MainActor
 class NotificationManager: ObservableObject{
     @Published private(set) var hasPermission = false
     
+    var permissionBinding: Binding<Bool> {
+        Binding {
+            self.hasPermission
+        } set: { _ in
+            
+        }
+    }
+    
     init() {
-        print("notification yaratıldı")
         Task{
             await getAuthStatus()
         }
     }
     
-    func request() async{
+    func request(requestType: NotificationRequestType) async{
         do { //kullanıcıdan izin istiyoruz
-            try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
-             await getAuthStatus()
+            if requestType == .navigateSettings {
+                let status = await UNUserNotificationCenter.current().notificationSettings()
+                if status.authorizationStatus == .denied {
+                    DispatchQueue.main.async {
+                        if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(settingsURL)
+                        }
+                    }
+                    return
+                }
+            }
+            else if requestType == .requestNotification{
+                try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
+            }
+            
+            await getAuthStatus()
         } catch{
             print(error)
         }
+    }
+    
+    public enum NotificationRequestType {
+        case navigateSettings
+        case requestNotification
     }
     
     func getAuthStatus() async {

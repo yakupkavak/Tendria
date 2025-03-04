@@ -64,3 +64,4 @@
 "turn_on" = "Açın";
 "skip_for_now" = "Şimdilik atla";
 "ok" = "Tamam";
+"NSUserNotificationUsageDescription" = "Bildirim almak için izin gerekiyor.";

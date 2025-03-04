@@ -50,9 +50,9 @@ struct MakeRelationUI: View {
                 }
                 Spacer()
             }.paddingHorizontal(value: Padding.horizontalNormalPadding)
-                .customImageAlert(isPresent: $viewModel.isNotification) {
+                .customImageAlert(isPresent: notificationManager.permissionBinding) {
                     Task{
-                        await notificationManager.request()
+                        await notificationManager.request(requestType: .requestNotification)
                     }
                 } onDenied: {
                     print("on denied")
