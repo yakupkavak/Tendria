@@ -11,7 +11,7 @@ struct MakeRelationUI: View {
     
     @EnvironmentObject var routerUser: RouterUserInfo
     @ObservedObject var notificationManager: NotificationManager
-    @ObservedObject private var viewModel = MakeRelationViewModel()
+    @StateObject private var viewModel = MakeRelationViewModel()
     
     var body: some View {
         ZStack{

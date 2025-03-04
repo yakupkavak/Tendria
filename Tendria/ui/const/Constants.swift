@@ -145,6 +145,9 @@ struct Constants {
     }
 
     struct Padding {
+        static let constantMinusMediumPadding = CGFloat(-16)
+        static let constantMediumPadding = CGFloat(22)
+        static let constantXLargePadding = CGFloat(250)
         static let horizontalLargePadding = UIScreen.main.bounds.width * 0.2
         static let horizontalNormalPadding = UIScreen.main.bounds.width * 0.1
         static let horizontalSmallPadding = UIScreen.main.bounds.width * 0.03

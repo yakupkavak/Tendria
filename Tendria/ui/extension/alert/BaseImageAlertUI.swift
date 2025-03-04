@@ -19,14 +19,14 @@ struct BaseImageAlertUI: View {
     var onDeniedText: LocalizedStringKey = StringKey.skip_for_now
     var onSuccess: () -> Void
     var onDenied: () -> Void
-    
+    let opacity = 0.6
     var body: some View {
         ZStack{
-            Color.gray.ignoresSafeArea().opacity(isPresented ? 0.6 : 0)
+            Color.gray.opacity(isPresented ? opacity : 0).ignoresSafeArea()
             VStack(spacing: Spacing.normalSpacing) {
                 ImageAsset(uiImageSource: uiImageSource).frame(height: Height.mediumPlusHeight)
                 tvHeadline(text: title, color: .blue500)
-                tvColorKey(text: message, color: .subTextGray, font: .callout)
+                tvColorKey(text: message, color: .subTextGray, font: .callout).padding(.horizontal,Padding.constantMinusMediumPadding)
                 
                 VStack(spacing: Spacing.normalSpacing) {
                     btnTextGradient(shadow: 0, action: {
@@ -38,11 +38,11 @@ struct BaseImageAlertUI: View {
                         text: onDeniedText)
                 }
             }
-            .padding()
-            .padding(.horizontal, Padding.horizontalNormalPadding)
+            .padding(.all, Padding.constantMediumPadding)
+            .padding(.horizontal, Padding.horizontalXSmallPadding)
             .background(Color.white)
             .cornerRadius(Radius.mediumRadius)
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: Padding.constantXLargePadding)
         }.ignoresSafeArea()
         .zIndex(.greatestFiniteMagnitude)
     }

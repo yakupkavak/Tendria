@@ -15,7 +15,7 @@ extension UIApplication {
         tapGesture.requiresExclusiveTouchType = false
         tapGesture.cancelsTouchesInView = false
         tapGesture.delegate = self
-        window.addGestureRecognizer(tapGesture) 
+        window.addGestureRecognizer(tapGesture)
     }
 }
 
@@ -40,13 +40,20 @@ extension View{
         onSuccess: @escaping () -> Void,
         onDenied: @escaping () -> Void
     ) -> some View{
-        fullScreenCover(isPresented: isPresent) {
-            BaseImageAlertUI(isPresented: isPresent) {
-                onSuccess()
-            } onDenied: {
-                onDenied()
+        self.overlay {
+            if isPresent.wrappedValue {
+                ZStack {
+                    // Alert içeriği
+                    BaseImageAlertUI(
+                        isPresented: isPresent,
+                        onSuccess: onSuccess,
+                        onDenied: onDenied
+                    )
+                }
+                .transition(.opacity)
+                .animation(.easeInOut, value: isPresent.wrappedValue)
             }
-        }.presentationBackground(.clear)
+        }
     }
 }
 

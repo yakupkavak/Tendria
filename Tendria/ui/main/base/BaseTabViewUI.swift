@@ -11,6 +11,7 @@ struct BaseTabViewUI: View {
     
     @EnvironmentObject private var routerTask: RouterTask
     @EnvironmentObject private var routerUser: RouterUserInfo
+    @StateObject var notificationManager = NotificationManager()
 
     var body: some View {
         
@@ -48,7 +49,6 @@ struct BaseTabViewUI: View {
                     Label("Tree", systemImage: "leaf.fill")
                 }
             NavigationStack(path: $routerUser.navPath) {
-                @StateObject var notificationManager = NotificationManager()
                 UserListUI().environmentObject(routerUser).navigationDestination(for: RouterUserInfo.Destination.self) { destination in
                     switch destination {
                     case .existRelation:
