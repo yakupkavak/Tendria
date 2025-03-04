@@ -182,6 +182,7 @@ struct Constants {
         static let USER_ID_FIELD = "userId"
         static let USER_RELATION_ID = "relationId"
         static let USER_IMAGE_FIELD = "profileImage"
+        static let FCM_TOKEN_FIELD = "fcmToken"
     }
     struct FirestorageConst {
         static let LIST_PATH = "list"

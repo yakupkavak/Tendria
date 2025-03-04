@@ -24,6 +24,18 @@ struct SignContainerUI: View {
                         ForgotPasswordUI().environmentObject(router)
                     }
                 }
+        }.onAppear {
+            NotificationCenter.default.addObserver(forName: NSNotification.Name("NavigateToScreen"), object: nil, queue: .main) { notification in
+                if let screen = notification.object as? String {
+                    DispatchQueue.main.async {
+                        if screen == "profile" {
+                            router.navPath.append(RouterUserSign.Destination.forgotPassword)
+                        } else if screen == "signUp" {
+                            router.navPath.append(RouterUserSign.Destination.signUp)
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -97,6 +97,22 @@ class FirestorageManager {
             }
         }
     }
+    func saveTokenToFirestore(token: String) {
+        guard let userID = AuthManager.shared.getUserID() else {
+            print("No user is logged in. Token not saved.")
+            return
+        }
+        
+        let userRef = database.collection(FireDatabase.USERS_PATH).document(userID)
+        
+        userRef.setData([FireDatabase.FCM_TOKEN_FIELD: token], merge: true) { error in
+            if let error = error {
+                print("Error saving FCM token to Firestore: \(error.localizedDescription)")
+            } else {
+                print("FCM token successfully saved to Firestore!")
+            }
+        }
+    }
     
     /*IT ADDED ON CLOUD FUNCTION
     func checkRelationCode(relationCode: String) async throws {

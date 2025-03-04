@@ -12,19 +12,20 @@ import SwiftUI
 
 @MainActor
 class NotificationManager: ObservableObject{
+    static let shared = NotificationManager()
+
+    private init(){
+        Task{
+            await getAuthStatus()
+        }
+    }
     @Published private(set) var hasPermission = false
-    
+
     var permissionBinding: Binding<Bool> {
         Binding {
             self.hasPermission
         } set: { _ in
             
-        }
-    }
-    
-    init() {
-        Task{
-            await getAuthStatus()
         }
     }
     
@@ -63,6 +64,17 @@ class NotificationManager: ObservableObject{
             hasPermission = true
         default:
             hasPermission = false
+        }
+    }
+    
+    func handleNotification(customData: [AnyHashable : Any]){
+        if let screen = customData["screen"] as? String {
+            print("📩 Gelen Bildirimle Yönlendirme: \(screen)")
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: NSNotification.Name("NavigateToScreen"), object: screen)
+            }
+        } else {
+            print("⚠️ Bildirimde yönlendirme için 'screen' key'i bulunamadı.")
         }
     }
 }

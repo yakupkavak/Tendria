@@ -11,7 +11,6 @@ struct BaseTabViewUI: View {
     
     @EnvironmentObject private var routerTask: RouterTask
     @EnvironmentObject private var routerUser: RouterUserInfo
-    @EnvironmentObject private var notificationManager: NotificationManager
 
     var body: some View {
         
