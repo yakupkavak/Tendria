@@ -62,6 +62,8 @@ class NotificationManager: ObservableObject{
         switch status.authorizationStatus {
         case .authorized, .ephemeral, .provisional:
             hasPermission = true
+        case .notDetermined: // Kullanıcı henüz bildirim izniyle ilgili karar vermediyse
+            hasPermission = true
         default:
             hasPermission = false
         }

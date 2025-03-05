@@ -10,8 +10,8 @@ import SwiftUI
 struct MakeRelationUI: View {
     
     @EnvironmentObject var routerUser: RouterUserInfo
-    @EnvironmentObject var notificationManager: NotificationManager
     @StateObject private var viewModel = MakeRelationViewModel()
+    @ObservedObject private var notificationManager = NotificationManager.shared
     
     var body: some View {
         ZStack{

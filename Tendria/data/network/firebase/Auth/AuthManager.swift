@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseCore
 import GoogleSignIn
 import FirebaseAppCheck
+import FirebaseMessaging
 
 
 class AuthManager: ObservableObject {
@@ -33,7 +34,7 @@ class AuthManager: ObservableObject {
         configureAuthStateChanges()
         verifySignInWithAppleID()
     }
-
+    
     func getUserID() -> String?{
         guard let userId = auth.currentUser?.uid else{
             return nil
@@ -45,6 +46,14 @@ class AuthManager: ObservableObject {
         authStateHandle = auth.addStateDidChangeListener { auth, user in
             if (user != nil) {
                 self.isSigned = true
+                Messaging.messaging().token(){token,error in
+                    if let fcmToken = token{
+                        FirestorageManager.shared.saveTokenToFirestore(token: fcmToken)
+                    }
+                    if let error = error{
+                        print("error ->", error.localizedDescription)
+                    }
+                }
             }else {
                 self.isSigned = false
             }
@@ -68,13 +77,13 @@ class AuthManager: ObservableObject {
     }
     
     func autoSignOut() async {
-            do {
-                try await signOut() // ✅ Otomatik çıkış yap
-                print("✅ Uygulama açıldığında otomatik çıkış yapıldı")
-            } catch {
-                print("❌ Otomatik çıkış işlemi başarısız: \(error.localizedDescription)")
-            }
+        do {
+            try await signOut() // ✅ Otomatik çıkış yap
+            print("✅ Uygulama açıldığında otomatik çıkış yapıldı")
+        } catch {
+            print("❌ Otomatik çıkış işlemi başarısız: \(error.localizedDescription)")
         }
+    }
     
     func signOut() async throws {
         if auth.currentUser != nil {
@@ -106,7 +115,7 @@ class AuthManager: ObservableObject {
         }
         return try await authLink(credentials: credentials)
     }
-
+    
     private func authSignIn(credentials: AuthCredential) async throws -> AuthDataResult? {
         do {
             let result = try await auth.signIn(with: credentials)
@@ -136,7 +145,7 @@ class AuthManager: ObservableObject {
             throw mapFirebaseError(error)
         }
     }
-     
+    
     func signInWithEmail(email: String, password: String) async throws -> AuthDataResult? {
         let credentials = EmailAuthProvider.credential(withEmail: email, password: password)
         
@@ -158,7 +167,7 @@ class AuthManager: ObservableObject {
         
         let localizedErrorMessage: String
         print("🔥 Firebase Hata Kodu: \(nsError.code) - Açıklama: \(nsError.localizedDescription)")
-
+        
         switch errorCode {
         case .emailAlreadyInUse:
             localizedErrorMessage = NSLocalizedString("email_already_in_use", comment: "Bu e-posta adresi zaten kullanılıyor.")
@@ -177,10 +186,10 @@ class AuthManager: ObservableObject {
         default:
             localizedErrorMessage = NSLocalizedString("unknown_error", comment: "Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin.")
         }
-
+        
         return NSError(domain: nsError.domain, code: nsError.code, userInfo: [NSLocalizedDescriptionKey: localizedErrorMessage])
     }
-
+    
     // 3.Kullanıcı oturum açmışsa mevcut bilgileri bağla
     
     //TODO AYARLAR EKRANINDAN E MAIL ŞİFRE BAĞLANICAK
@@ -244,22 +253,22 @@ class AuthManager: ObservableObject {
         guard let nonce = nonce else {
             fatalError("Invalid state: A login callback was received, but no login request was sent.")
         }
-
+        
         guard let appleIDToken = appleIDCredential.identityToken else {
             print("Unable to fetch identity token")
             return nil
         }
-
+        
         guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
             print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
             return nil
         }
-
+        
         // 2.
         let credentials = OAuthProvider.appleCredential(withIDToken: idTokenString,
-                                                       rawNonce: nonce,
-                                                       fullName: appleIDCredential.fullName)
-
+                                                        rawNonce: nonce,
+                                                        fullName: appleIDCredential.fullName)
+        
         do { // 3.
             return try await authenticateUser(credentials: credentials)
         }
@@ -296,13 +305,13 @@ class AuthManager: ObservableObject {
     
     func firebaseProviderSignOut(_ user: User) {
         let providers = user.providerData
-                .map { $0.providerID }.joined(separator: ", ")
-
+            .map { $0.providerID }.joined(separator: ", ")
+        
         if providers.contains("google.com") {
             GoogleSignInManager.shared.signOutFromGoogle()
         }
     }
-     
+    
 }
 
 enum AuthState {

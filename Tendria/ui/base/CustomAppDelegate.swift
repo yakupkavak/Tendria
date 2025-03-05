@@ -23,30 +23,25 @@ class CustomAppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate {
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self
     }
-    
+
     func implementAppCheck(){
         UserDefaults.standard.set(true, forKey: "FirebaseAppCheckDebugMode")
-        //let providerFactory = AppCheckProviderFactoryClass()
-        FirebaseApp.configure()
         AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
+        FirebaseApp.configure()
     }
-    //Appledan token değişince çalışıyor
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("Firebase Registration Token: \(fcmToken ?? "")")
-    }
-    /*we get the app token
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("didRegisterForRemoteNotificationsWithDeviceToken çalıştı")
-        Messaging.messaging().apnsToken = deviceToken
         Messaging.messaging().token { token, error in
-            if let error = error {
-                print("Error fetching FCM registration token: \(error)")
-            } else if let token = token {
-                print("FCM registration token: \(token)")
-                FirestorageManager.shared.saveTokenToFirestore(token: token)
-            }
+          if let error = error {
+            print("Error fetching FCM registration token: \(error)")
+          } else if let token = token {
+            print("FCM registration token: \(token)")
+          }
         }
-    }*/
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    }
 }
 
 extension CustomAppDelegate: UNUserNotificationCenterDelegate {
