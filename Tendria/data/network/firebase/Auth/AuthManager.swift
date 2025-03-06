@@ -46,14 +46,7 @@ class AuthManager: ObservableObject {
         authStateHandle = auth.addStateDidChangeListener { auth, user in
             if (user != nil) {
                 self.isSigned = true
-                Messaging.messaging().token(){token,error in
-                    if let fcmToken = token{
-                        FirestorageManager.shared.saveTokenToFirestore(token: fcmToken)
-                    }
-                    if let error = error{
-                        print("error ->", error.localizedDescription)
-                    }
-                }
+                FirestorageManager.shared.configureFcmToken()
             }else {
                 self.isSigned = false
             }

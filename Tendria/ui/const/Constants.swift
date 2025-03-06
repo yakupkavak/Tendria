@@ -23,6 +23,7 @@ typealias StringValues = Constants.StringValues
 typealias FunctionName = Constants.FunctionName
 typealias Spacing = Constants.Spacing
 typealias GradientSet = Constants.Gradients
+typealias KeychainKeys = Constants.KeychainKeys
 
 struct Constants {
     struct Gradients {
@@ -194,5 +195,8 @@ struct Constants {
     }
     struct FunctionName{
         static let CHECK_RELATION = "checkRelationCode"
+    }
+    struct KeychainKeys{
+        static let FCM_TOKEN = "fcmToken"
     }
 }

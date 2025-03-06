@@ -50,6 +50,7 @@ class NotificationManager: ObservableObject{
         } catch{
             print(error)
         }
+        FirestorageManager.shared.configureFcmToken()
     }
     
     public enum NotificationRequestType {
@@ -79,4 +80,5 @@ class NotificationManager: ObservableObject{
             print("⚠️ Bildirimde yönlendirme için 'screen' key'i bulunamadı.")
         }
     }
+    
 }

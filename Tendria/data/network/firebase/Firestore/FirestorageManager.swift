@@ -9,6 +9,7 @@ import Foundation
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseFunctions
+import FirebaseMessaging
 
 class FirestorageManager {
     
@@ -97,6 +98,24 @@ class FirestorageManager {
             }
         }
     }
+    
+    func configureFcmToken(){
+        Messaging.messaging().token(){token,error in
+            if let fcmToken = token{
+                let storedToken = KeychainHelper.shared.getToken(key: KeychainKeys.FCM_TOKEN)
+                if(storedToken == fcmToken){
+                    print("key aynı kaydedilmedi")
+                }else{
+                    KeychainHelper.shared.saveToken(fcmToken, key: KeychainKeys.FCM_TOKEN)
+                    self.saveTokenToFirestore(token: fcmToken)
+                }
+            }
+            if let error = error{
+                print("error ->", error.localizedDescription)
+            }
+        }
+    }
+    
     func saveTokenToFirestore(token: String) {
         guard let userID = AuthManager.shared.getUserID() else {
             print("No user is logged in. Token not saved.")
