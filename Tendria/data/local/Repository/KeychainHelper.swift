@@ -9,8 +9,11 @@ import Security
 import Foundation
 
 class KeychainHelper {
+    
     static let shared = KeychainHelper()
+    
     private init (){}
+    
     func saveToken(_ token: String, key: String) {
         let data = token.data(using: .utf8)!
         let query = [

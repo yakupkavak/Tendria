@@ -108,6 +108,7 @@ class FirestorageManager {
                 }else{
                     KeychainHelper.shared.saveToken(fcmToken, key: KeychainKeys.FCM_TOKEN)
                     self.saveTokenToFirestore(token: fcmToken)
+                    print("key kaydedildi")
                 }
             }
             if let error = error{
