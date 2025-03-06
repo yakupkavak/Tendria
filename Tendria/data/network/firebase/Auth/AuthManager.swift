@@ -42,6 +42,13 @@ class AuthManager: ObservableObject {
         return userId
     }
     
+    func getUserMail() -> String?{
+        guard let userMail = auth.currentUser?.email else{
+            return nil
+        }
+        return userMail
+    }
+    
     func configureAuthStateChanges() {
         authStateHandle = auth.addStateDidChangeListener { auth, user in
             if (user != nil) {
