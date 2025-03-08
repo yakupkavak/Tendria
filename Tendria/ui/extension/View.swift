@@ -39,15 +39,19 @@ extension View{
         isPresent: Binding<Bool>,
         onSuccess: @escaping () -> Void,
         onDenied: @escaping () -> Void
+        
     ) -> some View{
         self.overlay {
             if isPresent.wrappedValue {
                 ZStack {
                     // Alert içeriği
                     BaseImageAlertUI(
-                        isPresented: isPresent,
-                        onSuccess: onSuccess,
-                        onDenied: onDenied
+                        onSuccess: {
+                            onSuccess()
+                        },
+                        onDenied: {
+                            onDenied()
+                        }
                     )
                 }
                 .transition(.opacity)

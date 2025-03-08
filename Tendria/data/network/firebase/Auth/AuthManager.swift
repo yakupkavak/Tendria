@@ -51,12 +51,15 @@ class AuthManager: ObservableObject {
     
     func configureAuthStateChanges() {
         authStateHandle = auth.addStateDidChangeListener { auth, user in
-            if (user != nil) {
-                self.isSigned = true
-                FirestorageManager.shared.configureFcmToken()
-            }else {
+            guard let currentUser = user else {
                 self.isSigned = false
+                print("Auth changed: \(user != nil)")
+                self.updateState(user: user)
+                return
             }
+            self.isSigned = true
+            FirestorageManager.shared.configureFcmToken()
+            FirestorageManager.shared.configureUserLanguage(userID: currentUser.uid)
             print("Auth changed: \(user != nil)")
             self.updateState(user: user)
         }

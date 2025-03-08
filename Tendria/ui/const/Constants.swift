@@ -24,7 +24,7 @@ typealias FunctionName = Constants.FunctionName
 typealias Spacing = Constants.Spacing
 typealias GradientSet = Constants.Gradients
 typealias KeychainKeys = Constants.KeychainKeys
-
+typealias NotificationKey = Constants.NotificationConst
 struct Constants {
     struct Gradients {
         static let mediumOrangeRed: [Color] = [Color.orange700, Color.red300]
@@ -184,6 +184,7 @@ struct Constants {
         static let USER_RELATION_ID = "relationId"
         static let USER_IMAGE_FIELD = "profileImage"
         static let FCM_TOKEN_FIELD = "fcmToken"
+        static let USER_LANGUAGE = "userLanguage"
     }
     struct FirestorageConst {
         static let LIST_PATH = "list"
@@ -198,5 +199,9 @@ struct Constants {
     }
     struct KeychainKeys{
         static let FCM_TOKEN = "fcmToken"
+    }
+    struct NotificationConst{
+        static let TYPE = "alertType"
+        static let NEW_RELATION = "NewRelationship"
     }
 }

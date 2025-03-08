@@ -12,7 +12,6 @@ import SwiftUI
 struct BaseImageAlertUI: View {
         
     var uiImageSource: String = ImageSet.NOTIFICATION
-    @Binding var isPresented: Bool
     var title: LocalizedStringKey = StringKey.notification
     var message: LocalizedStringKey = StringKey.notification_subtext
     var onSuccessText: LocalizedStringKey = StringKey.turn_on
@@ -22,7 +21,7 @@ struct BaseImageAlertUI: View {
     let opacity = 0.6
     var body: some View {
         ZStack{
-            Color.gray.opacity(isPresented ? opacity : 0).ignoresSafeArea()
+            Color.gray.opacity(opacity).ignoresSafeArea()
             VStack(spacing: Spacing.normalSpacing) {
                 ImageAsset(uiImageSource: uiImageSource).frame(height: Height.mediumPlusHeight)
                 tvHeadline(text: title, color: .blue500)
@@ -31,10 +30,9 @@ struct BaseImageAlertUI: View {
                 VStack(spacing: Spacing.normalSpacing) {
                     btnTextGradient(shadow: 0, action: {
                         onSuccess()
-                        self.isPresented = false
                     }, text: onSuccessText)
                     btnTextTransparent(
-                        action: {onDenied();self.isPresented = false},
+                        action: {onDenied()},
                         text: onDeniedText)
                 }
             }
@@ -49,7 +47,7 @@ struct BaseImageAlertUI: View {
 }
 #Preview {
     @State var isPres = true
-    BaseImageAlertUI(isPresented: $isPres, onSuccess: {
+    BaseImageAlertUI(onSuccess: {
         print("yakup")
     },onDenied: {
         print("yakup")

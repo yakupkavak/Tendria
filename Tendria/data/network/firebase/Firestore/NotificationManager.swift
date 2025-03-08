@@ -13,17 +13,17 @@ import SwiftUI
 @MainActor
 class NotificationManager: ObservableObject{
     static let shared = NotificationManager()
-
+    
     private init(){
         Task{
             await getAuthStatus()
         }
     }
-    @Published private(set) var hasPermission = false
-
-    var permissionBinding: Binding<Bool> {
+    @Published private(set) var requestPermission = false
+    
+    var requestPermissionBinding: Binding<Bool> {
         Binding {
-            self.hasPermission
+            self.requestPermission
         } set: { _ in
             
         }
@@ -53,24 +53,44 @@ class NotificationManager: ObservableObject{
         FirestorageManager.shared.configureFcmToken()
     }
     
-    public enum NotificationRequestType {
-        case navigateSettings
-        case requestNotification
-    }
-    
     func getAuthStatus() async {
         let status = await UNUserNotificationCenter.current().notificationSettings()
         switch status.authorizationStatus {
         case .authorized, .ephemeral, .provisional:
-            hasPermission = true
+            requestPermission = false
         case .notDetermined: // Kullanıcı henüz bildirim izniyle ilgili karar vermediyse
-            hasPermission = true
+            requestPermission = true
+        case .denied:
+            requestPermission = false
         default:
-            hasPermission = false
+            requestPermission = true
         }
     }
     
     func handleNotification(customData: [AnyHashable : Any]){
+        do {
+            //her gelen veri jsona çevrildi öncelikle
+            let jsonData = try JSONSerialization.data(withJSONObject: customData)
+            //sırasıyla hangi veri tipi olduğunu bulmaya çalışalım
+            guard let keyData = try JSONSerialization.jsonObject(with: jsonData, options: .topLevelDictionaryAssumed) as? [String: Any] else{
+                print("dönüştürülemedi key dataya")
+                return
+            }
+            guard let alertType = keyData[NotificationKey.TYPE] as? String else {
+                print("check data yapılamadı")
+                return
+            }
+            if alertType == NotificationKey.NEW_RELATION {
+                let notificationJsonData = try JSONDecoder().decode(NotificationJSONData.self,from: jsonData)
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: NSNotification.Name("NavigateToScreen"), object: screen)
+                }
+            }
+            
+            
+        }catch {
+            print(error.localizedDescription)
+        }
         if let screen = customData["screen"] as? String {
             print("📩 Gelen Bildirimle Yönlendirme: \(screen)")
             DispatchQueue.main.async {

@@ -120,20 +120,31 @@ class FirestorageManager {
             }
         }
     }
+    func configureUserLanguage(userID: String,preferLanguage: String?){
+        guard let preferLanguage = preferLanguage else {
+            //DEFAULT USERS LANGUAGE
+            let userLanguage = Locale.current.language.languageCode?.identifier ?? "en"
+            setDataToUser(data: userLanguage, path: FireDatabase.USER_LANGUAGE)
+            return
+        }
+        setDataToUser(data: preferLanguage, path: FireDatabase.USER_LANGUAGE)
+    }
     
     func saveTokenToFirestore(token: String) {
+        setDataToUser(data: token,path: FireDatabase.FCM_TOKEN_FIELD)
+    }
+    
+    private func setDataToUser(data: String,path: String){
         guard let userID = AuthManager.shared.getUserID() else {
             print("No user is logged in. Token not saved.")
             return
         }
-        
         let userRef = database.collection(FireDatabase.USERS_PATH).document(userID)
-        
-        userRef.setData([FireDatabase.FCM_TOKEN_FIELD: token], merge: true) { error in
+        userRef.setData([path: data], merge: true) { error in
             if let error = error {
-                print("Error saving FCM token to Firestore: \(error.localizedDescription)")
+                print("Error saving data to Firestore: \(error.localizedDescription)")
             } else {
-                print("FCM token successfully saved to Firestore!")
+                print("\(data) successfully saved to Firestore!")
             }
         }
     }

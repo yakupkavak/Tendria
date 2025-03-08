@@ -11,7 +11,8 @@ struct BaseTabViewUI: View {
     
     @EnvironmentObject private var routerTask: RouterTask
     @EnvironmentObject private var routerUser: RouterUserInfo
-
+    var initialize = NotificationManager.shared
+    
     var body: some View {
         
         TabView {

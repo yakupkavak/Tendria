@@ -11,7 +11,7 @@ struct MakeRelationUI: View {
     
     @EnvironmentObject var routerUser: RouterUserInfo
     @StateObject private var viewModel = MakeRelationViewModel()
-    @ObservedObject private var notificationManager = NotificationManager.shared
+    @State var presentAlert = NotificationManager.shared.requestPermissionBinding.wrappedValue
     
     var body: some View {
         ZStack{
@@ -50,11 +50,13 @@ struct MakeRelationUI: View {
                 }
                 Spacer()
             }.paddingHorizontal(value: Padding.horizontalNormalPadding)
-                .customImageAlert(isPresent: notificationManager.permissionBinding) {
+                .customImageAlert(isPresent: $presentAlert) {
                     Task{
-                        await notificationManager.request(requestType: .requestNotification)
+                        await NotificationManager.shared.request(requestType: .requestNotification)
                     }
+                    presentAlert = false
                 } onDenied: {
+                    presentAlert = false
                     print("on denied")
                 }
         }

@@ -4,7 +4,7 @@ struct UserListUI: View {
     
     @EnvironmentObject var router: RouterUserInfo
     @StateObject var viewModel = UserListViewModel()
-
+    
     var body: some View {
         ScrollView {
             VStack(spacing: Height.smallHeight) {
