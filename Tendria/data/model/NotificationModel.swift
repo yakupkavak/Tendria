@@ -21,7 +21,8 @@ public struct NotificationData{
     var notificationType: HandleNotification
 }
 
-struct NotificationJSONData: Codable {
+struct NotificationModel: Codable {
     let alertType: String
     let relationId: String
+    let secondUserName: String
 }

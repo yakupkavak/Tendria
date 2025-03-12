@@ -65,3 +65,6 @@
 "skip_for_now" = "Şimdilik atla";
 "ok" = "Tamam";
 "NSUserNotificationUsageDescription" = "Bildirim almak için izin gerekiyor.";
+"new_relation_title" = "Kalpleriniz buluştu";
+"new_relation_subtext" = "Aşk, paylaşılan anılarla anlam kazanır. Şimdi her anınızı ${name} ile birlikte yazın.";
+"continue" = "Devam et";

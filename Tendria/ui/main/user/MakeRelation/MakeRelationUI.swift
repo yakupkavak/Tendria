@@ -50,7 +50,7 @@ struct MakeRelationUI: View {
                 }
                 Spacer()
             }.paddingHorizontal(value: Padding.horizontalNormalPadding)
-                .customImageAlert(isPresent: $presentAlert) {
+                .showRequestNotification(isPresent: $presentAlert) {
                     Task{
                         await NotificationManager.shared.request(requestType: .requestNotification)
                     }

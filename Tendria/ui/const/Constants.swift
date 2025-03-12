@@ -18,6 +18,7 @@ typealias FireDatabase = Constants.FirestoreConst
 typealias Numbers = Constants.Numbers
 typealias TextWith = Constants.TextWidth
 typealias ImageSet = Constants.Images
+typealias LottieSet = Constants.Lotties
 typealias ImageWidth = Constants.ImageWidth
 typealias StringValues = Constants.StringValues
 typealias FunctionName = Constants.FunctionName
@@ -39,18 +40,17 @@ struct Constants {
     }
     struct TextWidth {
         static let tfNormalWidth = UIScreen.main.bounds.width * 0.75
-
         static let titleWidth = UIScreen.main.bounds.width * 0.5
     }
     
     struct ImageWidth {
         static let largeWidth = UIScreen.main.bounds.width * 0.65
         static let halfWidth = UIScreen.main.bounds.width * 0.5
-        
     }
     
     struct Width{
         static let buttonWidth = UIScreen.main.bounds.width * 0.6
+        static let buttonConstantMediumWidth = 12
         static let buttonMediumWidth = UIScreen.main.bounds.width * 0.36
         static let largeWidth = UIScreen.main.bounds.width * 0.1
         static let mediumWidth = UIScreen.main.bounds.width * 0.05
@@ -139,6 +139,12 @@ struct Constants {
         static let skip_for_now = LocalizedStringKey("skip_for_now")
         static let cancel = LocalizedStringKey("cancel")
         static let ok = LocalizedStringKey("ok")
+        
+        /*New relation Alert*/
+        static let new_relation_title = LocalizedStringKey("new_relation_title")
+        static let new_relation_subtext = LocalizedStringKey("new_relation_subtext")
+        static let new_relation_subtext_string = "new_relation_subtext"
+        static let continue_text = LocalizedStringKey("continue")
     }
     struct Spacing {
         static let normalSpacing = UIScreen.main.bounds.height * 0.02
@@ -147,8 +153,11 @@ struct Constants {
 
     struct Padding {
         static let constantMinusMediumPadding = CGFloat(-16)
+        static let constantMinusLargePadding = CGFloat(-64)
         static let constantMediumPadding = CGFloat(22)
-        static let constantXLargePadding = CGFloat(250)
+        static let constantXLargePadding = CGFloat(280)
+        static let constantXSmallPadding = CGFloat(4)
+        static let horizontalXLargePadding = UIScreen.main.bounds.width * 0.4
         static let horizontalLargePadding = UIScreen.main.bounds.width * 0.2
         static let horizontalNormalPadding = UIScreen.main.bounds.width * 0.1
         static let horizontalSmallPadding = UIScreen.main.bounds.width * 0.03
@@ -162,6 +171,12 @@ struct Constants {
         static let MAKE_RELATION = "MakeRelation"
         static let PIKACHU = "pikachu"
         static let NOTIFICATION = "notification"
+    }
+    struct Lotties {
+        static let BEAR_CAT_JSON = "bearandcat"
+        static let BEAR_CAT_DJSON = "bearCatLottie"
+        static let FIREWORK_JSON = "havaifişek"
+        static let CONFETTI_JSON = "konfeti"
     }
     
     struct Icons {
@@ -203,5 +218,6 @@ struct Constants {
     struct NotificationConst{
         static let TYPE = "alertType"
         static let NEW_RELATION = "NewRelationship"
+        static let SHOW_NEW_REALTION = "ShowNewRelation"
     }
 }

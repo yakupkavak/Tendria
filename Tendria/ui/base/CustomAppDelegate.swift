@@ -49,14 +49,19 @@ extension CustomAppDelegate: UNUserNotificationCenterDelegate {
     // like log that they clicked it, or navigate to a specific screen
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
             print("Got notification title: ", response.notification.request.content.title)
-        
         NotificationManager.shared.handleNotification(customData: response.notification.request.content.userInfo)
     }
     
-    // This function allows us to view notifications in the app even with it in the foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("Got notification title: ", notification.request.content.title)
+    
+        NotificationManager.shared.handleNotification(customData: notification.request.content.userInfo)
+    }
+    
+    /* This function allows us to view notifications in the app even with it in the foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
         // These options are the options that will be used when displaying a notification with the app in the foreground
         // for example, we will be able to display a badge on the app a banner alert will appear and we could play a sound
         return [.badge, .banner, .list, .sound]
-    }
+    }*/
 }

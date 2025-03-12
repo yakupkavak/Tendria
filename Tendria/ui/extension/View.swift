@@ -34,8 +34,27 @@ extension View{
             Spacer()
         }
     }
+    func showNewRelation(
+        isPresent: Binding<Bool>,
+        onSuccess: @escaping () -> Void,
+        messageText: String
+    ) -> some View{
+        
+        self.overlay {
+            if isPresent.wrappedValue {
+                ZStack {
+                    // Alert içeriği
+                    BaseLottieAlertUI(uiLottieSource: LottieSet.BEAR_CAT_JSON,backgroundFirst: LottieSet.FIREWORK_JSON,backgroundSecond: LottieSet.CONFETTI_JSON, title: StringKey.new_relation_title, message: messageText, onSuccessText: StringKey.continue_text) {
+                        onSuccess()
+                    }
+                }
+                .transition(.opacity)
+                .animation(.easeInOut, value: isPresent.wrappedValue)
+            }
+        }
+    }
     
-    func customImageAlert(
+    func showRequestNotification(
         isPresent: Binding<Bool>,
         onSuccess: @escaping () -> Void,
         onDenied: @escaping () -> Void

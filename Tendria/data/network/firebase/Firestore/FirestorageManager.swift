@@ -120,7 +120,7 @@ class FirestorageManager {
             }
         }
     }
-    func configureUserLanguage(userID: String,preferLanguage: String?){
+    func configureUserLanguage(userID: String,preferLanguage: String? = nil){
         guard let preferLanguage = preferLanguage else {
             //DEFAULT USERS LANGUAGE
             let userLanguage = Locale.current.language.languageCode?.identifier ?? "en"
@@ -146,6 +146,26 @@ class FirestorageManager {
             } else {
                 print("\(data) successfully saved to Firestore!")
             }
+        }
+    }
+    
+    func checkUserRelation() async throws -> Bool {
+        guard let userId = AuthManager.shared.getUserID() else {
+            return false
+        }
+        let documentReference = database.collection(FireDatabase.USERS_PATH).document(userId)
+        
+        do {
+            let document = try await documentReference.getDocument()
+            if document.exists {
+                let relationId = document.data()?[FireDatabase.USER_RELATION_ID] as? String
+                print(document)
+                return !(relationId?.isEmpty ?? true)
+            }else {
+                return false
+            }
+        } catch {
+            throw error
         }
     }
     
@@ -181,25 +201,5 @@ class FirestorageManager {
      throw error
      }
      }*/
-    
-    func checkUserRelation() async throws -> Bool {
-        guard let userId = AuthManager.shared.getUserID() else {
-            return false
-        }
-        let documentReference = database.collection(FireDatabase.USERS_PATH).document(userId)
-        
-        do {
-            let document = try await documentReference.getDocument()
-            if document.exists {
-                let relationId = document.data()?[FireDatabase.USER_RELATION_ID] as? String
-                print(document)
-                return !(relationId?.isEmpty ?? true)
-            }else {
-                return false
-            }
-        } catch {
-            throw error
-        }
-    }
     
 }

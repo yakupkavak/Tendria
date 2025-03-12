@@ -11,6 +11,8 @@ struct BaseTabViewUI: View {
     
     @EnvironmentObject private var routerTask: RouterTask
     @EnvironmentObject private var routerUser: RouterUserInfo
+    @StateObject private var viewModel = BaseTabViewModel()
+    
     var initialize = NotificationManager.shared
     
     var body: some View {
@@ -66,9 +68,14 @@ struct BaseTabViewUI: View {
             }.tabItem {
                     Label("User", systemImage: "person.fill")
                 }
+        }.onAppear {
+            print("BaseTabViewUI appeared. ViewModel: \(viewModel)")
         }
         .navigationBarBackButtonHidden()
         .accentColor(.blue) // Aktif sekme rengi
+        .showNewRelation(isPresent: $viewModel.showRelationAlert, onSuccess: {
+            viewModel.onSuccessClick()
+        }, messageText: viewModel.alertMessage)
     }
 }
 /*

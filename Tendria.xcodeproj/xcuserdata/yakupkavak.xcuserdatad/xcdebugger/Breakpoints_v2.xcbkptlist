@@ -23,49 +23,123 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A3D5D561-B485-40F1-80A4-4C293BDDC433"
+            uuid = "69033A99-8935-4FCF-822C-134B6BC5EFC3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tendria/ui/login/SignUp/SignUpViewModel.swift"
+            filePath = "Tendria/data/network/firebase/Firestore/NotificationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "handleAppleID(_:)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "handleNotification(customData:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "63C418D1-DA37-495F-84C3-06C5361995EB"
+            uuid = "3B0A7AA5-832B-46FD-A7A7-9353F855DB1C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tendria/ui/main/user/MakeRelation/MakeRelationViewModel.swift"
+            filePath = "Tendria/ui/base/CustomAppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "checkCode()"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "userNotificationCenter(_:willPresent:withCompletionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D3903671-D912-4F7C-8725-0AF8306CAECA"
+            uuid = "4ADEAAD3-B86C-4A0D-A95D-E3BF7C595257"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tendria/ui/main/user/MakeRelation/MakeRelationViewModel.swift"
+            filePath = "Tendria/ui/main/base/BaseTabViewUI.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "checkCode()"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "BaseTabViewUI"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1213AE1E-AB0F-4682-BA0B-9437A561AA5D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tendria/ui/login/ForgotPassword/ForgotPasswordViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "forgotPassword()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1213AE1E-AB0F-4682-BA0B-9437A561AA5D - 5d2d3f5476fc9570"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 () async throws -&gt; () in Tendria.ForgotPasswordViewModel.forgotPassword() -&gt; ()"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/login/ForgotPassword/ForgotPasswordViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30">
+               </Location>
+               <Location
+                  uuid = "1213AE1E-AB0F-4682-BA0B-9437A561AA5D - 19f45281908c407c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 () async throws -&gt; () in Tendria.ForgotPasswordViewModel.forgotPassword() -&gt; ()"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/login/ForgotPassword/ForgotPasswordViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30">
+               </Location>
+               <Location
+                  uuid = "1213AE1E-AB0F-4682-BA0B-9437A561AA5D - 82982207b83ac146"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 () async throws -&gt; () in Tendria.ForgotPasswordViewModel.forgotPassword() -&gt; ()"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/login/ForgotPassword/ForgotPasswordViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30">
+               </Location>
+               <Location
+                  uuid = "1213AE1E-AB0F-4682-BA0B-9437A561AA5D - 2f41dcaf1ad91743"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 () async throws -&gt; () in Tendria.ForgotPasswordViewModel.forgotPassword() -&gt; ()"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/login/ForgotPassword/ForgotPasswordViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

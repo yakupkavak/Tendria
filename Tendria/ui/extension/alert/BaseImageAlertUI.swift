@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUICore
 import SwiftUI
+import Lottie
 
 struct BaseImageAlertUI: View {
         
@@ -45,11 +46,52 @@ struct BaseImageAlertUI: View {
         .zIndex(.greatestFiniteMagnitude)
     }
 }
+
+struct BaseLottieAlertUI: View {
+        
+    var uiLottieSource: String
+    var backgroundFirst: String
+    var backgroundSecond: String
+    var title: LocalizedStringKey
+    var message: String
+    var onSuccessText: LocalizedStringKey
+    var onSuccess: () -> Void
+    let opacity = 0.6
+    var body: some View {
+        ZStack{
+            LottieView(animation: .named(backgroundFirst)).playing(loopMode: .loop).animationSpeed(0.4).scaledToFit().offset(y: UIScreen.main.bounds.height * -0.2)
+                    .ignoresSafeArea()
+            LottieView(animation: .named(backgroundSecond)).playing(loopMode: .loop).scaledToFit().offset(
+                            y: UIScreen.main.bounds.height * 0.4)
+                    .ignoresSafeArea()
+            Color.gray.opacity(opacity).ignoresSafeArea()
+            VStack(spacing: Spacing.normalSpacing) {
+                LottieView(animation: .named(uiLottieSource)).playing(loopMode: .loop).scaledToFit().padding(Padding.constantMinusLargePadding).padding(.bottom, Padding.constantMinusMediumPadding)
+                tvHeadline(text: title, color: .blue500)
+                tvColorString(text: message, color: .subTextGray, font: .callout).padding(.horizontal,Padding.constantMinusMediumPadding).padding(Padding.constantXSmallPadding)
+                
+                VStack(spacing: Spacing.normalSpacing) {
+                    btnTextGradient(shadow: 0, action: {
+                        onSuccess()
+                    }, text: onSuccessText,paddingValue: CGFloat(Width.buttonConstantMediumWidth))
+                }
+            }
+            .padding(.bottom, Padding.constantMediumPadding)
+            .padding(.horizontal, Padding.horizontalNormalPadding)
+            .background(Color.white)
+            .cornerRadius(Radius.mediumRadius)
+            .frame(maxWidth: Padding.constantXLargePadding)
+        }.ignoresSafeArea()
+        .zIndex(.greatestFiniteMagnitude)
+    }
+}
+
 #Preview {
     @State var isPres = true
-    BaseImageAlertUI(onSuccess: {
-        print("yakup")
-    },onDenied: {
-        print("yakup")
-    })
+    let name = "Alice"
+    let formattedText = String(format: NSLocalizedString("new_relation_subtext", comment: ""), name)
+
+    BaseLottieAlertUI(uiLottieSource: LottieSet.BEAR_CAT_JSON,backgroundFirst: LottieSet.FIREWORK_JSON ,backgroundSecond:LottieSet.CONFETTI_JSON, title: StringKey.new_relation_title, message: formattedText, onSuccessText: StringKey.continue_text) {
+        print("lottie")
+    }
 }

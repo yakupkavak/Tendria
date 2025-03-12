@@ -81,23 +81,14 @@ class NotificationManager: ObservableObject{
                 return
             }
             if alertType == NotificationKey.NEW_RELATION {
-                let notificationJsonData = try JSONDecoder().decode(NotificationJSONData.self,from: jsonData)
+                let notificationJsonData = try JSONDecoder().decode(NotificationModel.self,from: jsonData)
                 DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: NSNotification.Name("NavigateToScreen"), object: screen)
+                    NotificationCenter.default.post(name: NSNotification.Name(NotificationKey.SHOW_NEW_REALTION), object: notificationJsonData)
                 }
             }
             
-            
         }catch {
             print(error.localizedDescription)
-        }
-        if let screen = customData["screen"] as? String {
-            print("📩 Gelen Bildirimle Yönlendirme: \(screen)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: NSNotification.Name("NavigateToScreen"), object: screen)
-            }
-        } else {
-            print("⚠️ Bildirimde yönlendirme için 'screen' key'i bulunamadı.")
         }
     }
     

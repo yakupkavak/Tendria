@@ -65,3 +65,6 @@
 "skip_for_now" = "Skip for now";
 "ok" = "OK";
 "NSUserNotificationUsageDescription" = "We need permission to send notifications.";
+"new_relation_title" = "Your hearts met";
+"new_relation_subtext" = "Love gains meaning through shared memories. Now write down every memory with ${name}.";
+"continue" = "Continue";
