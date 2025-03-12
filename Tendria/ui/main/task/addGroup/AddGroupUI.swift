@@ -18,11 +18,10 @@ struct AddGroupUI: View {
 
     var body: some View {
         VStack{
-            Spacer()
-            tvHeadline(text: StringKey.add_group, color: Color.blue500)
-            Spacer()
-            tfText(placeHolder: StringKey.group_name, textInput: $viewModel.textInput)
-            
+            HStack{
+                tvHeadline(text: StringKey.add_collection, color: Color.blue500)
+                Spacer()
+            }.padding(.top,Padding.horizontalSmallPadding)
             PhotosPicker(
                 selection: $viewModel.selectedPhotos,
                 maxSelectionCount: maxPhotoSelect,
@@ -31,6 +30,9 @@ struct AddGroupUI: View {
             ) {
                 RowUIImage(uiImage: displayedPhoto ?? UIImage(named: IconName.imageUploadIcon) ?? UIImage())
             }.padding()
+            tvSubTitle(text: StringKey.group_name)
+            tfText(placeHolder: StringKey.group_name, textInput: $viewModel.textInput)
+            TextEditor(text: $viewModel.textInput)
             btnTextGradient(action: {
                 viewModel.saveListImage()
             }, text: StringKey.add)

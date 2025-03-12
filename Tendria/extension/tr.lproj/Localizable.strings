@@ -40,7 +40,7 @@
 
 "group_name" = "Liste adı";
 "task_name" = "Görev adı";
-"add_list" = "Liste ekle";
+"add_collection" = "Koleksiyonunu oluştur";
 "add_task" = "Görev ekle";
 "add" = "Ekle";
 

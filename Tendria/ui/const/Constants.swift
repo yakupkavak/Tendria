@@ -26,6 +26,8 @@ typealias Spacing = Constants.Spacing
 typealias GradientSet = Constants.Gradients
 typealias KeychainKeys = Constants.KeychainKeys
 typealias NotificationKey = Constants.NotificationConst
+typealias MaliFont = Constants.MaliFont
+
 struct Constants {
     struct Gradients {
         static let mediumOrangeRed: [Color] = [Color.orange700, Color.red300]
@@ -113,7 +115,7 @@ struct Constants {
         /* Task Screen*/
         static let group_name = LocalizedStringKey("group_name")
         static let task_name = LocalizedStringKey("task_name")
-        static let add_group = LocalizedStringKey("add_list")
+        static let add_collection = LocalizedStringKey("add_collection")
         static let add_task = LocalizedStringKey("add_task")
         static let add = LocalizedStringKey("add")
         
@@ -219,5 +221,19 @@ struct Constants {
         static let TYPE = "alertType"
         static let NEW_RELATION = "NewRelationship"
         static let SHOW_NEW_REALTION = "ShowNewRelation"
+    }
+    struct MaliFont {
+        static let Regular = "Mali-Regular"
+        static let Italic = "Mali-Italic"
+        static let ExtraLight = "Mali-ExtraLight"
+        static let ExtraLightItalic = "Mali-ExtraLightItalic"
+        static let Light = "Mali-Light"
+        static let LightItalic = "Mali-LightItalic"
+        static let Medium = "Mali-Medium"
+        static let MediumItalic = "Mali-MediumItalic"
+        static let SemiBold = "Mali-SemiBold"
+        static let SemiBoldItalic = "Mali-SemiBoldItalic"
+        static let Bold = "Mali-Bold"
+        static let BoldItalic = "Mali-BoldItalic"
     }
 }
