@@ -21,7 +21,7 @@ struct btnOnlyText<Content: View>: View {
         }
     }
 }
-struct btnSystemIcon: View {
+struct btnSystemIconGradient: View {
     var iconSystemName: String
     var color: Color
     var action: () -> Void
@@ -32,6 +32,19 @@ struct btnSystemIcon: View {
         } label: {
             Image(systemName: iconSystemName).foregroundColor(color)
         }.btnStyle()
+    }
+}
+struct btnSystemIconTransparent: View {
+    var iconSystemName: String
+    var color: Color
+    var action: () -> Void
+    
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: iconSystemName).foregroundColor(color)
+        }
     }
 }
 struct btnSignIcon: View {
@@ -79,7 +92,7 @@ struct btnAddIcon: View {
 struct btnTextGradient: View {
     
     var foregroundColor: Color? = Color.btnForeground
-    var shadow: CGFloat? = IconWidth.smallHeight
+    var shadow: CGFloat? = Radius.shadowConstantRadiud
     var action: () -> Void
     var text: LocalizedStringKey
     var edgeSet: Edge.Set = .all

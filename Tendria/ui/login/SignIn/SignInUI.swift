@@ -47,7 +47,7 @@ struct SignInUI: View {
                 HStack(spacing: Height.xSmallHeight){
                     Spacer()
                     tvHeadline(text: StringKey.signIn, color: .blue500)
-                    btnSystemIcon(iconSystemName: IconName.right_arrow, color: .white) {
+                    btnSystemIconGradient(iconSystemName: IconName.right_arrow, color: .white) {
                         viewModel.signInEmail()
                     }
                 }

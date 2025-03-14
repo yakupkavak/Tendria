@@ -44,6 +44,38 @@ struct tfText: View {
         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
     }
 }
+struct teText: View {
+    
+    var placeHolder: LocalizedStringKey
+    @Binding var textInput: String
+    @FocusState private var isFocused: Bool
+    
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            TextEditor(text: $textInput)
+                .autocapitalization(.none)
+                .textFieldStyle(PlainTextFieldStyle())
+                .focused($isFocused)
+                .frame(alignment: .top)
+                .padding(.leading, 10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.white, lineWidth: 0)
+                    )
+                    .background(Color.white)
+            Text(placeHolder).frame(alignment: .leading)
+                .foregroundColor(Color(.systemGray2))
+                .padding()
+                .opacity(self.textInput == "" ? 100 : 0)
+                .onTapGesture {
+                    isFocused = true
+                }
+        }
+        .cornerRadius(radius.mediumRadius)
+            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+    }
+}
+    
 struct tfTextCopy: View {
     
     var placeHolder: String
@@ -98,8 +130,11 @@ struct tfTextCopy: View {
 
 #Preview {
     @State var text: String = "SwiftUI Harika!"
+    @State var text2: String = ""
     @State var edit: Bool = true
     @State var show: Bool = true
+    teText(placeHolder: StringKey.add_collection, textInput: $text2)
 
     tfTextCopy(placeHolder: StringValues.RELATION_CODE_PLACEHOLDER, textInput: $text, showCopyButton: $show, isEditable: $edit)
+    
 }

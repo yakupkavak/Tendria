@@ -26,14 +26,6 @@ struct SignContainerUI: View {
                 }
         }
     }
-    init(router: RouterUserSign = RouterUserSign()) {
-        for familyName in UIFont.familyNames{
-            print("Famil Name -> \(familyName)")
-            for fontName in UIFont.fontNames(forFamilyName: familyName){
-                print("->\(fontName)")
-            }
-        }
-    }
 }
 
 #Preview {

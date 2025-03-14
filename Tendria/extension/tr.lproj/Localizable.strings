@@ -38,7 +38,10 @@
 "user_not_found" = "Bu e-posta adresine sahip bir hesap bulunamadı.";
 "success" = "Başarılı";
 
-"group_name" = "Liste adı";
+"collection_name" = "Koleksiyon adı";
+"collection_comment" = "Koleksiyon hakkında kısa bir not ekleyin...";
+"note" = "Not";
+"title" = "Başlık";
 "task_name" = "Görev adı";
 "add_collection" = "Koleksiyonunu oluştur";
 "add_task" = "Görev ekle";

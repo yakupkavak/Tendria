@@ -24,6 +24,10 @@ final class RouterTask: ObservableObject {
     func navigate(to destination: Destination) {
         navPath.append(destination)
     }
+    func navigateWithClear(to destination: Destination) {
+        navPath = NavigationPath()
+        navPath.append(destination)
+    }
     
     func navigateBack() {
         navPath.removeLast()

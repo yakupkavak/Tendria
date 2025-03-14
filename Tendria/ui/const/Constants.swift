@@ -37,6 +37,7 @@ struct Constants {
         static let largeRadius = CGFloat(UIScreen.main.bounds.height * 0.05)
         static let mediumRadius = CGFloat(UIScreen.main.bounds.height * 0.03)
         static let shadowRadius = CGFloat(UIScreen.main.bounds.height * 0.005)
+        static let shadowConstantRadiud = CGFloat(4)
         static let shadowSmallRadius = CGFloat(UIScreen.main.bounds.height * 0.0025)
 
     }
@@ -53,6 +54,7 @@ struct Constants {
     struct Width{
         static let buttonWidth = UIScreen.main.bounds.width * 0.6
         static let buttonConstantMediumWidth = 12
+        static let buttonHalfWidth = UIScreen.main.bounds.width * 0.50
         static let buttonMediumWidth = UIScreen.main.bounds.width * 0.36
         static let largeWidth = UIScreen.main.bounds.width * 0.1
         static let mediumWidth = UIScreen.main.bounds.width * 0.05
@@ -113,8 +115,11 @@ struct Constants {
         static let user_not_found = LocalizedStringKey("user_not_found")
         
         /* Task Screen*/
-        static let group_name = LocalizedStringKey("group_name")
+        static let collection_name = LocalizedStringKey("collection_name")
+        static let collection_comment = LocalizedStringKey("collection_comment")
         static let task_name = LocalizedStringKey("task_name")
+        static let note = LocalizedStringKey("note")
+        static let title = LocalizedStringKey("title")
         static let add_collection = LocalizedStringKey("add_collection")
         static let add_task = LocalizedStringKey("add_task")
         static let add = LocalizedStringKey("add")

@@ -10,6 +10,7 @@ import SwiftUI
 struct TaskGroupListUI: View {
     
     @EnvironmentObject var routerTask: RouterTask
+    @Binding var isAddGroupPresented: Bool
     
     var body: some View {
         ZStack { // List ve butonu üst üste koyuyoruz
@@ -33,7 +34,7 @@ struct TaskGroupListUI: View {
                 HStack {
                     Spacer()
                     btnAddIcon(iconName: "plus") {
-                        routerTask.navigate(to: .addGroupTask)
+                        isAddGroupPresented = true
                     }.padding()
                 }
             }
@@ -44,5 +45,6 @@ struct TaskGroupListUI: View {
 
 
 #Preview {
-    TaskGroupListUI()
+    @State var isAddGroupPresented = false
+    TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented)
 }

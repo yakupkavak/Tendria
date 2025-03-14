@@ -14,7 +14,8 @@ struct BaseTabViewUI: View {
     @StateObject private var viewModel = BaseTabViewModel()
     
     var initialize = NotificationManager.shared
-    
+    @State private var isAddGroupPresented = false
+
     var body: some View {
         
         TabView {
@@ -28,12 +29,16 @@ struct BaseTabViewUI: View {
                     Label("History", systemImage: "clock.fill")
                 }
             NavigationStack(path: $routerTask.navPath) {
-                TaskGroupListUI().environmentObject(routerTask).navigationDestination(for: RouterTask.Destination.self) { destination in
+                TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented).environmentObject(routerTask).navigationDestination(for: RouterTask.Destination.self) { destination in
                     switch destination {
                     case .taskGroupList:
-                        TaskGroupListUI()
+                        TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented).onAppear(){
+                            isAddGroupPresented = false
+                        }
                     case .addGroupTask:
-                        AddGroupUI()
+                        TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented).onAppear {
+                            isAddGroupPresented = true
+                        }
                     case .taskDetailList:
                         TaskDetailListUI()
                     case .taskDetail:
@@ -76,6 +81,9 @@ struct BaseTabViewUI: View {
         .showNewRelation(isPresent: $viewModel.showRelationAlert, onSuccess: {
             viewModel.onSuccessClick()
         }, messageText: viewModel.alertMessage)
+        .fullScreenCover(isPresented: $isAddGroupPresented) {
+            AddGroupUI(isAddGroupPresented: $isAddGroupPresented)
+        }
     }
 }
 /*

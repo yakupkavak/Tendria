@@ -38,7 +38,10 @@
 "user_not_found" = "No account found with this email address.";
 "success" = "Success";
 
-"group_name" = "List Name";
+"collection_name" = "Collection title";
+"note" = "Note";
+"title" = "Title";
+"collection_comment" = "collection_comment";
 "task_name" = "Task Name";
 "add_collection" = "Create your collection";
 "add_task" = "Add task";
