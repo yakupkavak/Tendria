@@ -6,3 +6,15 @@
 //
 
 import Foundation
+import SwiftUICore
+import Combine
+
+struct KeyboardAdaptive: ViewModifier {
+    @State private var keyboardHeight: CGFloat = 0
+    var canUpdate: Bool
+    func body(content: Content) -> some View {
+        content
+            .padding(.bottom, canUpdate ? keyboardHeight : 0)
+            .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
+    }
+}

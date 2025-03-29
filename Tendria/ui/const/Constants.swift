@@ -54,7 +54,8 @@ struct Constants {
     struct Width{
         static let buttonWidth = UIScreen.main.bounds.width * 0.6
         static let buttonConstantMediumWidth = 12
-        static let buttonHalfWidth = UIScreen.main.bounds.width * 0.50
+        static let screenEightyWidth = UIScreen.main.bounds.width * 0.8
+        static let screenHalfWidth = UIScreen.main.bounds.width * 0.5
         static let buttonMediumWidth = UIScreen.main.bounds.width * 0.36
         static let largeWidth = UIScreen.main.bounds.width * 0.1
         static let mediumWidth = UIScreen.main.bounds.width * 0.05
@@ -67,6 +68,7 @@ struct Constants {
     }
     
     struct Height{
+        static let xxLargePlusHeight = UIScreen.main.bounds.height * 0.30
         static let xxLargeHeight = UIScreen.main.bounds.height * 0.18
         static let xLargeHeight = UIScreen.main.bounds.height * 0.13
         static let largeHeight = UIScreen.main.bounds.height * 0.1
@@ -166,13 +168,16 @@ struct Constants {
         static let constantXSmallPadding = CGFloat(4)
         static let horizontalXLargePadding = UIScreen.main.bounds.width * 0.4
         static let horizontalLargePadding = UIScreen.main.bounds.width * 0.2
+        static let horizontalNormalPlusPadding = UIScreen.main.bounds.width * 0.15
         static let horizontalNormalPadding = UIScreen.main.bounds.width * 0.1
+        static let horizontalMediumPadding = UIScreen.main.bounds.width * 0.075
         static let horizontalSmallPadding = UIScreen.main.bounds.width * 0.03
         static let horizontalXSmallPadding = UIScreen.main.bounds.width * 0.005
 
         static let largePadding = UIScreen.main.bounds.height * 0.05
         static let mediumPadding = UIScreen.main.bounds.height * 0.02
         static let smallPadding = UIScreen.main.bounds.height * 0.01
+        static let leadingMediumPadding = CGFloat(12)
     }
     struct Images {
         static let MAKE_RELATION = "MakeRelation"

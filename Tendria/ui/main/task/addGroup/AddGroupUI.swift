@@ -14,56 +14,51 @@ struct AddGroupUI: View {
     @StateObject var viewModel = AddGroupViewModel()
     @State private var displayedPhoto: UIImage? = nil
     @State var emp = ""
-
+    
     let maxPhotoSelect = 1
-
+    
     var body: some View {
         VStack{
-            Spacer()
-
             HStack{
                 btnSystemIconTransparent(iconSystemName: "chevron.left", color: Color.black) {
                     isAddGroupPresented = false
                 }
                 tvHeadline(text: StringKey.add_collection, color: Color.blue500)
                 Spacer()
-            }.padding(.top,Padding.horizontalSmallPadding)
-            Spacer()
-            Spacer()
+            }.padding(.leading,Padding.leadingMediumPadding)
+            
             PhotosPicker(
-                selection: $viewModel.selectedPhotos,
-                maxSelectionCount: maxPhotoSelect,
-                selectionBehavior: .ordered,
+                selection: $viewModel.selectedPhoto,
                 matching: .images
             ) {
-                RowUIImage(uiImage: displayedPhoto ?? UIImage(named: IconName.imageUploadIcon) ?? UIImage())
-            }
-            Spacer()
+                UploadImageUI(uiImage: displayedPhoto ?? UIImage(named: IconName.imageUploadIcon) ?? UIImage(), height: Height.xxLargePlusHeight, width: Width.screenEightyWidth, unSelectedHeight: Height.xxLargeHeight, isImageSelected: $viewModel.isImageSelected)
+                
+            }.padding(.top, viewModel.isImageSelected ? 0 : Padding.horizontalNormalPlusPadding).padding(.bottom,viewModel.isImageSelected ? 0 : Padding.horizontalNormalPadding)
             HStack{
                 tvSubTitle(text: StringKey.title)
                 Spacer()
-            }.padding(6)
-            tfText(placeHolder: StringKey.collection_name, textInput: $viewModel.textInput).padding(.bottom)
+            }.padding()
+            tfText(placeHolder: StringKey.collection_name, textInput: $viewModel.textInput).padding(.horizontal)
+            
             HStack{
                 tvSubTitle(text: StringKey.note)
                 Spacer()
-            }.padding(6)
-            teText(placeHolder: StringKey.collection_comment, textInput: $emp).frame(height: Height.xLargeHeight).padding(.bottom)
-            Spacer()
-            btnTextGradient(action: {
+            }.padding()
+            teText(placeHolder: StringKey.collection_comment, textInput: $emp).frame(height: Height.xLargeHeight).padding(.horizontal)
+            
+            btnTextGradient(shadow: Radius.shadowSmallRadius, action: {
                 viewModel.saveListImage()
-            }, text: StringKey.add).frame(width: Width.buttonHalfWidth)
-
-            Spacer()
-        }.padding()
-        .onChange(of: viewModel.selectedPhotos) { _ in
-            viewModel.convertDataToImage()
+            }, text: StringKey.add).frame(width: Width.screenHalfWidth).padding(.top,Padding.horizontalNormalPlusPadding)
         }
-        .onReceive(viewModel.$selectedPhoto) { selectedPhoto in
-            Task { @MainActor in
-                displayedPhoto = selectedPhoto
+            .onChange(of: viewModel.selectedPhoto) { _ in
+                viewModel.convertDataToImage()
             }
-        }.ignoresSafeArea()
+            .onReceive(viewModel.$userPhoto) { selectedPhoto in
+                Task { @MainActor in
+                    displayedPhoto = selectedPhoto
+                }
+            }.ignoresSafeArea()
+        
     }
 }
 

@@ -24,6 +24,26 @@ extension UIApplication: @retroactive UIGestureRecognizerDelegate {
         return !otherGestureRecognizer.isKind(of: UILongPressGestureRecognizer.self)
     }
 }
+extension Image{
+    func findTrueSize(uiImage: UIImage,maxHeight: CGFloat, maxWidth: CGFloat) -> some View{
+        if(isWidthHigher(uiImage: uiImage)){
+            self.resizable().scaledToFit().frame(width: maxWidth).clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius))
+        }else{
+            self.resizable().scaledToFit().frame(height: maxHeight).clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius))
+        }
+    }
+
+    private func isWidthHigher(uiImage: UIImage) -> Bool {
+        let width = uiImage.size.width
+        let height = uiImage.size.height
+
+        if(width >= height){
+            return true
+        }else {
+            return false
+        }
+    }
+}
 extension View{
     func paddingHorizontal(value: CGFloat = 8) -> some View{
         self.padding([.leading,.trailing], value)
@@ -78,5 +98,7 @@ extension View{
             }
         }
     }
+    func keyboardAdaptive(canUpdate: Bool) -> some View {
+        ModifiedContent(content: self, modifier: KeyboardAdaptive(canUpdate: canUpdate))
+    }
 }
-

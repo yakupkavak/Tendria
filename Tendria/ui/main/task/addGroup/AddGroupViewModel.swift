@@ -11,32 +11,34 @@ import FirebaseAuth
 
 class AddGroupViewModel: BaseViewModel {
     @Published var images = [UIImage]()
-    @Published var selectedPhotos = [PhotosPickerItem]()
-    @Published var selectedPhoto: UIImage? = nil
+    @Published var selectedPhoto: PhotosPickerItem?
+    @Published var userPhoto: UIImage? = nil
     @Published var textInput = ""
     @Published var success = false
     @Published var loading = false
     @Published var error = ""
+    @Published var isImageSelected: Bool = false
 
     @MainActor
     func convertDataToImage() {
         images.removeAll()
         
-        guard !selectedPhotos.isEmpty else { return }
+        guard (selectedPhoto != nil) else { return }
         
-        for eachItem in selectedPhotos {
-            Task{
-                if let imageData = try? await eachItem.loadTransferable(type: Data.self) {
-                    if let image = UIImage(data: imageData){
-                        selectedPhoto = image
-                    }
+        
+        Task{
+            if let imageData = try? await selectedPhoto!.loadTransferable(type: Data.self) {
+                if let image = UIImage(data: imageData){
+                    isImageSelected = true
+                    userPhoto = image
                 }
             }
         }
+        
     }
     
     func saveListImage() {
-        guard let imageData = selectedPhoto?.jpegData(compressionQuality: 0.8) else { return }
+        guard let imageData = userPhoto?.jpegData(compressionQuality: 0.8) else { return }
         
         getDataCall {
             try await FirestorageManager.shared.addListImage(imageData: imageData)
