@@ -20,6 +20,7 @@ class BaseTabViewModel: BaseViewModel {
                 }
             }
         }
+        fetchData()
     }
 
     deinit {
@@ -36,5 +37,17 @@ class BaseTabViewModel: BaseViewModel {
         alertMessage.self = formattedText
 
         self.showRelationAlert = true
+    }
+    private func fetchData(){
+        getDataCall {
+            try await RelationRepository.shared.getRelationId()
+        } onSuccess: { data in
+            
+        } onLoading: {
+            
+        } onError: { error in
+            
+        }
+        
     }
 }

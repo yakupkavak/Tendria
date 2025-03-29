@@ -11,13 +11,13 @@ public struct ListDocumentModel: Codable {
 
     let imageUrl: String
     let relationId: String
-    let taskIdList: [String]?
+    let title: String
     let description: String
 
   enum CodingKeys: String, CodingKey {
     case imageUrl
+    case title
     case relationId
-    case taskIdList
     case description
   }
 }

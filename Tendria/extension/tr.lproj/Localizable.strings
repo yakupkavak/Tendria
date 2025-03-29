@@ -39,7 +39,7 @@
 "success" = "Başarılı";
 
 "collection_name" = "Koleksiyon adı";
-"collection_comment" = "Koleksiyon hakkında kısa bir not ekleyin...";
+"collection_comment" = "Koleksiyon hakkında bir not ekleyin...";
 "note" = "Not";
 "title" = "Başlık";
 "task_name" = "Görev adı";
@@ -61,6 +61,8 @@
 "enter_code" = "Girin";
 "duplicate_code_error" = "Bu kod zaten kullanılıyor. Lütfen yeni bir kod oluşturun.";
 "invalid_user_id" = "Kullanıcı ID'si bulunamadı. Lütfen kontrol edip tekrar deneyin.";
+"invalid_relation_id" = "Relation ID'si bulunamadı. Lütfen kontrol edip tekrar deneyin.";
+"create_relation_first" = "Öncelikle bir ilişkiye sahip olmanız gerekmektedir.";
 "cancel" = "Vazgeç";
 "notification" = "Bildirim";
 "notification_subtext" = "Güncellemeleri ve hatırlatmaları almak için lütfen bildirimleri etkinleştirin";

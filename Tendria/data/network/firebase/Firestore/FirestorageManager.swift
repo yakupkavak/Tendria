@@ -45,15 +45,9 @@ class FirestorageManager {
         }
     }
     
-    func addListDocument(downloadUrl: String,description: String) async throws{
+    func addListDocument(listDocumentModel: ListDocumentModel) async throws{
         let newListRef = database.collection(FireDatabase.LIST_PATH).document()
-        let newDocument = ListDocumentModel(
-            imageUrl: downloadUrl,
-            relationId: "23232",
-            taskIdList: nil,
-            description: description
-        )
-        try addDocument(documentRef: newListRef, value: newDocument)
+        try addDocument(documentRef: newListRef, value: listDocumentModel)
     }
     
     private func addDocument<T: Encodable>(documentRef: DocumentReference, value: T) throws {

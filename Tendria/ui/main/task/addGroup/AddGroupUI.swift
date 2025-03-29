@@ -14,7 +14,6 @@ struct AddGroupUI: View {
     @Binding var isAddGroupPresented: Bool
     @StateObject var viewModel = AddGroupViewModel()
     @State private var displayedPhoto: UIImage? = nil
-    @State var emp = ""
     @State private var displayCrop = false
     
     let maxPhotoSelect = 1
@@ -40,13 +39,13 @@ struct AddGroupUI: View {
                 tvSubTitle(text: StringKey.title)
                 Spacer()
             }.padding()
-            tfText(placeHolder: StringKey.collection_name, textInput: $viewModel.textInput).padding(.horizontal)
+            tfText(placeHolder: StringKey.collection_name, textInput: $viewModel.titleInput).padding(.horizontal)
             
             HStack{
                 tvSubTitle(text: StringKey.note)
                 Spacer()
             }.padding()
-            teText(placeHolder: StringKey.collection_comment, textInput: $emp).frame(height: Height.xLargeHeight).padding(.horizontal)
+            teText(placeHolder: StringKey.collection_comment, textInput: $viewModel.commentInput).frame(height: Height.xLargeHeight).padding(.horizontal)
             
             btnTextGradient(shadow: Radius.shadowSmallRadius, action: {
                 viewModel.saveListImage()
@@ -57,7 +56,7 @@ struct AddGroupUI: View {
                 viewModel.convertDataToImage()
             }.fullScreenCover(isPresented: $displayCrop, content: {
                 if let selectedPhoto = viewModel.userBeforeCrop{
-                    SwiftyCropView(imageToCrop: selectedPhoto, maskShape: .rectangle, configuration: SwiftyCropConfiguration.init(maskRadius:200,zoomSensitivity: 10,texts: SwiftyCropConfiguration.Texts(
+                    SwiftyCropView(imageToCrop: selectedPhoto, maskShape: .rectangle, configuration: SwiftyCropConfiguration.init(maskRadius:260,zoomSensitivity: 10,texts: SwiftyCropConfiguration.Texts(
                         cancelButton: "Cancel",
                         interactionInstructions: "Custom instruction text",
                         saveButton: "Save"

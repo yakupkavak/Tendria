@@ -11,6 +11,7 @@ enum RelationError: LocalizedError {
     case duplicateCode // Aynı kod oluştu hatası
     case unknown // Bilinmeyen hata
     case invalidUserId
+    case invalidUserRelation
     
     var errorDescription: String? {
         switch self {
@@ -20,6 +21,8 @@ enum RelationError: LocalizedError {
             return NSLocalizedString("unknown_error", comment: "An unknown error occurred. Please try again.")
         case .invalidUserId:
             return NSLocalizedString("invalid_user_id", comment: "User ID not found. Please check and try again.")
+        case .invalidUserRelation:
+            return NSLocalizedString("invalid_relation_id", comment: "Relation ID not found. Please check and try again.")
         }
     }
 }

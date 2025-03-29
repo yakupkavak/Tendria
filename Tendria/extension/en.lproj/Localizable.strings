@@ -41,7 +41,7 @@
 "collection_name" = "Collection title";
 "note" = "Note";
 "title" = "Title";
-"collection_comment" = "collection_comment";
+"collection_comment" = "Add a brief note about the collection...";
 "task_name" = "Task Name";
 "add_collection" = "Create your collection";
 "add_task" = "Add task";
@@ -61,6 +61,7 @@
 "enter_code" = "Enter";
 "duplicate_code_error" = "This code is already in use. Please generate a new one.";
 "invalid_user_id" = "User ID not found. Please check and try again.";
+"invalid_relation_id" = "Relation ID not found. Please check and try again.";
 "cancel" = "Cancel";
 "notification" = "Notification";
 "notification_subtext" = "Please enable notifications to receive updates and reminders";

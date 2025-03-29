@@ -13,11 +13,13 @@ class AddGroupViewModel: BaseViewModel {
     @Published var selectedPhoto: PhotosPickerItem?
     @Published var userBeforeCrop: UIImage? = nil
     @Published var userPhoto: UIImage? = nil //kullanıcının göreceği görsel
-    @Published var textInput = ""
+    @Published var titleInput = ""
+    @Published var commentInput = ""
     @Published var success = false
     @Published var loading = false
     @Published var error = ""
     @Published var isImageSelected: Bool = false
+    private var relationId: String?
 
     @MainActor
     func convertDataToImage() {
@@ -32,6 +34,7 @@ class AddGroupViewModel: BaseViewModel {
             }
         }
     }
+    
     func putCroppedImage(croppedImage: UIImage){
         isImageSelected = true
         userPhoto = croppedImage
@@ -39,7 +42,7 @@ class AddGroupViewModel: BaseViewModel {
     
     func saveListImage() {
         guard let imageData = userPhoto?.jpegData(compressionQuality: 0.8) else { return }
-        
+        guard RelationRepository.shared.relationId != nil else {return} //TODO BU HATA ELE ALINACAK
         getDataCall {
             try await FirestorageManager.shared.addListImage(imageData: imageData)
         } onSuccess: { downloadUrl in
@@ -52,8 +55,10 @@ class AddGroupViewModel: BaseViewModel {
     }
     
     func saveListDocument(downloadUrl: String) {
+        guard let relationId = RelationRepository.shared.relationId else {return}
+        let listDocumentModel = ListDocumentModel(imageUrl: downloadUrl, relationId: relationId, title: titleInput, description: commentInput)
         getDataCall {
-            try await FirestorageManager.shared.addListDocument(downloadUrl: downloadUrl,description: self.textInput)
+            try await FirestorageManager.shared.addListDocument(listDocumentModel: listDocumentModel)
         } onSuccess: { success in
             self.loading = false
             self.success = true
