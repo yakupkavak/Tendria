@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import SwiftyCrop
 
 struct AddGroupUI: View {
     
@@ -14,6 +15,7 @@ struct AddGroupUI: View {
     @StateObject var viewModel = AddGroupViewModel()
     @State private var displayedPhoto: UIImage? = nil
     @State var emp = ""
+    @State private var displayCrop = false
     
     let maxPhotoSelect = 1
     
@@ -51,8 +53,30 @@ struct AddGroupUI: View {
             }, text: StringKey.add).frame(width: Width.screenHalfWidth).padding(.top,Padding.horizontalNormalPlusPadding)
         }
             .onChange(of: viewModel.selectedPhoto) { _ in
+                displayCrop = true
                 viewModel.convertDataToImage()
-            }
+            }.fullScreenCover(isPresented: $displayCrop, content: {
+                if let selectedPhoto = viewModel.userBeforeCrop{
+                    SwiftyCropView(imageToCrop: selectedPhoto, maskShape: .rectangle, configuration: SwiftyCropConfiguration.init(maskRadius:200,zoomSensitivity: 10,texts: SwiftyCropConfiguration.Texts(
+                        cancelButton: "Cancel",
+                        interactionInstructions: "Custom instruction text",
+                        saveButton: "Save"
+                    ))) { croppedImage in
+                        guard let croppedImage else {
+                            return
+                        }
+                        viewModel.putCroppedImage(croppedImage: croppedImage)
+                        displayCrop = false
+                    }
+                }else {
+                    Text("Fotoğraf yüklenemedi")
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                displayCrop = false
+                            }
+                        }
+                }
+            })
             .onReceive(viewModel.$userPhoto) { selectedPhoto in
                 Task { @MainActor in
                     displayedPhoto = selectedPhoto

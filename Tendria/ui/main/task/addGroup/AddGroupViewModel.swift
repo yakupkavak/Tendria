@@ -10,9 +10,9 @@ import _PhotosUI_SwiftUI
 import FirebaseAuth
 
 class AddGroupViewModel: BaseViewModel {
-    @Published var images = [UIImage]()
     @Published var selectedPhoto: PhotosPickerItem?
-    @Published var userPhoto: UIImage? = nil
+    @Published var userBeforeCrop: UIImage? = nil
+    @Published var userPhoto: UIImage? = nil //kullanıcının göreceği görsel
     @Published var textInput = ""
     @Published var success = false
     @Published var loading = false
@@ -21,20 +21,20 @@ class AddGroupViewModel: BaseViewModel {
 
     @MainActor
     func convertDataToImage() {
-        images.removeAll()
         
         guard (selectedPhoto != nil) else { return }
-        
         
         Task{
             if let imageData = try? await selectedPhoto!.loadTransferable(type: Data.self) {
                 if let image = UIImage(data: imageData){
-                    isImageSelected = true
-                    userPhoto = image
+                    userBeforeCrop = image
                 }
             }
         }
-        
+    }
+    func putCroppedImage(croppedImage: UIImage){
+        isImageSelected = true
+        userPhoto = croppedImage
     }
     
     func saveListImage() {
