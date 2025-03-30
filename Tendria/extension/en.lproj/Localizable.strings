@@ -63,6 +63,8 @@
 "invalid_user_id" = "User ID not found. Please check and try again.";
 "invalid_relation_id" = "Relation ID not found. Please check and try again.";
 "cancel" = "Cancel";
+"save" = "Save";
+"crop_text" = "Let's do a sweet crop 😊";
 "notification" = "Notification";
 "notification_subtext" = "Please enable notifications to receive updates and reminders";
 "turn_on" = "Turn on";

@@ -40,13 +40,13 @@ class AddGroupViewModel: BaseViewModel {
         userPhoto = croppedImage
     }
     
-    func saveListImage() {
+    func saveCollectionImage() {
         guard let imageData = userPhoto?.jpegData(compressionQuality: 0.8) else { return }
         guard RelationRepository.shared.relationId != nil else {return} //TODO BU HATA ELE ALINACAK
         getDataCall {
             try await FirestorageManager.shared.addListImage(imageData: imageData)
         } onSuccess: { downloadUrl in
-            self.saveListDocument(downloadUrl: downloadUrl)
+            self.saveCollectionDocument(downloadUrl: downloadUrl)
         } onLoading: {
             self.loading = true
         } onError: { error in
@@ -54,11 +54,11 @@ class AddGroupViewModel: BaseViewModel {
         }
     }
     
-    func saveListDocument(downloadUrl: String) {
+    func saveCollectionDocument(downloadUrl: String) {
         guard let relationId = RelationRepository.shared.relationId else {return}
-        let listDocumentModel = ListDocumentModel(imageUrl: downloadUrl, relationId: relationId, title: titleInput, description: commentInput)
+        let listDocumentModel = CollectionDocumentModel(imageUrl: downloadUrl, relationId: relationId, title: titleInput, description: commentInput)
         getDataCall {
-            try await FirestorageManager.shared.addListDocument(listDocumentModel: listDocumentModel)
+            try await FirestorageManager.shared.addCollectionDocument(collectionDocumentModel: listDocumentModel)
         } onSuccess: { success in
             self.loading = false
             self.success = true

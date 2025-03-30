@@ -45,10 +45,12 @@ struct AddGroupUI: View {
                 tvSubTitle(text: StringKey.note)
                 Spacer()
             }.padding()
-            teText(placeHolder: StringKey.collection_comment, textInput: $viewModel.commentInput).frame(height: Height.xLargeHeight).padding(.horizontal)
+            teText(placeHolder: StringKey.collection_comment, textInput: $viewModel.commentInput).frame(height: Height.xLargeHeight).padding(.horizontal).onTapGesture {
+                
+            }
             
             btnTextGradient(shadow: Radius.shadowSmallRadius, action: {
-                viewModel.saveListImage()
+                viewModel.saveCollectionImage()
             }, text: StringKey.add).frame(width: Width.screenHalfWidth).padding(.top,Padding.horizontalNormalPlusPadding)
         }
             .onChange(of: viewModel.selectedPhoto) { _ in
@@ -57,9 +59,9 @@ struct AddGroupUI: View {
             }.fullScreenCover(isPresented: $displayCrop, content: {
                 if let selectedPhoto = viewModel.userBeforeCrop{
                     SwiftyCropView(imageToCrop: selectedPhoto, maskShape: .rectangle, configuration: SwiftyCropConfiguration.init(maskRadius:260,zoomSensitivity: 10,texts: SwiftyCropConfiguration.Texts(
-                        cancelButton: "Cancel",
-                        interactionInstructions: "Custom instruction text",
-                        saveButton: "Save"
+                        cancelButton: getLocalizedString(StringKey.cancel),
+                        interactionInstructions: getLocalizedString(StringKey.crop_title),
+                        saveButton: getLocalizedString(StringKey.save)
                     ))) { croppedImage in
                         guard let croppedImage else {
                             return

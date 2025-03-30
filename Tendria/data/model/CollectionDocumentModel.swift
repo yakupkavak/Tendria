@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ListDocumentModel: Codable {
+public struct CollectionDocumentModel: Codable {
 
     let imageUrl: String
     let relationId: String

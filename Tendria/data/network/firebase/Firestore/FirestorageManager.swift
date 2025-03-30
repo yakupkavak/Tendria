@@ -45,9 +45,9 @@ class FirestorageManager {
         }
     }
     
-    func addListDocument(listDocumentModel: ListDocumentModel) async throws{
-        let newListRef = database.collection(FireDatabase.LIST_PATH).document()
-        try addDocument(documentRef: newListRef, value: listDocumentModel)
+    func addCollectionDocument(collectionDocumentModel: CollectionDocumentModel) async throws{
+        let newListRef = database.collection(FireDatabase.COLLECTION_PATH).document()
+        try addDocument(documentRef: newListRef, value: collectionDocumentModel)
     }
     
     private func addDocument<T: Encodable>(documentRef: DocumentReference, value: T) throws {
@@ -74,7 +74,7 @@ class FirestorageManager {
     func checkAndAddRelation(relationCode: String) async throws -> String {
         let data = ["relationCode": relationCode]
         do {
-            let result = try await functions.httpsCallable("checkAndAddRelation").call(data)
+            let result = try await functions.httpsCallable(FunctionName.CHECK_AND_ADD_RELATION).call(data)
             if let response = result.data as? [String: Any],
                let relationshipId = response["relationshipId"] as? String {
                 return relationshipId
@@ -163,7 +163,33 @@ class FirestorageManager {
         }
     }
     
-    /*IT ADDED ON CLOUD FUNCTION
+    func fetchCollectionList() async throws -> IsCollectionExist {
+        guard let userId = AuthManager.shared.getUserID() else {
+            throw RelationError.unknown
+        }
+        guard let relationId = try await RelationRepository.shared.getRelationId() else {
+            throw RelationError.unknown
+        }
+        let documentReference = database.collection(FireDatabase.COLLECTION_PATH)
+        do {
+            let querySnapshot = try await documentReference.whereField(FireDatabase.USER_RELATION_ID, isEqualTo: relationId).getDocuments()
+            if(querySnapshot.documents.count == 0){
+                return IsCollectionExist.nonExist
+            }
+            var documentList: [CollectionRowModel] = []
+            for document in querySnapshot.documents{
+                let data = try document.data(as: CollectionRowModel.self)
+                let collectionModel = CollectionRowModel(id: data.id, imageUrl: data.imageUrl, title: data.title, relationId: relationId)
+                documentList.append(collectionModel)
+            }
+            return IsCollectionExist.exist(documentList)
+        }catch {
+            throw error
+        }
+    }
+    
+    //IT ADDED ON CLOUD FUNCTION
+    /*
      func checkRelationCode(relationCode: String) async throws {
      let relationCodeRef = database.collection(FireDatabase.RELATION_CODE_PATH)
      do {
@@ -194,6 +220,7 @@ class FirestorageManager {
      }catch {
      throw error
      }
-     }*/
-    
+     }
+     */
+
 }

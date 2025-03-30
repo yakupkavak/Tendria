@@ -64,6 +64,8 @@
 "invalid_relation_id" = "Relation ID'si bulunamadı. Lütfen kontrol edip tekrar deneyin.";
 "create_relation_first" = "Öncelikle bir ilişkiye sahip olmanız gerekmektedir.";
 "cancel" = "Vazgeç";
+"save" = "Kaydet";
+"crop_text" = "Tatlı bir kırpma yapalım 😊";
 "notification" = "Bildirim";
 "notification_subtext" = "Güncellemeleri ve hatırlatmaları almak için lütfen bildirimleri etkinleştirin";
 "turn_on" = "Açın";

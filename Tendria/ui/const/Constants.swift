@@ -149,6 +149,10 @@ struct Constants {
         static let cancel = LocalizedStringKey("cancel")
         static let ok = LocalizedStringKey("ok")
         
+        /* Crop View */
+        static let save = LocalizedStringKey("save")
+        static let crop_title = LocalizedStringKey("crop_text")
+        
         /*New relation Alert*/
         static let new_relation_title = LocalizedStringKey("new_relation_title")
         static let new_relation_subtext = LocalizedStringKey("new_relation_subtext")
@@ -189,6 +193,7 @@ struct Constants {
         static let BEAR_CAT_DJSON = "bearCatLottie"
         static let FIREWORK_JSON = "havaifişek"
         static let CONFETTI_JSON = "konfeti"
+        static let LOADING_CIRCLE_JSON = "loadingcircle"
     }
     
     struct Icons {
@@ -203,7 +208,7 @@ struct Constants {
     }
     
     struct FirestoreConst {
-        static let LIST_PATH = "List"
+        static let COLLECTION_PATH = "Collection"
         static let RELATION_CODE_PATH = "RelationCode"
         static let RELATIONSHIP_PATH = "Relationship"
         static let USERS_PATH = "Users"
@@ -216,13 +221,13 @@ struct Constants {
     struct FirestorageConst {
         static let LIST_PATH = "list"
         static let TASK_PATH = "task"
-
     }
     struct Numbers{
         static let RANDOM_COUNT = 6
     }
     struct FunctionName{
         static let CHECK_RELATION = "checkRelationCode"
+        static let CHECK_AND_ADD_RELATION = "checkAndAddRelation"
     }
     struct KeychainKeys{
         static let FCM_TOKEN = "fcmToken"
