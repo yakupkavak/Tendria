@@ -25,4 +25,16 @@ enum IsCollectionExist {
     case exist([CollectionRowModel])
     case nonExist
     case noneRelation
+    
+    private var caseName: String {
+        switch self {
+        case .exist: return "exist"
+        case .nonExist: return "nonExist"
+        case .noneRelation: return "noneRelation"
+        }
+    }
+    
+    func hasSameCase(as type: Self) -> Bool {
+        return self.caseName == type.caseName
+    }
 }

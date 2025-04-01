@@ -24,6 +24,14 @@ struct tvFootnote: View {
     }
 }
 
+struct tvBodyline: View {
+    var text: LocalizedStringKey
+    var color: Color
+    var body: some View {
+        tvColorKey(text: text, color: color, weight: .regular, font: .body)
+    }
+}
+
 struct tvSubHeadline: View {
     var text: LocalizedStringKey
     var color: Color

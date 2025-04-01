@@ -49,7 +49,7 @@ struct AddGroupUI: View {
                 
             }
             
-            btnTextGradient(shadow: Radius.shadowSmallRadius, action: {
+            btnTextGradientInfinity(shadow: Radius.shadowSmallRadius, action: {
                 viewModel.saveCollectionImage()
             }, text: StringKey.add).frame(width: Width.screenHalfWidth).padding(.top,Padding.horizontalNormalPlusPadding)
         }

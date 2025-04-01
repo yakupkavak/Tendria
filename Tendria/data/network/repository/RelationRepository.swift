@@ -25,12 +25,12 @@ class RelationRepository{
                 if document.exists {
                     let userRelationId = document.data()?[FireDatabase.USER_RELATION_ID] as? String
                     guard let userRelationId else {
-                        throw RelationError.invalidUserRelation
+                        return nil
                     }
                     relationId = userRelationId
                     return userRelationId
                 }else {
-                    throw RelationError.invalidUserRelation
+                    return nil
                 }
             } catch {
                 throw error

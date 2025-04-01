@@ -36,14 +36,14 @@ struct MakeRelationUI: View {
                 
                 HStack{
                     //Generate Button
-                    btnTextGradient(action: {
+                    btnTextGradientInfinity(action: {
                         viewModel.generateCode()
                     }, text: StringKey.generate_code).frame(width: Width.buttonMediumWidth)
                     
                     Spacer()
                     
                     //Check Button
-                    btnTextGradient(action: {
+                    btnTextGradientInfinity(action: {
                         viewModel.checkCode()
                     }, text: StringKey.enter_code).frame(width: Width.buttonMediumWidth)
                     

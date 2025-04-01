@@ -29,7 +29,7 @@ struct BaseImageAlertUI: View {
                 tvColorKey(text: message, color: .subTextGray, font: .callout).padding(.horizontal,Padding.constantMinusMediumPadding)
                 
                 VStack(spacing: Spacing.normalSpacing) {
-                    btnTextGradient(shadow: 0, action: {
+                    btnTextGradientInfinity(shadow: 0, action: {
                         onSuccess()
                     }, text: onSuccessText)
                     btnTextTransparent(
@@ -71,7 +71,7 @@ struct BaseLottieAlertUI: View {
                 tvColorString(text: message, color: .subTextGray, font: .callout).padding(.horizontal,Padding.constantMinusMediumPadding).padding(Padding.constantXSmallPadding)
                 
                 VStack(spacing: Spacing.normalSpacing) {
-                    btnTextGradient(shadow: 0, action: {
+                    btnTextGradientInfinity(shadow: 0, action: {
                         onSuccess()
                     }, text: onSuccessText,paddingValue: CGFloat(Width.buttonConstantMediumWidth))
                 }

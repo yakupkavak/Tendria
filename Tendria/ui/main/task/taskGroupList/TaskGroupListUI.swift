@@ -10,9 +10,11 @@ import SwiftUI
 struct TaskGroupListUI: View {
     
     @EnvironmentObject var routerTask: RouterTask
+    @EnvironmentObject var routerUser: RouterUserInfo
     @StateObject private var viewModel = TaskGroupListViewModel()
     @Binding var isAddGroupPresented: Bool
-    
+    @Binding var selectedTab: Tab
+
     var body: some View {
         ZStack {
             if viewModel.loading{
@@ -49,7 +51,7 @@ struct TaskGroupListUI: View {
                 case .nonExist:
                     VStack{
                         CustomLottieView(animationFileName: LottieSet.NO_DATA_FOUND_JSON, isDotLottieFile: false, loopMode: .loop).frame(width: Width.screenSeventyWidth)
-                        tvSubHeadline(text: StringKey.noneCollectionTitle, color: .blue500).padding(.bottom)
+                        tvBodyline(text: StringKey.noneCollectionTitle, color: .blue500).padding(.bottom)
                         tvFootnote(text: StringKey.noneCollectionText, color: .brown300,textAlignment: .leading).padding(.horizontal,32)
                         Spacer()
                         HStack {
@@ -60,8 +62,31 @@ struct TaskGroupListUI: View {
                         }
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                 case .noneRelation:
-                    Text("yakup")
+                    VStack{
+                        Spacer()
+                        CustomLottieView(animationFileName: LottieSet.GIVE_HEART, isDotLottieFile: false, loopMode: .loop).frame(width: Width.screenSeventyWidth, height:Height.xxLargePlusHeight)
+                        Spacer()
+                        tvBodyline(text: StringKey.noneRelationTitle, color: .blue500).padding(.bottom)
+                        tvFootnote(text: StringKey.noneRelationText, color: .brown,textAlignment: .leading).padding(.horizontal,Padding.constantLargePadding)
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            btnTextGradientSmall(action: {
+                                self.selectedTab = .user
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                                    routerUser.navigate(to: .makeRelation)
+                                }
+                            }, text: StringKey.create_relation_title)
+                            Spacer()
+                        }.padding(.bottom,Padding.constantLargePadding)
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                 }
+            }
+        }.onAppear {
+            if ((viewModel.success?.hasSameCase(as: .nonExist)) == true){
+                viewModel.fetchCollectionList()
+            }else if ((viewModel.success?.hasSameCase(as: .noneRelation)) == true){
+                viewModel.fetchCollectionList()
             }
         }
     }
@@ -70,5 +95,6 @@ struct TaskGroupListUI: View {
 
 #Preview {
     @State var isAddGroupPresented = false
-    TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented)
+    @State var selectedTab = Tab.task
+    TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented, selectedTab: $selectedTab)
 }

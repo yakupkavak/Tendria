@@ -12,31 +12,32 @@ struct BaseTabViewUI: View {
     @EnvironmentObject private var routerTask: RouterTask
     @EnvironmentObject private var routerUser: RouterUserInfo
     @StateObject private var viewModel = BaseTabViewModel()
+    @State var selectedTab: Tab = .feed
     
     var initialize = NotificationManager.shared
     @State private var isAddGroupPresented = false
-
+    
     var body: some View {
         
-        TabView {
+        TabView(selection: $selectedTab, content: {
             FeedUI()
                 .tabItem {
                     Label("Feed", systemImage: "house.fill")
-                }
+                }.tag(Tab.feed)
             
             HistoryUI()
                 .tabItem {
                     Label("History", systemImage: "clock.fill")
-                }
+                }.tag(Tab.history)
             NavigationStack(path: $routerTask.navPath) {
-                TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented).environmentObject(routerTask).navigationDestination(for: RouterTask.Destination.self) { destination in
+                TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented, selectedTab: $selectedTab).environmentObject(routerTask).environmentObject(routerUser).navigationDestination(for: RouterTask.Destination.self) { destination in
                     switch destination {
                     case .taskGroupList:
-                        TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented).onAppear(){
+                        TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented, selectedTab: $selectedTab).onAppear(){
                             isAddGroupPresented = false
                         }
                     case .addGroupTask:
-                        TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented).onAppear {
+                        TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented, selectedTab: $selectedTab).onAppear {
                             isAddGroupPresented = true
                         }
                     case .taskDetailList:
@@ -48,13 +49,13 @@ struct BaseTabViewUI: View {
                     }
                 }
             }.tabItem {
-                    Label("Task", systemImage: "checkmark.circle.fill")
-                }
+                Label("Task", systemImage: "checkmark.circle.fill")
+            }.tag(Tab.task)
             
             TreeUI()
                 .tabItem {
                     Label("Tree", systemImage: "leaf.fill")
-                }
+                }.tag(Tab.tree)
             NavigationStack(path: $routerUser.navPath) {
                 UserListUI().environmentObject(routerUser).navigationDestination(for: RouterUserInfo.Destination.self) { destination in
                     switch destination {
@@ -71,9 +72,9 @@ struct BaseTabViewUI: View {
                     }
                 }
             }.tabItem {
-                    Label("User", systemImage: "person.fill")
-                }
-        }.onAppear {
+                Label("User", systemImage: "person.fill")
+            }.tag(Tab.user)
+        }) .onAppear {
             print("BaseTabViewUI appeared. ViewModel: \(viewModel)")
         }
         .navigationBarBackButtonHidden()
@@ -86,9 +87,12 @@ struct BaseTabViewUI: View {
         }
     }
 }
-/*
-#Preview {
-    BaseTabViewUI()
+enum Tab {
+    case feed,history,task,tree,user
 }
-
-*/
+/*
+ #Preview {
+ BaseTabViewUI()
+ }
+ 
+ */

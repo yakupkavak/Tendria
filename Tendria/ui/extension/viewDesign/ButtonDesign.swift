@@ -89,7 +89,7 @@ struct btnAddIcon: View {
         }
     }
 }
-struct btnTextGradient: View {
+struct btnTextGradientInfinity: View {
     
     var foregroundColor: Color? = Color.btnForeground
     var shadow: CGFloat? = Radius.shadowConstantRadiud
@@ -103,6 +103,24 @@ struct btnTextGradient: View {
             action()
         } label: {
             tvHeadline(text: text, color: foregroundColor!).frame(maxWidth: .infinity).padding(edgeSet,paddingValue).gradientBackground().clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: shadow!)
+        }
+    }
+}
+struct btnTextGradientSmall: View {
+    
+    var foregroundColor: Color? = Color.btnForeground
+    var shadow: CGFloat? = Radius.shadowConstantRadiud
+    var action: () -> Void
+    var text: LocalizedStringKey
+    var edgeSet: Edge.Set = .all
+    var paddingValue: CGFloat = 16
+    var maxWidth: CGFloat = .infinity
+    
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            tvHeadline(text: text, color: foregroundColor!).fixedSize().padding(edgeSet,paddingValue).gradientBackground().clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: shadow!)
         }
     }
 }

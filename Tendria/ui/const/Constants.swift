@@ -165,6 +165,8 @@ struct Constants {
         static let noneCollectionText = LocalizedStringKey("none_collection_text")
         static let noneMemoryTitle = LocalizedStringKey("none_memory_title")
         static let noneMemoryText = LocalizedStringKey("none_memory_text")
+        static let noneRelationTitle = LocalizedStringKey("none_relation_title")
+        static let noneRelationText = LocalizedStringKey("none_relation_text")
     }
     struct Spacing {
         static let normalSpacing = UIScreen.main.bounds.height * 0.02
@@ -174,6 +176,7 @@ struct Constants {
     struct Padding {
         static let constantMinusMediumPadding = CGFloat(-16)
         static let constantMinusLargePadding = CGFloat(-64)
+        static let constantLargePadding = CGFloat(32)
         static let constantMediumPadding = CGFloat(22)
         static let constantXLargePadding = CGFloat(280)
         static let constantXSmallPadding = CGFloat(4)
@@ -203,6 +206,7 @@ struct Constants {
         static let LOADING_CIRCLE_JSON = "loadingcircle"
         static let NO_DATA_FOUND_JSON = "noDataFound"
         static let HEART_LOADING = "heartloading"
+        static let GIVE_HEART = "giveHeart"
     }
     
     struct Icons {
