@@ -18,8 +18,9 @@ struct BigSizeBoldGrad: View {
 struct tvFootnote: View {
     var text: LocalizedStringKey
     var color: Color
+    var textAlignment: TextAlignment = .center
     var body: some View {
-        tvColorKey(text: text, color: color, weight: .regular, font: .footnote)
+        tvColorKey(text: text, color: color, weight: .regular, font: .footnote,textAlignment: textAlignment)
     }
 }
 

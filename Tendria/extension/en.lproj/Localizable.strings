@@ -74,3 +74,11 @@
 "new_relation_title" = "Your hearts met";
 "new_relation_subtext" = "Love gains meaning through shared memories. Now write down every memory with ${name}.";
 "continue" = "Continue";
+
+//Collection Memory
+"none_collection_title" = "Memories bloom with time... ☘️";
+"none_collection_text" = "You don't have a collection yet, but sweet memories are waiting to be remembered 💞\n
+Create your first collection and open a little window into your shared moments 💚";
+"none_memory_title" = "This collection is waiting for a memory... 🥺";
+"none_memory_text" = "Your collection is ready, but it's still empty like a frame without a photo.\n
+Why not add your first memory and bring this special corner to life? 💖";

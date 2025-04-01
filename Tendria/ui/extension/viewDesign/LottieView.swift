@@ -12,5 +12,5 @@ struct CustomLottieView: View {
 }
 
 #Preview {
-    CustomLottieView(animationFileName: LottieSet.BEAR_CAT_JSON, isDotLottieFile: true, loopMode: LottieLoopMode.loop)
+    CustomLottieView(animationFileName: LottieSet.LOADING_CIRCLE_JSON, isDotLottieFile: true, loopMode: LottieLoopMode.loop)
 }

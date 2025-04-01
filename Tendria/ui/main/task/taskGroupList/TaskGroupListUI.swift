@@ -14,63 +14,54 @@ struct TaskGroupListUI: View {
     @Binding var isAddGroupPresented: Bool
     
     var body: some View {
-        ZStack { // List ve butonu üst üste koyuyoruz
+        ZStack {
             if viewModel.loading{
                 CustomLottieView(animationFileName: LottieSet.LOADING_CIRCLE_JSON, isDotLottieFile: false, loopMode: .loop)
-            }
-            switch viewModel.success {
-            case .exist(let collectionRowList):
-                List {
-                    ForEach(collectionRowList) { collection in
-                        Button {
-                            routerTask.navigate(to: .taskDetailList)
-                        } label: {
-                            TaskRowUI(url: collection.imageUrl, subText: collection.title)
+            }else if let success = viewModel.success{
+                switch success {
+                case .exist(let collectionRowList):
+                    List {
+                        ForEach(collectionRowList) { collection in
+                            Button {
+                                routerTask.navigate(to: .taskDetailList)
+                            } label: {
+                                TaskRowUI(url: collection.imageUrl, subText: collection.title)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.white)
                     }
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.white)
-                }
-                .listStyle(.plain)
-                .scrollContentBackground(.hidden)
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
 
-                VStack {
-                    Spacer()
-                    HStack {
+                    VStack {
                         Spacer()
-                        btnAddIcon(iconName: "plus") {
-                            isAddGroupPresented = true
-                        }.padding()
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-            case .nonExist:
-                List {
-                    ForEach(taskRowList) { collection in
-                        Button {
-                            routerTask.navigate(to: .taskDetailList)
-                        } label: {
-                            TaskRowUI(url: collection.imageUrl, subText: collection.title)
+                        HStack {
+                            Spacer()
+                            btnAddIcon(iconName: "plus") {
+                                isAddGroupPresented = true
+                            }.padding()
                         }
-                        .buttonStyle(PlainButtonStyle())
                     }
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.white)
-                }
-                .listStyle(.plain)
-                .scrollContentBackground(.hidden)
-
-                VStack {
-                    Spacer()
-                    HStack {
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                    
+                case .nonExist:
+                    VStack{
+                        CustomLottieView(animationFileName: LottieSet.NO_DATA_FOUND_JSON, isDotLottieFile: false, loopMode: .loop).frame(width: Width.screenSeventyWidth)
+                        tvSubHeadline(text: StringKey.noneCollectionTitle, color: .blue500).padding(.bottom)
+                        tvFootnote(text: StringKey.noneCollectionText, color: .brown300,textAlignment: .leading).padding(.horizontal,32)
                         Spacer()
-                        btnAddIcon(iconName: "plus") {
-                            isAddGroupPresented = true
-                        }.padding()
-                    }
+                        HStack {
+                            Spacer()
+                            btnAddIcon(iconName: "plus") {
+                                isAddGroupPresented = true
+                            }.padding()
+                        }
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                case .noneRelation:
+                    Text("yakup")
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
             }
         }
     }

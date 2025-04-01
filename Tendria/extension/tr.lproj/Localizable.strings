@@ -65,6 +65,7 @@
 "create_relation_first" = "Öncelikle bir ilişkiye sahip olmanız gerekmektedir.";
 "cancel" = "Vazgeç";
 "save" = "Kaydet";
+
 "crop_text" = "Tatlı bir kırpma yapalım 😊";
 "notification" = "Bildirim";
 "notification_subtext" = "Güncellemeleri ve hatırlatmaları almak için lütfen bildirimleri etkinleştirin";
@@ -75,3 +76,11 @@
 "new_relation_title" = "Kalpleriniz buluştu";
 "new_relation_subtext" = "Aşk, paylaşılan anılarla anlam kazanır. Şimdi her anınızı ${name} ile birlikte yazın.";
 "continue" = "Devam et";
+
+//Collection Memory
+"none_collection_title" = "Anılar biriktikçe güzelleşir... ☘️";
+"none_collection_text" = "Henüz bir koleksiyonun yok ama güzel anılar hep bir yerlerde seni bekliyor 💞\n
+İlk koleksiyonunu oluştur ve birlikte geçen zamanlara minik bir pencere aç 💚";
+"none_memory_title" = "Bu koleksiyon bir anı bekliyor...🥺";
+"none_memory_text" = "Koleksiyonun hazır ama içi henüz boş, tıpkı bir çerçevede fotoğrafı olmayan anı gibi.\n
+İlk anını ekleyerek bu özel köşeyi renklendirmeye ne dersin? 💖";

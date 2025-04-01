@@ -164,11 +164,8 @@ class FirestorageManager {
     }
     
     func fetchCollectionList() async throws -> IsCollectionExist {
-        guard let userId = AuthManager.shared.getUserID() else {
-            throw RelationError.unknown
-        }
         guard let relationId = try await RelationRepository.shared.getRelationId() else {
-            throw RelationError.unknown
+            return IsCollectionExist.noneRelation
         }
         let documentReference = database.collection(FireDatabase.COLLECTION_PATH)
         do {

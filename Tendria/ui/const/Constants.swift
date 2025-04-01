@@ -55,6 +55,7 @@ struct Constants {
         static let buttonWidth = UIScreen.main.bounds.width * 0.6
         static let buttonConstantMediumWidth = 12
         static let screenEightyWidth = UIScreen.main.bounds.width * 0.8
+        static let screenSeventyWidth = UIScreen.main.bounds.width * 0.7
         static let screenHalfWidth = UIScreen.main.bounds.width * 0.5
         static let buttonMediumWidth = UIScreen.main.bounds.width * 0.36
         static let largeWidth = UIScreen.main.bounds.width * 0.1
@@ -158,6 +159,12 @@ struct Constants {
         static let new_relation_subtext = LocalizedStringKey("new_relation_subtext")
         static let new_relation_subtext_string = "new_relation_subtext"
         static let continue_text = LocalizedStringKey("continue")
+        
+        /*Collection and Memory*/
+        static let noneCollectionTitle = LocalizedStringKey("none_collection_title")
+        static let noneCollectionText = LocalizedStringKey("none_collection_text")
+        static let noneMemoryTitle = LocalizedStringKey("none_memory_title")
+        static let noneMemoryText = LocalizedStringKey("none_memory_text")
     }
     struct Spacing {
         static let normalSpacing = UIScreen.main.bounds.height * 0.02
@@ -194,6 +201,8 @@ struct Constants {
         static let FIREWORK_JSON = "havaifişek"
         static let CONFETTI_JSON = "konfeti"
         static let LOADING_CIRCLE_JSON = "loadingcircle"
+        static let NO_DATA_FOUND_JSON = "noDataFound"
+        static let HEART_LOADING = "heartloading"
     }
     
     struct Icons {

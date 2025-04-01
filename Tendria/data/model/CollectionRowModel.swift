@@ -24,4 +24,5 @@ struct CollectionRowModel: Identifiable,Codable{
 enum IsCollectionExist {
     case exist([CollectionRowModel])
     case nonExist
+    case noneRelation
 }

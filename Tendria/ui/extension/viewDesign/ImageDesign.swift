@@ -11,6 +11,7 @@ import SwiftUI
 struct RowURLImage: View {
     
     var imageUrl: String
+    var height: CGFloat = Height.xxLargeHeight
     
     var body: some View {
         AsyncImage(url: URL(string: imageUrl)) { phase in
@@ -19,13 +20,14 @@ struct RowURLImage: View {
                 image
                     .resizable()
                     .scaledToFill()
-                    .frame(height: Height.xxLargeHeight)
+                    .frame(height: height)
                     .clipped()
             case .failure:
-                Text("Görsel yüklenemedi")
-                    .foregroundColor(.red)
+                ShimmerEffectBox()
+                    .frame(height: height)
             case .empty:
-                ProgressView() // Yükleme devam ediyorsa göster
+                ShimmerEffectBox()
+                    .frame(height: height)
             @unknown default:
                 EmptyView()
             }
@@ -75,5 +77,5 @@ struct ImageAsset: View {
 }
 
 #Preview {
-    ImageAsset(uiImageSource: ImageSet.MAKE_RELATION)
+    CustomLottieView(animationFileName: LottieSet.HEART_LOADING, isDotLottieFile: false, loopMode: .autoReverse)
 }
