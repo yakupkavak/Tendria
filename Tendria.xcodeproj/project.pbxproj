@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3756DF952D9D1E600023B0D1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3756DF942D9D1E600023B0D1 /* Kingfisher */; };
 		3772B0092D71AC3A004B3D94 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 3772B0082D71AC3A004B3D94 /* FirebaseMessaging */; };
 		379EA36A2D987D9800E96006 /* SwiftyCrop in Frameworks */ = {isa = PBXBuildFile; productRef = 379EA3692D987D9800E96006 /* SwiftyCrop */; };
 		37D8E0372D42A8E100FF1B6E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E0362D42A8E100FF1B6E /* FirebaseAnalytics */; };
@@ -80,6 +81,7 @@
 				37D8E03B2D42A8E100FF1B6E /* FirebaseAuth in Frameworks */,
 				37DECEDE2D7DA446006B2B3A /* Lottie in Frameworks */,
 				379EA36A2D987D9800E96006 /* SwiftyCrop in Frameworks */,
+				3756DF952D9D1E600023B0D1 /* Kingfisher in Frameworks */,
 				37EE529C2D45476D000A8E60 /* Macaw in Frameworks */,
 				37D8E03F2D42A8E100FF1B6E /* FirebaseCrashlytics in Frameworks */,
 				37D8E0372D42A8E100FF1B6E /* FirebaseAnalytics in Frameworks */,
@@ -155,6 +157,7 @@
 				37DECEDD2D7DA446006B2B3A /* Lottie */,
 				37DECEE52D7E130A006B2B3A /* Lottie-Dynamic */,
 				379EA3692D987D9800E96006 /* SwiftyCrop */,
+				3756DF942D9D1E600023B0D1 /* Kingfisher */,
 			);
 			productName = Tendria;
 			productReference = 374A80FA2D3B8CE300D5F0A4 /* Tendria.app */;
@@ -193,6 +196,7 @@
 				37EE529D2D454F34000A8E60 /* XCRemoteSwiftPackageReference "SVGKit" */,
 				37DECEDC2D7DA446006B2B3A /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				379EA3682D987D9800E96006 /* XCRemoteSwiftPackageReference "SwiftyCrop" */,
+				3756DF932D9D1E600023B0D1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 374A80FB2D3B8CE300D5F0A4 /* Products */;
@@ -453,6 +457,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3756DF932D9D1E600023B0D1 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.1;
+			};
+		};
 		379EA3682D987D9800E96006 /* XCRemoteSwiftPackageReference "SwiftyCrop" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/benedom/SwiftyCrop";
@@ -504,6 +516,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3756DF942D9D1E600023B0D1 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3756DF932D9D1E600023B0D1 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		3772B0082D71AC3A004B3D94 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 37D8E0352D42A8E100FF1B6E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

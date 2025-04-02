@@ -27,7 +27,7 @@ struct TaskGroupListUI: View {
                             Button {
                                 routerTask.navigate(to: .taskDetailList)
                             } label: {
-                                TaskRowUI(url: collection.imageUrl, subText: collection.title)
+                                TaskRowUI(url: collection.imageUrl, subText: collection.title,shouldCancelOnDisappear: true)
                             }
                             .buttonStyle(PlainButtonStyle())
                         }

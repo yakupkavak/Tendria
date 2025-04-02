@@ -18,7 +18,7 @@ struct TaskDetailListUI: View {
                     Button {
                         routerTask.navigate(to: .taskDetail)
                     } label: {
-                        TaskRowUI(url: task.imageUrl, subText: task.title)
+                        TaskRowUI(url: task.imageUrl, subText: task.title, shouldCancelOnDisappear: true)
                     }
                     .buttonStyle(PlainButtonStyle())
                 }

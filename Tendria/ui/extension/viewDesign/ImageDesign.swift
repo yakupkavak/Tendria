@@ -7,13 +7,31 @@
 
 import Foundation
 import SwiftUI
+import Kingfisher
 
 struct RowURLImage: View {
     
     var imageUrl: String
     var height: CGFloat = Height.xxLargeHeight
-    
+    var shouldCancelOnDisappear: Bool
     var body: some View {
+        KFImage(URL(string: imageUrl)!)
+            .resizable()
+            .placeholder {
+                ShimmerEffectBox()
+            }
+            .retry(maxCount: 3, interval: .seconds(5))
+            .onSuccess { r in
+                // r: RetrieveImageResult
+                print("success: \(r)")
+            }
+            .onFailure { e in
+                // e: KingfisherError
+                print("failure: \(e)")
+            }.cancelOnDisappear(shouldCancelOnDisappear)
+            .frame(height: height)
+            .scaledToFit()
+        /*
         AsyncImage(url: URL(string: imageUrl)) { phase in
             switch phase {
             case .success(let image):
@@ -22,9 +40,11 @@ struct RowURLImage: View {
                     .scaledToFill()
                     .frame(height: height)
                     .clipped()
-            case .failure:
+            case .failure(let error):
                 ShimmerEffectBox()
-                    .frame(height: height)
+                    .frame(height: height).onAppear {
+                        print("hata bu -> \(error)")
+                    }
             case .empty:
                 ShimmerEffectBox()
                     .frame(height: height)
@@ -32,6 +52,7 @@ struct RowURLImage: View {
                 EmptyView()
             }
         }
+         */
     }
 }
 
