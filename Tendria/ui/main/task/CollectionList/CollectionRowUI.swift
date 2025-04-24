@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TaskRowUI: View {
+struct CollectionRowUI: View {
     var url: String
     var subText: String
     var shouldCancelOnDisappear: Bool
@@ -20,5 +20,5 @@ struct TaskRowUI: View {
 }
 
 #Preview {
-    TaskRowUI(url: "https://dragonball.guru/wp-content/uploads/2021/03/goku-profile-e1616173641804-400x400.png", subText: "goku", shouldCancelOnDisappear: true)
+    CollectionRowUI(url: "https://dragonball.guru/wp-content/uploads/2021/03/goku-profile-e1616173641804-400x400.png", subText: "goku", shouldCancelOnDisappear: true)
 }

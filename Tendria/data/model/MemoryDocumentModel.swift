@@ -1,16 +1,14 @@
 //
-//  ListDocumentModel.swift
+//  Untitled.swift
 //  Tendria
 //
-//  Created by Yakup Kavak on 11.02.2025.
+//  Created by Yakup Kavak on 2.04.2025.
 //
 
-import Foundation
 import FirebaseCore
 
-public struct CollectionDocumentModel: Codable {
-
-    let imageUrl: String
+struct MemoryDocumentModel: Codable{
+    let imageUrls: [String]
     let relationId: String
     let title: String
     let userOneDescription: String?
@@ -20,7 +18,7 @@ public struct CollectionDocumentModel: Codable {
     let createDate: Timestamp
 
   enum CodingKeys: String, CodingKey {
-    case imageUrl
+    case imageUrls
     case title
     case relationId
     case userOneDescription

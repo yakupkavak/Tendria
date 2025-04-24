@@ -8,8 +8,9 @@
 import Foundation
 import _PhotosUI_SwiftUI
 import FirebaseAuth
+import FirebaseCore
 
-class AddGroupViewModel: BaseViewModel {
+class AddCollectionViewModel: BaseViewModel {
     @Published var selectedPhoto: PhotosPickerItem?
     @Published var userBeforeCrop: UIImage? = nil
     @Published var userPhoto: UIImage? = nil //kullanıcının göreceği görsel
@@ -44,7 +45,7 @@ class AddGroupViewModel: BaseViewModel {
         guard let imageData = userPhoto?.jpegData(compressionQuality: 0.8) else { return }
         guard RelationRepository.shared.relationId != nil else {return} //TODO BU HATA ELE ALINACAK
         getDataCall {
-            try await FirestorageManager.shared.addListImage(imageData: imageData)
+            try await FirestorageManager.shared.addCollectionImage(imageData: imageData)
         } onSuccess: { downloadUrl in
             self.saveCollectionDocument(downloadUrl: downloadUrl)
         } onLoading: {
@@ -55,8 +56,9 @@ class AddGroupViewModel: BaseViewModel {
     }
     
     func saveCollectionDocument(downloadUrl: String) {
-        guard let relationId = RelationRepository.shared.relationId else {return}
-        let listDocumentModel = CollectionDocumentModel(imageUrl: downloadUrl, relationId: relationId, title: titleInput, description: commentInput)
+        guard RelationRepository.shared.relationId != nil else {return}
+        //TODO USER1 IMAGA EKLENECEK
+        let listDocumentModel = CollectionDocumentModel(imageUrl: downloadUrl, relationId: downloadUrl, title: titleInput, userOneDescription: commentInput, userTwoDescription: nil, userOneImage: nil, userTwoImage: nil, createDate: Timestamp(date: Date()))
         getDataCall {
             try await FirestorageManager.shared.addCollectionDocument(collectionDocumentModel: listDocumentModel)
         } onSuccess: { success in
@@ -68,5 +70,4 @@ class AddGroupViewModel: BaseViewModel {
             self.error = error?.localizedDescription ?? ""
         }
     }
-
 }

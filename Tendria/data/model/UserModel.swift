@@ -10,12 +10,12 @@ import Foundation
 
 public struct UserModel: Codable {
     
-    let imageUrl: String
+    let profileImageUrl: String
     let relationId: String
     let userId: String?
     
     enum CodingKeys: String, CodingKey {
-        case imageUrl
+        case profileImageUrl
         case relationId
         case userId
     }

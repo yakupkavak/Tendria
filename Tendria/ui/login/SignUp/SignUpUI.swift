@@ -22,16 +22,16 @@ struct SignUpUI: View {
                 BigSizeBoldGrad(text: StringKey.create_account)
 
                 VStack(spacing: Height.mediumHeight) {
-                    tfIcon(iconSystemName: IconName.envelope, placeHolder: StringKey.email, textInput: $viewModel.email)
-                    tfIcon(iconSystemName: IconName.lock, placeHolder: StringKey.password, textInput: $viewModel.password)
-                    tfIcon(iconSystemName: IconName.person, placeHolder: StringKey.full_name, textInput: $viewModel.fullName)
+                    tfIcon(iconSystemName: Icons.envelope, placeHolder: StringKey.email, textInput: $viewModel.email)
+                    tfIcon(iconSystemName: Icons.lock, placeHolder: StringKey.password, textInput: $viewModel.password)
+                    tfIcon(iconSystemName: Icons.person, placeHolder: StringKey.full_name, textInput: $viewModel.fullName)
                     tfIcon(iconSystemName: "person.fill", placeHolder: StringKey.username, textInput: $viewModel.userName)
                 }
                 
                 HStack(spacing: Height.xSmallHeight){
                     Spacer()
                     tvHeadline(text: StringKey.create, color: .blue500)
-                    btnSystemIconGradient(iconSystemName: IconName.right_arrow, color: .white) {
+                    btnSystemIconGradient(iconSystemName: Icons.right_arrow, color: .white) {
                         viewModel.signUpEmail()
                     }
                 }
@@ -44,12 +44,12 @@ struct SignUpUI: View {
                 }
                 
                 HStack(spacing: Height.xSmallHeight){
-                    btnSignIcon(iconName: IconName.appleIcon) {
+                    btnSignIcon(iconName: Icons.appleIcon) {
                         Task{
                             viewModel.signInWithApple()
                         }
                     }
-                    btnSignIcon(iconName: IconName.googleIcon) {
+                    btnSignIcon(iconName: Icons.googleIcon) {
                         Task{
                             viewModel.signInWithGoogle()
                         }

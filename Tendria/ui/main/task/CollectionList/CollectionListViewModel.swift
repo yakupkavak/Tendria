@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TaskGroupListViewModel: BaseViewModel{
+class CollectionListViewModel: BaseViewModel{
     @Published var success: IsCollectionExist?
     @Published var loading = true
     @Published var error = ""

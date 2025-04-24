@@ -75,6 +75,49 @@ struct teText: View {
             .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
     }
 }
+struct DatePickerView: View {
+    @Binding var selectedDate: Date
+    
+    var body: some View {
+        VStack {
+            DatePicker("", selection: $selectedDate, displayedComponents: [.date]).labelsHidden()
+        }
+    }
+}
+struct LocalizedDatePicker: View {
+    @Binding var selectedDate: Date
+    var stringKey: LocalizedStringKey
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            tvSubTitle(text: stringKey)
+            
+            HStack {
+                Text(formatDateLocalized(selectedDate))
+                    .foregroundColor(.primary)
+                Spacer()
+                Image(systemName: "calendar")
+                    .foregroundColor(.gray)
+            }
+            .padding()
+            .background(Color(UIColor.secondarySystemBackground))
+            .cornerRadius(12)
+            
+            DatePicker(" ", selection: $selectedDate, displayedComponents: [.date])
+                .labelsHidden()
+                .datePickerStyle(.compact)
+        }
+        .padding()
+    }
+}
+
+private func formatDateLocalized(_ date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.locale = Locale.current // sistem diline göre
+    formatter.dateStyle = .medium     // örneğin: 14 Nis 2025, 14 avr. 2025, Apr 14, 2025
+    formatter.timeStyle = .short      // örneğin: 13:45, 1:45 PM, 오후 1:45
+    return formatter.string(from: date)
+}
     
 struct tfTextCopy: View {
     
@@ -129,6 +172,8 @@ struct tfTextCopy: View {
 }
 
 #Preview {
+    @State var date = Date()
+    /*
     @State var text: String = "SwiftUI Harika!"
     @State var text2: String = ""
     @State var edit: Bool = true
@@ -136,5 +181,6 @@ struct tfTextCopy: View {
     teText(placeHolder: StringKey.add_collection, textInput: $text2)
 
     tfTextCopy(placeHolder: StringValues.RELATION_CODE_PLACEHOLDER, textInput: $text, showCopyButton: $show, isEditable: $edit)
-    
+    */
+    LocalizedDatePicker(selectedDate: $date, stringKey: StringKey.select_date)
 }

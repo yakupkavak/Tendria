@@ -15,7 +15,7 @@ struct TendriaApp: App {
     
     @UIApplicationDelegateAdaptor(CustomAppDelegate.self) var delegate
     
-    @StateObject private var routerTask = RouterTask()
+    @StateObject private var routerTask = RouterMemory()
     @StateObject private var routerUser = RouterUserInfo()
     @StateObject private var authManager = AuthManager.shared
 

@@ -10,7 +10,6 @@ import SwiftUI
 import Kingfisher
 
 struct RowURLImage: View {
-    
     var imageUrl: String
     var height: CGFloat = Height.xxLargeHeight
     var shouldCancelOnDisappear: Bool
@@ -30,29 +29,18 @@ struct RowURLImage: View {
                 print("failure: \(e)")
             }.cancelOnDisappear(shouldCancelOnDisappear)
             .frame(height: height)
+    }
+}
+
+struct UploadImageSequenceUI: View {
+    var uiImage: UIImage
+    var maxHeight: CGFloat
+    var maxWidth: CGFloat
+    
+    var body: some View {
+        Image(uiImage: uiImage).resizable()
+            .frame(width: maxWidth,height: maxHeight).clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius))
             .scaledToFit()
-        /*
-        AsyncImage(url: URL(string: imageUrl)) { phase in
-            switch phase {
-            case .success(let image):
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: height)
-                    .clipped()
-            case .failure(let error):
-                ShimmerEffectBox()
-                    .frame(height: height).onAppear {
-                        print("hata bu -> \(error)")
-                    }
-            case .empty:
-                ShimmerEffectBox()
-                    .frame(height: height)
-            @unknown default:
-                EmptyView()
-            }
-        }
-         */
     }
 }
 

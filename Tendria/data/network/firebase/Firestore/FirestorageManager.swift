@@ -18,18 +18,18 @@ class FirestorageManager {
     private let functions = Functions.functions()
     private let database = Firestore.firestore()
     let storageRef: StorageReference
-    let taskRef: StorageReference
-    let listRef: StorageReference
+    let memoryRef: StorageReference
+    let collectionRef: StorageReference
     
     private init() {
         self.storageRef = storage.reference()
-        self.taskRef = storageRef.child(FireStorage.TASK_PATH)
-        self.listRef = storageRef.child(FireStorage.LIST_PATH)
+        self.memoryRef = storageRef.child(FireStorage.MEMORY_PATH)
+        self.collectionRef = storageRef.child(FireStorage.COLLECTION_PATH)
     }
     
-    func addListImage(imageData: Data) async throws -> String {
+    func addCollectionImage(imageData: Data) async throws -> String {
         let uniqueFileName = UUID().uuidString + ".jpg"
-        let listImageRef = listRef.child("\(uniqueFileName)")
+        let listImageRef = collectionRef.child("\(uniqueFileName)")
         
         do {
             let uploadTask = try await listImageRef.putDataAsync(imageData){ progress in
@@ -45,12 +45,41 @@ class FirestorageManager {
         }
     }
     
-    func addCollectionDocument(collectionDocumentModel: CollectionDocumentModel) async throws{
-        let newListRef = database.collection(FireDatabase.COLLECTION_PATH).document()
-        try addDocument(documentRef: newListRef, value: collectionDocumentModel)
+    func addMemoryImages(imageDatas: [Data]) async throws -> [String] {
+        return try await withThrowingTaskGroup(of: String.self) { group in
+            for image in imageDatas {
+                group.addTask {
+                    let uniqueFileName = UUID().uuidString + ".jpg"
+                    let listImageRef = self.memoryRef.child("\(uniqueFileName)")
+                    let uploadTask = try await listImageRef.putDataAsync(image){ progress in
+                        print("Upload progress: \(progress?.fractionCompleted ?? 0)")
+                    }
+                    let uploadUrl = try await listImageRef.downloadURL()
+                    print("Upload successful, metadata: \(uploadTask)")
+                    return uploadUrl.absoluteString
+                }
+            }
+            var returnList = [String]()
+            
+            for try await imageUrl in group {
+                returnList.append(imageUrl)
+            }
+            
+            return returnList
+        }
     }
     
-    private func addDocument<T: Encodable>(documentRef: DocumentReference, value: T) throws {
+    func addMemoryDocument(memoryDocumentModel: MemoryDocumentModel) async throws{
+        let newListRef = database.collection(FireDatabase.MEMORY_PATH).document()
+        try await addDocument(documentRef: newListRef, value: memoryDocumentModel)
+    }
+    
+    func addCollectionDocument(collectionDocumentModel: CollectionDocumentModel) async throws{
+        let newListRef = database.collection(FireDatabase.COLLECTION_PATH).document()
+        try await addDocument(documentRef: newListRef, value: collectionDocumentModel)
+    }
+    
+    private func addDocument<T: Encodable>(documentRef: DocumentReference, value: T) async throws {
         do {
             try documentRef.setData(from: value)
             print("Document added successfully")
@@ -67,7 +96,7 @@ class FirestorageManager {
             return nil
         }
         let newDocument = RelationCodeModel(firstUserId: currentUserId, secondUserId: nil, relationCode: randomCode, createDate: Timestamp(date: Date()))
-        try addDocument(documentRef: relationCodeRef, value: newDocument)
+        try await addDocument(documentRef: relationCodeRef, value: newDocument)
         return randomCode
     }
     
@@ -114,6 +143,7 @@ class FirestorageManager {
             }
         }
     }
+    
     func configureUserLanguage(userID: String,preferLanguage: String? = nil){
         guard let preferLanguage = preferLanguage else {
             //DEFAULT USERS LANGUAGE
@@ -152,7 +182,7 @@ class FirestorageManager {
         do {
             let document = try await documentReference.getDocument()
             if document.exists {
-                let relationId = document.data()?[FireDatabase.USER_RELATION_ID] as? String
+                let relationId = document.data()?[FireDatabase.RELATION_ID] as? String
                 print(document)
                 return !(relationId?.isEmpty ?? true)
             }else {
@@ -169,17 +199,39 @@ class FirestorageManager {
         }
         let documentReference = database.collection(FireDatabase.COLLECTION_PATH)
         do {
-            let querySnapshot = try await documentReference.whereField(FireDatabase.USER_RELATION_ID, isEqualTo: relationId).getDocuments()
+            let querySnapshot = try await documentReference.whereField(FireDatabase.RELATION_ID, isEqualTo: relationId).getDocuments()
             if(querySnapshot.documents.count == 0){
                 return IsCollectionExist.nonExist
             }
-            var documentList: [CollectionRowModel] = []
+            var documentList: [CollectionFetchModel] = []
             for document in querySnapshot.documents{
-                let data = try document.data(as: CollectionRowModel.self)
-                let collectionModel = CollectionRowModel(id: data.id, imageUrl: data.imageUrl, title: data.title, relationId: relationId)
+                let data = try document.data(as: CollectionFetchModel.self)
+                let collectionModel = CollectionFetchModel(id: data.id, imageUrl: data.imageUrl, title: data.title, relationId: data.relationId, userOneDescription: data.userOneDescription, userTwoDescription: data.userTwoDescription, userOneImage: data.userOneImage, userTwoImage: data.userTwoImage, createDate: data.createDate)
                 documentList.append(collectionModel)
             }
             return IsCollectionExist.exist(documentList)
+        }catch {
+            throw error
+        }
+    }
+    
+    func fetchMemoryList(collectionId: String) async throws -> FetchDataList<MemoryFetchModel> {
+        guard let relationId = try await RelationRepository.shared.getRelationId() else {
+            throw RelationError.invalidUserRelation
+        }
+        let documentReference = database.collection(FireDatabase.MEMORY_PATH)
+        do {
+            let querySnapshot = try await documentReference.whereField(FireDatabase.COLLECTION_ID, isEqualTo: collectionId).getDocuments()
+            if(querySnapshot.documents.count == 0){
+                return FetchDataList.nonExist
+            }
+            var documentList: [MemoryFetchModel] = []
+            for document in querySnapshot.documents{
+                let data = try document.data(as: MemoryFetchModel.self)
+                let memoryModel = MemoryFetchModel(id: data.id, imageUrl: data.imageUrl, title: data.title, userOneDescription: data.userOneDescription, userTwoDescription: data.userTwoDescription, userOneImage: data.userOneImage, userTwoImage: data.userTwoImage, createDate: data.createDate)
+                documentList.append(memoryModel)
+            }
+            return FetchDataList.exist(documentList)
         }catch {
             throw error
         }

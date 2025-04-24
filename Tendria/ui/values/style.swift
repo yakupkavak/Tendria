@@ -47,6 +47,14 @@ struct tvHeadline: View {
         tvColorKey(text: text, color: color, weight: .bold, font: .title3)
     }
 }
+
+struct tvHeadlineString: View {
+    var text: String
+    var color: Color
+    var body: some View {
+        tvColorKeyString(text: text, color: color, weight: .bold, font: .title3)
+    }
+}
 struct tvSubTitle: View {
     var text: LocalizedStringKey
     var body: some View {

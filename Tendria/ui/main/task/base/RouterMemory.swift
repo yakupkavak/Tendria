@@ -8,15 +8,15 @@
 import Foundation
 import SwiftUI
 
-final class RouterTask: ObservableObject {
+final class RouterMemory: ObservableObject {
     
     public enum Destination: Codable, Hashable {
         //Group List
-        case taskGroupList
-        case addGroupTask
-        case taskDetailList
-        case taskDetail
-        case addTaskDetail
+        case collectionList
+        case addCollection
+        case memoryList(collection: CollectionFetchModel)
+        case memoryDetail
+        case addMemory
     }
     
     @Published var navPath = NavigationPath()

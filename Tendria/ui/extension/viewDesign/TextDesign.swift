@@ -61,3 +61,19 @@ struct tvColorKey: View {
             .multilineTextAlignment(textAlignment!)
     }
 }
+
+struct tvColorKeyString: View {
+    var text: String
+    var color: Color
+    var weight: Font.Weight? = .regular
+    var font: Font
+    var textAlignment: TextAlignment? = .center
+    
+    var body: some View {
+        Text(text)
+            .font(font)
+            .fontWeight(weight)
+            .foregroundColor(color)
+            .multilineTextAlignment(textAlignment!)
+    }
+}

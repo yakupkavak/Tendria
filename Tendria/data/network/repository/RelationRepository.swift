@@ -23,7 +23,7 @@ class RelationRepository{
             do {
                 let document = try await documentReference.getDocument()
                 if document.exists {
-                    let userRelationId = document.data()?[FireDatabase.USER_RELATION_ID] as? String
+                    let userRelationId = document.data()?[FireDatabase.RELATION_ID] as? String
                     guard let userRelationId else {
                         return nil
                     }

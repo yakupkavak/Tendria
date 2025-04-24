@@ -87,3 +87,10 @@
 "none_relation_title" = "Kalpler hazır, ama henüz el ele değil... 💕";
 "none_relation_text" = "Sen buradasın, o da bir yerlerde... Ama henüz burada buluşamadınız. 💚\n
 Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
+
+/*Add Memory*/
+"add_memory" = "Hatıranızı ekle";
+"date" = "Tarih";
+"memory_name" = "Hatıranızın adı";
+"memory_comment" = "Hatıranız hakkında not ekleyin...";
+"select_date" = "Tarih seçin";

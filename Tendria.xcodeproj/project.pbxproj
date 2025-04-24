@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3756DF952D9D1E600023B0D1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3756DF942D9D1E600023B0D1 /* Kingfisher */; };
 		3772B0092D71AC3A004B3D94 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 3772B0082D71AC3A004B3D94 /* FirebaseMessaging */; };
+		379B39932D9D65B600D489D1 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 379B39922D9D65B600D489D1 /* Lottie */; };
 		379EA36A2D987D9800E96006 /* SwiftyCrop in Frameworks */ = {isa = PBXBuildFile; productRef = 379EA3692D987D9800E96006 /* SwiftyCrop */; };
 		37D8E0372D42A8E100FF1B6E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E0362D42A8E100FF1B6E /* FirebaseAnalytics */; };
 		37D8E0392D42A8E100FF1B6E /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E0382D42A8E100FF1B6E /* FirebaseAppCheck */; };
@@ -22,7 +23,6 @@
 		37D8E0492D42A8E100FF1B6E /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E0482D42A8E100FF1B6E /* FirebaseRemoteConfig */; };
 		37D8E04B2D42A8E100FF1B6E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E04A2D42A8E100FF1B6E /* FirebaseStorage */; };
 		37D8E04D2D42A8E100FF1B6E /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E04C2D42A8E100FF1B6E /* FirebaseStorageCombine-Community */; };
-		37DECEDE2D7DA446006B2B3A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 37DECEDD2D7DA446006B2B3A /* Lottie */; };
 		37EE529C2D45476D000A8E60 /* Macaw in Frameworks */ = {isa = PBXBuildFile; productRef = 37EE529B2D45476D000A8E60 /* Macaw */; };
 		37EE529F2D454F34000A8E60 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37EE529E2D454F34000A8E60 /* SVGKit */; };
 		37EE52A12D454F34000A8E60 /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 37EE52A02D454F34000A8E60 /* SVGKitSwift */; };
@@ -79,8 +79,8 @@
 				37F81FCB2D4540AB000EA4BD /* GoogleSignIn in Frameworks */,
 				37D8E0472D42A8E100FF1B6E /* FirebaseFunctions in Frameworks */,
 				37D8E03B2D42A8E100FF1B6E /* FirebaseAuth in Frameworks */,
-				37DECEDE2D7DA446006B2B3A /* Lottie in Frameworks */,
 				379EA36A2D987D9800E96006 /* SwiftyCrop in Frameworks */,
+				379B39932D9D65B600D489D1 /* Lottie in Frameworks */,
 				3756DF952D9D1E600023B0D1 /* Kingfisher in Frameworks */,
 				37EE529C2D45476D000A8E60 /* Macaw in Frameworks */,
 				37D8E03F2D42A8E100FF1B6E /* FirebaseCrashlytics in Frameworks */,
@@ -154,10 +154,9 @@
 				37EE529E2D454F34000A8E60 /* SVGKit */,
 				37EE52A02D454F34000A8E60 /* SVGKitSwift */,
 				3772B0082D71AC3A004B3D94 /* FirebaseMessaging */,
-				37DECEDD2D7DA446006B2B3A /* Lottie */,
-				37DECEE52D7E130A006B2B3A /* Lottie-Dynamic */,
 				379EA3692D987D9800E96006 /* SwiftyCrop */,
 				3756DF942D9D1E600023B0D1 /* Kingfisher */,
+				379B39922D9D65B600D489D1 /* Lottie */,
 			);
 			productName = Tendria;
 			productReference = 374A80FA2D3B8CE300D5F0A4 /* Tendria.app */;
@@ -194,9 +193,9 @@
 				37F81FC92D4540AB000EA4BD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				37EE529A2D45476D000A8E60 /* XCRemoteSwiftPackageReference "Macaw" */,
 				37EE529D2D454F34000A8E60 /* XCRemoteSwiftPackageReference "SVGKit" */,
-				37DECEDC2D7DA446006B2B3A /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				379EA3682D987D9800E96006 /* XCRemoteSwiftPackageReference "SwiftyCrop" */,
 				3756DF932D9D1E600023B0D1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				379B39912D9D65B600D489D1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 374A80FB2D3B8CE300D5F0A4 /* Products */;
@@ -465,6 +464,14 @@
 				minimumVersion = 8.3.1;
 			};
 		};
+		379B39912D9D65B600D489D1 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.1;
+			};
+		};
 		379EA3682D987D9800E96006 /* XCRemoteSwiftPackageReference "SwiftyCrop" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/benedom/SwiftyCrop";
@@ -479,14 +486,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.7.0;
-			};
-		};
-		37DECEDC2D7DA446006B2B3A /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.5.1;
 			};
 		};
 		37EE529A2D45476D000A8E60 /* XCRemoteSwiftPackageReference "Macaw" */ = {
@@ -525,6 +524,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37D8E0352D42A8E100FF1B6E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		379B39922D9D65B600D489D1 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 379B39912D9D65B600D489D1 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		379EA3692D987D9800E96006 /* SwiftyCrop */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -590,16 +594,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37D8E0352D42A8E100FF1B6E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
-		};
-		37DECEDD2D7DA446006B2B3A /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37DECEDC2D7DA446006B2B3A /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-		37DECEE52D7E130A006B2B3A /* Lottie-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37DECEDC2D7DA446006B2B3A /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = "Lottie-Dynamic";
 		};
 		37EE529B2D45476D000A8E60 /* Macaw */ = {
 			isa = XCSwiftPackageProductDependency;

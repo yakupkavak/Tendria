@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-typealias Padding = Constants.Padding
 extension View {
     func normalShadow() -> some View {
         self.shadow(color: Color.black.opacity(0.2), radius: Constants.Radius.shadowRadius, x: 0, y: 5)

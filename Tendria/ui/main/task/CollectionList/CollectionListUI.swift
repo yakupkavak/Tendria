@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct TaskGroupListUI: View {
+struct CollectionListUI: View {
     
-    @EnvironmentObject var routerTask: RouterTask
+    @EnvironmentObject var routerTask: RouterMemory
     @EnvironmentObject var routerUser: RouterUserInfo
-    @StateObject private var viewModel = TaskGroupListViewModel()
-    @Binding var isAddGroupPresented: Bool
+    @StateObject private var viewModel = CollectionListViewModel()
+    @Binding var isAddCollectionPresented: Bool
     @Binding var selectedTab: Tab
 
     var body: some View {
@@ -25,9 +25,9 @@ struct TaskGroupListUI: View {
                     List {
                         ForEach(collectionRowList) { collection in
                             Button {
-                                routerTask.navigate(to: .taskDetailList)
+                                routerTask.navigate(to: .memoryList(collection: collection))
                             } label: {
-                                TaskRowUI(url: collection.imageUrl, subText: collection.title,shouldCancelOnDisappear: true)
+                                CollectionRowUI(url: collection.imageUrl, subText: collection.title,shouldCancelOnDisappear: true)
                             }
                             .buttonStyle(PlainButtonStyle())
                         }
@@ -42,7 +42,7 @@ struct TaskGroupListUI: View {
                         HStack {
                             Spacer()
                             btnAddIcon(iconName: "plus") {
-                                isAddGroupPresented = true
+                                isAddCollectionPresented = true
                             }.padding()
                         }
                     }
@@ -57,14 +57,14 @@ struct TaskGroupListUI: View {
                         HStack {
                             Spacer()
                             btnAddIcon(iconName: "plus") {
-                                isAddGroupPresented = true
+                                isAddCollectionPresented = true
                             }.padding()
                         }
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                 case .noneRelation:
                     VStack{
                         Spacer()
-                        CustomLottieView(animationFileName: LottieSet.GIVE_HEART, isDotLottieFile: false, loopMode: .loop).frame(width: Width.screenSeventyWidth, height:Height.xxLargePlusHeight)
+                        CustomLottieView(animationFileName: LottieSet.GIVE_HEART, isDotLottieFile: false, loopMode: .loop).frame(width: Width.screenSeventyWidth, height:Height.xxxLargeHeight)
                         Spacer()
                         tvBodyline(text: StringKey.noneRelationTitle, color: .blue500).padding(.bottom)
                         tvFootnote(text: StringKey.noneRelationText, color: .brown,textAlignment: .leading).padding(.horizontal,Padding.constantLargePadding)
@@ -96,5 +96,5 @@ struct TaskGroupListUI: View {
 #Preview {
     @State var isAddGroupPresented = false
     @State var selectedTab = Tab.task
-    TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented, selectedTab: $selectedTab)
+    CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab)
 }

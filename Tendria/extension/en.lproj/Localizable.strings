@@ -86,4 +86,9 @@ Why not add your first memory and bring this special corner to life? 💖";
 "none_relation_text" = "You’re on your journey, but there’s no shared path just yet 💚\n
 Invite your partner and begin crafting memories together 💫";
 
-/** Tab title*/
+/** Add Memory*/
+"add_memory" = "Add new memory";
+"date" = "Date";
+"memory_name" = "Memory name";
+"memory_comment" = "Write about this memory...";
+"select_date" = "Select date";

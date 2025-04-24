@@ -21,6 +21,5 @@ class UserManager: ObservableObject {
             return
         }
         FirestorageManager.shared
-        
     }
 }

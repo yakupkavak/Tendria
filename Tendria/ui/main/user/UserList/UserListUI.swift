@@ -22,11 +22,11 @@ struct UserListUI: View {
                 // Menü Grupları
                 VStack(spacing: Height.xSmallHeight) {
                     MenuSection(items: [
-                        MenuItem(icon: IconName.person, title: StringKey.personal_info,onClick:{ router.navigate(to: .userInfo)}),
+                        MenuItem(icon: Icons.person, title: StringKey.personal_info,onClick:{ router.navigate(to: .userInfo)}),
                     ])
                     
                     MenuSection(items: [
-                        MenuItem(icon: IconName.heart, title: StringKey.make_relation
+                        MenuItem(icon: Icons.heart, title: StringKey.make_relation
                                  ,onClick:{
                                      print(viewModel.isRelationExist)
                                      if(viewModel.isRelationExist) {

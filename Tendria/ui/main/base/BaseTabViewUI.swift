@@ -9,13 +9,14 @@ import SwiftUI
 
 struct BaseTabViewUI: View {
     
-    @EnvironmentObject private var routerTask: RouterTask
+    @EnvironmentObject private var routerTask: RouterMemory
     @EnvironmentObject private var routerUser: RouterUserInfo
     @StateObject private var viewModel = BaseTabViewModel()
     @State var selectedTab: Tab = .feed
     
     var initialize = NotificationManager.shared
     @State private var isAddGroupPresented = false
+    @State private var isAddMemoryPresented = false
     
     var body: some View {
         
@@ -30,22 +31,22 @@ struct BaseTabViewUI: View {
                     Label("History", systemImage: "clock.fill")
                 }.tag(Tab.history)
             NavigationStack(path: $routerTask.navPath) {
-                TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented, selectedTab: $selectedTab).environmentObject(routerTask).environmentObject(routerUser).navigationDestination(for: RouterTask.Destination.self) { destination in
+                CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab).environmentObject(routerTask).environmentObject(routerUser).navigationDestination(for: RouterMemory.Destination.self) { destination in
                     switch destination {
-                    case .taskGroupList:
-                        TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented, selectedTab: $selectedTab).onAppear(){
+                    case .collectionList:
+                        CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab).onAppear(){
                             isAddGroupPresented = false
                         }
-                    case .addGroupTask:
-                        TaskGroupListUI(isAddGroupPresented: $isAddGroupPresented, selectedTab: $selectedTab).onAppear {
+                    case .addCollection:
+                        CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab).onAppear {
                             isAddGroupPresented = true
                         }
-                    case .taskDetailList:
-                        TaskDetailListUI()
-                    case .taskDetail:
+                    case .memoryList(let data):
+                        MemoryListUI(collectionData: data, isAddMemoryPresented: $isAddMemoryPresented)
+                    case .memoryDetail:
                         TaskDetailUI()
-                    case .addTaskDetail:
-                        AddTaskUI()
+                    case .addMemory:
+                        AddMemoryUI(isAddMemoryPresented: $isAddMemoryPresented)
                     }
                 }
             }.tabItem {
@@ -83,7 +84,12 @@ struct BaseTabViewUI: View {
             viewModel.onSuccessClick()
         }, messageText: viewModel.alertMessage)
         .fullScreenCover(isPresented: $isAddGroupPresented) {
-            AddGroupUI(isAddGroupPresented: $isAddGroupPresented)
+            AddCollectionUI(isAddCollectionPresented: $isAddGroupPresented)
+        }
+        .fullScreenCover(isPresented: $isAddMemoryPresented) {
+            AddMemoryUI(isAddMemoryPresented: $isAddMemoryPresented)
+            
+            
         }
     }
 }

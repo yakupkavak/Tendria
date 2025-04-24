@@ -9,10 +9,10 @@ import SwiftUI
 import PhotosUI
 import SwiftyCrop
 
-struct AddGroupUI: View {
+struct AddCollectionUI: View {
     
-    @Binding var isAddGroupPresented: Bool
-    @StateObject var viewModel = AddGroupViewModel()
+    @Binding var isAddCollectionPresented: Bool
+    @StateObject var viewModel = AddCollectionViewModel()
     @State private var displayedPhoto: UIImage? = nil
     @State private var displayCrop = false
     
@@ -22,7 +22,7 @@ struct AddGroupUI: View {
         VStack{
             HStack{
                 btnSystemIconTransparent(iconSystemName: "chevron.left", color: Color.black) {
-                    isAddGroupPresented = false
+                    isAddCollectionPresented = false
                 }
                 tvHeadline(text: StringKey.add_collection, color: Color.blue500)
                 Spacer()
@@ -32,7 +32,7 @@ struct AddGroupUI: View {
                 selection: $viewModel.selectedPhoto,
                 matching: .images
             ) {
-                UploadImageUI(uiImage: displayedPhoto ?? UIImage(named: IconName.imageUploadIcon) ?? UIImage(), height: Height.xxLargePlusHeight, width: Width.screenEightyWidth, unSelectedHeight: Height.xxLargeHeight, isImageSelected: $viewModel.isImageSelected)
+                UploadImageUI(uiImage: displayedPhoto ?? UIImage(named: Icons.imageUploadIcon) ?? UIImage(), height: Height.xxxLargeHeight, width: Width.screenEightyWidth, unSelectedHeight: Height.xxLargeHeight, isImageSelected: $viewModel.isImageSelected)
                 
             }.padding(.top, viewModel.isImageSelected ? 0 : Padding.horizontalNormalPlusPadding).padding(.bottom,viewModel.isImageSelected ? 0 : Padding.horizontalNormalPadding)
             HStack{
@@ -89,5 +89,5 @@ struct AddGroupUI: View {
 
 #Preview {
     @State var isAddGroupPresented = true
-    AddGroupUI(isAddGroupPresented: $isAddGroupPresented)
+    AddCollectionUI(isAddCollectionPresented: $isAddGroupPresented)
 }

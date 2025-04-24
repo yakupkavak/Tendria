@@ -11,7 +11,7 @@ typealias Height = Constants.Height
 typealias Radius = Constants.Radius
 typealias StringKey = Constants.StringKeys
 typealias IconWidth = Constants.Icon
-typealias IconName = Constants.Icons
+typealias Icons = Constants.Icons
 typealias Width = Constants.Width
 typealias FireStorage = Constants.FirestorageConst
 typealias FireDatabase = Constants.FirestoreConst
@@ -27,10 +27,19 @@ typealias GradientSet = Constants.Gradients
 typealias KeychainKeys = Constants.KeychainKeys
 typealias NotificationKey = Constants.NotificationConst
 typealias MaliFont = Constants.MaliFont
+typealias Padding = Constants.Padding
+typealias Threshold = Constants.Threshold
+typealias ZIndex = Constants.ZIndex
+typealias Scale = Constants.Scale
+typealias OffsetValue = Constants.OffsetValue
 
 struct Constants {
     struct Gradients {
         static let mediumOrangeRed: [Color] = [Color.orange700, Color.red300]
+    }
+    struct Threshold {
+        static let swipeImageRight = CGFloat(50)
+        static let swipeImageLeft = CGFloat(-50)
     }
     struct Radius{
         static let xLargeRadius = CGFloat(UIScreen.main.bounds.height * 0.1)
@@ -51,12 +60,55 @@ struct Constants {
         static let halfWidth = UIScreen.main.bounds.width * 0.5
     }
     
+    struct Spacing {
+        static let normalSpacing = UIScreen.main.bounds.height * 0.02
+        static let small = UIScreen.main.bounds.width * 0.01
+    }
+    struct ZIndex {
+        static let top: Double = 2.0
+        static let below: Double = 1.0
+    }
+    
+    struct Scale {
+        static let main: Double = 1.0
+        static let sub: Double = 0.9
+    }
+    struct OffsetValue {
+        static let deleteImageX = CGFloat(7)
+        static let deleteImageY = CGFloat(4)
+    }
+
+    struct Padding {
+        static let constantMinusMediumPadding = CGFloat(-16)
+        static let constantMinusLargePadding = CGFloat(-64)
+        static let constantMinusXLargePadding = CGFloat(-100)
+        static let constantLargePadding = CGFloat(32)
+        static let constantMediumPadding = CGFloat(22)
+        static let constantNormalPadding = CGFloat(16)
+        static let leadingMediumPadding = CGFloat(12)
+        static let constantXSmallPadding = CGFloat(4)
+        static let constantXLargePadding = CGFloat(280)
+        static let horizontalXLargePadding = UIScreen.main.bounds.width * 0.4
+        static let horizontalLargePadding = UIScreen.main.bounds.width * 0.2
+        static let horizontalNormalPlusPadding = UIScreen.main.bounds.width * 0.15
+        static let horizontalNormalPadding = UIScreen.main.bounds.width * 0.1
+        static let horizontalMediumPadding = UIScreen.main.bounds.width * 0.075
+        static let horizontalSmallPadding = UIScreen.main.bounds.width * 0.03
+        static let horizontalXSmallPadding = UIScreen.main.bounds.width * 0.005
+
+        static let largePadding = UIScreen.main.bounds.height * 0.05
+        static let mediumPadding = UIScreen.main.bounds.height * 0.02
+        static let smallPadding = UIScreen.main.bounds.height * 0.01
+    }
+    
     struct Width{
         static let buttonWidth = UIScreen.main.bounds.width * 0.6
         static let buttonConstantMediumWidth = 12
         static let screenEightyWidth = UIScreen.main.bounds.width * 0.8
         static let screenSeventyWidth = UIScreen.main.bounds.width * 0.7
+        static let screenSixtyWidth = UIScreen.main.bounds.width * 0.6
         static let screenHalfWidth = UIScreen.main.bounds.width * 0.5
+        static let screenFourtyWidth = UIScreen.main.bounds.width * 0.4
         static let buttonMediumWidth = UIScreen.main.bounds.width * 0.36
         static let largeWidth = UIScreen.main.bounds.width * 0.1
         static let mediumWidth = UIScreen.main.bounds.width * 0.05
@@ -69,7 +121,9 @@ struct Constants {
     }
     
     struct Height{
-        static let xxLargePlusHeight = UIScreen.main.bounds.height * 0.30
+        static let xxxLargeHeight = UIScreen.main.bounds.height * 0.30
+        static let uploadHighHeight = UIScreen.main.bounds.height * 0.25
+        static let xxLargePlusHeight = UIScreen.main.bounds.height * 0.20
         static let xxLargeHeight = UIScreen.main.bounds.height * 0.18
         static let xLargeHeight = UIScreen.main.bounds.height * 0.13
         static let largeHeight = UIScreen.main.bounds.height * 0.1
@@ -167,32 +221,15 @@ struct Constants {
         static let noneMemoryText = LocalizedStringKey("none_memory_text")
         static let noneRelationTitle = LocalizedStringKey("none_relation_title")
         static let noneRelationText = LocalizedStringKey("none_relation_text")
-    }
-    struct Spacing {
-        static let normalSpacing = UIScreen.main.bounds.height * 0.02
-        static let small = UIScreen.main.bounds.width * 0.01
+        
+        /* Add Memory*/
+        static let add_memory = LocalizedStringKey("add_memory")
+        static let date = LocalizedStringKey("date")
+        static let memory_name = LocalizedStringKey("memory_name")
+        static let memory_comment = LocalizedStringKey("memory_comment")
+        static let select_date = LocalizedStringKey("select_date")
     }
 
-    struct Padding {
-        static let constantMinusMediumPadding = CGFloat(-16)
-        static let constantMinusLargePadding = CGFloat(-64)
-        static let constantLargePadding = CGFloat(32)
-        static let constantMediumPadding = CGFloat(22)
-        static let constantXLargePadding = CGFloat(280)
-        static let constantXSmallPadding = CGFloat(4)
-        static let horizontalXLargePadding = UIScreen.main.bounds.width * 0.4
-        static let horizontalLargePadding = UIScreen.main.bounds.width * 0.2
-        static let horizontalNormalPlusPadding = UIScreen.main.bounds.width * 0.15
-        static let horizontalNormalPadding = UIScreen.main.bounds.width * 0.1
-        static let horizontalMediumPadding = UIScreen.main.bounds.width * 0.075
-        static let horizontalSmallPadding = UIScreen.main.bounds.width * 0.03
-        static let horizontalXSmallPadding = UIScreen.main.bounds.width * 0.005
-
-        static let largePadding = UIScreen.main.bounds.height * 0.05
-        static let mediumPadding = UIScreen.main.bounds.height * 0.02
-        static let smallPadding = UIScreen.main.bounds.height * 0.01
-        static let leadingMediumPadding = CGFloat(12)
-    }
     struct Images {
         static let MAKE_RELATION = "MakeRelation"
         static let PIKACHU = "pikachu"
@@ -217,6 +254,7 @@ struct Constants {
         static let lock = "lock.fill"
         static let person = "person.fill"
         static let right_arrow = "arrow.right"
+        static let left_arrow = "chevron.left"
         static let heart = "heart.fill"
     }
     
@@ -224,16 +262,18 @@ struct Constants {
         static let COLLECTION_PATH = "Collection"
         static let RELATION_CODE_PATH = "RelationCode"
         static let RELATIONSHIP_PATH = "Relationship"
+        static let MEMORY_PATH = "Memory"
         static let USERS_PATH = "Users"
         static let USER_ID_FIELD = "userId"
-        static let USER_RELATION_ID = "relationId"
+        static let RELATION_ID = "relationId"
+        static let COLLECTION_ID = "collectionId"
         static let USER_IMAGE_FIELD = "profileImage"
         static let FCM_TOKEN_FIELD = "fcmToken"
         static let USER_LANGUAGE = "userLanguage"
     }
     struct FirestorageConst {
-        static let LIST_PATH = "list"
-        static let TASK_PATH = "task"
+        static let COLLECTION_PATH = "collection"
+        static let MEMORY_PATH = "memory"
     }
     struct Numbers{
         static let RANDOM_COUNT = 6

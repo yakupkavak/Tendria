@@ -11,10 +11,11 @@ import Combine
 
 struct KeyboardAdaptive: ViewModifier {
     @State private var keyboardHeight: CGFloat = 0
-    var canUpdate: Bool
+    var canUpdate: Binding<Bool>
+    
     func body(content: Content) -> some View {
         content
-            .padding(.bottom, canUpdate ? keyboardHeight : 0)
-            .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
+            .padding(.bottom, canUpdate.wrappedValue ? keyboardHeight : 0)
+            .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0}
     }
 }

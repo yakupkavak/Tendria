@@ -22,7 +22,7 @@ struct ForgotPasswordUI: View {
                 
                 Spacer().frame(height: Height.smallHeight)
                 VStack(spacing: Height.mediumHeight) {
-                    tfIcon(iconSystemName: IconName.envelope, placeHolder: StringKey.email, textInput: $viewModel.email)
+                    tfIcon(iconSystemName: Icons.envelope, placeHolder: StringKey.email, textInput: $viewModel.email)
                 }
 
                 Spacer()
@@ -30,7 +30,7 @@ struct ForgotPasswordUI: View {
                 HStack(spacing: Height.xSmallHeight){
                     Spacer()
                     tvHeadline(text: StringKey.reset, color: .blue500)
-                    btnSystemIconGradient(iconSystemName: IconName.right_arrow, color: .white) {
+                    btnSystemIconGradient(iconSystemName: Icons.right_arrow, color: .white) {
                         viewModel.forgotPassword()
                     }
                 }

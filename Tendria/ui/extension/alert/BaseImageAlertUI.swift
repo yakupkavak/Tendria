@@ -47,6 +47,23 @@ struct BaseImageAlertUI: View {
     }
 }
 
+struct LoadingAlertUI: View {
+    var uiLottieSource = LottieSet.LOADING_CIRCLE_JSON
+    //var onSuccess: () -> Void
+    let opacity = 0.6
+    var body: some View {
+        ZStack{
+            Color.gray.opacity(opacity).ignoresSafeArea()
+            LottieView(animation: .named(uiLottieSource)).playing(loopMode: .loop).scaledToFit().padding().padding(.bottom, Padding.constantMinusMediumPadding)
+            .padding(.bottom, Padding.constantMediumPadding)
+            .background(Color.white)
+            .cornerRadius(Radius.mediumRadius)
+            .frame(maxWidth: Width.screenHalfWidth)
+        }.ignoresSafeArea()
+        .zIndex(.greatestFiniteMagnitude)
+    }
+}
+
 struct BaseLottieAlertUI: View {
         
     var uiLottieSource: String

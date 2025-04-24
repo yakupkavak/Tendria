@@ -1,36 +1,42 @@
 //
-//  TaskRowModel.swift
+//  Untitled.swift
 //  Tendria
 //
-//  Created by Yakup Kavak on 4.02.2025.
+//  Created by Yakup Kavak on 2.04.2025.
 //
 
-import Foundation
+import FirebaseCore
 import FirebaseFirestore
 
-struct CollectionRowModel: Identifiable,Codable{
+struct MemoryFetchModel: Identifiable, Codable{
     @DocumentID var id: String?
     var imageUrl: String
     var title: String
-    var relationId: String
+    let userOneDescription: String?
+    let userTwoDescription: String?
+    let userOneImage: String?
+    let userTwoImage: String?
+    let createDate: Timestamp?
     
     enum CodingKeys: String, CodingKey {
       case id
       case imageUrl
       case title
-      case relationId
+      case userOneDescription
+      case userTwoDescription
+      case userOneImage
+      case userTwoImage
+      case createDate
     }
 }
-enum IsCollectionExist {
-    case exist([CollectionRowModel])
+enum FetchDataList<T> {
+    case exist([T])
     case nonExist
-    case noneRelation
     
     private var caseName: String {
         switch self {
         case .exist: return "exist"
         case .nonExist: return "nonExist"
-        case .noneRelation: return "noneRelation"
         }
     }
     

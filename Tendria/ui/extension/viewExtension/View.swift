@@ -8,21 +8,33 @@
 import SwiftUI
 extension UIApplication {
     func addTapGestureRecognizer() {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first else { return } // ✅ iOS 15+ için `UIWindowScene` kullanımı
-        
-        let tapGesture = UITapGestureRecognizer(target: window, action: #selector(UIView.endEditing))
-        tapGesture.requiresExclusiveTouchType = false
-        tapGesture.cancelsTouchesInView = false
-        tapGesture.delegate = self
-        window.addGestureRecognizer(tapGesture)
-    }
+            // Aktif windowScene'e ve onun içindeki ilk window'a erişiyoruz
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let window = windowScene.windows.first else { return } // Eğer erişim olmazsa çık
+
+            // Bir UITapGestureRecognizer oluşturuyoruz. Hedef: window. Aksiyon: klavyeyi kapat
+            let tapGesture = UITapGestureRecognizer(target: window, action: #selector(UIView.endEditing))
+
+            // Diğer dokunma türleriyle çakışmaması için false yapılıyor
+            tapGesture.requiresExclusiveTouchType = false
+            
+            // Diğer dokunmaların çalışmasını engelleme. Örn: ScrollView scroll edebilsin
+            tapGesture.cancelsTouchesInView = false
+            
+            // Gesture’ın delegate'ini UIApplication’a veriyoruz (bu sayede kontrol bizde)
+            tapGesture.delegate = self
+            
+            // Gesture’ı window’a ekliyoruz
+            window.addGestureRecognizer(tapGesture)
+        }
 }
 
 extension UIApplication: @retroactive UIGestureRecognizerDelegate {
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return !otherGestureRecognizer.isKind(of: UILongPressGestureRecognizer.self)
-    }
+    // Bu fonksiyon, birden fazla gesture’ın aynı anda tanınmasını kontrol eder
+        public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            // Eğer diğer gesture bir LongPress değilse, ikisi aynı anda çalışabilir
+            return !otherGestureRecognizer.isKind(of: UILongPressGestureRecognizer.self)
+        }
 }
 extension Image{
     func findTrueSize(uiImage: UIImage,maxHeight: CGFloat, maxWidth: CGFloat) -> some View{
@@ -74,6 +86,21 @@ extension View{
         }
     }
     
+    func showLoading(
+        isPresent: Binding<Bool>
+    ) -> some View{
+        self.overlay {
+            if isPresent.wrappedValue {
+                ZStack {
+                    // Alert içeriği
+                    LoadingAlertUI()
+                }
+                .transition(.opacity)
+                .animation(.easeInOut, value: isPresent.wrappedValue)
+            }
+        }
+    }
+    
     func showRequestNotification(
         isPresent: Binding<Bool>,
         onSuccess: @escaping () -> Void,
@@ -98,7 +125,19 @@ extension View{
             }
         }
     }
-    func keyboardAdaptive(canUpdate: Bool) -> some View {
+    
+    func keyboardAdaptive(canUpdate: Binding<Bool>) -> some View {
         ModifiedContent(content: self, modifier: KeyboardAdaptive(canUpdate: canUpdate))
+    }
+    
+    func stackPosition(position: Int, zeroIndexWidth: CGFloat) -> some View {
+        var offset = CGFloat(0)
+        switch position {
+        case 0: offset = 0
+        case 1: offset = -zeroIndexWidth * 0.5
+        case 2: offset = zeroIndexWidth * 0.5
+        default: break
+        }
+        return self.offset(x: offset)
     }
 }

@@ -31,8 +31,8 @@ struct SignInUI: View {
                 tvSubHeadline(text: StringKey.signAccount, color: Color.blue500)
                 
                 VStack(spacing: Height.mediumHeight) {
-                    tfIcon(iconSystemName: IconName.envelope, placeHolder: StringKey.email, textInput: $viewModel.email)
-                    tfIcon(iconSystemName: IconName.lock, placeHolder: StringKey.password, textInput: $viewModel.password)
+                    tfIcon(iconSystemName: Icons.envelope, placeHolder: StringKey.email, textInput: $viewModel.email)
+                    tfIcon(iconSystemName: Icons.lock, placeHolder: StringKey.password, textInput: $viewModel.password)
                 }
                 
                 HStack {
@@ -47,7 +47,7 @@ struct SignInUI: View {
                 HStack(spacing: Height.xSmallHeight){
                     Spacer()
                     tvHeadline(text: StringKey.signIn, color: .blue500)
-                    btnSystemIconGradient(iconSystemName: IconName.right_arrow, color: .white) {
+                    btnSystemIconGradient(iconSystemName: Icons.right_arrow, color: .white) {
                         viewModel.signInEmail()
                     }
                 }
@@ -63,12 +63,12 @@ struct SignInUI: View {
                     }
                 }
                 HStack(spacing: Height.xSmallHeight){
-                    btnSignIcon(iconName: IconName.appleIcon) {
+                    btnSignIcon(iconName: Icons.appleIcon) {
                         Task{
                             viewModel.signInWithApple()
                         }
                     }
-                    btnSignIcon(iconName: IconName.googleIcon) {
+                    btnSignIcon(iconName: Icons.googleIcon) {
                         Task{
                             viewModel.signInWithGoogle()
                         }
