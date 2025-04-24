@@ -11,6 +11,7 @@
 		3772B0092D71AC3A004B3D94 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 3772B0082D71AC3A004B3D94 /* FirebaseMessaging */; };
 		379B39932D9D65B600D489D1 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 379B39922D9D65B600D489D1 /* Lottie */; };
 		379EA36A2D987D9800E96006 /* SwiftyCrop in Frameworks */ = {isa = PBXBuildFile; productRef = 379EA3692D987D9800E96006 /* SwiftyCrop */; };
+		37ADBA6B2DBA357E00715AD8 /* Toasts in Frameworks */ = {isa = PBXBuildFile; productRef = 37ADBA6A2DBA357E00715AD8 /* Toasts */; };
 		37D8E0372D42A8E100FF1B6E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E0362D42A8E100FF1B6E /* FirebaseAnalytics */; };
 		37D8E0392D42A8E100FF1B6E /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E0382D42A8E100FF1B6E /* FirebaseAppCheck */; };
 		37D8E03B2D42A8E100FF1B6E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 37D8E03A2D42A8E100FF1B6E /* FirebaseAuth */; };
@@ -78,6 +79,7 @@
 				37D8E0392D42A8E100FF1B6E /* FirebaseAppCheck in Frameworks */,
 				37F81FCB2D4540AB000EA4BD /* GoogleSignIn in Frameworks */,
 				37D8E0472D42A8E100FF1B6E /* FirebaseFunctions in Frameworks */,
+				37ADBA6B2DBA357E00715AD8 /* Toasts in Frameworks */,
 				37D8E03B2D42A8E100FF1B6E /* FirebaseAuth in Frameworks */,
 				379EA36A2D987D9800E96006 /* SwiftyCrop in Frameworks */,
 				379B39932D9D65B600D489D1 /* Lottie in Frameworks */,
@@ -157,6 +159,7 @@
 				379EA3692D987D9800E96006 /* SwiftyCrop */,
 				3756DF942D9D1E600023B0D1 /* Kingfisher */,
 				379B39922D9D65B600D489D1 /* Lottie */,
+				37ADBA6A2DBA357E00715AD8 /* Toasts */,
 			);
 			productName = Tendria;
 			productReference = 374A80FA2D3B8CE300D5F0A4 /* Tendria.app */;
@@ -196,6 +199,7 @@
 				379EA3682D987D9800E96006 /* XCRemoteSwiftPackageReference "SwiftyCrop" */,
 				3756DF932D9D1E600023B0D1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				379B39912D9D65B600D489D1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				37ADBA692DBA357E00715AD8 /* XCRemoteSwiftPackageReference "swiftui-toasts" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 374A80FB2D3B8CE300D5F0A4 /* Products */;
@@ -480,6 +484,14 @@
 				kind = branch;
 			};
 		};
+		37ADBA692DBA357E00715AD8 /* XCRemoteSwiftPackageReference "swiftui-toasts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sunghyun-k/swiftui-toasts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 		37D8E0352D42A8E100FF1B6E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -534,6 +546,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 379EA3682D987D9800E96006 /* XCRemoteSwiftPackageReference "SwiftyCrop" */;
 			productName = SwiftyCrop;
+		};
+		37ADBA6A2DBA357E00715AD8 /* Toasts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37ADBA692DBA357E00715AD8 /* XCRemoteSwiftPackageReference "swiftui-toasts" */;
+			productName = Toasts;
 		};
 		37D8E0362D42A8E100FF1B6E /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

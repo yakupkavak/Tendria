@@ -228,6 +228,7 @@ struct Constants {
         static let memory_name = LocalizedStringKey("memory_name")
         static let memory_comment = LocalizedStringKey("memory_comment")
         static let select_date = LocalizedStringKey("select_date")
+        static let memory_added = LocalizedStringKey("memory_added")
     }
 
     struct Images {

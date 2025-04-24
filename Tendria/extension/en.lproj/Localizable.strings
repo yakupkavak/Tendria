@@ -92,3 +92,5 @@ Invite your partner and begin crafting memories together 💫";
 "memory_name" = "Memory name";
 "memory_comment" = "Write about this memory...";
 "select_date" = "Select date";
+"memory_added" = "Memory added successfully.";
+

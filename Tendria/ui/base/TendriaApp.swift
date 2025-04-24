@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseCore
 import FirebaseAppCheck
 import FirebaseMessaging
+import Toasts
 
 @main
 struct TendriaApp: App {
@@ -25,11 +26,11 @@ struct TendriaApp: App {
     var body: some Scene {
         WindowGroup {
             if authManager.isSigned {
-                BaseTabViewUI().environmentObject(routerTask).environmentObject(routerUser).onAppear {
+                BaseTabViewUI().installToast(position: .bottom).environmentObject(routerTask).environmentObject(routerUser).onAppear {
                     UIApplication.shared.addTapGestureRecognizer()
                 }
             } else {
-                SignContainerUI().onAppear {
+                SignContainerUI().installToast(position: .bottom).onAppear {
                     UIApplication.shared.addTapGestureRecognizer()
                 }
             }

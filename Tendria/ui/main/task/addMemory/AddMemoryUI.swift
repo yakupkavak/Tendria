@@ -8,6 +8,7 @@
 import SwiftUI
 import _PhotosUI_SwiftUI
 import SwiftyCrop
+import Toasts
 
 struct AddMemoryUI: View {
     
@@ -21,7 +22,8 @@ struct AddMemoryUI: View {
     @State private var showFullScreen = false
     @FocusState private var focusedField: MemoryState?
     @StateObject private var keyboardObserver = KeyboardObserver.shared
-    
+    @Environment(\.presentToast) var presentToast
+
     init(isAddMemoryPresented: Binding<Bool>, selectedIndex: Int = 0) {
         self._isAddMemoryPresented = isAddMemoryPresented
         self.selectedIndex = selectedIndex
@@ -100,6 +102,8 @@ struct AddMemoryUI: View {
             .onChange(of: viewModel.success, perform: {newValue in
                 if(newValue){
                     isAddMemoryPresented = false
+                    let toast = ToastValue(message: getLocalizedString(StringKey.memory_added))
+                    presentToast(toast)
                 }
             })
             .fullScreenCover(isPresented: $showFullScreen, content: {
