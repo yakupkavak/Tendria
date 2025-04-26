@@ -32,6 +32,7 @@ typealias Threshold = Constants.Threshold
 typealias ZIndex = Constants.ZIndex
 typealias Scale = Constants.Scale
 typealias OffsetValue = Constants.OffsetValue
+typealias FontValue = Constants.FontValues
 
 struct Constants {
     struct Gradients {
@@ -45,7 +46,7 @@ struct Constants {
         static let xLargeRadius = CGFloat(UIScreen.main.bounds.height * 0.1)
         static let largeRadius = CGFloat(UIScreen.main.bounds.height * 0.05)
         static let mediumRadius = CGFloat(UIScreen.main.bounds.height * 0.03)
-        static let shadowRadius = CGFloat(UIScreen.main.bounds.height * 0.005)
+        static let shadowRadius = CGFloat(2)
         static let shadowConstantRadiud = CGFloat(4)
         static let shadowSmallRadius = CGFloat(UIScreen.main.bounds.height * 0.0025)
 
@@ -304,5 +305,8 @@ struct Constants {
         static let SemiBoldItalic = "Mali-SemiBoldItalic"
         static let Bold = "Mali-Bold"
         static let BoldItalic = "Mali-BoldItalic"
+    }
+    struct FontValues {
+        static let bigIconSize = CGFloat(28)
     }
 }

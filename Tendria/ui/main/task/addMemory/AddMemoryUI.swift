@@ -17,6 +17,7 @@ struct AddMemoryUI: View {
     @State private var displayedPhoto: UIImage? = nil
     @State private var displayCrop = false
     @State private var isPhotoPickerPresent = false
+    var collectionId: String
     let maxPhotoSelect = 1
     @State private var selectedIndex = 0
     @State private var showFullScreen = false
@@ -24,9 +25,10 @@ struct AddMemoryUI: View {
     @StateObject private var keyboardObserver = KeyboardObserver.shared
     @Environment(\.presentToast) var presentToast
 
-    init(isAddMemoryPresented: Binding<Bool>, selectedIndex: Int = 0) {
+    init(isAddMemoryPresented: Binding<Bool>, selectedIndex: Int = 0, collectionId: String) {
         self._isAddMemoryPresented = isAddMemoryPresented
         self.selectedIndex = selectedIndex
+        self.collectionId = collectionId
     }
     
     var body: some View {
@@ -82,7 +84,7 @@ struct AddMemoryUI: View {
                 )
             
             btnTextGradientInfinity(shadow: Radius.shadowSmallRadius, action: {
-                viewModel.saveMemory()
+                viewModel.saveMemory(collectionId: collectionId)
             }, text: StringKey.add).frame(width: Width.screenHalfWidth).padding(.top,Padding.leadingMediumPadding)
             
             
@@ -161,5 +163,5 @@ struct AddMemoryUI: View {
 
 #Preview {
     @State var isAddMemoryPresented = true
-    AddMemoryUI(isAddMemoryPresented: $isAddMemoryPresented)
+    AddMemoryUI(isAddMemoryPresented: $isAddMemoryPresented, collectionId: "OfL6uiUqS0eDHRugpej8")
 }

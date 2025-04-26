@@ -37,13 +37,14 @@ struct btnSystemIconGradient: View {
 struct btnSystemIconTransparent: View {
     var iconSystemName: String
     var color: Color
+    var font: Font = .body
     var action: () -> Void
     
     var body: some View {
         Button {
             action()
         } label: {
-            Image(systemName: iconSystemName).foregroundColor(color)
+            Image(systemName: iconSystemName).foregroundColor(color).font(font)
         }
     }
 }

@@ -10,12 +10,12 @@ import FirebaseCore
 
 struct MemoryListUI: View {
     
-    @EnvironmentObject var routerTask: RouterMemory
+    @EnvironmentObject var routerMemory: RouterMemory
     @StateObject private var viewModel: MemoryListViewModel
-    var collectionData: CollectionFetchModel
+    var collectionData: CollectionDocumentModel
     @Binding var isAddMemoryPresented: Bool
     
-    init(collectionData: CollectionFetchModel,isAddMemoryPresented: Binding<Bool>) {
+    init(collectionData: CollectionDocumentModel,isAddMemoryPresented: Binding<Bool>) {
         self.collectionData = collectionData
         self._isAddMemoryPresented = isAddMemoryPresented
         self._viewModel = StateObject(wrappedValue: MemoryListViewModel(collectionId: collectionData.id ?? ""))
@@ -29,15 +29,19 @@ struct MemoryListUI: View {
                 switch success {
                 case .exist(let memoryArray):
                     VStack{
-                        RowURLImage(imageUrl: collectionData.imageUrl,shouldCancelOnDisappear: true)
+                        RowURLImage(imageUrl: collectionData.imageUrl, shouldCancelOnDisappear: true).overlay(alignment: Alignment.topLeading) {
+                            btnSystemIconTransparent(iconSystemName: Icons.left_arrow, color: Color.white,font:.system(size: FontValue.bigIconSize, weight: .bold)) {
+                                routerMemory.navigateBack()
+                            }.padding().shadow(radius: Radius.shadowRadius)
+                        }
                         tvHeadlineString(text: collectionData.title, color: .blue500)
                         
                         List {
                             ForEach(memoryArray) { memory in
                                 Button {
-                                    routerTask.navigate(to: .addMemory)
+                                    routerMemory.navigate(to: .memoryDetail)
                                 } label: {
-                                    CollectionRowUI(url: memory.imageUrl, subText: memory.title, shouldCancelOnDisappear: true)
+                                    CollectionRowUI(url: memory.imageUrls[0], subText: memory.title, shouldCancelOnDisappear: true)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -46,14 +50,13 @@ struct MemoryListUI: View {
                         }
                         .listStyle(.plain)
                     }
-                    
-
                     VStack {
                         Spacer()
                         HStack {
                             Spacer()
                             btnAddIcon(iconName: "plus") {
-                                routerTask.navigate(to: .addMemory)
+                                routerMemory.selectedCollectionId = collectionData.id
+                                isAddMemoryPresented = true
                             }.padding()
                         }
                     }
@@ -66,20 +69,20 @@ struct MemoryListUI: View {
                         Spacer()
                         HStack {
                             Spacer()
-                            btnAddIcon(iconName: "plus") {
+                            btnAddIcon(iconName: "plus") {                                routerMemory.selectedCollectionId = collectionData.id
                                 isAddMemoryPresented = true
                             }.padding()
                         }
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                 }
             }
-        }
+        }.navigationBarHidden(true)
     }
 }
 
 #Preview {
-    var data = CollectionFetchModel(imageUrl: "https://antalyabalikevi.com.tr/wp-content/uploads/2020/04/antalya-sarapevi.jpg", title: "DenemeTitle", relationId: "", userOneDescription: "", userTwoDescription: "", userOneImage: "", userTwoImage: "", createDate: Timestamp(date: Date()))
-    @State var isPres = true
+    var data = CollectionDocumentModel(id:"bh46faLR6UN3XeAQmmNn",imageUrl: "https://antalyabalikevi.com.tr/wp-content/uploads/2020/04/antalya-sarapevi.jpg", title: "DenemeTitle", relationId: "z2TthSLdsIQ5WloKXfje", description: "yakup", createDate: Timestamp(date: Date()))
+    @State var isPres = false
     MemoryListUI(collectionData: data, isAddMemoryPresented: $isPres)
      
 }

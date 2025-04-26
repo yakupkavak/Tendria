@@ -56,9 +56,8 @@ class AddCollectionViewModel: BaseViewModel {
     }
     
     func saveCollectionDocument(downloadUrl: String) {
-        guard RelationRepository.shared.relationId != nil else {return}
-        //TODO USER1 IMAGA EKLENECEK
-        let listDocumentModel = CollectionDocumentModel(imageUrl: downloadUrl, relationId: downloadUrl, title: titleInput, userOneDescription: commentInput, userTwoDescription: nil, userOneImage: nil, userTwoImage: nil, createDate: Timestamp(date: Date()))
+        guard let relationId = RelationRepository.shared.relationId else {return}
+        let listDocumentModel = CollectionDocumentModel(imageUrl: downloadUrl, title: titleInput, relationId: relationId, description: commentInput, createDate: Timestamp(date: Date()))
         getDataCall {
             try await FirestorageManager.shared.addCollectionDocument(collectionDocumentModel: listDocumentModel)
         } onSuccess: { success in

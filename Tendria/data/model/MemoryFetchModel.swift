@@ -8,7 +8,8 @@
 import FirebaseCore
 import FirebaseFirestore
 
-struct MemoryFetchModel: Identifiable, Codable{
+/*
+struct MemoryDocumentModel: Identifiable, Codable{
     @DocumentID var id: String?
     var imageUrl: String
     var title: String
@@ -19,28 +20,13 @@ struct MemoryFetchModel: Identifiable, Codable{
     let createDate: Timestamp?
     
     enum CodingKeys: String, CodingKey {
-      case id
-      case imageUrl
-      case title
-      case userOneDescription
-      case userTwoDescription
-      case userOneImage
-      case userTwoImage
-      case createDate
+        case id
+        case imageUrl
+        case title
+        case userOneDescription
+        case userTwoDescription
+        case userOneImage
+        case userTwoImage
+        case createDate
     }
-}
-enum FetchDataList<T> {
-    case exist([T])
-    case nonExist
-    
-    private var caseName: String {
-        switch self {
-        case .exist: return "exist"
-        case .nonExist: return "nonExist"
-        }
-    }
-    
-    func hasSameCase(as type: Self) -> Bool {
-        return self.caseName == type.caseName
-    }
-}
+}*/

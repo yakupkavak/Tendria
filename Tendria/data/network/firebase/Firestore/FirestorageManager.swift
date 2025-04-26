@@ -203,10 +203,10 @@ class FirestorageManager {
             if(querySnapshot.documents.count == 0){
                 return IsCollectionExist.nonExist
             }
-            var documentList: [CollectionFetchModel] = []
+            var documentList: [CollectionDocumentModel] = []
             for document in querySnapshot.documents{
-                let data = try document.data(as: CollectionFetchModel.self)
-                let collectionModel = CollectionFetchModel(id: data.id, imageUrl: data.imageUrl, title: data.title, relationId: data.relationId, userOneDescription: data.userOneDescription, userTwoDescription: data.userTwoDescription, userOneImage: data.userOneImage, userTwoImage: data.userTwoImage, createDate: data.createDate)
+                let data = try document.data(as: CollectionDocumentModel.self)
+                let collectionModel = CollectionDocumentModel(id: data.id, imageUrl: data.imageUrl, title: data.title, relationId: data.relationId, description: data.description, createDate: data.createDate)
                 documentList.append(collectionModel)
             }
             return IsCollectionExist.exist(documentList)
@@ -215,7 +215,7 @@ class FirestorageManager {
         }
     }
     
-    func fetchMemoryList(collectionId: String) async throws -> FetchDataList<MemoryFetchModel> {
+    func fetchMemoryList(collectionId: String) async throws -> FetchDataList<MemoryDocumentModel> {
         guard let relationId = try await RelationRepository.shared.getRelationId() else {
             throw RelationError.invalidUserRelation
         }
@@ -225,10 +225,10 @@ class FirestorageManager {
             if(querySnapshot.documents.count == 0){
                 return FetchDataList.nonExist
             }
-            var documentList: [MemoryFetchModel] = []
+            var documentList: [MemoryDocumentModel] = []
             for document in querySnapshot.documents{
-                let data = try document.data(as: MemoryFetchModel.self)
-                let memoryModel = MemoryFetchModel(id: data.id, imageUrl: data.imageUrl, title: data.title, userOneDescription: data.userOneDescription, userTwoDescription: data.userTwoDescription, userOneImage: data.userOneImage, userTwoImage: data.userTwoImage, createDate: data.createDate)
+                let data = try document.data(as: MemoryDocumentModel.self)
+                let memoryModel = MemoryDocumentModel(collectionId: data.collectionId, imageUrls: data.imageUrls, relationId: data.relationId, title: data.title, userOneDescription: data.userOneDescription, userTwoDescription: data.userTwoDescription, userOneImage: data.userOneImage, userTwoImage: data.userTwoImage, createDate: data.createDate)
                 documentList.append(memoryModel)
             }
             return FetchDataList.exist(documentList)

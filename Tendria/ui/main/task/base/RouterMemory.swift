@@ -14,12 +14,13 @@ final class RouterMemory: ObservableObject {
         //Group List
         case collectionList
         case addCollection
-        case memoryList(collection: CollectionFetchModel)
+        case memoryList(collection: CollectionDocumentModel)
         case memoryDetail
-        case addMemory
+        case addMemory(collectionId: String)
     }
     
     @Published var navPath = NavigationPath()
+    @Published var selectedCollectionId: String? = nil
     
     func navigate(to destination: Destination) {
         navPath.append(destination)

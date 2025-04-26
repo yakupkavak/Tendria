@@ -9,7 +9,7 @@ import Foundation
 
 class MemoryListViewModel: BaseViewModel{
     
-    @Published var success: FetchDataList<MemoryFetchModel>?
+    @Published var success: FetchDataList<MemoryDocumentModel>?
     @Published var loading = true
     @Published var error = ""
     private var collectionId: String

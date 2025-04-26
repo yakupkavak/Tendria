@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BaseTabViewUI: View {
     
-    @EnvironmentObject private var routerTask: RouterMemory
+    @EnvironmentObject private var routerMemory: RouterMemory
     @EnvironmentObject private var routerUser: RouterUserInfo
     @StateObject private var viewModel = BaseTabViewModel()
     @State var selectedTab: Tab = .feed
@@ -30,8 +30,8 @@ struct BaseTabViewUI: View {
                 .tabItem {
                     Label("History", systemImage: "clock.fill")
                 }.tag(Tab.history)
-            NavigationStack(path: $routerTask.navPath) {
-                CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab).environmentObject(routerTask).environmentObject(routerUser).navigationDestination(for: RouterMemory.Destination.self) { destination in
+            NavigationStack(path: $routerMemory.navPath) {
+                CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab).environmentObject(routerMemory).environmentObject(routerUser).navigationDestination(for: RouterMemory.Destination.self) { destination in
                     switch destination {
                     case .collectionList:
                         CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab).onAppear(){
@@ -45,8 +45,8 @@ struct BaseTabViewUI: View {
                         MemoryListUI(collectionData: data, isAddMemoryPresented: $isAddMemoryPresented)
                     case .memoryDetail:
                         TaskDetailUI()
-                    case .addMemory:
-                        AddMemoryUI(isAddMemoryPresented: $isAddMemoryPresented)
+                    case .addMemory(let collectionId):
+                        AddMemoryUI(isAddMemoryPresented: $isAddMemoryPresented, collectionId: collectionId)
                     }
                 }
             }.tabItem {
@@ -87,9 +87,7 @@ struct BaseTabViewUI: View {
             AddCollectionUI(isAddCollectionPresented: $isAddGroupPresented)
         }
         .fullScreenCover(isPresented: $isAddMemoryPresented) {
-            AddMemoryUI(isAddMemoryPresented: $isAddMemoryPresented)
-            
-            
+            AddMemoryUI(isAddMemoryPresented: $isAddMemoryPresented, collectionId: routerMemory.selectedCollectionId ?? "")
         }
     }
 }

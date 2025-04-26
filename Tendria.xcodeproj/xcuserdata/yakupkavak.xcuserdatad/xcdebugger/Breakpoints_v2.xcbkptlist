@@ -110,5 +110,93 @@
             landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E67A598-571A-4CA7-A5EA-202194279EE9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tendria/ui/main/task/MemoryList/MemoryListUI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "MemoryListUI"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "5E67A598-571A-4CA7-A5EA-202194279EE9 - 6f025ce87ad7cfcf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tendria.MemoryListUI.isAddMemoryPresented.getter : Swift.Bool"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/main/task/MemoryList/MemoryListUI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "5E67A598-571A-4CA7-A5EA-202194279EE9 - cc9f669045fa15eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tendria.MemoryListUI.isAddMemoryPresented.setter : Swift.Bool"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/main/task/MemoryList/MemoryListUI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16">
+               </Location>
+               <Location
+                  uuid = "5E67A598-571A-4CA7-A5EA-202194279EE9 - 164159e07ab713d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tendria.MemoryListUI.isAddMemoryPresented.modify : Swift.Bool"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/main/task/MemoryList/MemoryListUI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16">
+               </Location>
+               <Location
+                  uuid = "5E67A598-571A-4CA7-A5EA-202194279EE9 - 453659b4f51c629c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tendria.MemoryListUI.isAddMemoryPresented.modify : Swift.Bool with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "5E67A598-571A-4CA7-A5EA-202194279EE9 - 6c4a6dc0d4559a93"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tendria.MemoryListUI.$isAddMemoryPresented.getter : SwiftUI.Binding&lt;Swift.Bool&gt;"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/main/task/MemoryList/MemoryListUI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

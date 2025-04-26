@@ -36,6 +36,12 @@ extension UIApplication: @retroactive UIGestureRecognizerDelegate {
             return !otherGestureRecognizer.isKind(of: UILongPressGestureRecognizer.self)
         }
 }
+extension UINavigationController {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = nil
+    }
+}
 extension Image{
     func findTrueSize(uiImage: UIImage,maxHeight: CGFloat, maxWidth: CGFloat) -> some View{
         if(isWidthHigher(uiImage: uiImage)){

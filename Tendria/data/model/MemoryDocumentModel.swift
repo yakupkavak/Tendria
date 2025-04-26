@@ -6,8 +6,11 @@
 //
 
 import FirebaseCore
+import FirebaseFirestore
 
-struct MemoryDocumentModel: Codable{
+struct MemoryDocumentModel: Identifiable,Codable{
+    @DocumentID var id: String?
+    let collectionId: String
     let imageUrls: [String]
     let relationId: String
     let title: String
@@ -18,6 +21,7 @@ struct MemoryDocumentModel: Codable{
     let createDate: Timestamp
 
   enum CodingKeys: String, CodingKey {
+    case collectionId
     case imageUrls
     case title
     case relationId
@@ -27,4 +31,20 @@ struct MemoryDocumentModel: Codable{
     case userTwoImage
     case createDate
   }
+}
+
+enum FetchDataList<T> {
+    case exist([T])
+    case nonExist
+    
+    private var caseName: String {
+        switch self {
+        case .exist: return "exist"
+        case .nonExist: return "nonExist"
+        }
+    }
+    
+    func hasSameCase(as type: Self) -> Bool {
+        return self.caseName == type.caseName
+    }
 }

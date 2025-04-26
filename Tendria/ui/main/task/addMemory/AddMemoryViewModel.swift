@@ -133,7 +133,7 @@ class AddMemoryViewModel: BaseViewModel{
         isImageSelected = true
     }
     
-    func saveMemory() {
+    func saveMemory(collectionId: String) {
         var imageDatas = [Data]()
         for imageSeq in imageSequence{
             if(!imageSeq.isEmpty){
@@ -145,7 +145,7 @@ class AddMemoryViewModel: BaseViewModel{
         getDataCall {
             try await FirestorageManager.shared.addMemoryImages(imageDatas: imageDatas)
         } onSuccess: { downloadUrls in
-            self.saveMemoryDocument(downloadUrls: downloadUrls,relationId: relationId)
+            self.saveMemoryDocument(downloadUrls: downloadUrls,relationId: relationId, collectionId: collectionId)
         } onLoading: {
             self.loading = true
         } onError: { error in
@@ -153,9 +153,9 @@ class AddMemoryViewModel: BaseViewModel{
         }
     }
     
-    func saveMemoryDocument(downloadUrls: [String], relationId: String) {
+    func saveMemoryDocument(downloadUrls: [String], relationId: String,collectionId: String) {
         //TODO USER1 IMAGA EKLENECEK
-        let memoryDocumentModel = MemoryDocumentModel(imageUrls: downloadUrls, relationId: relationId, title: self.titleInput, userOneDescription: self.commentInput, userTwoDescription: nil, userOneImage: nil, userTwoImage: nil, createDate: Timestamp(date: self.selectedDate))
+        let memoryDocumentModel = MemoryDocumentModel(collectionId: collectionId, imageUrls: downloadUrls, relationId: relationId, title: self.titleInput, userOneDescription: self.commentInput, userTwoDescription: nil, userOneImage: nil, userTwoImage: nil, createDate: Timestamp(date: self.selectedDate))
         getDataCall {
             try await FirestorageManager.shared.addMemoryDocument(memoryDocumentModel: memoryDocumentModel)
         } onSuccess: { success in
