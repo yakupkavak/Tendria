@@ -22,20 +22,21 @@ struct CollectionListUI: View {
             }else if let success = viewModel.success{
                 switch success {
                 case .exist(let collectionRowList):
-                    List {
-                        ForEach(collectionRowList) { collection in
-                            Button {
-                                routerTask.navigate(to: .memoryList(collection: collection))
-                            } label: {
-                                CollectionRowUI(url: collection.imageUrl, subText: collection.title,shouldCancelOnDisappear: true)
+                    ScrollView(.vertical,showsIndicators: false){
+                        LazyVStack(spacing: Padding.rowPadding) {
+                            ForEach(collectionRowList) { collection in
+                                Button {
+                                    routerTask.navigate(to: .memoryList(collection: collection))
+                                } label: {
+                                    CollectionRowUI(url: collection.imageUrl, subText: collection.title, description: collection.description ?? "",shouldCancelOnDisappear: true, isFavorite: false)
+                                }
+                                .buttonStyle(PlainButtonStyle())
                             }
-                            .buttonStyle(PlainButtonStyle())
                         }
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color.white)
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
+                    .padding(.horizontal,30)
 
                     VStack {
                         Spacer()

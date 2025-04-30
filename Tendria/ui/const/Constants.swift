@@ -46,6 +46,7 @@ struct Constants {
         static let xLargeRadius = CGFloat(UIScreen.main.bounds.height * 0.1)
         static let largeRadius = CGFloat(UIScreen.main.bounds.height * 0.05)
         static let mediumRadius = CGFloat(UIScreen.main.bounds.height * 0.03)
+        static let borderRadius = CGFloat(16)
         static let shadowRadius = CGFloat(2)
         static let shadowConstantRadiud = CGFloat(4)
         static let shadowSmallRadius = CGFloat(UIScreen.main.bounds.height * 0.0025)
@@ -96,7 +97,7 @@ struct Constants {
         static let horizontalMediumPadding = UIScreen.main.bounds.width * 0.075
         static let horizontalSmallPadding = UIScreen.main.bounds.width * 0.03
         static let horizontalXSmallPadding = UIScreen.main.bounds.width * 0.005
-
+        static let rowPadding = CGFloat(30)
         static let largePadding = UIScreen.main.bounds.height * 0.05
         static let mediumPadding = UIScreen.main.bounds.height * 0.02
         static let smallPadding = UIScreen.main.bounds.height * 0.01
@@ -258,6 +259,7 @@ struct Constants {
         static let right_arrow = "arrow.right"
         static let left_arrow = "chevron.left"
         static let heart = "heart.fill"
+        static let close = "xmark"
     }
     
     struct FirestoreConst {

@@ -36,17 +36,15 @@ struct MemoryListUI: View {
                         }
                         tvHeadlineString(text: collectionData.title, color: .blue500)
                         
-                        List {
+                        LazyVStack(spacing: Padding.rowPadding) {
                             ForEach(memoryArray) { memory in
                                 Button {
                                     routerMemory.navigate(to: .memoryDetail)
                                 } label: {
-                                    CollectionRowUI(url: memory.imageUrls[0], subText: memory.title, shouldCancelOnDisappear: true)
+                                    CollectionRowUI(url: memory.imageUrls[0], subText: memory.title, description: memory.userOneDescription ?? "", shouldCancelOnDisappear: true, isFavorite: false)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.white)
                         }
                         .listStyle(.plain)
                     }
@@ -63,6 +61,12 @@ struct MemoryListUI: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                 case .nonExist:
                     VStack{
+                        HStack{
+                            btnSystemIconTransparent(iconSystemName: Icons.left_arrow, color: Color.black) {
+                                routerMemory.navigateBack()
+                            }
+                            Spacer()
+                        }.padding(.horizontal)
                         CustomLottieView(animationFileName: LottieSet.NO_DATA_FOUND_JSON, isDotLottieFile: false, loopMode: .loop).frame(width: Width.screenSeventyWidth)
                         tvBodyline(text: StringKey.noneMemoryTitle, color: .blue500).padding(.bottom)
                         tvFootnote(text: StringKey.noneMemoryText, color: .brown300,textAlignment: .leading).padding(.horizontal,Padding.constantLargePadding)

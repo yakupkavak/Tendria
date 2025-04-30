@@ -10,15 +10,32 @@ import SwiftUI
 struct CollectionRowUI: View {
     var url: String
     var subText: String
+    var description: String
     var shouldCancelOnDisappear: Bool
+    var isFavorite: Bool
     var body: some View {
-        VStack(alignment: .leading,spacing: .zero){
+        ZStack(alignment: .bottom){
             RowURLImage(imageUrl: url,shouldCancelOnDisappear: shouldCancelOnDisappear)
-            tvRowSubline(text: subText)
-        }.background(Color.white).clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: Radius.shadowSmallRadius)
+            Rectangle().background(.ultraThinMaterial).frame(width: 180,height: 40).overlay(alignment: .leading) {
+                HStack{
+                    tvRowSubline(text: subText,color: Color.white)
+                    Spacer()
+                    btnSystemIconTransparent(iconSystemName: isFavorite ? "star.fill" : "star", color: Color.white) {
+                        print("yakup")
+                    }
+                }
+                .padding(.bottom,4).padding(.horizontal,20)
+            }.clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).padding(.bottom,8)
+            
+        }.clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: Radius.shadowRadius)
     }
 }
 
 #Preview {
-    CollectionRowUI(url: "https://dragonball.guru/wp-content/uploads/2021/03/goku-profile-e1616173641804-400x400.png", subText: "goku", shouldCancelOnDisappear: true)
+    CollectionRowUI(url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWPw5qeVm7nSfrA7lhl5OSKqsSyzL4eMD9Iw&s", subText: "goku", description: "super saiyan", shouldCancelOnDisappear: true, isFavorite: true)
 }
+ /*
+.overlay(alignment: .center) {
+    
+}
+*/

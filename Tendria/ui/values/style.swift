@@ -55,6 +55,15 @@ struct tvHeadlineString: View {
         tvColorKeyString(text: text, color: color, weight: .bold, font: .title3)
     }
 }
+
+struct tvFootnoteString: View {
+    var text: String
+    var color: Color
+    var body: some View {
+        tvColorKeyString(text: text, color: color, weight: .regular, font: .footnote)
+    }
+}
+
 struct tvSubTitle: View {
     var text: LocalizedStringKey
     var body: some View {
@@ -64,8 +73,8 @@ struct tvSubTitle: View {
 
 struct tvRowSubline: View {
     var text: String
+    var color: Color
     var body: some View {
-        tvColorString(text: text, color: Color.blue500, weight: .bold, font: .system(size: 30)).padding(.leading, Height.normalHeight)
-            .padding(.vertical, Height.xxSmallHeight)
+        tvColorString(text: text, color: color, weight: .regular, font: .system(size: 30))
     }
 }
