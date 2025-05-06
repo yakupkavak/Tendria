@@ -8,7 +8,7 @@
 import FirebaseCore
 import FirebaseFirestore
 
-struct MemoryDocumentModel: Identifiable,Codable{
+struct MemoryDocumentModel: Identifiable,Codable,Equatable,Hashable{
     @DocumentID var id: String?
     let collectionId: String
     let imageUrls: [String]
@@ -21,6 +21,7 @@ struct MemoryDocumentModel: Identifiable,Codable{
     let createDate: Timestamp
 
   enum CodingKeys: String, CodingKey {
+    case id
     case collectionId
     case imageUrls
     case title

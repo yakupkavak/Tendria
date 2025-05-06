@@ -34,6 +34,19 @@ struct btnSystemIconGradient: View {
         }.btnStyle()
     }
 }
+struct btnSystemIconCircle: View {
+    var iconSystemName: String
+    var color: Color
+    var action: () -> Void
+    
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: iconSystemName).foregroundColor(color)
+        }.btnCircleStyle()
+    }
+}
 struct btnSystemIconTransparent: View {
     var iconSystemName: String
     var color: Color
@@ -107,6 +120,26 @@ struct btnTextGradientInfinity: View {
         }
     }
 }
+struct btnBadge: View {
+    var text: String
+    var backgroundColor: Color
+    var onClick: () -> Void
+    
+    var body: some View {
+        Button {
+            onClick()
+        } label: {
+            Text(text)
+                .font(.subheadline)
+                .foregroundColor(.black)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
+                .background(backgroundColor)
+                .clipShape(Capsule())
+        }
+    }
+}
+
 struct btnTextGradientSmall: View {
     
     var foregroundColor: Color? = Color.btnForeground

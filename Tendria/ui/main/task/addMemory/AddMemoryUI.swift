@@ -34,7 +34,7 @@ struct AddMemoryUI: View {
     var body: some View {
         
         HStack{
-            btnSystemIconTransparent(iconSystemName: Icons.left_arrow, color: Color.black) {
+            btnSystemIconTransparent(iconSystemName: Icons.left_direction, color: Color.black) {
                 isAddMemoryPresented = false
             }
             tvHeadline(text: StringKey.add_memory, color: Color.blue500)

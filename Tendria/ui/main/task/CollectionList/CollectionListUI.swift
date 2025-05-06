@@ -28,7 +28,7 @@ struct CollectionListUI: View {
                                 Button {
                                     routerTask.navigate(to: .memoryList(collection: collection))
                                 } label: {
-                                    CollectionRowUI(url: collection.imageUrl, subText: collection.title, description: collection.description ?? "",shouldCancelOnDisappear: true, isFavorite: false)
+                                    CollectionRowUI(url: collection.imageUrl, subText: collection.title, shouldCancelOnDisappear: true, isFavorite: false)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -36,7 +36,7 @@ struct CollectionListUI: View {
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
-                    .padding(.horizontal,30)
+                    .padding(.horizontal,Padding.rowPadding)
 
                     VStack {
                         Spacer()

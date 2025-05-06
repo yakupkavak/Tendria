@@ -23,6 +23,14 @@ struct tvFootnote: View {
         tvColorKey(text: text, color: color, weight: .regular, font: .footnote,textAlignment: textAlignment)
     }
 }
+struct tvFootnoteString: View {
+    var text: String
+    var color: Color
+    var textAlignment: TextAlignment = .center
+    var body: some View {
+        tvColorKeyString(text: text, color: color, weight: .regular, font: .footnote,textAlignment: textAlignment)
+    }
+}
 
 struct tvBodyline: View {
     var text: LocalizedStringKey
@@ -39,12 +47,19 @@ struct tvSubHeadline: View {
         tvColorKey(text: text, color: color, weight: .regular, font: .subheadline)
     }
 }
+struct tvSubHeadlineString: View {
+    var text: String
+    var color: Color
+    var body: some View {
+        tvColorKeyString(text: text, color: color, weight: .regular, font: .title)
+    }
+}
 
 struct tvHeadline: View {
     var text: LocalizedStringKey
     var color: Color
     var body: some View {
-        tvColorKey(text: text, color: color, weight: .bold, font: .title3)
+        tvColorKey(text: text, color: color, weight: .regular, font: .title3)
     }
 }
 
@@ -53,14 +68,6 @@ struct tvHeadlineString: View {
     var color: Color
     var body: some View {
         tvColorKeyString(text: text, color: color, weight: .bold, font: .title3)
-    }
-}
-
-struct tvFootnoteString: View {
-    var text: String
-    var color: Color
-    var body: some View {
-        tvColorKeyString(text: text, color: color, weight: .regular, font: .footnote)
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 extension UIApplication {
     func addTapGestureRecognizer() {
             // Aktif windowScene'e ve onun içindeki ilk window'a erişiyoruz
@@ -42,7 +43,7 @@ extension UINavigationController {
         interactivePopGestureRecognizer?.delegate = nil
     }
 }
-extension Image{
+extension KFImage{
     func findTrueSize(uiImage: UIImage,maxHeight: CGFloat, maxWidth: CGFloat) -> some View{
         if(isWidthHigher(uiImage: uiImage)){
             self.resizable().scaledToFit().frame(width: maxWidth).clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius))
@@ -51,17 +52,28 @@ extension Image{
         }
     }
 
-    private func isWidthHigher(uiImage: UIImage) -> Bool {
-        let width = uiImage.size.width
-        let height = uiImage.size.height
-
-        if(width >= height){
-            return true
-        }else {
-            return false
+}
+extension Image{
+    func findTrueSize(uiImage: UIImage,maxHeight: CGFloat, maxWidth: CGFloat) -> some View{
+        if(isWidthHigher(uiImage: uiImage)){
+            self.resizable().scaledToFit().frame(width: maxWidth).clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius))
+        }else{
+            self.resizable().scaledToFit().frame(height: maxHeight).clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius))
         }
     }
 }
+
+private func isWidthHigher(uiImage: UIImage) -> Bool {
+    let width = uiImage.size.width
+    let height = uiImage.size.height
+
+    if(width >= height){
+        return true
+    }else {
+        return false
+    }
+}
+
 extension View{
     func paddingHorizontal(value: CGFloat = 8) -> some View{
         self.padding([.leading,.trailing], value)

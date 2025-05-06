@@ -30,23 +30,29 @@ struct MemoryListUI: View {
                 case .exist(let memoryArray):
                     VStack{
                         RowURLImage(imageUrl: collectionData.imageUrl, shouldCancelOnDisappear: true).overlay(alignment: Alignment.topLeading) {
-                            btnSystemIconTransparent(iconSystemName: Icons.left_arrow, color: Color.white,font:.system(size: FontValue.bigIconSize, weight: .bold)) {
+                            btnSystemIconTransparent(iconSystemName: Icons.left_direction, color: Color.white,font:.system(size: FontValue.bigIconSize, weight: .bold)) {
                                 routerMemory.navigateBack()
                             }.padding().shadow(radius: Radius.shadowRadius)
                         }
                         tvHeadlineString(text: collectionData.title, color: .blue500)
-                        
-                        LazyVStack(spacing: Padding.rowPadding) {
-                            ForEach(memoryArray) { memory in
-                                Button {
-                                    routerMemory.navigate(to: .memoryDetail)
-                                } label: {
-                                    CollectionRowUI(url: memory.imageUrls[0], subText: memory.title, description: memory.userOneDescription ?? "", shouldCancelOnDisappear: true, isFavorite: false)
+                        tvFootnoteString(text: collectionData.description, color: .blue500)
+                        Divider()
+                        ScrollView(.vertical,showsIndicators: false){
+                            LazyVStack(spacing: Padding.rowPadding) {
+                                ForEach(memoryArray, id: \.self) { memory in
+                                    Button {
+                                        routerMemory.navigate(to: .memoryDetail(memory: memory))
+                                    } label: {
+                                        CollectionRowUI(url: memory.imageUrls[0], subText: memory.title, shouldCancelOnDisappear: true, isFavorite: false)
+                                    }
+                                    .buttonStyle(PlainButtonStyle()).onAppear(
+                                        perform: {print("item gözüktü")}
+                                    )
                                 }
-                                .buttonStyle(PlainButtonStyle())
-                            }
+                            }.padding(.horizontal, Padding.rowPadding)
+                            .listStyle(.plain)
                         }
-                        .listStyle(.plain)
+                        Spacer()
                     }
                     VStack {
                         Spacer()
@@ -62,7 +68,7 @@ struct MemoryListUI: View {
                 case .nonExist:
                     VStack{
                         HStack{
-                            btnSystemIconTransparent(iconSystemName: Icons.left_arrow, color: Color.black) {
+                            btnSystemIconTransparent(iconSystemName: Icons.left_direction, color: Color.black) {
                                 routerMemory.navigateBack()
                             }
                             Spacer()

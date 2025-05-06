@@ -10,7 +10,6 @@ import SwiftUI
 struct CollectionRowUI: View {
     var url: String
     var subText: String
-    var description: String
     var shouldCancelOnDisappear: Bool
     var isFavorite: Bool
     var body: some View {
@@ -32,7 +31,7 @@ struct CollectionRowUI: View {
 }
 
 #Preview {
-    CollectionRowUI(url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWPw5qeVm7nSfrA7lhl5OSKqsSyzL4eMD9Iw&s", subText: "goku", description: "super saiyan", shouldCancelOnDisappear: true, isFavorite: true)
+    CollectionRowUI(url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWPw5qeVm7nSfrA7lhl5OSKqsSyzL4eMD9Iw&s", subText: "goku", shouldCancelOnDisappear: true, isFavorite: true)
 }
  /*
 .overlay(alignment: .center) {

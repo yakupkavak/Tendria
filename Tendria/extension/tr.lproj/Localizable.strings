@@ -95,3 +95,7 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 "memory_comment" = "Hatıranız hakkında not ekleyin...";
 "select_date" = "Tarih seçin";
 "memory_added" = "Hatıranız başarıyla eklendi.";
+
+/*Memory Detail*/
+"comment_title" = "Yorum";
+"none_comment" = "Henüz bir yorumu bulunmuyor";

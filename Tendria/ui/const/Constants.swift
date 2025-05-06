@@ -78,14 +78,18 @@ struct Constants {
     struct OffsetValue {
         static let deleteImageX = CGFloat(7)
         static let deleteImageY = CGFloat(4)
+        static let leftIcon = CGFloat(14)
+        static let rightIcon = CGFloat(-14)
     }
 
     struct Padding {
         static let constantMinusMediumPadding = CGFloat(-16)
         static let constantMinusLargePadding = CGFloat(-64)
         static let constantMinusXLargePadding = CGFloat(-100)
+        static let customButtonPadding = CGFloat(36)
         static let constantLargePadding = CGFloat(32)
         static let constantMediumPadding = CGFloat(22)
+        static let constantLightPadding = CGFloat(18)
         static let constantNormalPadding = CGFloat(16)
         static let leadingMediumPadding = CGFloat(12)
         static let constantXSmallPadding = CGFloat(4)
@@ -98,6 +102,8 @@ struct Constants {
         static let horizontalSmallPadding = UIScreen.main.bounds.width * 0.03
         static let horizontalXSmallPadding = UIScreen.main.bounds.width * 0.005
         static let rowPadding = CGFloat(30)
+        static let rowPaddingSmall = CGFloat(12)
+
         static let largePadding = UIScreen.main.bounds.height * 0.05
         static let mediumPadding = UIScreen.main.bounds.height * 0.02
         static let smallPadding = UIScreen.main.bounds.height * 0.01
@@ -123,6 +129,7 @@ struct Constants {
     }
     
     struct Height{
+        static let ultraLargeHeight = UIScreen.main.bounds.height * 0.6
         static let xxxLargeHeight = UIScreen.main.bounds.height * 0.30
         static let uploadHighHeight = UIScreen.main.bounds.height * 0.25
         static let xxLargePlusHeight = UIScreen.main.bounds.height * 0.20
@@ -231,6 +238,9 @@ struct Constants {
         static let memory_comment = LocalizedStringKey("memory_comment")
         static let select_date = LocalizedStringKey("select_date")
         static let memory_added = LocalizedStringKey("memory_added")
+        
+        static let comment_title = LocalizedStringKey("comment_title")
+        static let none_comment = LocalizedStringKey("none_comment")
     }
 
     struct Images {
@@ -257,7 +267,8 @@ struct Constants {
         static let lock = "lock.fill"
         static let person = "person.fill"
         static let right_arrow = "arrow.right"
-        static let left_arrow = "chevron.left"
+        static let left_direction = "chevron.left"
+        static let right_direction = "chevron.right"
         static let heart = "heart.fill"
         static let close = "xmark"
     }

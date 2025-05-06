@@ -15,7 +15,7 @@ final class RouterMemory: ObservableObject {
         case collectionList
         case addCollection
         case memoryList(collection: CollectionDocumentModel)
-        case memoryDetail
+        case memoryDetail(memory: MemoryDocumentModel)
         case addMemory(collectionId: String)
     }
     

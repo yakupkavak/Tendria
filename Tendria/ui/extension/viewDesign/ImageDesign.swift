@@ -32,6 +32,29 @@ struct RowURLImage: View {
     }
 }
 
+struct MemoryImage: View {
+    var imageUrl: String
+    var shouldCancelOnDisappear: Bool = false
+    
+    @State private var imageSize: CGSize?
+    var body: some View {
+        KFImage(URL(string: imageUrl)!)
+            .resizable()
+            .placeholder {
+                ShimmerEffectBox()
+            }
+            .retry(maxCount: 3, interval: .seconds(5))
+            .onSuccess { r in
+                // r: RetrieveImageResult
+            }
+            .onFailure { e in
+                // e: KingfisherError
+                print("failure: \(e)")
+            }.cancelOnDisappear(shouldCancelOnDisappear).aspectRatio(contentMode: .fit)
+           
+    }
+}
+
 struct UploadImageSequenceUI: View {
     var uiImage: UIImage
     var maxHeight: CGFloat
@@ -65,7 +88,6 @@ struct UploadImageUI: View {
 }
 
 struct ImageAsset: View {
-    
     var uiImageSource: String
     var imageHeight: CGFloat? = ImageWidth.largeWidth
     private var image: UIImage
@@ -81,10 +103,15 @@ struct ImageAsset: View {
             .scaledToFit()
             .frame(width: imageHeight)
             .clipped()
-            
     }
 }
 
 #Preview {
-    CustomLottieView(animationFileName: LottieSet.HEART_LOADING, isDotLottieFile: false, loopMode: .autoReverse)
+    /*
+    @State var isSelected = true
+    @State var fetchedImageSize: CGSize()
+    /*
+    CustomLottieView(animationFileName: LottieSet.HEART_LOADING, isDotLottieFile: false, loopMode: .autoReverse)*/
+    MemoryImage(imageUrl: "https://static.wikia.nocookie.net/dragon-ball-turkiye/images/e/e4/Goku_arrives_colored.PNG/revision/latest/scale-to-width/360?cb=20240328182720&path-prefix=tr")
+    */
 }

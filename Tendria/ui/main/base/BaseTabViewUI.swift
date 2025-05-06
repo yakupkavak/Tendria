@@ -43,8 +43,8 @@ struct BaseTabViewUI: View {
                         }
                     case .memoryList(let data):
                         MemoryListUI(collectionData: data, isAddMemoryPresented: $isAddMemoryPresented)
-                    case .memoryDetail:
-                        TaskDetailUI()
+                    case .memoryDetail(let data):
+                        MemoryDetailUI(memoryData: data)
                     case .addMemory(let collectionId):
                         AddMemoryUI(isAddMemoryPresented: $isAddMemoryPresented, collectionId: collectionId)
                     }

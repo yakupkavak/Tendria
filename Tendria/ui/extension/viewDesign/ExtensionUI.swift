@@ -27,4 +27,7 @@ extension View {
     func btnStyle() -> some View{
         self.customPadding(horizontal: Padding.mediumPadding, vertical: Padding.smallPadding).gradientBackground().normalShadow().cornerRadius(Constants.Radius.xLargeRadius)
     }
+    func btnCircleStyle() -> some View{
+        self.customPadding(horizontal: Padding.mediumPadding, vertical: Padding.smallPadding).background(Color.black).normalShadow().clipShape(.circle)
+    }
 }
