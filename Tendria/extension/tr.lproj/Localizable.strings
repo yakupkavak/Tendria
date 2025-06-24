@@ -99,3 +99,46 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 /*Memory Detail*/
 "comment_title" = "Yorum";
 "none_comment" = "Henüz bir yorumu bulunmuyor";
+
+/*Days*/
+"other" = "Başka";
+"date" = "Tarih";
+"monday" = "Pazartesi";
+"tuesday" = "Salı";
+"wednesday" = "Çarşamba";
+"thursday" = "Perşembe";
+"friday" = "Cuma";
+"saturday" = "Cumartesi";
+"sunday" = "Pazar";
+
+/* Months - Turkish */
+"january" = "Ocak";
+"february" = "Şubat";
+"march" = "Mart";
+"april" = "Nisan";
+"may" = "Mayıs";
+"june" = "Haziran";
+"july" = "Temmuz";
+"august" = "Ağustos";
+"september" = "Eylül";
+"october" = "Ekim";
+"november" = "Kasım";
+"december" = "Aralık";
+
+/*Event Screen*/
+"event_title" = "Etkinliğinizi kolayca ayarlayalım";
+"select_date" = "Tarihi seçin";
+"select_time" = "Zamanı seçin";
+"category" = "Kategori";
+"ten_minute_timer" = "10 dakika önce";
+"repeat" = "tekrarla";
+"other" = "Diğer";
+"from" = "Başlangıç";
+"to" = "Bitiş";
+"onayla" = "Onayla";
+"sameTimeError" = "Başlangıç ve bitiş saati aynı olamaz.";
+"startHour" = "Başlangıç saati";
+"endHour" = "Bitiş saati";
+"addNewCategory" = "Yeni Kategori Ekle";
+"categoryName" = "Kategori Adı";
+"categoryColor" = "Kategori Rengi";

@@ -16,6 +16,55 @@ struct CustomWaveView: View {
             )
     }
 }
+struct CategoryTag: View {
+    var model: CategoryModel
+    var isSelected: Bool = false
+    var isAddButton: Bool = false
+    var action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 6) {
+                if isAddButton {
+                    Image(systemName: "plus")
+                        .font(.body)
+                        .foregroundColor(.blue)
+                        .padding(8)
+                } else {
+                    Circle()
+                        .fill(Color(hex: model.colorHex))
+                        .frame(width: 12, height: 12)
+                    Text(model.name)
+                        .font(.subheadline)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 6)
+                        .padding(.trailing, 10)
+                }
+            }
+            .padding(.leading, isAddButton ? 0 : 6)
+            .background(backgroundView)
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var backgroundView: some View {
+        if isAddButton {
+            return AnyView(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.blue, lineWidth: 2)
+            )
+        } else {
+            return AnyView(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color(hex: model.colorHex).opacity(0.1))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(isSelected ? Color.blue : Color.clear, lineWidth: 2)
+                    )
+            )
+        }
+    }
+}
 
 struct CustomWaveShape: Shape {
     func path(in rect: CGRect) -> Path {

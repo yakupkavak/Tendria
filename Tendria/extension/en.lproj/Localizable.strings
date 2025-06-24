@@ -97,3 +97,46 @@ Invite your partner and begin crafting memories together 💫";
 /*Memory Detail*/
 "comment_title" = "Comment";
 "none_comment" = "No comments yet";
+
+/*Days*/
+"other" = "Other";
+"date" = "Tarih";
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"sunday" = "Sunday";
+
+/*Months*/
+"january" = "January";
+"february" = "February";
+"march" = "March";
+"april" = "April";
+"may" = "May";
+"june" = "June";
+"july" = "July";
+"august" = "August";
+"september" = "September";
+"october" = "October";
+"november" = "November";
+"december" = "December";
+
+/*Event Screen*/
+"event_title" = "Let's set the event easily";
+"select_date" = "Select date";
+"select_time" = "Select time";
+"category" = "Category";
+"ten_minute_timer" = "10 minutes before";
+"repeat" = "repeat";
+"other" = "Other";
+"from" = "From";
+"to" = "To";
+"accept" = "Accept";
+"sameTimeError" = "The start and end time cannot be the same.";
+"startHour" = "Start hour";
+"endHour" = "End hour";
+"addNewCategory" = "Add New Category";
+"categoryName" = "Category Name";
+"categoryColor" = "Category Color";

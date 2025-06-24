@@ -94,5 +94,153 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20DC5211-877F-4061-900C-9644D06CAE8B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tendria/ui/const/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "Images"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 5ecb7c40f30fd35c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "one-time initialization function for days"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "292"
+                  endingLineNumber = "292">
+               </Location>
+               <Location
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 9f45c719d5edcf86"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tendria.Constants.Tables.days.unsafeMutableAddressor : Swift.Array&lt;SwiftUI.LocalizedStringKey&gt;"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "292"
+                  endingLineNumber = "292">
+               </Location>
+               <Location
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - d30ff787a2575cce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "one-time initialization function for MAKE_RELATION"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "291"
+                  endingLineNumber = "291">
+               </Location>
+               <Location
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 8e0e7e809e7e3456"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tendria.Constants.Images.MAKE_RELATION.unsafeMutableAddressor : Swift.String"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "291"
+                  endingLineNumber = "291">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ECB0267B-582D-4BD4-B3CC-D4D041F39F67"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tendria/ui/const/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "StringKeys"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "ECB0267B-582D-4BD4-B3CC-D4D041F39F67 - 9731d1da94f9c93b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "one-time initialization function for add_memory"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "237"
+                  endingLineNumber = "237">
+               </Location>
+               <Location
+                  uuid = "ECB0267B-582D-4BD4-B3CC-D4D041F39F67 - 4a86e289dd73cff0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tendria.Constants.StringKeys.add_memory.unsafeMutableAddressor : SwiftUI.LocalizedStringKey"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "237"
+                  endingLineNumber = "237">
+               </Location>
+               <Location
+                  uuid = "ECB0267B-582D-4BD4-B3CC-D4D041F39F67 - 9731d1da94f9cad8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "one-time initialization function for add_memory"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "238"
+                  endingLineNumber = "238">
+               </Location>
+               <Location
+                  uuid = "ECB0267B-582D-4BD4-B3CC-D4D041F39F67 - 4a86e289dd73cc13"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tendria.Constants.StringKeys.add_memory.unsafeMutableAddressor : SwiftUI.LocalizedStringKey"
+                  moduleName = "Tendria.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "238"
+                  endingLineNumber = "238">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

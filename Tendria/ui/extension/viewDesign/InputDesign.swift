@@ -26,7 +26,7 @@ struct tfIcon: View {
         .padding()
         .background(Color.white)
         .cornerRadius(radius.xLargeRadius)
-        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+        .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
     }
 }
 struct tfText: View {
@@ -41,7 +41,7 @@ struct tfText: View {
         .padding()
         .background(Color.white)
         .cornerRadius(radius.xLargeRadius)
-        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+        .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
     }
 }
 struct teText: View {
@@ -72,7 +72,7 @@ struct teText: View {
                 }
         }
         .cornerRadius(radius.mediumRadius)
-            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+            .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
     }
 }
 struct DatePickerView: View {
@@ -106,6 +106,27 @@ struct LocalizedDatePicker: View {
             DatePicker(" ", selection: $selectedDate, displayedComponents: [.date])
                 .labelsHidden()
                 .datePickerStyle(.compact)
+        }
+        .padding()
+    }
+}
+
+struct TimePickerBottomSheet: View {
+    var title: LocalizedStringKey
+    @Binding var date: Date
+    @Environment(\.dismiss) private var dismiss
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            tvHeadline(text: title, color: .generalText).padding(.top,32)
+            DatePicker("", selection: $date, displayedComponents: [.hourAndMinute])
+                .datePickerStyle(.wheel)
+                .labelsHidden()
+                .padding(.horizontal)
+            Button("\(getLocalizedString(StringKey.accept))") {
+                dismiss()
+            }
+            .padding(.top)
         }
         .padding()
     }

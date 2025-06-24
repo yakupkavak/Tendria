@@ -237,6 +237,10 @@ class FirestorageManager {
         }
     }
     
+    func saveEvent(title: String, description: String, date: Date, startHour: Date, endHour: Date, tenMinuteNotification: Bool, category: CategoryModel){
+        
+    }
+    
     //IT ADDED ON CLOUD FUNCTION
     /*
      func checkRelationCode(relationCode: String) async throws {

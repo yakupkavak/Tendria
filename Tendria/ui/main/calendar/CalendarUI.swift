@@ -1,5 +1,5 @@
 //
-//  TreeUI.swift
+//  HistoryUI.swift
 //  Tendria
 //
 //  Created by Yakup Kavak on 2.02.2025.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct TreeUI: View {
+struct CalendarUI: View {
     var body: some View {
-        Text("Tree")
+        CreateEventUI()
     }
 }
 
 #Preview {
-    TreeUI()
+    CalendarUI()
 }

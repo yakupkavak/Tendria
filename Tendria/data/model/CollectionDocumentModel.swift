@@ -13,7 +13,7 @@ struct CollectionDocumentModel: Identifiable,Codable,Equatable,Hashable{
     var imageUrl: String
     var title: String
     var relationId: String
-    let description: String
+    var description: String
     let createDate: Timestamp
     
     enum CodingKeys: String, CodingKey {

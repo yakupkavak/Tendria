@@ -75,6 +75,13 @@ private func isWidthHigher(uiImage: UIImage) -> Bool {
 }
 
 extension View{
+    func smallCorner() -> some View{
+        self.clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+    }
+    func mediumCorner() -> some View{
+        self.clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+    }
+    
     func paddingHorizontal(value: CGFloat = 8) -> some View{
         self.padding([.leading,.trailing], value)
     }
@@ -83,6 +90,9 @@ extension View{
             Spacer()
             Spacer()
         }
+    }
+    func positionLeading() -> some View{
+        self.frame(maxWidth: .infinity,alignment: .leading)
     }
     func showNewRelation(
         isPresent: Binding<Bool>,

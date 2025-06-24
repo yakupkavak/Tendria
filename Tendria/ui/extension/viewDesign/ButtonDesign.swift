@@ -139,6 +139,23 @@ struct btnBadge: View {
         }
     }
 }
+struct btnIconText: View {
+    let stringKey: LocalizedStringKey
+    let systemName: String
+    let action: () -> Void
+    @Binding var selected: Bool
+    
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            HStack{
+                Image(systemName: systemName).foregroundStyle(.generalText)
+                tvFootnote(text: stringKey, color: .generalText)
+            }.padding(6)
+        }.background(selected ? Color.selectButton : Color.unselectButton).mediumCorner()
+    }
+}
 
 struct btnTextGradientSmall: View {
     
@@ -156,6 +173,25 @@ struct btnTextGradientSmall: View {
         } label: {
             tvHeadline(text: text, color: foregroundColor!).fixedSize().padding(edgeSet,paddingValue).gradientBackground().clipShape(RoundedRectangle(cornerRadius: Radius.mediumRadius)).shadow(radius: shadow!)
         }
+    }
+}
+struct SelectDateRow: View {
+    var selected: Bool
+    var number: String
+    var text: String
+    var body: some View {
+        VStack(spacing: Padding.constantNormalPadding){
+            tvColorString(text: number, color: selected ? Color.white : Color.black, font: .title3)
+            tvColorString(text: text, color: selected ? Color.white : Color.black, font: .footnote)
+        }.frame(maxWidth: 90,maxHeight: 90).background(selected ? Color.selectButton : Color.unselectButton).mediumCorner()
+    }
+}
+
+struct ChipUI: View {
+    @Binding var selected: Bool
+    var text: String
+    var body: some View {
+        tvColorString(text: text, color: selected ? Color.white : Color.black, font: .title3).padding().background(selected ? Color.selectButton : Color.unselectButton).mediumCorner()
     }
 }
 
@@ -177,7 +213,14 @@ struct btnTextTransparent: View {
 }
 
 #Preview{
-    btnTextTransparent(action: {
-        print("yakup")
-    }, text: StringKey.add )
+    @State var selected = true
+    
+    btnIconText(stringKey: StringKey.add_memory, systemName: "bell", action: {print("yakup")}, selected: $selected)
+    SelectDateRow(selected: false, number: "10", text: "Tuesday")
+    /*
+     btnTextTransparent(action: {
+         print("yakup")
+     }, text: StringKey.add )
+     */
+    
 }

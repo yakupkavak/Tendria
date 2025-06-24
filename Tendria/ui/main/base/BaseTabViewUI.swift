@@ -19,16 +19,15 @@ struct BaseTabViewUI: View {
     @State private var isAddMemoryPresented = false
     
     var body: some View {
-        
         TabView(selection: $selectedTab, content: {
             FeedUI()
                 .tabItem {
-                    Label("Feed", systemImage: "house.fill")
+                    Label("Feed", systemImage: "house")
                 }.tag(Tab.feed)
             
-            HistoryUI()
+            CalendarUI()
                 .tabItem {
-                    Label("History", systemImage: "clock.fill")
+                    Label("Calendar", systemImage: "calendar")
                 }.tag(Tab.history)
             NavigationStack(path: $routerMemory.navPath) {
                 CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab).environmentObject(routerMemory).environmentObject(routerUser).navigationDestination(for: RouterMemory.Destination.self) { destination in
@@ -50,13 +49,8 @@ struct BaseTabViewUI: View {
                     }
                 }
             }.tabItem {
-                Label("Task", systemImage: "checkmark.circle.fill")
+                Label("Memories", systemImage: "book")
             }.tag(Tab.task)
-            
-            TreeUI()
-                .tabItem {
-                    Label("Tree", systemImage: "leaf.fill")
-                }.tag(Tab.tree)
             NavigationStack(path: $routerUser.navPath) {
                 UserListUI().environmentObject(routerUser).navigationDestination(for: RouterUserInfo.Destination.self) { destination in
                     switch destination {
@@ -73,7 +67,7 @@ struct BaseTabViewUI: View {
                     }
                 }
             }.tabItem {
-                Label("User", systemImage: "person.fill")
+                Label("User", systemImage: "person")
             }.tag(Tab.user)
         }) .onAppear {
             print("BaseTabViewUI appeared. ViewModel: \(viewModel)")

@@ -33,6 +33,7 @@ typealias ZIndex = Constants.ZIndex
 typealias Scale = Constants.Scale
 typealias OffsetValue = Constants.OffsetValue
 typealias FontValue = Constants.FontValues
+typealias Tables = Constants.Tables
 
 struct Constants {
     struct Gradients {
@@ -92,6 +93,7 @@ struct Constants {
         static let constantLightPadding = CGFloat(18)
         static let constantNormalPadding = CGFloat(16)
         static let leadingMediumPadding = CGFloat(12)
+        static let e = CGFloat(8)
         static let constantXSmallPadding = CGFloat(4)
         static let constantXLargePadding = CGFloat(280)
         static let horizontalXLargePadding = UIScreen.main.bounds.width * 0.4
@@ -129,6 +131,7 @@ struct Constants {
     }
     
     struct Height{
+        static let bottomSheetHeight = CGFloat(300)
         static let ultraLargeHeight = UIScreen.main.bounds.height * 0.6
         static let xxxLargeHeight = UIScreen.main.bounds.height * 0.30
         static let uploadHighHeight = UIScreen.main.bounds.height * 0.25
@@ -238,9 +241,50 @@ struct Constants {
         static let memory_comment = LocalizedStringKey("memory_comment")
         static let select_date = LocalizedStringKey("select_date")
         static let memory_added = LocalizedStringKey("memory_added")
-        
         static let comment_title = LocalizedStringKey("comment_title")
         static let none_comment = LocalizedStringKey("none_comment")
+        
+        /*Days*/
+        static let monday = LocalizedStringKey("monday")
+        static let tuesday = LocalizedStringKey("tuesday")
+        static let wednesday = LocalizedStringKey("wednesday")
+        static let thursday = LocalizedStringKey("thursday")
+        static let friday = LocalizedStringKey("friday")
+        static let saturday = LocalizedStringKey("saturday")
+        static let sunday = LocalizedStringKey("sunday")
+        
+        /* Months */
+        static let january = LocalizedStringKey("january")
+        static let february = LocalizedStringKey("february")
+        static let march = LocalizedStringKey("march")
+        static let april = LocalizedStringKey("april")
+        static let may = LocalizedStringKey("may")
+        static let june = LocalizedStringKey("june")
+        static let july = LocalizedStringKey("july")
+        static let august = LocalizedStringKey("august")
+        static let september = LocalizedStringKey("september")
+        static let october = LocalizedStringKey("october")
+        static let november = LocalizedStringKey("november")
+        static let december = LocalizedStringKey("december")
+        
+        /*Event Screen*/
+        static let eventTitle = LocalizedStringKey("event_title")
+        static let selectTime = LocalizedStringKey("select_time")
+        static let selectDate = LocalizedStringKey("select_date")
+        static let category = LocalizedStringKey("category")
+        static let tenMinuteTimer = LocalizedStringKey("ten_minute_timer")
+        static let repeatKey = LocalizedStringKey("repeat")
+        static let other = LocalizedStringKey("other")
+        static let from = LocalizedStringKey("from")
+        static let to = LocalizedStringKey("to")
+        static let accept = LocalizedStringKey("accept")
+        static let sameTimeError = LocalizedStringKey("sameTimeError")
+        static let startHour = LocalizedStringKey("startHour")
+        static let endHour = LocalizedStringKey("endHour")
+        static let addNewCategory = LocalizedStringKey("addNewCategory")
+        static let categoryName = LocalizedStringKey("categoryName")
+        static let categoryColor = LocalizedStringKey("categoryColor")
+        
     }
 
     struct Images {
@@ -248,6 +292,34 @@ struct Constants {
         static let PIKACHU = "pikachu"
         static let NOTIFICATION = "notification"
     }
+    
+    struct Tables {
+        static let days = [
+            StringKey.sunday,
+            StringKey.monday,
+            StringKey.tuesday,
+            StringKey.wednesday,
+            StringKey.thursday,
+            StringKey.friday,
+            StringKey.saturday
+        ]
+        
+        static let months = [
+            StringKey.january,
+            StringKey.february,
+            StringKey.march,
+            StringKey.april,
+            StringKey.may,
+            StringKey.june,
+            StringKey.july,
+            StringKey.august,
+            StringKey.september,
+            StringKey.october,
+            StringKey.november,
+            StringKey.december
+        ]
+    }
+    
     struct Lotties {
         static let BEAR_CAT_JSON = "bearandcat"
         static let BEAR_CAT_DJSON = "bearCatLottie"
