@@ -142,3 +142,7 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 "addNewCategory" = "Yeni Kategori Ekle";
 "categoryName" = "Kategori Adı";
 "categoryColor" = "Kategori Rengi";
+"title_empty" = "Başlık boş bırakılamaz.";
+"today" = "Bugün";
+"time" = "Zaman";
+"event" = "Etkinlik";

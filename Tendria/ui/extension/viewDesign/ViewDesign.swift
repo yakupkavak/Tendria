@@ -37,6 +37,10 @@ struct CategoryTag: View {
                     Text(model.name)
                         .font(.subheadline)
                         .foregroundColor(.black)
+                        .frame(maxWidth: 100)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .layoutPriority(1)
                         .padding(.vertical, 6)
                         .padding(.trailing, 10)
                 }

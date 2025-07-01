@@ -140,3 +140,10 @@ Invite your partner and begin crafting memories together 💫";
 "addNewCategory" = "Add New Category";
 "categoryName" = "Category Name";
 "categoryColor" = "Category Color";
+"title_empty" = "The title cannot be empty.";
+"today" = "Today";
+"time" = "Time";
+"event" = "Event";
+
+/*Edit Profile*/
+

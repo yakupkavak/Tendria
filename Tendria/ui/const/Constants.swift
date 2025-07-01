@@ -284,7 +284,17 @@ struct Constants {
         static let addNewCategory = LocalizedStringKey("addNewCategory")
         static let categoryName = LocalizedStringKey("categoryName")
         static let categoryColor = LocalizedStringKey("categoryColor")
+        static let titleEmpty = LocalizedStringKey("title_empty")
+        static let time = LocalizedStringKey("time")
+        static let event = LocalizedStringKey("event")
+        static let today = LocalizedStringKey("today")
         
+        /*User Info*/
+        static let editProfile = LocalizedStringKey("edit_profile")
+        static let yourInfo = LocalizedStringKey("your_information")
+        static let name = LocalizedStringKey("name")
+        static let surname = LocalizedStringKey("surname")
+        static let mobile = LocalizedStringKey("mobile")
     }
 
     struct Images {
@@ -357,10 +367,12 @@ struct Constants {
         static let USER_IMAGE_FIELD = "profileImage"
         static let FCM_TOKEN_FIELD = "fcmToken"
         static let USER_LANGUAGE = "userLanguage"
+        static let EVENT_PATH = "Event"
     }
     struct FirestorageConst {
         static let COLLECTION_PATH = "collection"
         static let MEMORY_PATH = "memory"
+        static let PROFILE_IMAGE_PATH = "profile_images"
     }
     struct Numbers{
         static let RANDOM_COUNT = 6

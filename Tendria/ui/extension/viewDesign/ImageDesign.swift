@@ -54,6 +54,40 @@ struct MemoryImage: View {
            
     }
 }
+extension KFImage {
+    static func profile(
+        _ urlString: String?,
+        size: CGFloat
+    ) -> some View {
+        let swiftUIImage = Image("avatar_placeholder")
+            .resizable()
+
+        let uiImage = UIImage(named: "avatar_placeholder")
+
+        guard
+            let urlString,
+            !urlString.isEmpty,
+            let url = URL(string: urlString)
+        else {
+            return AnyView(
+                swiftUIImage
+                    .scaledToFill()
+                    .frame(width: size, height: size)
+                    .clipShape(Circle())
+            )
+        }
+
+        return AnyView(
+            KFImage(url)
+                .placeholder { swiftUIImage }
+                .onFailureImage(uiImage)
+                .resizable()
+                .scaledToFill()
+                .frame(width: size, height: size)
+                .clipShape(Circle())
+        )
+    }
+}
 
 struct UploadImageSequenceUI: View {
     var uiImage: UIImage

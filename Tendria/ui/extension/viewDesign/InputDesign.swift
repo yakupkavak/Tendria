@@ -32,10 +32,12 @@ struct tfIcon: View {
 struct tfText: View {
     
     var placeHolder: LocalizedStringKey
+    var keyboard: UIKeyboardType = .default
     @Binding var textInput: String
     
     var body: some View {
         TextField(placeHolder, text: $textInput)
+            .keyboardType(keyboard)
             .autocapitalization(.none)
             .textFieldStyle(PlainTextFieldStyle())
         .padding()
@@ -44,6 +46,7 @@ struct tfText: View {
         .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
     }
 }
+
 struct teText: View {
     
     var placeHolder: LocalizedStringKey

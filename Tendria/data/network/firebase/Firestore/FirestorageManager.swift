@@ -158,7 +158,7 @@ class FirestorageManager {
         setDataToUser(data: token,path: FireDatabase.FCM_TOKEN_FIELD)
     }
     
-    private func setDataToUser(data: String,path: String){
+    private func setDataToUser(data: String, path: String){
         guard let userID = AuthManager.shared.getUserID() else {
             print("No user is logged in. Token not saved.")
             return
@@ -183,7 +183,6 @@ class FirestorageManager {
             let document = try await documentReference.getDocument()
             if document.exists {
                 let relationId = document.data()?[FireDatabase.RELATION_ID] as? String
-                print(document)
                 return !(relationId?.isEmpty ?? true)
             }else {
                 return false
@@ -216,9 +215,6 @@ class FirestorageManager {
     }
     
     func fetchMemoryList(collectionId: String) async throws -> FetchDataList<MemoryDocumentModel> {
-        guard let relationId = try await RelationRepository.shared.getRelationId() else {
-            throw RelationError.invalidUserRelation
-        }
         let documentReference = database.collection(FireDatabase.MEMORY_PATH)
         do {
             let querySnapshot = try await documentReference.whereField(FireDatabase.COLLECTION_ID, isEqualTo: collectionId).getDocuments()
@@ -237,8 +233,33 @@ class FirestorageManager {
         }
     }
     
-    func saveEvent(title: String, description: String, date: Date, startHour: Date, endHour: Date, tenMinuteNotification: Bool, category: CategoryModel){
-        
+    func saveEvent(title: String, description: String, date: Date, startHour: Date, endHour: Date, tenMinuteNotification: Bool, category: CategoryModel?,location: String,profileImage: String?, name: String) async throws{
+        guard let relationId = try await RelationRepository.shared.getRelationId() else {
+            throw RelationError.invalidUserRelation
+        }
+        let newDocument = EventDocumentModel(relationId: relationId, title: title, comment: description, eventDate: Timestamp(date: date), startHour: Timestamp(date: startHour), finishHour: Timestamp(date: endHour), location: location, category: category, isRemind: tenMinuteNotification, createrProfileImage: profileImage, createrName: name)
+        let eventReference = database.collection(FireDatabase.EVENT_PATH).document()
+        try await addDocument(documentRef: eventReference, value: newDocument)
+    }
+    
+    func listenEvents(
+        relationId: String,
+        onChange: @escaping @Sendable ([EventDocumentModel]) async -> Void
+    ) -> ListenerRegistration {
+        database.collection(FireDatabase.EVENT_PATH)
+            .whereField(FireDatabase.RELATION_ID, isEqualTo: relationId)
+            .addSnapshotListener { snap, _ in
+                guard let docs = snap?.documents else { return }
+                let list = docs.compactMap { try? $0.data(as: EventDocumentModel.self) }
+                Task {
+                    await onChange(list)
+                }
+            }
+    }
+    
+    func deleteEvent(_ ev: EventDocumentModel) async throws {
+        guard let id = ev.id else { return }
+        try await database.collection(FireDatabase.EVENT_PATH).document(id).delete()
     }
     
     //IT ADDED ON CLOUD FUNCTION
@@ -275,5 +296,5 @@ class FirestorageManager {
      }
      }
      */
-
+    
 }

@@ -12,6 +12,7 @@ import FirebaseCore
 import GoogleSignIn
 import FirebaseAppCheck
 import FirebaseMessaging
+import FirebaseFirestore
 
 
 class AuthManager: ObservableObject {
@@ -20,6 +21,7 @@ class AuthManager: ObservableObject {
     private var authState = AuthState.signedOut
     private var auth: Auth
     private var authStateHandle: AuthStateDidChangeListenerHandle!
+    private let database = Firestore.firestore()
     @Published var isSigned = false
     
     static let shared = AuthManager()
@@ -33,6 +35,23 @@ class AuthManager: ObservableObject {
         
         configureAuthStateChanges()
         verifySignInWithAppleID()
+    }
+    
+    func getUserModel() async throws -> UserModel{
+        guard let relationId = try await RelationRepository.shared.getRelationId() else {
+            throw RelationError.invalidUserRelation
+        }
+        let documentReference = database.collection(FireDatabase.USERS_PATH)
+        let querySnapshot = try await documentReference.whereField(FireDatabase.RELATION_ID, isEqualTo: relationId).getDocuments()
+        do {
+            for document in querySnapshot.documents{
+                let data = try document.data(as: UserModel.self)
+                return data
+            }
+        } catch {
+            throw error
+        }
+        throw RelationError.unknown
     }
     
     func getUserID() -> String?{

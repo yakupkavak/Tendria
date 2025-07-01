@@ -145,6 +145,12 @@ struct CreateEventUI: View {
             let toast = ToastValue(message: getLocalizedString(StringKey.sameTimeError))
             presentToast(toast)
         })
+        .onChange(of: viewModel.success, perform: {newValue in
+            if newValue {
+                let toast = ToastValue(message: getLocalizedString(StringKey.success))
+                presentToast(toast)
+            }
+        })
     }
     enum CreateEventState {
         case comment

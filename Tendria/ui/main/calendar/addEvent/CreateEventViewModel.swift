@@ -18,18 +18,24 @@ class CreateEventViewModel: BaseViewModel{
         }
     }
     
-    @Published var startHour: Date = {
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        components.hour = 12
-        components.minute = 0
-        return Calendar.current.date(from: components) ?? Date()
-    }()
-    @Published var finishHour: Date = {
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        components.hour = 14
-        components.minute = 0
-        return Calendar.current.date(from: components) ?? Date()
-    }()
+    @Published var startHour: Date {
+        didSet {
+            let combined = combineDateWithTime(time: startHour)
+            if !Calendar.current.isDate(startHour, equalTo: combined, toGranularity: .minute) {
+                startHour = combined
+            }
+        }
+    }
+    
+    @Published var finishHour: Date {
+        didSet {
+            let combined = combineDateWithTime(time: finishHour)
+            if !Calendar.current.isDate(finishHour, equalTo: combined, toGranularity: .minute) {
+                finishHour = combined
+            }
+        }
+    }
+    
     @Published var categories = [CategoryModel]()
     @Published var selectedCategory: CategoryModel? = nil
     @Published var titleInput = ""
@@ -38,6 +44,7 @@ class CreateEventViewModel: BaseViewModel{
     @Published var newCategoryColor = Color.blue
     @Published var success = false
     @Published var loading = false
+    @Published var location = ""
     @Published var error = ""
     @Published var tenMinuteSelected = false
     @Published var savedPalette: [Color] = []
@@ -45,9 +52,15 @@ class CreateEventViewModel: BaseViewModel{
     private let categoryKey = CalendarConstants.CATEGORYKEY
     
     override init() {
+        let now = Date()
+        let defaultStart = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: now)!
+        let defaultFinish = Calendar.current.date(bySettingHour: 14, minute: 0, second: 0, of: now)!
+        
+        self.selectDate = now
+        self.startHour = defaultStart
+        self.finishHour = defaultFinish
         super.init()
-        let today = Date()
-        self.dateList = generateDateList(startDate: today)
+        self.dateList = generateDateList(startDate: now)
         loadSavedCategories()
     }
     
@@ -98,6 +111,23 @@ class CreateEventViewModel: BaseViewModel{
         categories = decoded
     }
     
+    private func combineDateWithTime(time: Date) -> Date {
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: time)
+        let minute = calendar.component(.minute, from: time)
+        
+        var components = calendar.dateComponents([.year, .month, .day], from: selectDate)
+        components.hour = hour
+        components.minute = minute
+        
+        return calendar.date(from: components) ?? time
+    }
+    
+    private func syncStartAndFinishDateToSelectedDate() {
+        startHour = combineDateWithTime(time: startHour)
+        finishHour = combineDateWithTime(time: finishHour)
+    }
+    
     func saveEvent(){
         let calendar = Calendar.current
         let startComponents = calendar.dateComponents([.hour, .minute], from: startHour)
@@ -105,8 +135,23 @@ class CreateEventViewModel: BaseViewModel{
         
         if startComponents.hour == finishComponents.hour &&
             startComponents.minute == finishComponents.minute {
+            error = ""
             self.error = getLocalizedString(StringKey.sameTimeError) // ← Localized key
             return
+        } else if titleInput.isEmpty {
+            error = ""
+            self.error = getLocalizedString(StringKey.titleEmpty)
         }
+        /*
+        getDataCall(dataCall: {try await FirestorageManager.shared.saveEvent(title: self.titleInput, description: self.commentInput, date: self.selectDate, startHour: self.startHour, endHour: self.finishHour, tenMinuteNotification: self.tenMinuteSelected, category: self.selectedCategory, location: self.location)}
+        ) { _ in
+            self.success = true
+            self.loading = false
+        } onLoading: {
+            self.loading = true
+        } onError: { error in
+            self.error = error?.localizedDescription ?? getLocalizedString(StringKey.unknown_error)
+            self.loading = false
+        }*/
     }
 }
