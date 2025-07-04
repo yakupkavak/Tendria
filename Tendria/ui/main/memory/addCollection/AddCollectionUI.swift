@@ -54,7 +54,7 @@ struct AddCollectionUI: View {
             }, text: StringKey.add).frame(width: Width.screenHalfWidth).padding(.top,Padding.horizontalNormalPlusPadding)
         }
             .onChange(of: viewModel.selectedPhoto) { _ in
-                displayCrop = true
+                displayCrop.toggle()
                 viewModel.convertDataToImage()
             }.fullScreenCover(isPresented: $displayCrop, content: {
                 if let selectedPhoto = viewModel.userBeforeCrop{

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import SwiftyCrop
 extension UIApplication {
     func addTapGestureRecognizer() {
             // Aktif windowScene'e ve onun içindeki ilk window'a erişiyoruz
@@ -112,6 +113,50 @@ extension View{
                 .animation(.easeInOut, value: isPresent.wrappedValue)
             }
         }
+    }
+    
+    func navigateBackView(
+        onClick: @escaping () -> Void
+    ) -> some View{
+        self.navigationBarBackButtonHidden(true).toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                btnSystemIconTransparent(iconSystemName: "chevron.left", color: Color.black) {
+                    onClick()
+                }
+            }
+        }
+    }
+    
+    func cropImage(
+        displayCrop: Binding<Bool>,
+        beforeCropImage: UIImage?,
+        onFinish: @escaping (UIImage) -> Void,
+        maskShape: MaskShape,
+        maskRadius: CGFloat,
+        zoomSensitivity: CGFloat
+    ) -> some View{
+        self.fullScreenCover(isPresented: displayCrop, content: {
+            if let selectedPhoto = beforeCropImage{
+                SwiftyCropView(imageToCrop: selectedPhoto, maskShape: maskShape, configuration: SwiftyCropConfiguration.init(maskRadius:maskRadius,zoomSensitivity: zoomSensitivity,texts: SwiftyCropConfiguration.Texts(
+                    cancelButton: getLocalizedString(StringKey.cancel),
+                    interactionInstructions: getLocalizedString(StringKey.crop_title),
+                    saveButton: getLocalizedString(StringKey.save)
+                ))) { croppedImage in
+                    guard let croppedImage else {
+                        return
+                    }
+                    onFinish(croppedImage)
+                    displayCrop.wrappedValue = false
+                }
+            }else {
+                Text("Fotoğraf yüklenemedi")
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            displayCrop.wrappedValue = false
+                        }
+                    }
+            }
+        })
     }
     
     func showLoading(

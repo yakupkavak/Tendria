@@ -146,3 +146,10 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 "today" = "Bugün";
 "time" = "Zaman";
 "event" = "Etkinlik";
+
+/*User Info*/
+"edit_profile" = "Profili Düzenle";
+"your_information" = "Bilgilerin";
+"name" = "İsim";
+"surname" = "Soyisim";
+"mobile" = "Telefon";

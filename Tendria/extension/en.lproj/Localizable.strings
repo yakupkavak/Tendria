@@ -146,4 +146,8 @@ Invite your partner and begin crafting memories together 💫";
 "event" = "Event";
 
 /*Edit Profile*/
-
+"edit_profile" = "Edit Profile";
+"your_information" = "Your Information";
+"name" = "Name";
+"surname" = "Surname";
+"mobile" = "Mobile";
