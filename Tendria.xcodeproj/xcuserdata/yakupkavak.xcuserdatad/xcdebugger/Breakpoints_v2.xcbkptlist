@@ -104,13 +104,13 @@
             filePath = "Tendria/ui/const/Constants.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "Images"
             landmarkType = "14">
             <Locations>
                <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - d30ff787a2575ebc"
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - d30ff787a2575edf"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -120,11 +120,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "305"
-                  endingLineNumber = "305">
+                  startingLineNumber = "306"
+                  endingLineNumber = "306">
                </Location>
                <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 8e0e7e809e7e3624"
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 8e0e7e809e7e3647"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -134,8 +134,8 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "305"
-                  endingLineNumber = "305">
+                  startingLineNumber = "306"
+                  endingLineNumber = "306">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -51,7 +51,7 @@ struct UserInfoUI: View {
             
             btnTextGradientInfinity(action: {
                 viewModel.saveProfile()
-            }, text: StringKey.accept).padding(.top)
+            }, text: StringKey.update).padding(.top)
             Spacer()
         }.padding()
             .onChange(of: viewModel.selectedPhoto) { _ in

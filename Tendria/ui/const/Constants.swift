@@ -299,6 +299,7 @@ struct Constants {
         static let surname_placeholder = LocalizedStringKey("surname_placeholder")
         static let mobile_placeholder = LocalizedStringKey("mobile_placeholder")
         static let email_placeholder = LocalizedStringKey("email_placeholder")
+        static let update = LocalizedStringKey("update")
     }
 
     struct Images {
