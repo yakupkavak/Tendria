@@ -230,7 +230,7 @@ struct CourseCard: View {
             .foregroundColor(.secondary)
 
             HStack(spacing: 6) {
-                KFImage.profile(item.createrProfileImage, size: 18)
+                KFImage.profile(urlString: item.createrProfileImage, size: 18)
                     .clipShape(Circle())
                 Text(item.createrName)
             }

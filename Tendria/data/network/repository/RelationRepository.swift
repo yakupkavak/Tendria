@@ -18,6 +18,9 @@ class RelationRepository{
     }
     
     func getRelationId() async throws -> String? {
+        if let cachedRelationId = relationId {
+            return cachedRelationId
+        }
         if let userId = AuthManager.shared.getUserID(){
             let documentReference = database.collection(FireDatabase.USERS_PATH).document(userId)
             do {

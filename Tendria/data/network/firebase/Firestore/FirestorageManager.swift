@@ -20,11 +20,13 @@ class FirestorageManager {
     let storageRef: StorageReference
     let memoryRef: StorageReference
     let collectionRef: StorageReference
+    let profileImageRef: StorageReference
     
     private init() {
         self.storageRef = storage.reference()
         self.memoryRef = storageRef.child(FireStorage.MEMORY_PATH)
         self.collectionRef = storageRef.child(FireStorage.COLLECTION_PATH)
+        self.profileImageRef = storageRef.child(FireStorage.PROFILE_IMAGE_PATH)
     }
     
     func addCollectionImage(imageData: Data) async throws -> String {
@@ -260,6 +262,85 @@ class FirestorageManager {
     func deleteEvent(_ ev: EventDocumentModel) async throws {
         guard let id = ev.id else { return }
         try await database.collection(FireDatabase.EVENT_PATH).document(id).delete()
+    }
+    
+    func saveProfileImage(url: String) async throws -> String{
+        guard let userId = AuthManager.shared.getUserID() else {
+            throw RelationError.invalidUserId
+        }
+        let userRef = database.collection(FireDatabase.USERS_PATH)
+        .document(userId)
+        let imageData = [FireDatabase.USER_PROFILE_IMAGE:url]
+        try await userRef.updateData(imageData)
+        return url
+    }
+    
+    func deleteImageAtURL(urlString: String) async throws {
+        let ref = storage.reference(forURL: urlString)
+        do {
+            try await ref.delete()
+        } catch{
+            print("Eski foto bulunamadı, devam ediliyor")
+        }
+    }
+    
+    func fetchProfile() async throws -> UserModel {
+        guard let userId = AuthManager.shared.getUserID() else {
+            throw RelationError.invalidUserId
+        }
+        let userRef = database.collection(FireDatabase.USERS_PATH)
+            .document(userId)
+        
+        let document = try await userRef.getDocument()
+        
+        guard let data = document.data() else {
+            throw RelationError.unknown
+        }
+        
+        let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+        let user = try JSONDecoder().decode(UserModel.self, from: jsonData)
+        
+        return user
+    }
+    
+    func addProfileImage(imageData: Data) async throws -> String {
+        let uniqueFileName = UUID().uuidString + ".jpg"
+        let listImageRef = profileImageRef.child("\(uniqueFileName)")
+        
+        do {
+            let uploadTask = try await listImageRef.putDataAsync(imageData){ progress in
+                print("Upload progress: \(progress?.fractionCompleted ?? 0)")
+            }
+            let uploadUrl = try await listImageRef.downloadURL()
+            print("Upload successful, metadata: \(uploadTask)")
+            return try await FirestorageManager.shared.saveProfileImage(url:uploadUrl.absoluteString)
+        }
+        catch {
+            print("Upload failed: \(error.localizedDescription)")
+            throw error
+        }
+    }
+    
+    func updateProfile(name: String, surname: String, email: String?, phoneNumber: String?) async throws {
+        guard let userId = AuthManager.shared.getUserID() else {
+            throw RelationError.invalidUserId
+        }
+        let userRef = database.collection(FireDatabase.USERS_PATH)
+        .document(userId)
+        var updatedData: [String: Any] = [
+            "name": name,
+            "surname": surname
+        ]
+        
+        if let email = email {
+            updatedData["email"] = email
+        }
+        
+        if let phoneNumber = phoneNumber {
+            updatedData["phoneNumber"] = phoneNumber
+        }
+        
+        try await userRef.updateData(updatedData)
     }
     
     //IT ADDED ON CLOUD FUNCTION

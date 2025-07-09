@@ -14,45 +14,54 @@ struct UserInfoUI: View {
     
     @EnvironmentObject var routerUser: RouterUserInfo
     @StateObject private var viewModel = UserInfoViewModel()
-    @State private var displayCrop = false
+    @State private var showPicker = false
     
     var body: some View {
         VStack(spacing: 16){
             
-            KFImage.profile(viewModel.user.profileImageUrl, size: 150).overlay(alignment: .bottomTrailing) {
-                btnAddIcon(iconName: "plus",width: 35) {
-                    print("yakup")
+            Button{
+                showPicker.toggle()
+            } label: {
+                KFImage.profile(urlString: viewModel.user.profileImageUrl, size: 150).overlay(alignment: .bottomTrailing) {
+                    btnAddIcon(iconName: "plus",width: 35) {
+                        showPicker.toggle()
+                    }
                 }
-            }
-            
+            }.photosPicker(isPresented: $showPicker, selection: $viewModel.selectedPhoto,matching: .images)
             
             Spacer()
             tvBodyline(text: StringKey.yourInfo, color: .blue500).frame(maxWidth: .infinity, alignment: .leading).padding(.bottom)
             
             VStack(alignment: .leading){
                 tvFootnote(text: StringKey.name, color: .black).padding(.leading)
-                tfText(placeHolder: StringKey.accept, textInput: $viewModel.nameInput)
+                tfText(placeHolder: StringKey.name_placeholder, textInput: $viewModel.nameInput)
             }
             VStack(alignment: .leading){
                 tvFootnote(text: StringKey.surname, color: .black).padding(.leading)
-                tfText(placeHolder: StringKey.accept, textInput: $viewModel.surnameInput)
+                tfText(placeHolder: StringKey.surname_placeholder, textInput: $viewModel.surnameInput)
             }
             VStack(alignment: .leading){
                 tvFootnote(text: StringKey.mobile, color: .black).padding(.leading)
-                tfText(placeHolder: StringKey.accept, keyboard: .phonePad, textInput: $viewModel.mobileInput)
+                tfText(placeHolder: StringKey.mobile_placeholder, keyboard: .phonePad, textInput: $viewModel.mobileInput)
             }
             VStack(alignment: .leading){
                 tvFootnote(text: StringKey.email, color: .black).padding(.leading)
-                tfText(placeHolder: StringKey.accept, keyboard: .emailAddress, textInput: $viewModel.emailInput)
+                tfText(placeHolder: StringKey.email_placeholder, keyboard: .emailAddress, textInput: $viewModel.emailInput)
             }
             
             btnTextGradientInfinity(action: {
-                print("y")
+                viewModel.saveProfile()
             }, text: StringKey.accept).padding(.top)
             Spacer()
         }.padding()
+            .onChange(of: viewModel.selectedPhoto) { _ in
+                viewModel.convertDataToImage()
+            }
             .navigateBackView(onClick: routerUser.navigateBack)
-            .cropImage(displayCrop: $displayCrop, beforeCropImage: viewModel.userBeforeCrop, onFinish: { cropImage in viewModel.putCroppedImage(croppedImage:cropImage)}, maskShape: .circle, maskRadius: 200, zoomSensitivity: 10)
+            .cropImage(displayCrop: $viewModel.displayCrop, beforeCropImage: viewModel.userBeforeCrop, onFinish: { cropImage in viewModel.putCroppedImage(croppedImage:cropImage)}, maskShape: .circle, maskRadius: 200, zoomSensitivity: 10)
+            .onAppear {
+                viewModel.fetchProfile()
+            }
     }
 }
 

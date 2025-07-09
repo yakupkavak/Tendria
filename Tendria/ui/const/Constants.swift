@@ -295,6 +295,10 @@ struct Constants {
         static let name = LocalizedStringKey("name")
         static let surname = LocalizedStringKey("surname")
         static let mobile = LocalizedStringKey("mobile")
+        static let name_placeholder = LocalizedStringKey("name_placeholder")
+        static let surname_placeholder = LocalizedStringKey("surname_placeholder")
+        static let mobile_placeholder = LocalizedStringKey("mobile_placeholder")
+        static let email_placeholder = LocalizedStringKey("email_placeholder")
     }
 
     struct Images {
@@ -368,6 +372,12 @@ struct Constants {
         static let FCM_TOKEN_FIELD = "fcmToken"
         static let USER_LANGUAGE = "userLanguage"
         static let EVENT_PATH = "Event"
+        static let USER_NAME = "name"
+        static let USER_SURNAME = "surname"
+        static let USER_PHONE = "phone"
+        static let USER_EMAIL = "email"
+        static let USER_PROFILE_IMAGE = "profileImageUrl"
+
     }
     struct FirestorageConst {
         static let COLLECTION_PATH = "collection"

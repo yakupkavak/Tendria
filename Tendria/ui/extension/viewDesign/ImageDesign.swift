@@ -56,7 +56,7 @@ struct MemoryImage: View {
 }
 extension KFImage {
     static func profile(
-        _ urlString: String?,
+        urlString: String?,
         size: CGFloat
     ) -> some View {
         let swiftUIImage = Image("avatar_placeholder")

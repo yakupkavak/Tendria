@@ -151,3 +151,7 @@ Invite your partner and begin crafting memories together 💫";
 "name" = "Name";
 "surname" = "Surname";
 "mobile" = "Mobile";
+"name_placeholder" = "Enter your name";
+"surname_placeholder" = "Enter your surname";
+"mobile_placeholder" = "Enter your mobile number";
+"email_placeholder" = "Enter your email";

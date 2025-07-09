@@ -153,3 +153,7 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 "name" = "İsim";
 "surname" = "Soyisim";
 "mobile" = "Telefon";
+"name_placeholder_tr" = "Adını gir";
+"surname_placeholder_tr" = "Soyadını gir";
+"mobile_placeholder_tr" = "Telefon numaranı gir";
+"email_placeholder" = "E-posta adresini gir";
