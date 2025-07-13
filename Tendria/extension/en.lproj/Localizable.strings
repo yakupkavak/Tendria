@@ -156,3 +156,7 @@ Invite your partner and begin crafting memories together 💫";
 "mobile_placeholder" = "Enter your mobile number";
 "email_placeholder" = "Enter your email";
 "update" = "Update";
+"current_password" = "Current password";
+"new_password" = "New password";
+"again_password" = "Repeat password";
+

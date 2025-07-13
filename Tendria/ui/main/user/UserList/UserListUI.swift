@@ -4,6 +4,7 @@ struct UserListUI: View {
     
     @EnvironmentObject var router: RouterUserInfo
     @StateObject var viewModel = UserListViewModel()
+    @ObservedObject var userManager: UserManager
     
     var body: some View {
         ScrollView {
@@ -102,6 +103,6 @@ struct MenuItemView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserListUI()
+        UserListUI(userManager: UserManager())
     }
 }

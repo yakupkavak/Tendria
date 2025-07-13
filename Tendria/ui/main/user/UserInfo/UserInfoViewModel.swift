@@ -34,6 +34,7 @@ final class UserInfoViewModel: BaseViewModel {
     @Published var isImageSelected: Bool = false
     @Published var displayCrop = false
     
+    
     @MainActor
     func convertDataToImage() {
         guard (selectedPhoto != nil) else { return }
@@ -44,6 +45,24 @@ final class UserInfoViewModel: BaseViewModel {
                     displayCrop.toggle()
                 }
             }
+        }
+    }
+    init(nameInput: String = "", surnameInput: String = "", mobileInput: String = "", emailInput: String = "", success: Bool = false, loading: Bool = false, error: String = "", selectedPhoto: PhotosPickerItem? = nil, userBeforeCrop: UIImage? = nil, userPhoto: UIImage? = nil, isImageSelected: Bool = false, displayCrop: Bool = false) {
+        self.nameInput = nameInput
+        self.surnameInput = surnameInput
+        self.mobileInput = mobileInput
+        self.emailInput = emailInput
+        self.success = success
+        self.loading = loading
+        self.error = error
+        self.selectedPhoto = selectedPhoto
+        self.userBeforeCrop = userBeforeCrop
+        self.userPhoto = userPhoto
+        self.isImageSelected = isImageSelected
+        self.displayCrop = displayCrop
+        
+        if let user = UserManager.shared.userInstance {
+            self.user = user
         }
     }
     

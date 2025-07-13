@@ -8,18 +8,30 @@
 import Foundation
 import SwiftUICore
 
-class UserManager: ObservableObject {
+class UserManager: BaseViewModel {
     
     @Published var userInstance: UserModel?
-     
+    @Published var error = ""
+
     static let shared = UserManager()
-    
-    private init() {}
-    
-    func getUserData(){
-        guard let userId = AuthManager.shared.getUserID() else {
-            return
+    init(userInstance: UserModel? = nil, error: String = "") {
+        self.userInstance = userInstance
+        self.error = error
+        super.init()
+        fetchProfile()
+    }
+        
+    func fetchProfile(){
+        getDataCall {
+            try await FirestorageManager.shared.fetchProfile()
+        } onSuccess: { user in
+            self.userInstance = user
+        } onLoading: {
+        } onError: { error in
+            self.error = error?.localizedDescription ?? ""
         }
-        FirestorageManager.shared
+    }
+    func getUser() -> UserModel?{
+        return self.userInstance
     }
 }

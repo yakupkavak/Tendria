@@ -12,6 +12,7 @@ struct BaseTabViewUI: View {
     @EnvironmentObject private var routerMemory: RouterMemory
     @EnvironmentObject private var routerUser: RouterUserInfo
     @StateObject private var viewModel = BaseTabViewModel()
+    @StateObject private var userManager = UserManager()
     @State var selectedTab: Tab = .feed
     
     var initialize = NotificationManager.shared
@@ -52,18 +53,18 @@ struct BaseTabViewUI: View {
                 Label("Memories", systemImage: "book")
             }.tag(Tab.task)
             NavigationStack(path: $routerUser.navPath) {
-                UserListUI().environmentObject(routerUser).navigationDestination(for: RouterUserInfo.Destination.self) { destination in
+                UserListUI(userManager: userManager).environmentObject(routerUser).navigationDestination(for: RouterUserInfo.Destination.self) { destination in
                     switch destination {
                     case .existRelation:
-                        ExistRelationUI()
+                        ExistRelationUI(userManager: userManager)
                     case .makeRelation:
-                        MakeRelationUI()
+                        MakeRelationUI(userManager: userManager)
                     case .resetPassword:
                         ResetPasswordUI()
                     case .userInfo:
-                        UserInfoUI()
+                        UserInfoUI(userManager: userManager)
                     case .userList:
-                        UserListUI()
+                        UserListUI(userManager: userManager)
                     }
                 }
             }.tabItem {

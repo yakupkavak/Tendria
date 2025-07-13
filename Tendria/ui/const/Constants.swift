@@ -300,6 +300,13 @@ struct Constants {
         static let mobile_placeholder = LocalizedStringKey("mobile_placeholder")
         static let email_placeholder = LocalizedStringKey("email_placeholder")
         static let update = LocalizedStringKey("update")
+        
+        /*Change Password*/
+        static let current_password = LocalizedStringKey("current_password")
+        static let new_password = LocalizedStringKey("new_password")
+        static let again_password = LocalizedStringKey("again_password")
+
+
     }
 
     struct Images {

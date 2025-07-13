@@ -12,7 +12,8 @@ struct MakeRelationUI: View {
     @EnvironmentObject var routerUser: RouterUserInfo
     @StateObject private var viewModel = MakeRelationViewModel()
     @State var presentAlert = NotificationManager.shared.requestPermissionBinding.wrappedValue
-    
+    @ObservedObject var userManager: UserManager
+
     var body: some View {
         ZStack{
             VStack{

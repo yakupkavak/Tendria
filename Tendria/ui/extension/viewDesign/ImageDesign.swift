@@ -74,6 +74,7 @@ extension KFImage {
                     .scaledToFill()
                     .frame(width: size, height: size)
                     .clipShape(Circle())
+                    .shadow(radius: Radius.shadowRadius)
             )
         }
 
@@ -85,6 +86,7 @@ extension KFImage {
                 .scaledToFill()
                 .frame(width: size, height: size)
                 .clipShape(Circle())
+                .shadow(radius: Radius.shadowRadius)
         )
     }
 }

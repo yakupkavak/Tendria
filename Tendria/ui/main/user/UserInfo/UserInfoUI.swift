@@ -15,7 +15,8 @@ struct UserInfoUI: View {
     @EnvironmentObject var routerUser: RouterUserInfo
     @StateObject private var viewModel = UserInfoViewModel()
     @State private var showPicker = false
-    
+    @ObservedObject var userManager: UserManager
+
     var body: some View {
         VStack(spacing: 16){
             
@@ -66,5 +67,6 @@ struct UserInfoUI: View {
 }
 
 #Preview {
-    UserInfoUI()
+    @StateObject var userManager = UserManager()
+    UserInfoUI(userManager: userManager)
 }
