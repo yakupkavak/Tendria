@@ -51,7 +51,7 @@ struct Constants {
         static let shadowRadius = CGFloat(2)
         static let shadowConstantRadiud = CGFloat(4)
         static let shadowSmallRadius = CGFloat(UIScreen.main.bounds.height * 0.0025)
-
+        
     }
     struct TextWidth {
         static let tfNormalWidth = UIScreen.main.bounds.width * 0.75
@@ -82,7 +82,7 @@ struct Constants {
         static let leftIcon = CGFloat(14)
         static let rightIcon = CGFloat(-14)
     }
-
+    
     struct Padding {
         static let constantMinusMediumPadding = CGFloat(-16)
         static let constantMinusLargePadding = CGFloat(-64)
@@ -105,7 +105,7 @@ struct Constants {
         static let horizontalXSmallPadding = UIScreen.main.bounds.width * 0.005
         static let rowPadding = CGFloat(30)
         static let rowPaddingSmall = CGFloat(12)
-
+        
         static let largePadding = UIScreen.main.bounds.height * 0.05
         static let mediumPadding = UIScreen.main.bounds.height * 0.02
         static let smallPadding = UIScreen.main.bounds.height * 0.01
@@ -305,10 +305,16 @@ struct Constants {
         static let current_password = LocalizedStringKey("current_password")
         static let new_password = LocalizedStringKey("new_password")
         static let again_password = LocalizedStringKey("again_password")
-
-
+        static let empty = LocalizedStringKey("empty")
+        static let error_passwords_do_not_match = LocalizedStringKey("error_passwords_do_not_match")
+        static let error_weak_password = LocalizedStringKey("error_weak_password")
+        static let error_empty_fields = LocalizedStringKey("error_empty_fields")
+        static let error_invalid_current_password = LocalizedStringKey("error_invalid_current_password")
+        static let error_update_failed = LocalizedStringKey("error_update_failed")
+        static let error_user_not_found = LocalizedStringKey("error_user_not_found")
+        static let error_unknown = LocalizedStringKey("error_unknown")
     }
-
+    
     struct Images {
         static let MAKE_RELATION = "MakeRelation"
         static let PIKACHU = "pikachu"
@@ -385,7 +391,7 @@ struct Constants {
         static let USER_PHONE = "phone"
         static let USER_EMAIL = "email"
         static let USER_PROFILE_IMAGE = "profileImageUrl"
-
+        
     }
     struct FirestorageConst {
         static let COLLECTION_PATH = "collection"

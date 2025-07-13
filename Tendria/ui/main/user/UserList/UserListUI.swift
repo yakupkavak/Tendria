@@ -39,7 +39,7 @@ struct UserListUI: View {
                     ])
                     
                     MenuSection(items: [
-                        MenuItem(icon: "questionmark.circle.fill", title: StringKey.change_password,onClick:{ router.navigate(to: .userInfo)}),
+                        MenuItem(icon: "questionmark.circle.fill", title: StringKey.change_password,onClick:{ router.navigate(to: .resetPassword)}),
                         MenuItem(icon: "star.fill", title: StringKey.notifications,onClick:{ router.navigate(to: .userInfo)}),
                         MenuItem(icon: "gearshape.fill", title: StringKey.settings,onClick:{ router.navigate(to: .userInfo)})
                     ])

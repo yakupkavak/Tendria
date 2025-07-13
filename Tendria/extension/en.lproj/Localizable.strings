@@ -159,4 +159,11 @@ Invite your partner and begin crafting memories together 💫";
 "current_password" = "Current password";
 "new_password" = "New password";
 "again_password" = "Repeat password";
-
+"empty" = "";
+"error_passwords_do_not_match" = "Passwords do not match.";
+"error_weak_password" = "Password must be at least 8 characters and contain at least one uppercase letter.";
+"error_empty_fields" = "Please fill in all fields.";
+"error_invalid_current_password" = "Your current password is incorrect.";
+"error_update_failed" = "An error occurred while updating your password.";
+"error_user_not_found" = "User not found.";
+"error_unknown" = "An unknown error occurred.";
