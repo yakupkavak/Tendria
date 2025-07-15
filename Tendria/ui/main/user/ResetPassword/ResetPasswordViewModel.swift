@@ -18,8 +18,7 @@ class ResetPasswordViewModel: BaseViewModel{
     @Published var againPassword = ""
     
     func resetPassword() {
-        // Hatalar daha önce kontrol edildi mi?
-        guard error == nil else { return }
+        
         if checkInput() {
             guard let user = Auth.auth().currentUser else {
                 print("Kullanıcı oturumu yok")
@@ -37,7 +36,7 @@ class ResetPasswordViewModel: BaseViewModel{
                 guard let self = self else { return }
                 if let error = error {
                     print("Kimlik doğrulama hatası: \(error.localizedDescription)")
-                    self.error = .passwordsDoNotMatch // veya yeni enum türü ekle
+                    self.error = .invalidCurrentPassword
                     self.loading = false
                     return
                 }

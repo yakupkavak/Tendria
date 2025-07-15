@@ -17,14 +17,15 @@ struct ResetPasswordUI: View {
             tvHeadline(text: StringKey.change_password, color: .blue500).padding(.top)
             Spacer()
             tvColorKey(text: StringKey.current_password, color: .blue500, font: .callout)
-            tfText(placeHolder: StringKey.empty, textInput: $viewModel.currentPassword)
+            secureText(textInput: $viewModel.currentPassword, placeHolder: StringKey.empty)
             
             tvColorKey(text: StringKey.new_password, color: .blue500, font: .callout).padding(.top)
-            tfText(placeHolder: StringKey.empty, textInput: $viewModel.newPassword)
+            secureText(textInput: $viewModel.newPassword, placeHolder: StringKey.empty)
             
             tvColorKey(text: StringKey.again_password, color: .blue500, font: .callout).padding(.top)
-            tfText(placeHolder: StringKey.empty, textInput: $viewModel.againPassword)
+            secureText(textInput: $viewModel.againPassword, placeHolder: StringKey.empty)
             Spacer()
+            
             if let error = viewModel.error {
                 Text(error.errorDescription)
                     .foregroundColor(.red)

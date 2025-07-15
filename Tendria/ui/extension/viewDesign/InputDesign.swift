@@ -46,6 +46,36 @@ struct tfText: View {
         .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
     }
 }
+struct secureText: View {
+    
+    @Binding var textInput: String
+    var placeHolder: LocalizedStringKey
+    @State private var isSecure: Bool = true
+    
+    var body: some View {
+        HStack {
+            Group {
+                if isSecure {
+                    SecureField(placeHolder, text: $textInput)
+                } else {
+                    TextField(placeHolder, text: $textInput)
+                }
+            }
+            .autocapitalization(.none)
+            .disableAutocorrection(true)
+            
+            Button(action: {
+                isSecure.toggle()
+            }) {
+                Image(systemName: isSecure ? "eye.slash.fill" : "eye.fill")
+                    .foregroundColor(.gray)
+            }
+        }
+        .padding()
+        .background(Color.gray.opacity(0.1))
+        .cornerRadius(8)
+    }
+}
 
 struct teText: View {
     
