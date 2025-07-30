@@ -30,13 +30,13 @@
             filePath = "Tendria/ui/const/Constants.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "Constants"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
+            landmarkName = "Images"
             landmarkType = "14">
             <Locations>
                <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - d30ff787a257586a"
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - d30ff787a254b12a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -46,11 +46,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "319"
-                  endingLineNumber = "319">
+                  startingLineNumber = "511"
+                  endingLineNumber = "511">
                </Location>
                <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 8e0e7e809e7e30f2"
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 8e0e7e809e7dd9b2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -60,8 +60,8 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "319"
-                  endingLineNumber = "319">
+                  startingLineNumber = "511"
+                  endingLineNumber = "511">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -76,13 +76,13 @@
             filePath = "Tendria/ui/const/Constants.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "StringKeys"
             landmarkType = "14">
             <Locations>
                <Location
-                  uuid = "ECB0267B-582D-4BD4-B3CC-D4D041F39F67 - 9731d1da94f9cad8"
+                  uuid = "ECB0267B-582D-4BD4-B3CC-D4D041F39F67 - 9731d1da94f9ca9e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -92,11 +92,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "238"
-                  endingLineNumber = "238">
+                  startingLineNumber = "240"
+                  endingLineNumber = "240">
                </Location>
                <Location
-                  uuid = "ECB0267B-582D-4BD4-B3CC-D4D041F39F67 - 4a86e289dd73cc13"
+                  uuid = "ECB0267B-582D-4BD4-B3CC-D4D041F39F67 - 4a86e289dd73cc55"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -106,8 +106,8 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "238"
-                  endingLineNumber = "238">
+                  startingLineNumber = "240"
+                  endingLineNumber = "240">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -122,13 +122,13 @@
             filePath = "Tendria/ui/const/Constants.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "StringKeys"
             landmarkType = "14">
             <Locations>
                <Location
-                  uuid = "FB76D7E8-A9BB-4ACF-A3B9-90354DD07621 - 9f03f4760fc6cbbf"
+                  uuid = "FB76D7E8-A9BB-4ACF-A3B9-90354DD07621 - 9f03f4760fc6cb79"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -138,11 +138,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "279"
-                  endingLineNumber = "279">
+                  startingLineNumber = "281"
+                  endingLineNumber = "281">
                </Location>
                <Location
-                  uuid = "FB76D7E8-A9BB-4ACF-A3B9-90354DD07621 - 99efe1e2cd36300"
+                  uuid = "FB76D7E8-A9BB-4ACF-A3B9-90354DD07621 - 99efe1e2cd363c6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -152,8 +152,8 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "279"
-                  endingLineNumber = "279">
+                  startingLineNumber = "281"
+                  endingLineNumber = "281">
                </Location>
             </Locations>
          </BreakpointContent>

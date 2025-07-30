@@ -63,6 +63,14 @@ struct tvHeadline: View {
     }
 }
 
+struct tvTitle: View {
+    var text: LocalizedStringKey
+    var color: Color
+    var body: some View {
+        Text(text).font(.custom("Mali-Bold", size: 48))
+    }
+}
+
 struct tvHeadlineString: View {
     var text: String
     var color: Color
@@ -85,3 +93,4 @@ struct tvRowSubline: View {
         tvColorString(text: text, color: color, weight: .regular, font: .system(size: 30))
     }
 }
+
