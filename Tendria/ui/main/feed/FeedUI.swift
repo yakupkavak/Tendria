@@ -22,7 +22,9 @@ struct FeedUI: View {
                     }
                 }
                 // Games bölümü
-//                SubjectsView().frame(maxWidth: .infinity,alignment: .leading)
+                SubjectsView(title: GamesStringKeys.games_title, description: GamesStringKeys.games_description).frame(maxWidth: .infinity,alignment: .leading)
+                
+                
             }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(.leading,16).padding(.top).background(Color.white).clipShape(RoundedTopLeftShape(radius: 70)).padding(.top,250)
         }.ignoresSafeArea().background(Color.feedBackground)
     }

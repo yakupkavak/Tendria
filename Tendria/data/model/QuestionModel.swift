@@ -8,24 +8,24 @@
 import FirebaseFirestore
 import SwiftUICore
 
-struct GameLocalModel: Identifiable{
+struct QuestionLocalModel: Identifiable{
     var id = UUID()
-    var gameType: GameType
+    var gameType: QuestionType
     var title: LocalizedStringKey
     var foregroundColor: Color
     var backgroundColor: Color
 }
 
 struct LocalQuestion{
-    var gameType: GameType
+    var gameType: QuestionType
     var questionId: Int
     var questionTitle: LocalizedStringKey
     var questionDescription: LocalizedStringKey
 }
 
-struct GameModel{
+struct QuestionModel{
     @DocumentID var id: String?
-    var gameType: GameType
+    var gameType: QuestionType
     var relationId: String
 }
 
@@ -39,7 +39,7 @@ struct Question{
     var date: Timestamp
 }
 
-enum GameType: String, Codable{
+enum QuestionType: String, Codable{
     case love
     case life
     case philosophy

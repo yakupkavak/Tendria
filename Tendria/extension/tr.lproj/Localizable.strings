@@ -356,3 +356,7 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 "favorites_app_description" = "Hangi uygulamayı en çok kullanıyorsun ve neden?";
 "favorites_memory_title" = "En Sevdiğin Ortak Anı";
 "favorites_memory_description" = "Hâlâ seni en çok gülümseten ortak anınız hangisi?";
+
+/* Games */
+"games_title" = "Oyunlar";
+"games_description" = "Birlikte oynayın, birbirinizi keşfedin";

@@ -35,6 +35,7 @@ typealias OffsetValue = Constants.OffsetValue
 typealias FontValue = Constants.FontValues
 typealias Tables = Constants.Tables
 typealias QuestionStringKeys = Constants.QuestionStringKeys
+typealias GamesStringKeys = Constants.GamesStringKeys
 
 struct Constants {
     struct Gradients {
@@ -315,6 +316,12 @@ struct Constants {
         static let error_update_failed = LocalizedStringKey("error_update_failed")
         static let error_user_not_found = LocalizedStringKey("error_user_not_found")
         static let error_unknown = LocalizedStringKey("error_unknown")
+    }
+    
+    struct GamesStringKeys {
+        static let games_title = LocalizedStringKey("games_title")
+        static let games_description = LocalizedStringKey("games_description")
+
     }
     
     struct QuestionStringKeys {

@@ -30,38 +30,38 @@
             filePath = "Tendria/ui/const/Constants.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "511"
-            endingLineNumber = "511"
+            startingLineNumber = "518"
+            endingLineNumber = "518"
             landmarkName = "Images"
             landmarkType = "14">
             <Locations>
                <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - d30ff787a254b12a"
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 5ecb7c40f30c3c5d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "one-time initialization function for MAKE_RELATION"
+                  symbolName = "one-time initialization function for days"
                   moduleName = "Tendria.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "511"
-                  endingLineNumber = "511">
+                  startingLineNumber = "517"
+                  endingLineNumber = "517">
                </Location>
                <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 8e0e7e809e7dd9b2"
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 9f45c719d5ee2087"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Tendria.Constants.Images.MAKE_RELATION.unsafeMutableAddressor : Swift.String"
+                  symbolName = "Tendria.Constants.Tables.days.unsafeMutableAddressor : Swift.Array&lt;SwiftUI.LocalizedStringKey&gt;"
                   moduleName = "Tendria.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "511"
-                  endingLineNumber = "511">
+                  startingLineNumber = "517"
+                  endingLineNumber = "517">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -76,8 +76,8 @@
             filePath = "Tendria/ui/const/Constants.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
             landmarkName = "StringKeys"
             landmarkType = "14">
             <Locations>
@@ -122,38 +122,38 @@
             filePath = "Tendria/ui/const/Constants.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "StringKeys"
             landmarkType = "14">
             <Locations>
                <Location
-                  uuid = "FB76D7E8-A9BB-4ACF-A3B9-90354DD07621 - 9f03f4760fc6cb79"
+                  uuid = "FB76D7E8-A9BB-4ACF-A3B9-90354DD07621 - 4db4e763ff440c29"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "one-time initialization function for to"
+                  symbolName = "one-time initialization function for accept"
                   moduleName = "Tendria.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "281"
-                  endingLineNumber = "281">
+                  startingLineNumber = "282"
+                  endingLineNumber = "282">
                </Location>
                <Location
-                  uuid = "FB76D7E8-A9BB-4ACF-A3B9-90354DD07621 - 99efe1e2cd363c6"
+                  uuid = "FB76D7E8-A9BB-4ACF-A3B9-90354DD07621 - 957b860352aa3274"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Tendria.Constants.StringKeys.to.unsafeMutableAddressor : SwiftUI.LocalizedStringKey"
+                  symbolName = "Tendria.Constants.StringKeys.accept.unsafeMutableAddressor : SwiftUI.LocalizedStringKey"
                   moduleName = "Tendria.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "281"
-                  endingLineNumber = "281">
+                  startingLineNumber = "282"
+                  endingLineNumber = "282">
                </Location>
             </Locations>
          </BreakpointContent>

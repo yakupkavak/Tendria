@@ -353,3 +353,7 @@ Invite your partner and begin crafting memories together 💫";
 "favorites_app_description" = "Which app do you use most and why?";
 "favorites_memory_title" = "Favorite Memory Together";
 "favorites_memory_description" = "Which shared memory still makes you smile the widest?";
+
+/* Games */
+"games_title" = "Games";
+"games_description" = "Play together, discover each other";
