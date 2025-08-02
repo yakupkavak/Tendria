@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct FeedUI: View {
+    @EnvironmentObject var routerFeed: RouterFeed
     @StateObject var viewModel = FeedViewModel()
+    
     var body: some View {
         ZStack(alignment: .top) {
             ScrollView{
@@ -16,16 +18,21 @@ struct FeedUI: View {
                 SubjectsView(title: QuestionStringKeys.questions_title, description: QuestionStringKeys.questions_description).frame(maxWidth: .infinity,alignment: .leading)
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack(spacing: 16){
+                        ForEach(viewModel.questionList){ question in
+                            FeedRowUI(foregroundColor: question.foregroundColor, backgroundColor: question.backgroundColor, title: Text(question.title)).frame(width: Width.screenFourtyTwoWidth)
+                        }
+                    }
+                }.padding(.bottom)
+                // Games bölümü
+                SubjectsView(title: GamesStringKeys.games_title, description: GamesStringKeys.games_description).frame(maxWidth: .infinity,alignment: .leading)
+                ScrollView(.horizontal, showsIndicators: false){
+                    HStack(spacing: 16){
                         ForEach(viewModel.gameList){ game in
                             FeedRowUI(foregroundColor: game.foregroundColor, backgroundColor: game.backgroundColor, title: Text(game.title)).frame(width: Width.screenFourtyTwoWidth)
                         }
                     }
                 }
-                // Games bölümü
-                SubjectsView(title: GamesStringKeys.games_title, description: GamesStringKeys.games_description).frame(maxWidth: .infinity,alignment: .leading)
-                
-                
-            }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(.leading,16).padding(.top).background(Color.white).clipShape(RoundedTopLeftShape(radius: 70)).padding(.top,250)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(.leading,16).padding(.top).background(Color.white).clipShape(RoundedTopLeftShape(radius: 70)).padding(.top,190)
         }.ignoresSafeArea().background(Color.feedBackground)
     }
 }

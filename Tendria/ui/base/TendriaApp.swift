@@ -18,6 +18,7 @@ struct TendriaApp: App {
     
     @StateObject private var routerTask = RouterMemory()
     @StateObject private var routerUser = RouterUserInfo()
+    @StateObject private var routerFeed = RouterFeed()
     @StateObject private var authManager = AuthManager.shared
 
     private var userState = false
@@ -26,7 +27,7 @@ struct TendriaApp: App {
     var body: some Scene {
         WindowGroup {
             if authManager.isSigned {
-                BaseTabViewUI().installToast(position: .bottom).environmentObject(routerTask).environmentObject(routerUser).onAppear {
+                BaseTabViewUI().installToast(position: .bottom).environmentObject(routerTask).environmentObject(routerUser).environmentObject(routerFeed).onAppear {
                     UIApplication.shared.addTapGestureRecognizer()
                 }
             } else {

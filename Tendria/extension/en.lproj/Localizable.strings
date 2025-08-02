@@ -179,6 +179,11 @@ Invite your partner and begin crafting memories together 💫";
 "trust_title"      = "Trust";
 "whatIf_title"     = "What If";
 "favorites_title"  = "Favorites";
+"question_number" = "Question %@";
+"next" = "Next";
+"finish" = "Finish";
+"think_question" = "Let's think in silence 🥰";
+"answer_question" = "Answer time 🤩";
 
 /* Love */
 "love_first_heartbeat_title" = "First Heartbeat";

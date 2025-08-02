@@ -157,6 +157,7 @@ struct Constants {
         static let mediumHeight = UIScreen.main.bounds.height * 0.04
         static let smallHeight = UIScreen.main.bounds.height * 0.01
     }
+    
     struct StringValues{
         static let RELATION_CODE_PLACEHOLDER = "XXXXXX"
     }
@@ -321,7 +322,31 @@ struct Constants {
     struct GamesStringKeys {
         static let games_title = LocalizedStringKey("games_title")
         static let games_description = LocalizedStringKey("games_description")
+        static let story_title       = LocalizedStringKey("story_title")
+        static let truthLie_title       = LocalizedStringKey("truthLie_title")
+        static let whatIf_title     = LocalizedStringKey("whatIf_title")
 
+        // MARK: What If
+        static let whatif_q1_title = LocalizedStringKey("whatif_q1_title")
+        static let whatif_q1_desc  = LocalizedStringKey("whatif_q1_desc")
+        static let whatif_q2_title = LocalizedStringKey("whatif_q2_title")
+        static let whatif_q2_desc  = LocalizedStringKey("whatif_q2_desc")
+        static let whatif_q3_title = LocalizedStringKey("whatif_q3_title")
+        static let whatif_q3_desc  = LocalizedStringKey("whatif_q3_desc")
+        static let whatif_q4_title = LocalizedStringKey("whatif_q4_title")
+        static let whatif_q4_desc  = LocalizedStringKey("whatif_q4_desc")
+        static let whatif_q5_title = LocalizedStringKey("whatif_q5_title")
+        static let whatif_q5_desc  = LocalizedStringKey("whatif_q5_desc")
+        static let whatif_q6_title = LocalizedStringKey("whatif_q6_title")
+        static let whatif_q6_desc  = LocalizedStringKey("whatif_q6_desc")
+        static let whatif_q7_title = LocalizedStringKey("whatif_q7_title")
+        static let whatif_q7_desc  = LocalizedStringKey("whatif_q7_desc")
+        static let whatif_q8_title = LocalizedStringKey("whatif_q8_title")
+        static let whatif_q8_desc  = LocalizedStringKey("whatif_q8_desc")
+        static let whatif_q9_title = LocalizedStringKey("whatif_q9_title")
+        static let whatif_q9_desc  = LocalizedStringKey("whatif_q9_desc")
+        static let whatif_q10_title = LocalizedStringKey("whatif_q10_title")
+        static let whatif_q10_desc  = LocalizedStringKey("whatif_q10_desc")
     }
     
     struct QuestionStringKeys {
@@ -334,9 +359,13 @@ struct Constants {
         static let firsts_title     = LocalizedStringKey("firsts_title")
         static let dreams_title     = LocalizedStringKey("dreams_title")
         static let trust_title      = LocalizedStringKey("trust_title")
-        static let whatIf_title     = LocalizedStringKey("whatIf_title")
         static let favorites_title  = LocalizedStringKey("favorites_title")
-        
+        static let question_number = LocalizedStringKey("question_number")
+        static let next = LocalizedStringKey("next")
+        static let finish = LocalizedStringKey("end")
+        static let think_question = LocalizedStringKey("think_question")
+        static let answer_question = LocalizedStringKey("answer_question")
+
         // MARK: Love
         static let love_q1_title = LocalizedStringKey("love_q1_title")
         static let love_q1_desc  = LocalizedStringKey("love_q1_desc")
@@ -468,28 +497,6 @@ struct Constants {
         static let trust_q9_desc  = LocalizedStringKey("trust_q9_desc")
         static let trust_q10_title = LocalizedStringKey("trust_q10_title")
         static let trust_q10_desc  = LocalizedStringKey("trust_q10_desc")
-
-        // MARK: What If
-        static let whatif_q1_title = LocalizedStringKey("whatif_q1_title")
-        static let whatif_q1_desc  = LocalizedStringKey("whatif_q1_desc")
-        static let whatif_q2_title = LocalizedStringKey("whatif_q2_title")
-        static let whatif_q2_desc  = LocalizedStringKey("whatif_q2_desc")
-        static let whatif_q3_title = LocalizedStringKey("whatif_q3_title")
-        static let whatif_q3_desc  = LocalizedStringKey("whatif_q3_desc")
-        static let whatif_q4_title = LocalizedStringKey("whatif_q4_title")
-        static let whatif_q4_desc  = LocalizedStringKey("whatif_q4_desc")
-        static let whatif_q5_title = LocalizedStringKey("whatif_q5_title")
-        static let whatif_q5_desc  = LocalizedStringKey("whatif_q5_desc")
-        static let whatif_q6_title = LocalizedStringKey("whatif_q6_title")
-        static let whatif_q6_desc  = LocalizedStringKey("whatif_q6_desc")
-        static let whatif_q7_title = LocalizedStringKey("whatif_q7_title")
-        static let whatif_q7_desc  = LocalizedStringKey("whatif_q7_desc")
-        static let whatif_q8_title = LocalizedStringKey("whatif_q8_title")
-        static let whatif_q8_desc  = LocalizedStringKey("whatif_q8_desc")
-        static let whatif_q9_title = LocalizedStringKey("whatif_q9_title")
-        static let whatif_q9_desc  = LocalizedStringKey("whatif_q9_desc")
-        static let whatif_q10_title = LocalizedStringKey("whatif_q10_title")
-        static let whatif_q10_desc  = LocalizedStringKey("whatif_q10_desc")
 
         // MARK: Favorites
         static let favorites_q1_title = LocalizedStringKey("favorites_q1_title")

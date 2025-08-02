@@ -1,18 +1,38 @@
 //
-//  FeedViewModel.swift
+//  FeedConstants.swift
 //  Tendria
 //
-//  Created by Yakup Kavak on 23.01.2025.
+//  Created by Yakup Kavak on 1.08.2025.
 //
 
-import Foundation
 import SwiftUICore
 
-class FeedViewModel: BaseViewModel{
-    @Published var gameList = gameTitles
-}
 
-let gameTitles: [QuestionLocalModel] = [
+let loveModels: [LocalQuestion] = [
+    
+]
+let gamesTitles: [GameLocalModel] = [
+    GameLocalModel(
+        gameType: .story,
+        title: GamesStringKeys.story_title,
+        foregroundColor: Color(hex: "#F2AEAE"),
+        backgroundColor: Color(hex: "#D95FA2")
+    ),
+    GameLocalModel(
+        gameType: .whatIf,
+        title: GamesStringKeys.truthLie_title,
+        foregroundColor: Color(hex: "#607EA6"),
+        backgroundColor: Color(hex: "#253759")
+    ),
+    GameLocalModel(
+        gameType: .truthLie,
+        title: QuestionStringKeys.firsts_title,
+        foregroundColor: Color(hex: "#BF8A49"),
+        backgroundColor: Color(hex: "#252617")
+    )
+]
+
+let questionTitles: [QuestionLocalModel] = [
     QuestionLocalModel(
         gameType: .love,
         title: QuestionStringKeys.love_title,
@@ -50,15 +70,10 @@ let gameTitles: [QuestionLocalModel] = [
         backgroundColor: Color(hex: "#457362")
     ),
     QuestionLocalModel(
-        gameType: .whatIf,
-        title: QuestionStringKeys.whatIf_title,
-        foregroundColor: Color(hex: "#023059"),
-        backgroundColor: Color(hex: "#BF8034")
-    ),
-    QuestionLocalModel(
         gameType: .favorites,
         title: QuestionStringKeys.favorites_title,
         foregroundColor: Color(hex: "#F25270"),
         backgroundColor: Color(hex: "#034AA6")
     )
 ]
+

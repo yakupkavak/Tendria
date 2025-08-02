@@ -182,6 +182,11 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 "trust_title"      = "Güven";
 "whatIf_title"     = "Peki ya";
 "favorites_title"  = "Favoriler";
+"question_number" = "Soru %d";
+"next" = "Sonraki";
+"end" = "Bitir";
+"think_question" = "Sessizce düşünelim 🥰";
+"answer_question" = "Cevaplarınızı duyalım 🤩";
 
 /* Love */
 "love_first_heartbeat_title" = "İlk Kalp Atışı";
@@ -360,3 +365,5 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 /* Games */
 "games_title" = "Oyunlar";
 "games_description" = "Birlikte oynayın, birbirinizi keşfedin";
+"story_title" = "Hikaye";
+"truthLie_title" = "Bir doğru İki yanlış";

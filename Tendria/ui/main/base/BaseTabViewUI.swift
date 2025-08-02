@@ -11,6 +11,7 @@ struct BaseTabViewUI: View {
     
     @EnvironmentObject private var routerMemory: RouterMemory
     @EnvironmentObject private var routerUser: RouterUserInfo
+    @EnvironmentObject private var routerFeed: RouterFeed
     @StateObject private var viewModel = BaseTabViewModel()
     @StateObject private var userManager = UserManager()
     @State var selectedTab: Tab = .feed
@@ -30,6 +31,7 @@ struct BaseTabViewUI: View {
                 .tabItem {
                     Label("Calendar", systemImage: "calendar")
                 }.tag(Tab.history)
+            
             NavigationStack(path: $routerMemory.navPath) {
                 CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab).environmentObject(routerMemory).environmentObject(routerUser).navigationDestination(for: RouterMemory.Destination.self) { destination in
                     switch destination {
