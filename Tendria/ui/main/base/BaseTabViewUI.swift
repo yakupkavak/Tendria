@@ -14,6 +14,7 @@ struct BaseTabViewUI: View {
     @EnvironmentObject private var routerFeed: RouterFeed
     @StateObject private var viewModel = BaseTabViewModel()
     @StateObject private var userManager = UserManager()
+    @StateObject var tabbarController = TabBarController()
     @State var selectedTab: Tab = .feed
     
     var initialize = NotificationManager.shared
@@ -22,8 +23,24 @@ struct BaseTabViewUI: View {
     
     var body: some View {
         TabView(selection: $selectedTab, content: {
-            FeedUI()
-                .tabItem {
+            NavigationStack(path: $routerFeed.navPath) {
+                FeedUI().environmentObject(routerFeed).navigationDestination(for: RouterFeed.Destination.self) { destination in
+                    switch destination {
+                    case .feedView:
+                        FeedUI().environmentObject(routerFeed)
+                    case .offlineQuestion(let type):
+                        OfflineQuestionUI(questionType: type)
+                    case .onlineQuestion:
+                        EmptyView()
+                    case .story:
+                        EmptyView()
+                    case .truthLie:
+                        EmptyView()
+                    case .whatIf:
+                        EmptyView()
+                    }
+                }
+            }.tabItem {
                     Label("Feed", systemImage: "house")
                 }.tag(Tab.feed)
             
@@ -38,13 +55,17 @@ struct BaseTabViewUI: View {
                     case .collectionList:
                         CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab).onAppear(){
                             isAddGroupPresented = false
-                        }
+                        }.animation(.default, value: tabbarController.isVisible)
                     case .addCollection:
                         CollectionListUI(isAddCollectionPresented: $isAddGroupPresented, selectedTab: $selectedTab).onAppear {
                             isAddGroupPresented = true
                         }
                     case .memoryList(let data):
-                        MemoryListUI(collectionData: data, isAddMemoryPresented: $isAddMemoryPresented)
+                        MemoryListUI(collectionData: data, isAddMemoryPresented: $isAddMemoryPresented).onAppear {
+                            tabbarController.hideTabbar()
+                        }.onDisappear {
+                            tabbarController.showTabbar()
+                        }
                     case .memoryDetail(let data):
                         MemoryDetailUI(memoryData: data)
                     case .addMemory(let collectionId):
@@ -53,7 +74,8 @@ struct BaseTabViewUI: View {
                 }
             }.tabItem {
                 Label("Memories", systemImage: "book")
-            }.tag(Tab.task)
+            }.tag(Tab.task).tabbarVisibility(visibility: tabbarController.isVisible)
+
             NavigationStack(path: $routerUser.navPath) {
                 UserListUI(userManager: userManager).environmentObject(routerUser).navigationDestination(for: RouterUserInfo.Destination.self) { destination in
                     switch destination {
@@ -72,7 +94,8 @@ struct BaseTabViewUI: View {
             }.tabItem {
                 Label("User", systemImage: "person")
             }.tag(Tab.user)
-        }) .onAppear {
+        })
+        .onAppear {
             print("BaseTabViewUI appeared. ViewModel: \(viewModel)")
         }
         .navigationBarBackButtonHidden()
@@ -93,7 +116,7 @@ enum Tab {
 }
 /*
  #Preview {
- BaseTabViewUI()
+     BaseTabViewUI()
  }
  
  */

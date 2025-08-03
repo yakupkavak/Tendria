@@ -92,9 +92,27 @@ extension View{
             Spacer()
         }
     }
+    
+    @ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {
+        if hidden {
+            if remove {
+                EmptyView()
+            } else {
+                self.hidden()
+            }
+        } else {
+            self
+        }
+    }
+
+    func tabbarVisibility(visibility: Bool) -> some View{
+        self.toolbar(visibility ? .visible : .hidden, for: .tabBar).animation(.default, value: visibility)
+    }
+    
     func positionLeading() -> some View{
         self.frame(maxWidth: .infinity,alignment: .leading)
     }
+    
     func showNewRelation(
         isPresent: Binding<Bool>,
         onSuccess: @escaping () -> Void,

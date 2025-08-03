@@ -179,11 +179,14 @@ Invite your partner and begin crafting memories together 💫";
 "trust_title"      = "Trust";
 "whatIf_title"     = "What If";
 "favorites_title"  = "Favorites";
-"question_number" = "Question %@";
+"question_number" = "Question %d";
 "next" = "Next";
 "finish" = "Finish";
 "think_question" = "Let's think in silence 🥰";
 "answer_question" = "Answer time 🤩";
+"question_time" = "Question time";
+"set_second" = "%d Seconds";
+"back" = "Back";
 
 /* Love */
 "love_first_heartbeat_title" = "First Heartbeat";
@@ -248,6 +251,8 @@ Invite your partner and begin crafting memories together 💫";
 "philosophy_afterlife_description" = "Do you believe in an afterlife? How does that belief shape your choices?";
 "philosophy_legacy_title" = "Legacy";
 "philosophy_legacy_description" = "What legacy do you want to leave together?";
+"philosophy_truth_title" = "Truth and Perception";
+"philosophy_truth_description" = "How do you manage to understand each other when you completely disagree on something?";
 
 /* Firsts */
 "firsts_first_notice_title" = "First Notice";

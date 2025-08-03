@@ -8,20 +8,24 @@
 import Foundation
 import Combine
 import SwiftUICore
+import SwiftUI
 
 class QuestionViewModel: BaseViewModel{
-    var lastQuestionNumber = 10
-    @Published var timeRemaining = 30
+    @Published var timeRemaining: Int
+    @AppStorage(Constants.UserDefaultsKeys.questionTime)
+    private var defaultTime: Int = 30
+    let lastQuestionNumber = 10
+    
     @Published var questionNumber = 1{
         didSet {
             updateProgress()
         }
     }
+    
     @Published var questionProgress = 0.1
     @Published var questionTitle: LocalizedStringKey = StringKey.empty
     @Published var questionDescription: LocalizedStringKey = StringKey.empty
     @Published var isTimeOver = false
-    @Published var currentQuestionId: Int = 1
     @Published var questionList: [LocalQuestion] = [LocalQuestion]()
     @Published var error: Error?
     var questionType: QuestionType
@@ -29,14 +33,12 @@ class QuestionViewModel: BaseViewModel{
     
     private var timer = Timer()
     
-    init(timeRemaining: Int = 30,questionType: QuestionType ,questionNumber: Int = 1, questionProgress: Double = 0.1, timer: Timer = Timer()) {
-        self.timeRemaining = timeRemaining
-        self.questionNumber = questionNumber
-        self.questionProgress = questionProgress
-        self.timer = timer
+    init(questionType: QuestionType) {
+        let savedTime = UserDefaults.standard.integer(forKey: Constants.UserDefaultsKeys.questionTime)
+        self.timeRemaining = savedTime == 0 ? 30 : savedTime
         self.questionType = questionType
         super.init()
-        self.enableTimer()
+        enableTimer()
         getQuestions(questionType: questionType)
     }
     
@@ -60,22 +62,24 @@ class QuestionViewModel: BaseViewModel{
     }
     
     private func initalizeList(list: [LocalQuestion]){
-        let randomIdList = getRandomNumberArray(startIndex: 1, endIndex: 10, numberCount: 10)
+        let randomIdList = getRandomNumberArray(startIndex: 0, endIndex: 9, numberCount: 10)
         guard let randomIdList else { error = RelationError.unknown ; return }
-        for (index, randomId) in randomIdList.enumerated(){
-            questionList.append(trustQuestionModels[randomId])
+        for randomId in randomIdList{
+            questionList.append(list[randomId])
         }
+        questionTitle = questionList[0].questionTitle
+        questionDescription = questionList[0].questionDescription
     }
     
     private func getRandomNumberArray(startIndex: Int, endIndex: Int, numberCount: Int) -> [Int]?{
-        if(endIndex - startIndex < numberCount) {
+        if(endIndex - startIndex < numberCount - 1) {
             return nil
         }
         var returnList = [Int]()
         var errorCheck = 0
-        var errorLimit = numberCount * 2
+        let errorLimit = numberCount * 30
         
-        for i in 1...numberCount{
+        for _ in 1...numberCount{
             var newNumber = Int.random(in: startIndex...endIndex)
             while returnList.contains(newNumber){
                 newNumber = Int.random(in: startIndex...endIndex)
@@ -90,10 +94,16 @@ class QuestionViewModel: BaseViewModel{
         return returnList
     }
     
+    func updateDefaultTime(to newValue: Int) {
+        defaultTime   = newValue          // @AppStorage → UserDefaults’a yazar
+        timeRemaining = newValue          // aktif sayacı sıfırlar
+    }
+    
     func enableTimer(){
+        timer.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: repeatTimer, block: { _ in
             DispatchQueue.main.async { [weak self] in
-                if(self?.timeRemaining != 0){
+                if(self?.timeRemaining != 1){
                     self?.timeRemaining -= 1
                 }else {
                     self?.isTimeOver = true
@@ -108,11 +118,25 @@ class QuestionViewModel: BaseViewModel{
             endGame()
         }else {
             questionNumber += 1
-            timeRemaining = 30
-            repeatTimer = true
-            isTimeOver = false
+            prepareNewQuestion()
         }
     }
+    
+    func backQuestion() {
+        if(questionNumber != 1){
+            questionNumber -= 1
+            prepareNewQuestion()
+        }
+    }
+    
+    private func prepareNewQuestion(){
+        timeRemaining = defaultTime
+        repeatTimer = true
+        isTimeOver = false
+        questionTitle = questionList[questionNumber - 1].questionTitle
+        questionDescription = questionList[questionNumber - 1].questionDescription
+    }
+    
     func endGame(){
         
     }

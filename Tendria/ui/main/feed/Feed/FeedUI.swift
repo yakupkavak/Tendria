@@ -19,7 +19,27 @@ struct FeedUI: View {
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack(spacing: 16){
                         ForEach(viewModel.questionList){ question in
-                            FeedRowUI(foregroundColor: question.foregroundColor, backgroundColor: question.backgroundColor, title: Text(question.title)).frame(width: Width.screenFourtyTwoWidth)
+                            Button {
+                                switch question.questionType {
+                                case .love:
+                                    routerFeed.navigate(to: .offlineQuestion(questionType: .love))
+                                case .life:
+                                    routerFeed.navigate(to: .offlineQuestion(questionType: .life))
+                                case .philosophy:
+                                    routerFeed.navigate(to: .offlineQuestion(questionType: .philosophy))
+                                case .firsts:
+                                    routerFeed.navigate(to: .offlineQuestion(questionType: .firsts))
+                                case .dreams:
+                                    routerFeed.navigate(to: .offlineQuestion(questionType: .dreams))
+                                case .trust:
+                                    routerFeed.navigate(to: .offlineQuestion(questionType: .trust))
+                                case .favorites:
+                                    routerFeed.navigate(to: .offlineQuestion(questionType: .favorites))
+                                }
+                            } label: {
+                                FeedRowUI(foregroundColor: question.foregroundColor, backgroundColor: question.backgroundColor, title: Text(question.title)).frame(width: Width.screenFourtyTwoWidth)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                 }.padding(.bottom)

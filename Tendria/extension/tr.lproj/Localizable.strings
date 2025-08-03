@@ -187,6 +187,9 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 "end" = "Bitir";
 "think_question" = "Sessizce düşünelim 🥰";
 "answer_question" = "Cevaplarınızı duyalım 🤩";
+"question_time" = "Soru süresi";
+"set_second" = "%d Saniye";
+"back" = "Geri";
 
 /* Love */
 "love_first_heartbeat_title" = "İlk Kalp Atışı";
@@ -249,8 +252,8 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 "philosophy_beauty_description" = "Gerçek güzellik senin için ne anlama geliyor?";
 "philosophy_afterlife_title" = "Ahiret";
 "philosophy_afterlife_description" = "Ahirete inanıyor musun? Bu inanç kararlarını nasıl etkiliyor?";
-"philosophy_legacy_title" = "Miras";
-"philosophy_legacy_description" = "Birlikte nasıl bir miras bırakmak istiyorsunuz?";
+"philosophy_truth_title" = "Gerçek ve Algı";
+"philosophy_truth_description" = "Bir konuda tamamen farklı düşündüğünüz halde birbirinizi anlamayı nasıl başarırsınız?";
 
 /* Firsts */
 "firsts_first_notice_title" = "İlk Fark";

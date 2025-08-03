@@ -10,7 +10,7 @@ import SwiftUICore
 
 struct QuestionLocalModel: Identifiable{
     var id = UUID()
-    var gameType: QuestionType
+    var questionType: QuestionType
     var title: LocalizedStringKey
     var foregroundColor: Color
     var backgroundColor: Color
