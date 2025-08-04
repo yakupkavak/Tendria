@@ -29,7 +29,11 @@ struct BaseTabViewUI: View {
                     case .feedView:
                         FeedUI().environmentObject(routerFeed)
                     case .offlineQuestion(let type):
-                        OfflineQuestionUI(questionType: type)
+                        OfflineQuestionUI(questionType: type).onAppear {
+                            tabbarController.hideTabbar()
+                        }.onDisappear {
+                            tabbarController.showTabbar()
+                        }
                     case .onlineQuestion:
                         EmptyView()
                     case .story:

@@ -190,6 +190,10 @@ Partnerini davet et, birlikte anılarla dolu bir yolculuğa çıkın ☘️";
 "question_time" = "Soru süresi";
 "set_second" = "%d Saniye";
 "back" = "Geri";
+"question_select_title" = "Nasıl oynamak istersiniz?";
+"question_select_description" = "Birlikte aynı cihazdan mı yoksa çevrimiçi olarak mı oynamak istiyorsunuz?";
+"question_select_online" = "Çevrimiçi Oyna";
+"question_select_offline" = "Aynı Cihazdan Oyna";
 
 /* Love */
 "love_first_heartbeat_title" = "İlk Kalp Atışı";

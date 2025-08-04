@@ -10,6 +10,8 @@ import SwiftUI
 struct FeedUI: View {
     @EnvironmentObject var routerFeed: RouterFeed
     @StateObject var viewModel = FeedViewModel()
+    @State private var showAlert = false
+    @State private var selectedQuestionType: QuestionType?
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -20,22 +22,8 @@ struct FeedUI: View {
                     HStack(spacing: 16){
                         ForEach(viewModel.questionList){ question in
                             Button {
-                                switch question.questionType {
-                                case .love:
-                                    routerFeed.navigate(to: .offlineQuestion(questionType: .love))
-                                case .life:
-                                    routerFeed.navigate(to: .offlineQuestion(questionType: .life))
-                                case .philosophy:
-                                    routerFeed.navigate(to: .offlineQuestion(questionType: .philosophy))
-                                case .firsts:
-                                    routerFeed.navigate(to: .offlineQuestion(questionType: .firsts))
-                                case .dreams:
-                                    routerFeed.navigate(to: .offlineQuestion(questionType: .dreams))
-                                case .trust:
-                                    routerFeed.navigate(to: .offlineQuestion(questionType: .trust))
-                                case .favorites:
-                                    routerFeed.navigate(to: .offlineQuestion(questionType: .favorites))
-                                }
+                                showAlert = true
+                                selectedQuestionType = question.questionType
                             } label: {
                                 FeedRowUI(foregroundColor: question.foregroundColor, backgroundColor: question.backgroundColor, title: Text(question.title)).frame(width: Width.screenFourtyTwoWidth)
                             }
@@ -52,7 +40,25 @@ struct FeedUI: View {
                         }
                     }
                 }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(.leading,16).padding(.top).background(Color.white).clipShape(RoundedTopLeftShape(radius: 70)).padding(.top,190)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(.leading,16).padding(.top)
+                .background(Color.white).clipShape(RoundedTopLeftShape(radius: 70)).padding(.top,190)
+                .customAlert(titleKey: QuestionStringKeys.question_select_title,
+                             descriptionKey: QuestionStringKeys.question_select_description,
+                             isPresented: $showAlert,
+                             acceptText: QuestionStringKeys.question_select_online,
+                             deniedText: QuestionStringKeys.question_select_offline,
+                             acceptFunc: {
+                    if let type = selectedQuestionType {
+                        routerFeed.navigate(to: .offlineQuestion(questionType: type))
+                    }
+                },
+                             deniedFunc: {
+                    if let type = selectedQuestionType {
+                        routerFeed.navigate(to: .offlineQuestion(questionType: type))
+                    }
+                })
+            
         }.ignoresSafeArea().background(Color.feedBackground)
     }
 }

@@ -353,6 +353,14 @@ struct Constants {
     struct QuestionStringKeys {
         static let questions_title = LocalizedStringKey("questions_title")
         static let questions_description = LocalizedStringKey("questions_description")
+        static let question_select_title =
+            LocalizedStringKey("question_select_title")
+        static let question_select_description =
+            LocalizedStringKey("question_select_description")
+        static let question_select_online =
+            LocalizedStringKey("question_select_online")
+        static let question_select_offline =
+            LocalizedStringKey("question_select_offline")
         // MARK: Topic Titles
         static let love_title       = LocalizedStringKey("love_title")
         static let life_title       = LocalizedStringKey("life_title")
@@ -363,7 +371,7 @@ struct Constants {
         static let favorites_title  = LocalizedStringKey("favorites_title")
         static let question_number = LocalizedStringKey("question_number")
         static let next = LocalizedStringKey("next")
-        static let finish = LocalizedStringKey("end")
+        static let finish = LocalizedStringKey("finish")
         static let think_question = LocalizedStringKey("think_question")
         static let answer_question = LocalizedStringKey("answer_question")
         static let question_time = LocalizedStringKey("question_time")
