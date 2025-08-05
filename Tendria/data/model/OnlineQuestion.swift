@@ -12,6 +12,9 @@ struct OnlineQuestionModel {
     @DocumentID var id: String?
     var relationId: String
     var questionType: QuestionType
+    var questions: [Int]
+    var currentIndex: Int
+    var phase: GamePhase
     var date: Timestamp
     var firstName: String
     var firstImage: String
@@ -25,3 +28,14 @@ struct OnlineAnswer {
     var firstAnswer: String
     var secondAnswer: String
 }
+
+enum GameExist {
+    /// Hâlihazırda aktif bir oturum bulundu
+    case existing(OnlineQuestionModel)
+    /// Yeni oturum başarılı şekilde oluşturuldu
+    case created(OnlineQuestionModel)
+    /// (Opsiyonel) Beklenmedik hata
+    case failure(Error)
+}
+
+enum GamePhase:  String, Codable { case answering, review, finished, canceled }

@@ -317,25 +317,6 @@ class FirestorageManager {
         return user
     }
     
-    /*
-    func addProfileImage(imageData: Data) async throws -> String {
-        let uniqueFileName = UUID().uuidString + ".jpg"
-        let listImageRef = profileImageRef.child("\(uniqueFileName)")
-        
-        do {
-            let uploadTask = try await listImageRef.putDataAsync(imageData){ progress in
-                print("Upload progress: \(progress?.fractionCompleted ?? 0)")
-            }
-            let uploadUrl = try await listImageRef.downloadURL()
-            print("Upload successful, metadata: \(uploadTask)")
-            return try await FirestorageManager.shared.saveProfileImage(url:uploadUrl.absoluteString)
-        }
-        catch {
-            print("Upload failed: \(error.localizedDescription)")
-            throw error
-        }
-    }*/
-    
     func updateProfile(name: String, surname: String, email: String?, phoneNumber: String?) async throws {
         guard let userId = AuthManager.shared.getUserID() else {
             throw RelationError.invalidUserId
@@ -343,54 +324,18 @@ class FirestorageManager {
         let userRef = database.collection(FireDatabase.USERS_PATH)
         .document(userId)
         var updatedData: [String: Any] = [
-            "name": name,
-            "surname": surname
+            FireDatabase.USER_NAME: name,
+            FireDatabase.USER_SURNAME: surname
         ]
         
         if let email = email {
-            updatedData["email"] = email
+            updatedData[FireDatabase.USER_EMAIL] = email
         }
         
         if let phoneNumber = phoneNumber {
-            updatedData["phoneNumber"] = phoneNumber
+            updatedData[FireDatabase.USER_PHONE] = phoneNumber
         }
         
         try await userRef.updateData(updatedData)
     }
-    
-    //IT ADDED ON CLOUD FUNCTION
-    /*
-     func checkRelationCode(relationCode: String) async throws {
-     let relationCodeRef = database.collection(FireDatabase.RELATION_CODE_PATH)
-     do {
-     let querySnapshot = try await relationCodeRef.whereField("relationCode", isEqualTo: relationCode).getDocuments()
-     if querySnapshot.documents.count > 1 {
-     throw RelationError.duplicateCode
-     }
-     for document in querySnapshot.documents {
-     let data = try document.data(as: RelationCodeModel.self)
-     try await addRelationToUser(relationCode: data)
-     }
-     } catch {
-     throw error
-     }
-     }
-     
-     func addRelationToUser(relationCode: RelationCodeModel) async throws {
-     let relationshipRef = database.collection(FireDatabase.RELATIONSHIP_PATH).document()
-     guard let firstUserId = relationCode.firstUserId else {
-     throw RelationError.invalidUserId
-     }
-     guard let secondUserId = AuthManager.shared.getUserID() else {
-     throw RelationError.invalidUserId
-     }
-     do {
-     let newRelationDocument = RelationshipModel(firstUserId: firstUserId, secondUserId: secondUserId, createDate: Timestamp(date: Date()))
-     try addDocument(documentRef: relationshipRef, value: newRelationDocument)
-     }catch {
-     throw error
-     }
-     }
-     */
-    
 }

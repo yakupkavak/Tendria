@@ -608,7 +608,7 @@ struct Constants {
         static let EVENT_PATH = "Event"
         static let USER_NAME = "name"
         static let USER_SURNAME = "surname"
-        static let USER_PHONE = "phone"
+        static let USER_PHONE = "phoneNumber"
         static let USER_EMAIL = "email"
         static let USER_PROFILE_IMAGE = "profileImageUrl"
         

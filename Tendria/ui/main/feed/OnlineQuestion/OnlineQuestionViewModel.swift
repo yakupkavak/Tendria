@@ -52,6 +52,10 @@ class OnlineQuestionViewModel: BaseViewModel{
         getQuestions(questionType: questionType)
     }
     
+    private func checkAndCreateQuestion(){
+        
+    }
+    
     private func getQuestions(questionType: QuestionType){
         switch questionType{
             case .dreams:
