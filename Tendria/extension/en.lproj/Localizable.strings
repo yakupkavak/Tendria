@@ -191,6 +191,9 @@ Invite your partner and begin crafting memories together 💫";
 "question_select_description" = "Would you like to play together on the same device or online?";
 "question_select_online" = "Play Online";
 "question_select_offline" = "Play on Same Device";
+"write_answer" = "What is your answer";
+"ready_answer" = "I'm ready";
+"change_answer" = "Change it";
 
 /* Love */
 "love_first_heartbeat_title" = "First Heartbeat";

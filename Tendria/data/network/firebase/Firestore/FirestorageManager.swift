@@ -264,14 +264,28 @@ class FirestorageManager {
         try await database.collection(FireDatabase.EVENT_PATH).document(id).delete()
     }
     
-    func saveProfileImage(url: String) async throws -> String{
+    func updateProfileImage(imageData: Data) async throws -> String {
         guard let userId = AuthManager.shared.getUserID() else {
             throw RelationError.invalidUserId
         }
-        let userRef = database.collection(FireDatabase.USERS_PATH)
-        .document(userId)
-        let imageData = [FireDatabase.USER_PROFILE_IMAGE:url]
-        try await userRef.updateData(imageData)
+        
+        // ▶︎ Dosya yolu: userProfileImages/{userId}.jpg
+        let ref = profileImageRef.child("\(userId).jpg")
+        
+        // Eski dosyayı sil (varsa hata yutulabilir)
+        try? await ref.delete()
+        
+        // Yeni resmi yükle
+        _ = try await ref.putDataAsync(imageData)
+        
+        // İmzalı download URL’si
+        let url = try await ref.downloadURL().absoluteString
+        
+        // Firestore’a yaz
+        try await database.collection(FireDatabase.USERS_PATH)
+            .document(userId)
+            .updateData([FireDatabase.USER_PROFILE_IMAGE: url])
+        
         return url
     }
     
@@ -303,6 +317,7 @@ class FirestorageManager {
         return user
     }
     
+    /*
     func addProfileImage(imageData: Data) async throws -> String {
         let uniqueFileName = UUID().uuidString + ".jpg"
         let listImageRef = profileImageRef.child("\(uniqueFileName)")
@@ -319,7 +334,7 @@ class FirestorageManager {
             print("Upload failed: \(error.localizedDescription)")
             throw error
         }
-    }
+    }*/
     
     func updateProfile(name: String, surname: String, email: String?, phoneNumber: String?) async throws {
         guard let userId = AuthManager.shared.getUserID() else {

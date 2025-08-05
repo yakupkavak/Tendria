@@ -50,7 +50,7 @@ struct FeedUI: View {
                              deniedText: QuestionStringKeys.question_select_offline,
                              acceptFunc: {
                     if let type = selectedQuestionType {
-                        routerFeed.navigate(to: .offlineQuestion(questionType: type))
+                        routerFeed.navigate(to: .onlineQuestion(questionType: type))
                     }
                 },
                              deniedFunc: {

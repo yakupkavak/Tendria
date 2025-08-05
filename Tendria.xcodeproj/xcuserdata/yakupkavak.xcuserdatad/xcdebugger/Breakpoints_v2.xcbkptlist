@@ -30,41 +30,13 @@
             filePath = "Tendria/ui/const/Constants.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "535"
-            endingLineNumber = "535"
+            startingLineNumber = "539"
+            endingLineNumber = "539"
             landmarkName = "Images"
             landmarkType = "14">
             <Locations>
                <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 14ef6001b0d35c7e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "one-time initialization function for PIKACHU"
-                  moduleName = "Tendria.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "527"
-                  endingLineNumber = "527">
-               </Location>
-               <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - af0ecd176d5747e6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Tendria.Constants.Images.PIKACHU.unsafeMutableAddressor : Swift.String"
-                  moduleName = "Tendria.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "527"
-                  endingLineNumber = "527">
-               </Location>
-               <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - d30ff787a254bc42"
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - d30ff787a254bcc6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -74,11 +46,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "535"
-                  endingLineNumber = "535">
+                  startingLineNumber = "539"
+                  endingLineNumber = "539">
                </Location>
                <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 8e0e7e809e7dd4da"
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 8e0e7e809e7dd45e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -88,8 +60,8 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "535"
-                  endingLineNumber = "535">
+                  startingLineNumber = "539"
+                  endingLineNumber = "539">
                </Location>
             </Locations>
          </BreakpointContent>

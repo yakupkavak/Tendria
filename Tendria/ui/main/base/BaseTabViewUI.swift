@@ -34,8 +34,12 @@ struct BaseTabViewUI: View {
                         }.onDisappear {
                             tabbarController.showTabbar()
                         }
-                    case .onlineQuestion:
-                        EmptyView()
+                    case .onlineQuestion(let type):
+                        OnlineQuestionUI(questionType: type).onAppear {
+                            tabbarController.hideTabbar()
+                        }.onDisappear {
+                            tabbarController.showTabbar()
+                        }
                     case .story:
                         EmptyView()
                     case .truthLie:
@@ -43,7 +47,7 @@ struct BaseTabViewUI: View {
                     case .whatIf:
                         EmptyView()
                     }
-                }
+                }.tabbarVisibility(visibility: tabbarController.isVisible)
             }.tabItem {
                     Label("Feed", systemImage: "house")
                 }.tag(Tab.feed)

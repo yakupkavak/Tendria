@@ -141,13 +141,36 @@ struct ImageAsset: View {
             .clipped()
     }
 }
+struct ReadyAvatarView: View {
+    var imageURL: String?
+    var name: String
+    @Binding var isReady: Bool
+    
+    var body: some View {
+        VStack(spacing: 6) {
+            ZStack(alignment: .bottomTrailing) {
+                // Profil foto
+                KFImage.profile(urlString: imageURL, size: 52)
+                
+                // Hazır işareti
+                Image(systemName: isReady ? "checkmark.circle.fill"
+                                          : "")
+                    .font(.system(size: 16))
+                    .foregroundColor(isReady ? .green : .red)
+                    .background(Circle().fill(Color.white)
+                                        .frame(width: 26, height: 26))
+                    .offset(x: 4, y: 4)
+            }
+            tvColorKeyStringCut(text: name, color: .black, font: .subheadline)
+        }
+    }
+}
 
 #Preview {
-    /*
+    
     @State var isSelected = true
-    @State var fetchedImageSize: CGSize()
     /*
     CustomLottieView(animationFileName: LottieSet.HEART_LOADING, isDotLottieFile: false, loopMode: .autoReverse)*/
-    MemoryImage(imageUrl: "https://static.wikia.nocookie.net/dragon-ball-turkiye/images/e/e4/Goku_arrives_colored.PNG/revision/latest/scale-to-width/360?cb=20240328182720&path-prefix=tr")
-    */
+    ReadyAvatarView(imageURL: nil, name: "Yakup", isReady: $isSelected)
+    
 }

@@ -12,7 +12,7 @@ final class RouterFeed: ObservableObject {
     
     public enum Destination: Codable, Hashable {
         case feedView
-        case onlineQuestion
+        case onlineQuestion(questionType: QuestionType)
         case offlineQuestion(questionType: QuestionType)
         case story
         case whatIf

@@ -77,3 +77,28 @@ struct tvColorKeyString: View {
             .multilineTextAlignment(textAlignment!)
     }
 }
+
+struct tvColorKeyStringCut: View {
+    var text: String
+    var color: Color
+    var weight: Font.Weight? = .regular
+    var font: Font
+    var textAlignment: TextAlignment? = .center
+
+    var body: some View {
+        Text(cutText(text))
+            .font(font)
+            .fontWeight(weight)
+            .foregroundColor(color)
+            .multilineTextAlignment(textAlignment!)
+    }
+
+    private func cutText(_ input: String) -> String {
+        if input.count > 8 {
+            let index = input.index(input.startIndex, offsetBy: 8)
+            return String(input[..<index]) + "..."
+        } else {
+            return input
+        }
+    }
+}

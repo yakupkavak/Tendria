@@ -95,28 +95,16 @@ final class UserInfoViewModel: BaseViewModel {
     }
     
     private func saveProfileImage() {
-        guard let imageData = userPhoto?.jpegData(compressionQuality: 0.8) else { return }
-        
-        if let userUrl = self.user.profileImageUrl {
-            Task{
-                do{
-                    try await FirestorageManager.shared.deleteImageAtURL(urlString: userUrl)
-                }catch{
-                    self.error = error.localizedDescription
-                    print(self.error)
-                    print("firebase hatan bu")
-                }
-            }
-        }
+        guard let jpeg = userPhoto?.jpegData(compressionQuality: 0.8) else { return }
 
         getDataCall {
-            try await FirestorageManager.shared.addProfileImage(imageData: imageData)
+            try await FirestorageManager.shared.updateProfileImage(imageData: jpeg)
         } onSuccess: { url in
-            self.user.profileImageUrl = url
+            self.user.profileImageUrl = url                    // UI güncelle
         } onLoading: {
             self.loading = true
-        } onError: { error in
-            self.error = error?.localizedDescription ?? ""
+        } onError: { err in
+            self.error = err?.localizedDescription ?? ""
         }
     }
     
