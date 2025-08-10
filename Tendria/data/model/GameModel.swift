@@ -49,7 +49,27 @@ struct StoryGame{
     var date: Timestamp
 }
 
+struct GameSessionModel: Identifiable, Codable {
+    @DocumentID var id: String?
+    
+    var relationId: String
+    var gameType: GameType
+    var phase: GamePhase            // answering, review, finished, canceled
+    var currentIndex: Int
+    
+    var questionType: QuestionType?     // sadece question oyunlarında dolu
+    var questions: [Int]?               // sadece question oyunlarında dolu
+    
+    var date: Timestamp
+    
+    var firstUserName: String
+    var firstUserImage: String
+    var secondUserName: String
+    var secondUserImage: String
+}
+
 enum GameType: String, Codable{
+    case question
     case story
     case truthLie
     case whatIf

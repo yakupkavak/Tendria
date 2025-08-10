@@ -195,9 +195,7 @@ class FirestorageManager {
     }
     
     func fetchCollectionList() async throws -> IsCollectionExist {
-        guard let relationId = try await RelationRepository.shared.getRelationId() else {
-            return IsCollectionExist.noneRelation
-        }
+        let relationId = try await RelationRepository.shared.getRelationId()
         let documentReference = database.collection(FireDatabase.COLLECTION_PATH)
         do {
             let querySnapshot = try await documentReference.whereField(FireDatabase.RELATION_ID, isEqualTo: relationId).getDocuments()
@@ -235,10 +233,36 @@ class FirestorageManager {
         }
     }
     
-    func saveEvent(title: String, description: String, date: Date, startHour: Date, endHour: Date, tenMinuteNotification: Bool, category: CategoryModel?,location: String,profileImage: String?, name: String) async throws{
-        guard let relationId = try await RelationRepository.shared.getRelationId() else {
-            throw RelationError.invalidUserRelation
+    func fetchUserRelationship(relationId: String) async throws -> RelationshipModel {
+        let documentReference = database.collection(FireDatabase.RELATIONSHIP_PATH)
+        
+        do {
+            let documentSnapshot = try await documentReference.document(relationId).getDocument()
+            
+            guard let document = try? documentSnapshot.data(as: RelationshipModel.self) else {
+                throw RelationError.invalidUserRelation
+            }
+            return document
+        } catch {
+            throw error
         }
+    }
+    
+    //It gives the user's partner id and image
+    func fetchPartnerModel(relationId: String) async throws -> PartnerModel {
+        let relationModel = try await fetchUserRelationship(relationId: relationId)
+        if let userId = AuthManager.shared.getUserID(){
+            if userId == relationModel.firstUserId{
+                return PartnerModel(partnerId: relationModel.secondUserId ?? "Empty",partnerImageUrl: relationModel.secondUserImageUrl, partnerName: relationModel.secondUserName ?? "Unknown")
+            }else {
+                return PartnerModel(partnerId: relationModel.firstUserId,partnerImageUrl: relationModel.firstUserImageUrl, partnerName: relationModel.firstUserName)
+            }
+        }
+        throw RelationError.invalidUserRelation
+    }
+    
+    func saveEvent(title: String, description: String, date: Date, startHour: Date, endHour: Date, tenMinuteNotification: Bool, category: CategoryModel?,location: String,profileImage: String?, name: String) async throws{
+        let relationId = try await RelationRepository.shared.getRelationId()
         let newDocument = EventDocumentModel(relationId: relationId, title: title, comment: description, eventDate: Timestamp(date: date), startHour: Timestamp(date: startHour), finishHour: Timestamp(date: endHour), location: location, category: category, isRemind: tenMinuteNotification, createrProfileImage: profileImage, createrName: name)
         let eventReference = database.collection(FireDatabase.EVENT_PATH).document()
         try await addDocument(documentRef: eventReference, value: newDocument)
@@ -337,5 +361,62 @@ class FirestorageManager {
         }
         
         try await userRef.updateData(updatedData)
+    }
+    
+    @MainActor
+    func checkAndCreateAnyGameSession(
+        relationId:     String,
+        newGameType:    GameType,          // .question, .memoryMatch …
+        questionType:   QuestionType?,     // sadece question için dolu
+        firstName:      String,
+        firstImage:     String,
+        secondName:     String,
+        secondImage:    String
+    ) async -> GameExist {
+        
+        let gamesRef = Firestore.firestore()
+            .collection("Relationship")
+            .document(relationId)
+            .collection("games")
+        
+        do {
+            // 1️⃣ İlişkide bitmemiş HERHANGİ oyun?
+            let query = gamesRef
+                .whereField("phase", isNotEqualTo: GamePhase.finished.rawValue)
+                .whereField("phase", isNotEqualTo: GamePhase.canceled.rawValue)
+                .limit(to: 1)
+                .order(by: "phase")      // Firestore kuralı
+                .order(by: "date")
+            
+            if let doc = try await query.getDocuments().documents.first,
+               let active = try? doc.data(as: GameSessionModel.self) {
+                return .existing(active)           // ↩️ devam et/iptal sorusu
+            }
+            
+            // 2️⃣ Yeni oturum hazırla
+            let date = Timestamp(date: Date())
+            var session = GameSessionModel(
+                id: nil,
+                relationId: relationId,
+                gameType:   newGameType,
+                phase:      .answering,
+                currentIndex: 0,
+                questionType:  questionType,
+                questions:     questionType != nil ? Array(0..<10).shuffled() : nil,
+                date:       date,
+                firstUserName:  firstName,
+                firstUserImage: firstImage,
+                secondUserName: secondName,
+                secondUserImage: secondImage
+            )
+            
+            let docRef = gamesRef.document()
+            session.id = docRef.documentID
+            try docRef.setData(from: session)
+            return .created(session)
+        }
+        catch {
+            return .failure(error)
+        }
     }
 }

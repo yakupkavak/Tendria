@@ -38,9 +38,7 @@ class AuthManager: ObservableObject {
     }
     
     func getUserModel() async throws -> UserModel{
-        guard let relationId = try await RelationRepository.shared.getRelationId() else {
-            throw RelationError.invalidUserRelation
-        }
+        let relationId = try await RelationRepository.shared.getRelationId()
         let documentReference = database.collection(FireDatabase.USERS_PATH)
         let querySnapshot = try await documentReference.whereField(FireDatabase.RELATION_ID, isEqualTo: relationId).getDocuments()
         do {

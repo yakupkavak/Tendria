@@ -41,6 +41,7 @@
 			membershipExceptions = (
 				"/Localized: extension/Localizable.strings",
 				Info.plist,
+				Test/.swift,
 			);
 			target = 374A80F92D3B8CE300D5F0A4 /* Tendria */;
 		};
@@ -52,6 +53,7 @@
 			buildPhase = 374A80F62D3B8CE300D5F0A4 /* Sources */;
 			membershipExceptions = (
 				"/Localized: extension/Localizable.strings",
+				Test/.swift,
 			);
 		};
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */

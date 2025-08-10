@@ -36,6 +36,8 @@ typealias FontValue = Constants.FontValues
 typealias Tables = Constants.Tables
 typealias QuestionStringKeys = Constants.QuestionStringKeys
 typealias GamesStringKeys = Constants.GamesStringKeys
+typealias RealtimeConst = Constants.RealtimeConst
+typealias UserDefaultsKeys = Constants.UserDefaultsKeys
 
 struct Constants {
     struct Gradients {
@@ -618,6 +620,9 @@ struct Constants {
         static let MEMORY_PATH = "memory"
         static let PROFILE_IMAGE_PATH = "profile_images"
     }
+    struct RealtimeConst {
+        static let GAMES_PATH = "games"
+    }
     struct Numbers{
         static let RANDOM_COUNT = 6
     }
@@ -635,7 +640,19 @@ struct Constants {
     }
     struct UserDefaultsKeys{
         static let questionTime = "questionTime"
+        static let relationId = "relationID"
+        
+        static func getRelationId(userID: String) -> String {
+            return "\(userID)_relationId"
+        }
+        static func getPartnerId(userID: String) -> String {
+            return "\(userID)_partnerId"
+        }
+        static func getPartnerImage(userID: String) -> String {
+            return "\(userID)_partnerImage"
+        }
     }
+    
     struct MaliFont {
         static let Regular = "Mali-Regular"
         static let Italic = "Mali-Italic"

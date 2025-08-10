@@ -41,7 +41,7 @@ class MakeRelationViewModel: BaseViewModel {
         getDataCall {
             try await FirestorageManager.shared.checkAndAddRelation(relationCode: self.inputText)
         } onSuccess: { successData in
-            print("oluşan relation id ->", successData)
+            UserDefaults.standard.set(successData, forKey: UserDefaultsKeys.relationId)
             self.loading = false
         } onLoading: {
             self.loading = true

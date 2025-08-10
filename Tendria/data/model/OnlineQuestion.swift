@@ -30,12 +30,13 @@ struct OnlineAnswer {
 }
 
 enum GameExist {
-    /// Hâlihazırda aktif bir oturum bulundu
-    case existing(OnlineQuestionModel)
-    /// Yeni oturum başarılı şekilde oluşturuldu
-    case created(OnlineQuestionModel)
-    /// (Opsiyonel) Beklenmedik hata
+    case existing(GameSessionModel)   // Yarım kalan oyun bulundu
+    case created(GameSessionModel)    // Yeni oturum açıldı
     case failure(Error)
 }
 
-enum GamePhase:  String, Codable { case answering, review, finished, canceled }
+enum GamePhase:  String, Codable { case answering,
+                                        review,
+                                        finished,
+                                        canceled,
+                                        creating}
