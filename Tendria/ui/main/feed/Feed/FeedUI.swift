@@ -50,7 +50,10 @@ struct FeedUI: View {
                              deniedText: QuestionStringKeys.question_select_offline,
                              acceptFunc: {
                     if let type = selectedQuestionType {
-                        routerFeed.navigate(to: .onlineQuestion(questionType: type))
+                        viewModel.createOnlineGame(selectedGame: type)
+                        /*
+                         routerFeed.navigate(to: .onlineQuestion(questionType: type))
+                         */
                     }
                 },
                              deniedFunc: {

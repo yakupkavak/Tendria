@@ -11,7 +11,7 @@ public struct UserModel: Codable {
     
     var profileImageUrl: String?
     var relationId: String?
-    var userId: String?
+    var userId: String
     var fcmToken: String
     var name: String
     var surname: String?

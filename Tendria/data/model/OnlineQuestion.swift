@@ -15,11 +15,15 @@ struct OnlineQuestionModel {
     var questions: [Int]
     var currentIndex: Int
     var phase: GamePhase
-    var date: Timestamp
-    var firstName: String
-    var firstImage: String
-    var secondName: String
-    var secondImage: String
+    var date: [AnyHashable : Any]
+    var firstName: String?
+    var firstImage: String?
+    var secondName: String?
+    var secondImage: String?
+    var firstUserActive: Bool?
+    var secondUserActive: Bool?
+    var firstUserId: String
+    var secondUserId: String
 }
 
 struct OnlineAnswer {
@@ -30,8 +34,8 @@ struct OnlineAnswer {
 }
 
 enum GameExist {
-    case existing(GameSessionModel)   // Yarım kalan oyun bulundu
-    case created(GameSessionModel)    // Yeni oturum açıldı
+    case existing(OnlineQuestionModel)   // Yarım kalan oyun bulundu
+    case created(OnlineQuestionModel)    // Yeni oturum açıldı
     case failure(Error)
 }
 
@@ -39,4 +43,5 @@ enum GamePhase:  String, Codable { case answering,
                                         review,
                                         finished,
                                         canceled,
+                                        waiting,
                                         creating}

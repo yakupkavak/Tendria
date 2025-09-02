@@ -12,6 +12,7 @@ class RelationRepository{
     
     private let database = Firestore.firestore()
     static let shared = RelationRepository()
+    var relationId: String?
     
     private init(){
     }
@@ -20,14 +21,14 @@ class RelationRepository{
         
         if let partnerId = UserDefaults.standard.string(forKey: UserDefaultsKeys.getPartnerId(userID: userId)){
             if let partnerImage = UserDefaults.standard.string(forKey: UserDefaultsKeys.getPartnerImage(userID: userId)) {
-                return PartnerModel(partnerId: partnerId, partnerImageUrl: partnerImage)
+                return PartnerModel(partnerId: partnerId, partnerImageUrl: partnerImage, partnerName: "")
             }
         }
         
         Task{
             
         }
-        return PartnerModel(partnerId: "", partnerImageUrl: "")
+        return PartnerModel(partnerId: "", partnerImageUrl: "", partnerName: "")
     }
     
     func getRelationId() async throws -> String {

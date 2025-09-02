@@ -10,5 +10,5 @@ import Foundation
 struct PartnerModel {
     var partnerId: String
     var partnerImageUrl: String?
-    var partnerName: String
+    var partnerName: String?
 }

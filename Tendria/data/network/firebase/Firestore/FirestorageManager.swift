@@ -10,7 +10,7 @@ import FirebaseStorage
 import FirebaseFirestore
 import FirebaseFunctions
 import FirebaseMessaging
-
+import FirebaseDatabase
 class FirestorageManager {
     
     static let shared = FirestorageManager()
@@ -21,12 +21,14 @@ class FirestorageManager {
     let memoryRef: StorageReference
     let collectionRef: StorageReference
     let profileImageRef: StorageReference
+    var ref: DatabaseReference
     
     private init() {
         self.storageRef = storage.reference()
         self.memoryRef = storageRef.child(FireStorage.MEMORY_PATH)
         self.collectionRef = storageRef.child(FireStorage.COLLECTION_PATH)
         self.profileImageRef = storageRef.child(FireStorage.PROFILE_IMAGE_PATH)
+        self.ref = Database.database().reference()
     }
     
     func addCollectionImage(imageData: Data) async throws -> String {
@@ -340,6 +342,21 @@ class FirestorageManager {
         
         return user
     }
+    func fetchProfile(userId: String) async throws -> UserModel {
+        let userRef = database.collection(FireDatabase.USERS_PATH)
+            .document(userId)
+        
+        let document = try await userRef.getDocument()
+        
+        guard let data = document.data() else {
+            throw RelationError.unknown
+        }
+        
+        let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+        let user = try JSONDecoder().decode(UserModel.self, from: jsonData)
+        
+        return user
+       }
     
     func updateProfile(name: String, surname: String, email: String?, phoneNumber: String?) async throws {
         guard let userId = AuthManager.shared.getUserID() else {
@@ -363,60 +380,37 @@ class FirestorageManager {
         try await userRef.updateData(updatedData)
     }
     
-    @MainActor
-    func checkAndCreateAnyGameSession(
-        relationId:     String,
-        newGameType:    GameType,          // .question, .memoryMatch …
-        questionType:   QuestionType?,     // sadece question için dolu
-        firstName:      String,
-        firstImage:     String,
-        secondName:     String,
-        secondImage:    String
-    ) async -> GameExist {
+    func createOnlineGame(selectedGame: QuestionType, relationId: String) async throws -> OnlineQuestionModel{
+        let relation = try await fetchUserRelationship(relationId: relationId)
+        guard let secondUserId = relation.secondUserId else {
+            throw RelationError.invalidUserId
+        }
+        let firstUser = try await fetchProfile(userId: relation.firstUserId)
+        let secondUser = try await fetchProfile(userId: secondUserId)
         
-        let gamesRef = Firestore.firestore()
-            .collection("Relationship")
-            .document(relationId)
-            .collection("games")
+        let onlineModel = OnlineQuestionModel(relationId: relationId, questionType: selectedGame, questions: Array(0...9).shuffled(), currentIndex: 0, phase: .waiting, date: ServerValue.timestamp(), firstName: relation.firstUserName, secondName: relation.secondUserName, firstUserId: firstUser.userId, secondUserId: secondUserId)
         
+        let onlineModelRealtime: [String : Any?] = [
+            "relationId": onlineModel.relationId,
+            "questionType": onlineModel.questionType.rawValue,
+            "questions": onlineModel.questions,
+            "currentIndex": onlineModel.currentIndex,
+            "phase": onlineModel.phase.rawValue,
+            "date": onlineModel.date,
+            "firstUserId": firstUser.userId,
+            "firstName": onlineModel.firstName,
+            "firstImage": onlineModel.firstImage,
+            "secondUserId": secondUserId,
+            "secondName": onlineModel.secondName,
+            "secondImage": onlineModel.secondImage,
+            "firstUserActive": true,
+            "secondUserActive": false
+        ]
         do {
-            // 1️⃣ İlişkide bitmemiş HERHANGİ oyun?
-            let query = gamesRef
-                .whereField("phase", isNotEqualTo: GamePhase.finished.rawValue)
-                .whereField("phase", isNotEqualTo: GamePhase.canceled.rawValue)
-                .limit(to: 1)
-                .order(by: "phase")      // Firestore kuralı
-                .order(by: "date")
-            
-            if let doc = try await query.getDocuments().documents.first,
-               let active = try? doc.data(as: GameSessionModel.self) {
-                return .existing(active)           // ↩️ devam et/iptal sorusu
-            }
-            
-            // 2️⃣ Yeni oturum hazırla
-            let date = Timestamp(date: Date())
-            var session = GameSessionModel(
-                id: nil,
-                relationId: relationId,
-                gameType:   newGameType,
-                phase:      .answering,
-                currentIndex: 0,
-                questionType:  questionType,
-                questions:     questionType != nil ? Array(0..<10).shuffled() : nil,
-                date:       date,
-                firstUserName:  firstName,
-                firstUserImage: firstImage,
-                secondUserName: secondName,
-                secondUserImage: secondImage
-            )
-            
-            let docRef = gamesRef.document()
-            session.id = docRef.documentID
-            try docRef.setData(from: session)
-            return .created(session)
+            try await ref.child("onlineGames").child(relationId).setValue(onlineModelRealtime)
+        } catch {
+            throw error
         }
-        catch {
-            return .failure(error)
-        }
+        return onlineModel
     }
 }

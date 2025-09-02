@@ -11,8 +11,8 @@ import FirebaseCore
 public struct RelationshipModel: Codable {
     
     let firstUserId: String
-    let firstUserName: String
-    let firstUserImageUrl: String
+    let firstUserName: String?
+    let firstUserImageUrl: String?
     let secondUserId: String?
     let secondUserName: String?
     let secondUserImageUrl: String?

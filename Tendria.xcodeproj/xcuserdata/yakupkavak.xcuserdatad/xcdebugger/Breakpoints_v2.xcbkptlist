@@ -36,7 +36,7 @@
             landmarkType = "14">
             <Locations>
                <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - d30ff787a254bcc6"
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - d30ff787a254bd08"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -46,11 +46,11 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "539"
-                  endingLineNumber = "539">
+                  startingLineNumber = "541"
+                  endingLineNumber = "541">
                </Location>
                <Location
-                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 8e0e7e809e7dd45e"
+                  uuid = "20DC5211-877F-4061-900C-9644D06CAE8B - 8e0e7e809e7dd590"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -60,8 +60,8 @@
                   urlString = "file:///Users/yakupkavak/Desktop/SwiftProjects/Tendria/Tendria/ui/const/Constants.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "539"
-                  endingLineNumber = "539">
+                  startingLineNumber = "541"
+                  endingLineNumber = "541">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -94,6 +94,54 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "11"
             endingLineNumber = "11">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "39062DFB-D4B8-4980-8A9E-2FFA9A691879"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tendria/data/model/CategoryModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "7"
+            endingLineNumber = "7"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D190761F-E8B3-4293-AF2A-00AB6500B61D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tendria/ui/main/feed/Feed/FeedViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "createGame(relationId:selectedGame:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9637A5B1-1C45-47D0-AA5B-30DA7FD2FCDF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tendria/ui/main/feed/Feed/FeedViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "createGame(relationId:selectedGame:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
